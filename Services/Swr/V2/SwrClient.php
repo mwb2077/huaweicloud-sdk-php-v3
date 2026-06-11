@@ -27,6 +27,124 @@ class SwrClient extends Client
 
 
     /**
+     * 查询委托是否存在
+     *
+     * 检查租户是否已委托SWR服务通过触发器功能调用CCE、CCI服务，一般由前端控制台自动调用，用户无需手动调用。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function checkAgency($request)
+    {
+        return $this->checkAgencyWithHttpInfo($request);
+    }
+
+    public function checkAgencyWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/manage/agency';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\CheckAgencyResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\CheckAgencyRequest');
+    }
+
+    /**
+     * 创建委托
+     *
+     * 租户首次使用SWR服务时创建SWR服务内部委托，一般由前端控制台自动调用，用户无需手动调用。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function createAgency($request)
+    {
+        return $this->createAgencyWithHttpInfo($request);
+    }
+
+    public function createAgencyWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/manage/agency';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\CreateAgencyResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\CreateAgencyRequest');
+    }
+
+    /**
      * 生成增强型登录指令(新)
      *
      * 调用该接口，通过获取响应消息头的X-Swr-Dockerlogin的值及响应消息体的host值，可生成增强型登录指令,注：此接口只支持IAM新平面的调用方式。
@@ -1605,6 +1723,154 @@ class SwrClient extends Client
     }
 
     /**
+     * 获取签名镜像关联的被签名镜像版本列表
+     *
+     * 获取签名镜像关联的被签名镜像版本列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listReferences($request)
+    {
+        return $this->listReferencesWithHttpInfo($request);
+    }
+
+    public function listReferencesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/manage/namespaces/{namespace}/repos/{repository}/{tag}/references';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
+        }
+        if ($localVarParams['namespace'] !== null) {
+            $pathParams['namespace'] = $localVarParams['namespace'];
+        }
+        if ($localVarParams['repository'] !== null) {
+            $pathParams['repository'] = $localVarParams['repository'];
+        }
+        if ($localVarParams['tag'] !== null) {
+            $pathParams['tag'] = $localVarParams['tag'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListReferencesResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListReferencesRequest');
+    }
+
+    /**
+     * 查询镜像的附件列表
+     *
+     * 获取共享仓的镜像的附件列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listRepoAccessories($request)
+    {
+        return $this->listRepoAccessoriesWithHttpInfo($request);
+    }
+
+    public function listRepoAccessoriesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/manage/namespaces/{namespace}/repos/{repository}/{tag}/accessories';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['namespace'] !== null) {
+            $pathParams['namespace'] = $localVarParams['namespace'];
+        }
+        if ($localVarParams['repository'] !== null) {
+            $pathParams['repository'] = $localVarParams['repository'];
+        }
+        if ($localVarParams['tag'] !== null) {
+            $pathParams['tag'] = $localVarParams['tag'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListRepoAccessoriesResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListRepoAccessoriesRequest');
+    }
+
+    /**
      * 查询镜像仓库列表详情
      *
      * 查询镜像仓库列表详情
@@ -1868,6 +2134,12 @@ class SwrClient extends Client
         }
         if ($localVarParams['tag'] !== null) {
             $queryParams['tag'] = $localVarParams['tag'];
+        }
+        if ($localVarParams['orderColumn'] !== null) {
+            $queryParams['order_column'] = $localVarParams['orderColumn'];
+        }
+        if ($localVarParams['orderType'] !== null) {
+            $queryParams['order_type'] = $localVarParams['orderType'];
         }
         if ($localVarParams['withManifest'] !== null) {
             $queryParams['with_manifest'] = $localVarParams['withManifest'];
@@ -2286,6 +2558,65 @@ class SwrClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListSharedReposDetailsResponse',
             $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListSharedReposDetailsRequest');
+    }
+
+    /**
+     * 获取可进行镜像同步的区域列表
+     *
+     * 获取可进行镜像同步的区域列表，用户可以将镜像手动或自动同步到此接口返回的区域。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listSyncRegions($request)
+    {
+        return $this->listSyncRegionsWithHttpInfo($request);
+    }
+
+    public function listSyncRegionsWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/manage/regions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['*/*', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['*/*', 'application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListSyncRegionsResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListSyncRegionsRequest');
     }
 
     /**
@@ -5800,6 +6131,71 @@ class SwrClient extends Client
     }
 
     /**
+     * 执行制品清理计划
+     *
+     * 执行制品清理计划
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function executeGcSchedule($request)
+    {
+        return $this->executeGcScheduleWithHttpInfo($request);
+    }
+
+    public function executeGcScheduleWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc/schedule';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ExecuteGcScheduleResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ExecuteGcScheduleRequest');
+    }
+
+    /**
      * 手动执行镜像同步策略
      *
      * 手动执行同步策略
@@ -6004,6 +6400,74 @@ class SwrClient extends Client
     }
 
     /**
+     * 获取当前项目下所有企业仓库实例的仓库列表
+     *
+     * 获取当前项目下所有企业仓库实例的仓库列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listAllInstanceRepositories($request)
+    {
+        return $this->listAllInstanceRepositoriesWithHttpInfo($request);
+    }
+
+    public function listAllInstanceRepositoriesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/repositories';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['name'] !== null) {
+            $queryParams['name'] = $localVarParams['name'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListAllInstanceRepositoriesResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListAllInstanceRepositoriesRequest');
+    }
+
+    /**
      * 获取上传下载的相关审计日志列表
      *
      * 获取上传下载的相关审计日志列表
@@ -6202,6 +6666,77 @@ class SwrClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListFeatureGatesResponse',
             $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListFeatureGatesRequest');
+    }
+
+    /**
+     * 查询制品清理的任务列表
+     *
+     * 查询制品清理的任务列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listGcTasks($request)
+    {
+        return $this->listGcTasksWithHttpInfo($request);
+    }
+
+    public function listGcTasksWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['status'] !== null) {
+            $queryParams['status'] = $localVarParams['status'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListGcTasksResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListGcTasksRequest');
     }
 
     /**
@@ -6554,6 +7089,77 @@ class SwrClient extends Client
     }
 
     /**
+     * 获取制品扫描的漏洞信息
+     *
+     * 获取制品扫描的漏洞信息
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listInstanceArtifactVulnerabilities($request)
+    {
+        return $this->listInstanceArtifactVulnerabilitiesWithHttpInfo($request);
+    }
+
+    public function listInstanceArtifactVulnerabilitiesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/namespaces/{namespace_name}/repositories/{repository_name}/artifacts/{reference}/vulnerabilities';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['namespaceName'] !== null) {
+            $pathParams['namespace_name'] = $localVarParams['namespaceName'];
+        }
+        if ($localVarParams['repositoryName'] !== null) {
+            $pathParams['repository_name'] = $localVarParams['repositoryName'];
+        }
+        if ($localVarParams['reference'] !== null) {
+            $pathParams['reference'] = $localVarParams['reference'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ListInstanceArtifactVulnerabilitiesResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ListInstanceArtifactVulnerabilitiesRequest');
+    }
+
+    /**
      * 获取制品版本列表
      *
      * 获取制品版本列表
@@ -6805,6 +7411,9 @@ class SwrClient extends Client
         }
         if ($localVarParams['limit'] !== null) {
             $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['selfOnly'] !== null) {
+            $queryParams['self_only'] = $localVarParams['selfOnly'];
         }
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
@@ -8765,6 +9374,133 @@ class SwrClient extends Client
     }
 
     /**
+     * 获取制品清理的计划信息
+     *
+     * 获取制品清理的计划信息
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showGcSchedule($request)
+    {
+        return $this->showGcScheduleWithHttpInfo($request);
+    }
+
+    public function showGcScheduleWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc/schedule';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ShowGcScheduleResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ShowGcScheduleRequest');
+    }
+
+    /**
+     * 查询制品清理的任务详情
+     *
+     * 查询制品清理的任务详情
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showGcTask($request)
+    {
+        return $this->showGcTaskWithHttpInfo($request);
+    }
+
+    public function showGcTaskWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc/{gc_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['gcId'] !== null) {
+            $pathParams['gc_id'] = $localVarParams['gcId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\ShowGcTaskResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\ShowGcTaskRequest');
+    }
+
+    /**
      * 获取实例详情
      *
      * 获取实例详情
@@ -8856,6 +9592,9 @@ class SwrClient extends Client
             $getter = $request::getters()[$k];
             $value = $request->$getter();
             $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['withScanOverview'] !== null) {
+            $queryParams['with_scan_overview'] = $localVarParams['withScanOverview'];
         }
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
@@ -9826,6 +10565,142 @@ class SwrClient extends Client
     }
 
     /**
+     * 手动启动制品扫描
+     *
+     * 手动启动制品扫描
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function startManualScanning($request)
+    {
+        return $this->startManualScanningWithHttpInfo($request);
+    }
+
+    public function startManualScanningWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/namespaces/{namespace_name}/repositories/{repository_name}/artifacts/{reference}/scan';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['namespaceName'] !== null) {
+            $pathParams['namespace_name'] = $localVarParams['namespaceName'];
+        }
+        if ($localVarParams['repositoryName'] !== null) {
+            $pathParams['repository_name'] = $localVarParams['repositoryName'];
+        }
+        if ($localVarParams['reference'] !== null) {
+            $pathParams['reference'] = $localVarParams['reference'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\StartManualScanningResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\StartManualScanningRequest');
+    }
+
+    /**
+     * 停止制品清理任务
+     *
+     * 停止制品清理任务
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function stopGcTask($request)
+    {
+        return $this->stopGcTaskWithHttpInfo($request);
+    }
+
+    public function stopGcTaskWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc/{gc_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['gcId'] !== null) {
+            $pathParams['gc_id'] = $localVarParams['gcId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\StopGcTaskResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\StopGcTaskRequest');
+    }
+
+    /**
      * 停止镜像同步任务
      *
      * 停止镜像同步任务
@@ -9956,6 +10831,71 @@ class SwrClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Swr\V2\Model\UpdateDomainNameResponse',
             $requestType='\HuaweiCloud\SDK\Swr\V2\Model\UpdateDomainNameRequest');
+    }
+
+    /**
+     * 配置制品清理计划
+     *
+     * 配置制品清理计划
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateGcSchedule($request)
+    {
+        return $this->updateGcScheduleWithHttpInfo($request);
+    }
+
+    public function updateGcScheduleWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/system/gc/schedule';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Swr\V2\Model\UpdateGcScheduleResponse',
+            $requestType='\HuaweiCloud\SDK\Swr\V2\Model\UpdateGcScheduleRequest');
     }
 
     /**

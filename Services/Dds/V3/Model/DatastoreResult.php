@@ -20,8 +20,8 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
-    * version  version数据库版本。
+    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
+    * version  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @var string[]
     */
@@ -32,8 +32,8 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
-    * version  version数据库版本。
+    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
+    * version  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @var string[]
     */
@@ -65,8 +65,8 @@ class DatastoreResult implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
-    * version  version数据库版本。
+    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
+    * version  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @var string[]
     */
@@ -77,8 +77,8 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
-    * version  version数据库版本。
+    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
+    * version  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @var string[]
     */
@@ -89,8 +89,8 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
-    * version  version数据库版本。
+    * nodeType  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
+    * version  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @var string[]
     */
@@ -191,7 +191,7 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Gets nodeType
-    *  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
+    *  node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
     *
     * @return string
     */
@@ -203,7 +203,7 @@ class DatastoreResult implements ModelInterface, ArrayAccess
     /**
     * Sets nodeType
     *
-    * @param string $nodeType node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。
+    * @param string $nodeType node_type参数模板节点类型。取值范围： - mongos，表示集群mongos节点类型。 - shard，表示集群shard节点类型。 - config，表示集群config节点类型。 - replica，表示副本集类型。 - single，表示单节点类型。 - readonly，表示副本集只读节点类型。 - shard_readonly，表示集群只读节点类型。
     *
     * @return $this
     */
@@ -215,7 +215,7 @@ class DatastoreResult implements ModelInterface, ArrayAccess
 
     /**
     * Gets version
-    *  version数据库版本。
+    *  version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @return string
     */
@@ -227,7 +227,7 @@ class DatastoreResult implements ModelInterface, ArrayAccess
     /**
     * Sets version
     *
-    * @param string $version version数据库版本。
+    * @param string $version version数据库版本。DDS引擎取值为“5.0”、“4.4”、“4.2”、“4.0”、“3.4”。
     *
     * @return $this
     */

@@ -92,23 +92,23 @@ class RocketMQClient extends Client
     }
 
     /**
-     * 批量删除实例诊断记录
+     * 批量删除实例诊断报告
      *
-     * 批量删除实例诊断记录。
+     * 批量删除实例诊断报告。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
      * @param $request 请求对象
      * @return response
      */
-    public function batchDeleteDiagnosisReport($request)
+    public function batchDeleteDiagnosisRecords($request)
     {
-        return $this->batchDeleteDiagnosisReportWithHttpInfo($request);
+        return $this->batchDeleteDiagnosisRecordsWithHttpInfo($request);
     }
 
-    public function batchDeleteDiagnosisReportWithHttpInfo($request)
+    public function batchDeleteDiagnosisRecordsWithHttpInfo($request)
     {
-        $resourcePath = '/v2/{engine}/{project_id}/instances/{instance_id}/diagnosis';
+        $resourcePath = '/v2/{project_id}/{engine}/instances/{instance_id}/diagnosis/batch-delete';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -147,7 +147,7 @@ class RocketMQClient extends Client
         );
 
         return $this->callApi(
-            $method='DELETE',
+            $method='POST',
             $resourcePath,
             $pathParams,
             $queryParams,
@@ -155,8 +155,73 @@ class RocketMQClient extends Client
             $body=$httpBody,
             $multipart = $multipart,
             $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisReportResponse',
-            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisReportRequest');
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisRecordsResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisRecordsRequest');
+    }
+
+    /**
+     * 批量删除实例诊断报告
+     *
+     * 批量删除实例诊断报告。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function batchDeleteDiagnosisRecordsForRocketMq($request)
+    {
+        return $this->batchDeleteDiagnosisRecordsForRocketMqWithHttpInfo($request);
+    }
+
+    public function batchDeleteDiagnosisRecordsForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/diagnosis/batch-delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisRecordsForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteDiagnosisRecordsForRocketMqRequest');
     }
 
     /**
@@ -219,6 +284,71 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteInstancesResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteInstancesRequest');
+    }
+
+    /**
+     * 批量删除元数据迁移任务
+     *
+     * 批量删除元数据迁移任务。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function batchDeleteRocketMqMigrationTask($request)
+    {
+        return $this->batchDeleteRocketMqMigrationTaskWithHttpInfo($request);
+    }
+
+    public function batchDeleteRocketMqMigrationTaskWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/metadata/batch-delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteRocketMqMigrationTaskResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\BatchDeleteRocketMqMigrationTaskRequest');
     }
 
     /**
@@ -423,9 +553,74 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 创建实例诊断任务
+     *
+     * 创建实例诊断任务。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function createDiagnosisTaskForRocketMq($request)
+    {
+        return $this->createDiagnosisTaskForRocketMqWithHttpInfo($request);
+    }
+
+    public function createDiagnosisTaskForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/diagnosis';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreateDiagnosisTaskForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreateDiagnosisTaskForRocketMqRequest');
+    }
+
+    /**
      * 创建实例
      *
-     * 创建实例[，该接口支持创建按需和包周期两种计费方式的实例](tag:hws,hws_eu,hws_hk,ocb,hws_ocb,ctc,g42,hk_g42,tm,hk_tm)。
+     * 创建实例[，该接口支持创建按需和包周期两种计费方式的实例](tag:hws,hws_eu,hws_hk,ocb,hws_ocb,ctc,g42,hk_g42,tm,hk_tm,cmcc,ax)。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -547,6 +742,68 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreatePostPaidInstanceResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreatePostPaidInstanceRequest');
+    }
+
+    /**
+     * 创建实例
+     *
+     * 创建实例[，该接口支持创建按需和包周期两种计费方式的实例](tag:hws,hws_eu,hws_hk,ocb,hws_ocb,ctc,g42,hk_g42,tm,hk_tm,cmcc,ax)。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function createPostPaidInstanceForRocketMq($request)
+    {
+        return $this->createPostPaidInstanceForRocketMqWithHttpInfo($request);
+    }
+
+    public function createPostPaidInstanceForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreatePostPaidInstanceForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\CreatePostPaidInstanceForRocketMqRequest');
     }
 
     /**
@@ -792,11 +1049,11 @@ class RocketMQClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 []
             );
         }
@@ -881,23 +1138,23 @@ class RocketMQClient extends Client
     }
 
     /**
-     * 删除元数据迁移任务
+     * 删除定时任务管理中的指定记录
      *
-     * 删除元数据迁移任务。
+     * 删除定时任务管理中的指定记录。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
      * @param $request 请求对象
      * @return response
      */
-    public function deleteRocketMqMigrationTask($request)
+    public function deleteScheduledTask($request)
     {
-        return $this->deleteRocketMqMigrationTaskWithHttpInfo($request);
+        return $this->deleteScheduledTaskWithHttpInfo($request);
     }
 
-    public function deleteRocketMqMigrationTaskWithHttpInfo($request)
+    public function deleteScheduledTaskWithHttpInfo($request)
     {
-        $resourcePath = '/v2/{project_id}/instances/{instance_id}/metadata';
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/scheduled-tasks/{task_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -914,8 +1171,8 @@ class RocketMQClient extends Client
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
         }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
+        if ($localVarParams['taskId'] !== null) {
+            $pathParams['task_id'] = $localVarParams['taskId'];
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -924,7 +1181,7 @@ class RocketMQClient extends Client
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 [],
-                ['application/json']
+                []
             );
         }
         $headers = array_merge(
@@ -941,8 +1198,8 @@ class RocketMQClient extends Client
             $body=$httpBody,
             $multipart = $multipart,
             $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\DeleteRocketMqMigrationTaskResponse',
-            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\DeleteRocketMqMigrationTaskRequest');
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\DeleteScheduledTaskResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\DeleteScheduledTaskRequest');
     }
 
     /**
@@ -1073,71 +1330,6 @@ class RocketMQClient extends Client
     }
 
     /**
-     * 导出死信消息
-     *
-     * 导出死信消息。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function exportDlqMessage($request)
-    {
-        return $this->exportDlqMessageWithHttpInfo($request);
-    }
-
-    public function exportDlqMessageWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/instances/{instance_id}/messages/export';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['instanceId'] !== null) {
-            $pathParams['instance_id'] = $localVarParams['instanceId'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ExportDlqMessageResponse',
-            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ExportDlqMessageRequest');
-    }
-
-    /**
      * 查询可用区信息
      *
      * 在创建实例时，需要配置实例所在的可用区ID，可通过该接口查询可用区的ID。
@@ -1227,8 +1419,8 @@ class RocketMQClient extends Client
             $value = $request->$getter();
             $localVarParams[$k] = $value;
         }
-        if ($localVarParams['start'] !== null) {
-            $queryParams['start'] = $localVarParams['start'];
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
         }
         if ($localVarParams['limit'] !== null) {
             $queryParams['limit'] = $localVarParams['limit'];
@@ -1339,6 +1531,65 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 获取特性开关列表
+     *
+     * 获取特性开关列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listConfigFeatures($request)
+    {
+        return $this->listConfigFeaturesWithHttpInfo($request);
+    }
+
+    public function listConfigFeaturesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/config/features';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConfigFeaturesResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConfigFeaturesRequest');
+    }
+
+    /**
      * 查询消费组的授权用户列表
      *
      * 查询消费组的授权用户列表。
@@ -1355,7 +1606,7 @@ class RocketMQClient extends Client
 
     public function listConsumeGroupAccessPolicyWithHttpInfo($request)
     {
-        $resourcePath = '/v2/{engine}/{project_id}/instances/{instance_id}/groups/{group_id}/accesspolicy';
+        $resourcePath = '/v2/{engine}/{project_id}/instances/{instance_id}/groups/{group}/accesspolicy';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1381,8 +1632,8 @@ class RocketMQClient extends Client
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
         }
-        if ($localVarParams['groupId'] !== null) {
-            $pathParams['group_id'] = $localVarParams['groupId'];
+        if ($localVarParams['group'] !== null) {
+            $pathParams['group'] = $localVarParams['group'];
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -1410,6 +1661,77 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConsumeGroupAccessPolicyResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConsumeGroupAccessPolicyRequest');
+    }
+
+    /**
+     * 查询消费组的授权用户列表
+     *
+     * 查询消费组的授权用户列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listConsumeGroupAccessPolicyForRocketMq($request)
+    {
+        return $this->listConsumeGroupAccessPolicyForRocketMqWithHttpInfo($request);
+    }
+
+    public function listConsumeGroupAccessPolicyForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/groups/{group}/accesspolicy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['group'] !== null) {
+            $pathParams['group'] = $localVarParams['group'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConsumeGroupAccessPolicyForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListConsumeGroupAccessPolicyForRocketMqRequest');
     }
 
     /**
@@ -1481,6 +1803,74 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListDiagnosisReportsResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListDiagnosisReportsRequest');
+    }
+
+    /**
+     * 查询实例诊断报告列表
+     *
+     * 查询实例诊断报告列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listDiagnosisReportsForRocketMq($request)
+    {
+        return $this->listDiagnosisReportsForRocketMqWithHttpInfo($request);
+    }
+
+    public function listDiagnosisReportsForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/diagnosis';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListDiagnosisReportsForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListDiagnosisReportsForRocketMqRequest');
     }
 
     /**
@@ -1762,11 +2152,11 @@ class RocketMQClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json', 'total', 'next_offset', 'previous_offset', 'trace']
+                ['application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json', 'total', 'next_offset', 'previous_offset', 'trace'],
+                ['application/json'],
                 []
             );
         }
@@ -1786,6 +2176,77 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessageTraceResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessageTraceRequest');
+    }
+
+    /**
+     * 查询消息轨迹
+     *
+     * 查询消息轨迹。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listMessageTraceForRocketMq($request)
+    {
+        return $this->listMessageTraceForRocketMqWithHttpInfo($request);
+    }
+
+    public function listMessageTraceForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/trace';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['msgId'] !== null) {
+            $queryParams['msg_id'] = $localVarParams['msgId'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessageTraceForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessageTraceForRocketMqRequest');
     }
 
     /**
@@ -1878,6 +2339,92 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 查询消息
+     *
+     * 查询消息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listMessagesForRocketMq($request)
+    {
+        return $this->listMessagesForRocketMqWithHttpInfo($request);
+    }
+
+    public function listMessagesForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/messages';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['topic'] !== null) {
+            $queryParams['topic'] = $localVarParams['topic'];
+        }
+        if ($localVarParams['queue'] !== null) {
+            $queryParams['queue'] = $localVarParams['queue'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['key'] !== null) {
+            $queryParams['key'] = $localVarParams['key'];
+        }
+        if ($localVarParams['startTime'] !== null) {
+            $queryParams['start_time'] = $localVarParams['startTime'];
+        }
+        if ($localVarParams['endTime'] !== null) {
+            $queryParams['end_time'] = $localVarParams['endTime'];
+        }
+        if ($localVarParams['msgId'] !== null) {
+            $queryParams['msg_id'] = $localVarParams['msgId'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessagesForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListMessagesForRocketMqRequest');
+    }
+
+    /**
      * 查询实例下所有迁移任务或查询指定迁移任务信息
      *
      * 1. 查询实例下所有迁移任务
@@ -1953,6 +2500,80 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListRocketMqMigrationTaskResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListRocketMqMigrationTaskRequest');
+    }
+
+    /**
+     * 查询实例的定时任务列表
+     *
+     * 查询实例的定时任务列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listScheduledTasks($request)
+    {
+        return $this->listScheduledTasksWithHttpInfo($request);
+    }
+
+    public function listScheduledTasksWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/scheduled-tasks';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['start'] !== null) {
+            $queryParams['start'] = $localVarParams['start'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['beginTime'] !== null) {
+            $queryParams['begin_time'] = $localVarParams['beginTime'];
+        }
+        if ($localVarParams['endTime'] !== null) {
+            $queryParams['end_time'] = $localVarParams['endTime'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListScheduledTasksResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ListScheduledTasksRequest');
     }
 
     /**
@@ -2057,11 +2678,11 @@ class RocketMQClient extends Client
             $value = $request->$getter();
             $localVarParams[$k] = $value;
         }
-        if ($localVarParams['offset'] !== null) {
-            $queryParams['offset'] = $localVarParams['offset'];
-        }
         if ($localVarParams['limit'] !== null) {
             $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
         }
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
@@ -2095,9 +2716,9 @@ class RocketMQClient extends Client
     }
 
     /**
-     * 修改实例ssl相关配置
+     * 修改实例SSL相关配置
      *
-     * 修改实例ssl相关配置。
+     * 修改实例SSL相关配置。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -2163,6 +2784,68 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 更新回收站策略
+     *
+     * 更新回收站策略。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function modifyRecyclePolicy($request)
+    {
+        return $this->modifyRecyclePolicyWithHttpInfo($request);
+    }
+
+    public function modifyRecyclePolicyWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/recycle';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ModifyRecyclePolicyResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ModifyRecyclePolicyRequest');
+    }
+
+    /**
      * 重置消费进度
      *
      * 重置消费进度。
@@ -2179,7 +2862,7 @@ class RocketMQClient extends Client
 
     public function resetConsumeOffsetWithHttpInfo($request)
     {
-        $resourcePath = '/v2/{engine}/{project_id}/instances/{instance_id}/groups/{group_id}/reset-message-offset';
+        $resourcePath = '/v2/{engine}/{project_id}/instances/{instance_id}/groups/{group}/reset-message-offset';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2199,8 +2882,8 @@ class RocketMQClient extends Client
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
         }
-        if ($localVarParams['groupId'] !== null) {
-            $pathParams['group_id'] = $localVarParams['groupId'];
+        if ($localVarParams['group'] !== null) {
+            $pathParams['group'] = $localVarParams['group'];
         }
         if ($localVarParams['body'] !== null) {
             $httpBody= $localVarParams['body'];
@@ -2234,11 +2917,79 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 重置消费进度
+     *
+     * 重置消费进度。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function resetConsumeOffsetForRocketMq($request)
+    {
+        return $this->resetConsumeOffsetForRocketMqWithHttpInfo($request);
+    }
+
+    public function resetConsumeOffsetForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/groups/{group}/reset-message-offset';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['group'] !== null) {
+            $pathParams['group'] = $localVarParams['group'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResetConsumeOffsetForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResetConsumeOffsetForRocketMqRequest');
+    }
+
+    /**
      * 实例规格变更
      *
      * 实例规格变更。
      * 
-     * [**当前通过调用API，只支持按需实例进行实例规格变更。**](tag:hws,hws_hk,ctc)
+     * [**当前通过调用API，只支持按需实例进行实例规格变更。**](tag:hws,hws_hk,ctc,cmcc,ax)
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -2301,6 +3052,135 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResizeInstanceResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResizeInstanceRequest');
+    }
+
+    /**
+     * 实例规格变更
+     *
+     * 实例规格变更。
+     * 
+     * [**当前通过调用API，只支持按需实例进行实例规格变更。**](tag:hws,hws_hk,ctc,cmcc)
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function resizeInstanceForRocketMq($request)
+    {
+        return $this->resizeInstanceForRocketMqWithHttpInfo($request);
+    }
+
+    public function resizeInstanceForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/extend';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResizeInstanceForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ResizeInstanceForRocketMqRequest');
+    }
+
+    /**
+     * 恢复回收站实例
+     *
+     * 恢复回收站实例。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function restoreRecycleInstance($request)
+    {
+        return $this->restoreRecycleInstanceWithHttpInfo($request);
+    }
+
+    public function restoreRecycleInstanceWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/recycle';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\RestoreRecycleInstanceResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\RestoreRecycleInstanceRequest');
     }
 
     /**
@@ -2372,6 +3252,71 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 重发死信消息
+     *
+     * 重发死信消息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function sendDlqMessageForRocketMq($request)
+    {
+        return $this->sendDlqMessageForRocketMqWithHttpInfo($request);
+    }
+
+    public function sendDlqMessageForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/messages/deadletter-resend';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\SendDlqMessageForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\SendDlqMessageForRocketMqRequest');
+    }
+
+    /**
      * 发送消息
      *
      * 发送消息。
@@ -2440,9 +3385,266 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 发送消息
+     *
+     * 发送消息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function sendMessageForRocketMq($request)
+    {
+        return $this->sendMessageForRocketMqWithHttpInfo($request);
+    }
+
+    public function sendMessageForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/messages';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\SendMessageForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\SendMessageForRocketMqRequest');
+    }
+
+    /**
+     * 查询后台任务管理中的指定记录
+     *
+     * 查询后台任务管理中的指定记录。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showBackgroundTask($request)
+    {
+        return $this->showBackgroundTaskWithHttpInfo($request);
+    }
+
+    public function showBackgroundTaskWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/tasks/{task_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['taskId'] !== null) {
+            $pathParams['task_id'] = $localVarParams['taskId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowBackgroundTaskResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowBackgroundTaskRequest');
+    }
+
+    /**
+     * 查询实例变更记录的进度
+     *
+     * 查询后台任务管理中的指定实例变更记录的进度。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showBackgroundTaskProgress($request)
+    {
+        return $this->showBackgroundTaskProgressWithHttpInfo($request);
+    }
+
+    public function showBackgroundTaskProgressWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/tasks/{task_id}/progress';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['taskId'] !== null) {
+            $pathParams['task_id'] = $localVarParams['taskId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowBackgroundTaskProgressResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowBackgroundTaskProgressRequest');
+    }
+
+    /**
+     * 查询实例在CES的监控层级关系
+     *
+     * 查询实例在CES的监控层级关系。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showCesHierarchy($request)
+    {
+        return $this->showCesHierarchyWithHttpInfo($request);
+    }
+
+    public function showCesHierarchyWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/ces-hierarchy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowCesHierarchyResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowCesHierarchyRequest');
+    }
+
+    /**
      * 查询消费者列表
      *
-     * 查询消费组内消费者列表
+     * 查询消费组内消费者列表。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -2511,6 +3713,80 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowConsumerConnectionsResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowConsumerConnectionsRequest');
+    }
+
+    /**
+     * 查询消费者列表
+     *
+     * 查询消费组内消费者列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showConsumerConnectionsForRocketMq($request)
+    {
+        return $this->showConsumerConnectionsForRocketMqWithHttpInfo($request);
+    }
+
+    public function showConsumerConnectionsForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/groups/{group}/clients';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['isDetail'] !== null) {
+            $queryParams['is_detail'] = $localVarParams['isDetail'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['group'] !== null) {
+            $pathParams['group'] = $localVarParams['group'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowConsumerConnectionsForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowConsumerConnectionsForRocketMqRequest');
     }
 
     /**
@@ -2653,6 +3929,68 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 查询实例诊断报告
+     *
+     * 查询实例诊断报告。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showDiagnosisReportForRocketMq($request)
+    {
+        return $this->showDiagnosisReportForRocketMqWithHttpInfo($request);
+    }
+
+    public function showDiagnosisReportForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/diagnosis/{report_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['reportId'] !== null) {
+            $pathParams['report_id'] = $localVarParams['reportId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisReportForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisReportForRocketMqRequest');
+    }
+
+    /**
      * 查询stack信息
      *
      * 查询stack信息。
@@ -2715,6 +4053,68 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisStackResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisStackRequest');
+    }
+
+    /**
+     * 查询stack信息
+     *
+     * 查询stack信息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showDiagnosisStackForRocketMq($request)
+    {
+        return $this->showDiagnosisStackForRocketMqWithHttpInfo($request);
+    }
+
+    public function showDiagnosisStackForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/diagnosis/stack/{stack_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['stackId'] !== null) {
+            $pathParams['stack_id'] = $localVarParams['stackId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisStackForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowDiagnosisStackForRocketMqRequest');
     }
 
     /**
@@ -2789,6 +4189,77 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowEngineInstanceExtendProductInfoResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowEngineInstanceExtendProductInfoRequest');
+    }
+
+    /**
+     * 查询实例的扩容规格列表
+     *
+     * 查询实例的扩容规格列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showEngineInstanceExtendProductInfoForRocketMq($request)
+    {
+        return $this->showEngineInstanceExtendProductInfoForRocketMqWithHttpInfo($request);
+    }
+
+    public function showEngineInstanceExtendProductInfoForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/extend';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['type'] !== null) {
+            $queryParams['type'] = $localVarParams['type'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowEngineInstanceExtendProductInfoForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowEngineInstanceExtendProductInfoForRocketMqRequest');
     }
 
     /**
@@ -3020,6 +4491,12 @@ class RocketMQClient extends Client
             $value = $request->$getter();
             $localVarParams[$k] = $value;
         }
+        if ($localVarParams['includeTagsQuota'] !== null) {
+            $queryParams['includeTagsQuota'] = $localVarParams['includeTagsQuota'];
+        }
+        if ($localVarParams['onlyQuota'] !== null) {
+            $queryParams['onlyQuota'] = $localVarParams['onlyQuota'];
+        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -3046,6 +4523,65 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowQuotasResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowQuotasRequest');
+    }
+
+    /**
+     * 查询回收站实例列表
+     *
+     * 查询回收站实例列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showRecycleInstances($request)
+    {
+        return $this->showRecycleInstancesWithHttpInfo($request);
+    }
+
+    public function showRecycleInstancesWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/recycle';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRecycleInstancesResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRecycleInstancesRequest');
     }
 
     /**
@@ -3114,6 +4650,136 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqConfigsResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqConfigsRequest');
+    }
+
+    /**
+     * 查询RocketMQ产品规格核数
+     *
+     * 查询RocketMQ产品规格核数。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showRocketMqProductCores($request)
+    {
+        return $this->showRocketMqProductCoresWithHttpInfo($request);
+    }
+
+    public function showRocketMqProductCoresWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/rocketmq/products/cores';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $queryParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['productId'] !== null) {
+            $queryParams['product_id'] = $localVarParams['productId'];
+        }
+        if ($localVarParams['brokerNum'] !== null) {
+            $queryParams['broker_num'] = $localVarParams['brokerNum'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqProductCoresResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqProductCoresRequest');
+    }
+
+    /**
+     * 查询RocketMQ实例扩容前置检查信息
+     *
+     * 获取RocketMQ实例扩容前置检查信息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showRocketMqScalePreCheckInfo($request)
+    {
+        return $this->showRocketMqScalePreCheckInfoWithHttpInfo($request);
+    }
+
+    public function showRocketMqScalePreCheckInfoWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/extend-check';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqScalePreCheckInfoResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowRocketMqScalePreCheckInfoRequest');
     }
 
     /**
@@ -3315,6 +4981,68 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 查询磁盘自动扩容配置
+     *
+     * 查询磁盘自动扩容配置，包括磁盘自动扩容是否开启，以及开启后的扩容阈值、扩容步长、扩容上限信息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showVolumeExpandConfig($request)
+    {
+        return $this->showVolumeExpandConfigWithHttpInfo($request);
+    }
+
+    public function showVolumeExpandConfigWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/auto-volume-expand';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowVolumeExpandConfigResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ShowVolumeExpandConfigRequest');
+    }
+
+    /**
      * 修改消费组
      *
      * 修改指定消费组参数。
@@ -3356,11 +5084,11 @@ class RocketMQClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 ['application/json']
             );
         }
@@ -3385,7 +5113,7 @@ class RocketMQClient extends Client
     /**
      * 修改实例信息
      *
-     * 修改实例的名称和描述信息。
+     * 修改实例相关信息。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -3513,6 +5241,77 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 修改定时任务管理中的指定记录
+     *
+     * 修改定时任务管理中的指定记录
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateScheduledTask($request)
+    {
+        return $this->updateScheduledTaskWithHttpInfo($request);
+    }
+
+    public function updateScheduledTaskWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/scheduled-tasks/{task_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['executeAt'] !== null) {
+            $queryParams['execute_at'] = $localVarParams['executeAt'];
+        }
+        if ($localVarParams['status'] !== null) {
+            $queryParams['status'] = $localVarParams['status'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['taskId'] !== null) {
+            $pathParams['task_id'] = $localVarParams['taskId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\UpdateScheduledTaskResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\UpdateScheduledTaskRequest');
+    }
+
+    /**
      * 修改用户参数
      *
      * 修改用户参数。
@@ -3581,6 +5380,71 @@ class RocketMQClient extends Client
     }
 
     /**
+     * 修改磁盘自动扩容配置
+     *
+     * 该接口用于修改磁盘自动扩容配置，包含磁盘自动扩容是否开启、扩容阈值、扩容步长，以及扩容上限的配置。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateVolumeExpansionConfig($request)
+    {
+        return $this->updateVolumeExpansionConfigWithHttpInfo($request);
+    }
+
+    public function updateVolumeExpansionConfigWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/instances/{instance_id}/auto-volume-expand';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\UpdateVolumeExpansionConfigResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\UpdateVolumeExpansionConfigRequest');
+    }
+
+    /**
      * 消费验证
      *
      * 消费验证。
@@ -3646,6 +5510,71 @@ class RocketMQClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ValidateConsumedMessageResponse',
             $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ValidateConsumedMessageRequest');
+    }
+
+    /**
+     * 消费验证
+     *
+     * 消费验证。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function validateConsumedMessageForRocketMq($request)
+    {
+        return $this->validateConsumedMessageForRocketMqWithHttpInfo($request);
+    }
+
+    public function validateConsumedMessageForRocketMqWithHttpInfo($request)
+    {
+        $resourcePath = '/v2/{project_id}/rocketmq/instances/{instance_id}/messages/resend';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ValidateConsumedMessageForRocketMqResponse',
+            $requestType='\HuaweiCloud\SDK\RocketMQ\V2\Model\ValidateConsumedMessageForRocketMqRequest');
     }
 
     /**
@@ -3755,11 +5684,11 @@ class RocketMQClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 []
             );
         }
@@ -4092,11 +6021,11 @@ class RocketMQClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 ['application/json']
             );
         }

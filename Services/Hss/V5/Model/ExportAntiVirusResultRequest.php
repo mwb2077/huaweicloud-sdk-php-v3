@@ -22,19 +22,20 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     * Array of property to type mappings. Used for (de)serialization
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * handleStatus  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
-    * severityList  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * handleStatus  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
+    * severityList  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
+    * severities  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    * assetValue  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     * malwareName  病毒名称
     * filePath  文件路径
     * exportSize  导出条数
-    * fileHash  文件hash，当前为sha256
-    * taskName  任务名称
-    * manualIsolate  是否使用手动隔离按钮
+    * fileHash  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
+    * taskName  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * manualIsolate  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     * body  body
     *
     * @var string[]
@@ -48,6 +49,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             'publicIp' => 'string',
             'handleStatus' => 'string',
             'severityList' => 'string[]',
+            'severities' => 'string',
             'assetValue' => 'string',
             'malwareName' => 'string',
             'filePath' => 'string',
@@ -62,19 +64,20 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     * Array of property to format mappings. Used for (de)serialization
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * handleStatus  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
-    * severityList  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * handleStatus  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
+    * severityList  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
+    * severities  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    * assetValue  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     * malwareName  病毒名称
     * filePath  文件路径
     * exportSize  导出条数
-    * fileHash  文件hash，当前为sha256
-    * taskName  任务名称
-    * manualIsolate  是否使用手动隔离按钮
+    * fileHash  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
+    * taskName  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * manualIsolate  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     * body  body
     *
     * @var string[]
@@ -88,6 +91,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
         'publicIp' => null,
         'handleStatus' => null,
         'severityList' => null,
+        'severities' => null,
         'assetValue' => null,
         'malwareName' => null,
         'filePath' => null,
@@ -123,19 +127,20 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     * and the value is the original name
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * handleStatus  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
-    * severityList  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * handleStatus  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
+    * severityList  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
+    * severities  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    * assetValue  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     * malwareName  病毒名称
     * filePath  文件路径
     * exportSize  导出条数
-    * fileHash  文件hash，当前为sha256
-    * taskName  任务名称
-    * manualIsolate  是否使用手动隔离按钮
+    * fileHash  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
+    * taskName  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * manualIsolate  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     * body  body
     *
     * @var string[]
@@ -149,6 +154,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             'publicIp' => 'public_ip',
             'handleStatus' => 'handle_status',
             'severityList' => 'severity_list',
+            'severities' => 'severities',
             'assetValue' => 'asset_value',
             'malwareName' => 'malware_name',
             'filePath' => 'file_path',
@@ -163,19 +169,20 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     * Array of attributes to setter functions (for deserialization of responses)
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * handleStatus  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
-    * severityList  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * handleStatus  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
+    * severityList  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
+    * severities  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    * assetValue  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     * malwareName  病毒名称
     * filePath  文件路径
     * exportSize  导出条数
-    * fileHash  文件hash，当前为sha256
-    * taskName  任务名称
-    * manualIsolate  是否使用手动隔离按钮
+    * fileHash  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
+    * taskName  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * manualIsolate  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     * body  body
     *
     * @var string[]
@@ -189,6 +196,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             'publicIp' => 'setPublicIp',
             'handleStatus' => 'setHandleStatus',
             'severityList' => 'setSeverityList',
+            'severities' => 'setSeverities',
             'assetValue' => 'setAssetValue',
             'malwareName' => 'setMalwareName',
             'filePath' => 'setFilePath',
@@ -203,19 +211,20 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     * Array of attributes to getter functions (for serialization of requests)
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * handleStatus  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
-    * severityList  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * handleStatus  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
+    * severityList  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
+    * severities  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    * assetValue  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     * malwareName  病毒名称
     * filePath  文件路径
     * exportSize  导出条数
-    * fileHash  文件hash，当前为sha256
-    * taskName  任务名称
-    * manualIsolate  是否使用手动隔离按钮
+    * fileHash  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
+    * taskName  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * manualIsolate  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     * body  body
     *
     * @var string[]
@@ -229,6 +238,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             'publicIp' => 'getPublicIp',
             'handleStatus' => 'getHandleStatus',
             'severityList' => 'getSeverityList',
+            'severities' => 'getSeverities',
             'assetValue' => 'getAssetValue',
             'malwareName' => 'getMalwareName',
             'filePath' => 'getFilePath',
@@ -305,6 +315,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
         $this->container['publicIp'] = isset($data['publicIp']) ? $data['publicIp'] : null;
         $this->container['handleStatus'] = isset($data['handleStatus']) ? $data['handleStatus'] : null;
         $this->container['severityList'] = isset($data['severityList']) ? $data['severityList'] : null;
+        $this->container['severities'] = isset($data['severities']) ? $data['severities'] : null;
         $this->container['assetValue'] = isset($data['assetValue']) ? $data['assetValue'] : null;
         $this->container['malwareName'] = isset($data['malwareName']) ? $data['malwareName'] : null;
         $this->container['filePath'] = isset($data['filePath']) ? $data['filePath'] : null;
@@ -383,6 +394,12 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             if (!is_null($this->container['handleStatus']) && (mb_strlen($this->container['handleStatus']) < 1)) {
                 $invalidProperties[] = "invalid value for 'handleStatus', the character length must be bigger than or equal to 1.";
             }
+            if (!is_null($this->container['severities']) && (mb_strlen($this->container['severities']) > 256)) {
+                $invalidProperties[] = "invalid value for 'severities', the character length must be smaller than or equal to 256.";
+            }
+            if (!is_null($this->container['severities']) && (mb_strlen($this->container['severities']) < 1)) {
+                $invalidProperties[] = "invalid value for 'severities', the character length must be bigger than or equal to 1.";
+            }
             if (!is_null($this->container['assetValue']) && (mb_strlen($this->container['assetValue']) > 128)) {
                 $invalidProperties[] = "invalid value for 'assetValue', the character length must be smaller than or equal to 128.";
             }
@@ -422,14 +439,11 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
             if (!is_null($this->container['fileHash']) && (mb_strlen($this->container['fileHash']) < 1)) {
                 $invalidProperties[] = "invalid value for 'fileHash', the character length must be bigger than or equal to 1.";
             }
-            if (!is_null($this->container['fileHash']) && !preg_match("/^.*$/", $this->container['fileHash'])) {
-                $invalidProperties[] = "invalid value for 'fileHash', must be conform to the pattern /^.*$/.";
+            if (!is_null($this->container['taskName']) && (mb_strlen($this->container['taskName']) > 128)) {
+                $invalidProperties[] = "invalid value for 'taskName', the character length must be smaller than or equal to 128.";
             }
             if (!is_null($this->container['taskName']) && (mb_strlen($this->container['taskName']) < 1)) {
                 $invalidProperties[] = "invalid value for 'taskName', the character length must be bigger than or equal to 1.";
-            }
-            if (!is_null($this->container['taskName']) && !preg_match("/^.*$/", $this->container['taskName'])) {
-                $invalidProperties[] = "invalid value for 'taskName', must be conform to the pattern /^.*$/.";
             }
         return $invalidProperties;
     }
@@ -495,7 +509,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets limit
-    *  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    *  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     *
     * @return int
     */
@@ -507,7 +521,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets limit
     *
-    * @param int $limit **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * @param int $limit **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     *
     * @return $this
     */
@@ -567,7 +581,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets publicIp
-    *  服务器公网IP
+    *  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return string|null
     */
@@ -579,7 +593,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets publicIp
     *
-    * @param string|null $publicIp 服务器公网IP
+    * @param string|null $publicIp **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return $this
     */
@@ -591,7 +605,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets handleStatus
-    *  处置状态，包含如下:   - unhandled：未处理   - handled：已处理
+    *  **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -603,7 +617,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets handleStatus
     *
-    * @param string|null $handleStatus 处置状态，包含如下:   - unhandled：未处理   - handled：已处理
+    * @param string|null $handleStatus **参数解释**: 处置状态 **约束限制**: 不涉及 **取值范围**: 包含如下:   - unhandled：未处理   - handled：已处理 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -615,7 +629,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets severityList
-    *  威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
+    *  **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
     *
     * @return string[]|null
     */
@@ -627,7 +641,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets severityList
     *
-    * @param string[]|null $severityList 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命
+    * @param string[]|null $severityList **参数解释**: 威胁等级，已废弃 **约束限制**: 不涉及 **取值范围**: 威胁等级，包含如下:   - Low：低危   - Medium：中危   - High：高危   - Critical：致命 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -638,8 +652,32 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets severities
+    *  威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    *
+    * @return string|null
+    */
+    public function getSeverities()
+    {
+        return $this->container['severities'];
+    }
+
+    /**
+    * Sets severities
+    *
+    * @param string|null $severities 威胁等级，包含如下:   - Low : 低危   - Medium : 中危   - High : 高危   - Critical : 危急
+    *
+    * @return $this
+    */
+    public function setSeverities($severities)
+    {
+        $this->container['severities'] = $severities;
+        return $this;
+    }
+
+    /**
     * Gets assetValue
-    *  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    *  **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     *
     * @return string|null
     */
@@ -651,7 +689,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets assetValue
     *
-    * @param string|null $assetValue 资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * @param string|null $assetValue **参数解释**： 资产重要性 **约束限制**： 不涉及 **取值范围**： - important：重要资产 - common：一般资产 - test：测试资产 **默认取值**： 无
     *
     * @return $this
     */
@@ -735,7 +773,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets fileHash
-    *  文件hash，当前为sha256
+    *  **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -747,7 +785,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets fileHash
     *
-    * @param string|null $fileHash 文件hash，当前为sha256
+    * @param string|null $fileHash **参数解释**： 文件hash，当前为sha256 **约束限制**： 需为合法的SHA256哈希值 **取值范围**： 字符长度64位 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -759,7 +797,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets taskName
-    *  任务名称
+    *  **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -771,7 +809,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets taskName
     *
-    * @param string|null $taskName 任务名称
+    * @param string|null $taskName **参数解释**: 任务名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -783,7 +821,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets manualIsolate
-    *  是否使用手动隔离按钮
+    *  **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     *
     * @return bool|null
     */
@@ -795,7 +833,7 @@ class ExportAntiVirusResultRequest implements ModelInterface, ArrayAccess
     /**
     * Sets manualIsolate
     *
-    * @param bool|null $manualIsolate 是否使用手动隔离按钮
+    * @param bool|null $manualIsolate **参数解释**: 是否使用手动隔离按钮 **约束限制**: 不涉及 **取值范围**: true（已使用手动隔离）、false（未使用手动隔离） **默认取值**: 不涉及
     *
     * @return $this
     */

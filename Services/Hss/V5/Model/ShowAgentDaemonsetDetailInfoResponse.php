@@ -24,10 +24,11 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * yamlContent  原始yaml
     * nodeNum  节点总数
     * runtimeInfo  容器运行时配置
-    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     * dsInfo  dsInfo
-    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     * scheduleInfo  scheduleInfo
+    * resourceInfo  resourceInfo
     *
     * @var string[]
     */
@@ -36,9 +37,10 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
             'nodeNum' => 'int',
             'runtimeInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\RuntimeRequestBody[]',
             'clusterStatus' => 'string',
-            'dsInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\ClusterInfoResponseDsInfo',
+            'dsInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoDsInfo',
             'installedStatus' => 'string',
-            'scheduleInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\CreateDaemonsetRequestBodyScheduleInfo'
+            'scheduleInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\CreateDaemonsetRequestBodyScheduleInfo',
+            'resourceInfo' => '\HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoResourceInfo'
     ];
 
     /**
@@ -46,10 +48,11 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * yamlContent  原始yaml
     * nodeNum  节点总数
     * runtimeInfo  容器运行时配置
-    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     * dsInfo  dsInfo
-    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     * scheduleInfo  scheduleInfo
+    * resourceInfo  resourceInfo
     *
     * @var string[]
     */
@@ -60,7 +63,8 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
         'clusterStatus' => null,
         'dsInfo' => null,
         'installedStatus' => null,
-        'scheduleInfo' => null
+        'scheduleInfo' => null,
+        'resourceInfo' => null
     ];
 
     /**
@@ -89,10 +93,11 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * yamlContent  原始yaml
     * nodeNum  节点总数
     * runtimeInfo  容器运行时配置
-    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     * dsInfo  dsInfo
-    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     * scheduleInfo  scheduleInfo
+    * resourceInfo  resourceInfo
     *
     * @var string[]
     */
@@ -103,7 +108,8 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
             'clusterStatus' => 'cluster_status',
             'dsInfo' => 'ds_info',
             'installedStatus' => 'installed_status',
-            'scheduleInfo' => 'schedule_info'
+            'scheduleInfo' => 'schedule_info',
+            'resourceInfo' => 'resource_info'
     ];
 
     /**
@@ -111,10 +117,11 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * yamlContent  原始yaml
     * nodeNum  节点总数
     * runtimeInfo  容器运行时配置
-    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     * dsInfo  dsInfo
-    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     * scheduleInfo  scheduleInfo
+    * resourceInfo  resourceInfo
     *
     * @var string[]
     */
@@ -125,7 +132,8 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
             'clusterStatus' => 'setClusterStatus',
             'dsInfo' => 'setDsInfo',
             'installedStatus' => 'setInstalledStatus',
-            'scheduleInfo' => 'setScheduleInfo'
+            'scheduleInfo' => 'setScheduleInfo',
+            'resourceInfo' => 'setResourceInfo'
     ];
 
     /**
@@ -133,10 +141,11 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * yamlContent  原始yaml
     * nodeNum  节点总数
     * runtimeInfo  容器运行时配置
-    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * clusterStatus  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     * dsInfo  dsInfo
-    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * installedStatus  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     * scheduleInfo  scheduleInfo
+    * resourceInfo  resourceInfo
     *
     * @var string[]
     */
@@ -147,7 +156,8 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
             'clusterStatus' => 'getClusterStatus',
             'dsInfo' => 'getDsInfo',
             'installedStatus' => 'getInstalledStatus',
-            'scheduleInfo' => 'getScheduleInfo'
+            'scheduleInfo' => 'getScheduleInfo',
+            'resourceInfo' => 'getResourceInfo'
     ];
 
     /**
@@ -215,6 +225,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
         $this->container['dsInfo'] = isset($data['dsInfo']) ? $data['dsInfo'] : null;
         $this->container['installedStatus'] = isset($data['installedStatus']) ? $data['installedStatus'] : null;
         $this->container['scheduleInfo'] = isset($data['scheduleInfo']) ? $data['scheduleInfo'] : null;
+        $this->container['resourceInfo'] = isset($data['resourceInfo']) ? $data['resourceInfo'] : null;
     }
 
     /**
@@ -337,7 +348,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
 
     /**
     * Gets clusterStatus
-    *  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    *  **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -349,7 +360,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     /**
     * Sets clusterStatus
     *
-    * @param string|null $clusterStatus **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。  - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。  - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。  - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。  - Empty：集群无任何资源。  **默认取值**: 不涉及
+    * @param string|null $clusterStatus **参数解释**: 集群状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - Available：可用，表示集群处于正常状态。 - Unavailable：不可用，表示集群异常，需手动删除或联系管理员删除。 - ScalingUp：扩容中，表示集群正处于扩容过程中。 - ScalingDown：缩容中，表示集群正处于缩容过程中。 - Creating：创建中，表示集群正处于创建过程中。 - Deleting：删除中，表示集群正处于删除过程中。 - Upgrading：升级中，表示集群正处于升级过程中。 - Resizing：规格变更中，表示集群正处于变更规格中。 - RollingBack：回滚中，表示集群正处于回滚过程中。 - RollbackFailed：回滚异常，表示集群回滚异常，需联系管理员进行回滚重试。 - Empty：集群无任何资源。  **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -363,7 +374,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     * Gets dsInfo
     *  dsInfo
     *
-    * @return \HuaweiCloud\SDK\Hss\V5\Model\ClusterInfoResponseDsInfo|null
+    * @return \HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoDsInfo|null
     */
     public function getDsInfo()
     {
@@ -373,7 +384,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     /**
     * Sets dsInfo
     *
-    * @param \HuaweiCloud\SDK\Hss\V5\Model\ClusterInfoResponseDsInfo|null $dsInfo dsInfo
+    * @param \HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoDsInfo|null $dsInfo dsInfo
     *
     * @return $this
     */
@@ -385,7 +396,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
 
     /**
     * Gets installedStatus
-    *  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    *  **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -397,7 +408,7 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     /**
     * Sets installedStatus
     *
-    * @param string|null $installedStatus **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。  - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
+    * @param string|null $installedStatus **参数解释**: 集群ds安装状态 **约束限制**: 不涉及 **取值范围**: 包含如下： - installing：安装中。 - install_success：安装成功。 - install_failed：安装失败。 - partially_success：部分安装成功。 - upgrade_success：升级成功。 - upgrade_failed：升级失败。 - upgrading：升级中。 - none：未安装。  **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -428,6 +439,30 @@ class ShowAgentDaemonsetDetailInfoResponse implements ModelInterface, ArrayAcces
     public function setScheduleInfo($scheduleInfo)
     {
         $this->container['scheduleInfo'] = $scheduleInfo;
+        return $this;
+    }
+
+    /**
+    * Gets resourceInfo
+    *  resourceInfo
+    *
+    * @return \HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoResourceInfo|null
+    */
+    public function getResourceInfo()
+    {
+        return $this->container['resourceInfo'];
+    }
+
+    /**
+    * Sets resourceInfo
+    *
+    * @param \HuaweiCloud\SDK\Hss\V5\Model\DaemonsetYamlResponseInfoResourceInfo|null $resourceInfo resourceInfo
+    *
+    * @return $this
+    */
+    public function setResourceInfo($resourceInfo)
+    {
+        $this->container['resourceInfo'] = $resourceInfo;
         return $this;
     }
 

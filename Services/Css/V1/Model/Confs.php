@@ -25,6 +25,7 @@ class Confs implements ModelInterface, ArrayAccess
     * confContent  配置文件内容。
     * setting  setting
     * updateAt  更新时间。
+    * desc  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
     *
     * @var string[]
     */
@@ -32,8 +33,9 @@ class Confs implements ModelInterface, ArrayAccess
             'name' => 'string',
             'status' => 'string',
             'confContent' => 'string',
-            'setting' => '\HuaweiCloud\SDK\Css\V1\Model\Confsetting',
-            'updateAt' => 'string'
+            'setting' => '\HuaweiCloud\SDK\Css\V1\Model\Setting',
+            'updateAt' => 'string',
+            'desc' => 'string'
     ];
 
     /**
@@ -43,6 +45,7 @@ class Confs implements ModelInterface, ArrayAccess
     * confContent  配置文件内容。
     * setting  setting
     * updateAt  更新时间。
+    * desc  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
     *
     * @var string[]
     */
@@ -51,7 +54,8 @@ class Confs implements ModelInterface, ArrayAccess
         'status' => null,
         'confContent' => null,
         'setting' => null,
-        'updateAt' => null
+        'updateAt' => null,
+        'desc' => null
     ];
 
     /**
@@ -82,6 +86,7 @@ class Confs implements ModelInterface, ArrayAccess
     * confContent  配置文件内容。
     * setting  setting
     * updateAt  更新时间。
+    * desc  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
     *
     * @var string[]
     */
@@ -90,7 +95,8 @@ class Confs implements ModelInterface, ArrayAccess
             'status' => 'status',
             'confContent' => 'confContent',
             'setting' => 'setting',
-            'updateAt' => 'updateAt'
+            'updateAt' => 'updateAt',
+            'desc' => 'desc'
     ];
 
     /**
@@ -100,6 +106,7 @@ class Confs implements ModelInterface, ArrayAccess
     * confContent  配置文件内容。
     * setting  setting
     * updateAt  更新时间。
+    * desc  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
     *
     * @var string[]
     */
@@ -108,7 +115,8 @@ class Confs implements ModelInterface, ArrayAccess
             'status' => 'setStatus',
             'confContent' => 'setConfContent',
             'setting' => 'setSetting',
-            'updateAt' => 'setUpdateAt'
+            'updateAt' => 'setUpdateAt',
+            'desc' => 'setDesc'
     ];
 
     /**
@@ -118,6 +126,7 @@ class Confs implements ModelInterface, ArrayAccess
     * confContent  配置文件内容。
     * setting  setting
     * updateAt  更新时间。
+    * desc  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
     *
     * @var string[]
     */
@@ -126,7 +135,8 @@ class Confs implements ModelInterface, ArrayAccess
             'status' => 'getStatus',
             'confContent' => 'getConfContent',
             'setting' => 'getSetting',
-            'updateAt' => 'getUpdateAt'
+            'updateAt' => 'getUpdateAt',
+            'desc' => 'getDesc'
     ];
 
     /**
@@ -192,6 +202,7 @@ class Confs implements ModelInterface, ArrayAccess
         $this->container['confContent'] = isset($data['confContent']) ? $data['confContent'] : null;
         $this->container['setting'] = isset($data['setting']) ? $data['setting'] : null;
         $this->container['updateAt'] = isset($data['updateAt']) ? $data['updateAt'] : null;
+        $this->container['desc'] = isset($data['desc']) ? $data['desc'] : null;
     }
 
     /**
@@ -292,7 +303,7 @@ class Confs implements ModelInterface, ArrayAccess
     * Gets setting
     *  setting
     *
-    * @return \HuaweiCloud\SDK\Css\V1\Model\Confsetting|null
+    * @return \HuaweiCloud\SDK\Css\V1\Model\Setting|null
     */
     public function getSetting()
     {
@@ -302,7 +313,7 @@ class Confs implements ModelInterface, ArrayAccess
     /**
     * Sets setting
     *
-    * @param \HuaweiCloud\SDK\Css\V1\Model\Confsetting|null $setting setting
+    * @param \HuaweiCloud\SDK\Css\V1\Model\Setting|null $setting setting
     *
     * @return $this
     */
@@ -333,6 +344,30 @@ class Confs implements ModelInterface, ArrayAccess
     public function setUpdateAt($updateAt)
     {
         $this->container['updateAt'] = $updateAt;
+        return $this;
+    }
+
+    /**
+    * Gets desc
+    *  **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
+    *
+    * @return string|null
+    */
+    public function getDesc()
+    {
+        return $this->container['desc'];
+    }
+
+    /**
+    * Sets desc
+    *
+    * @param string|null $desc **参数解释**： 配置文件描述。 **取值范围**： 长度不超过128个字符。
+    *
+    * @return $this
+    */
+    public function setDesc($desc)
+    {
+        $this->container['desc'] = $desc;
         return $this;
     }
 

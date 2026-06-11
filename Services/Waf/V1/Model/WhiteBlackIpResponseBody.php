@@ -25,9 +25,9 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     * policyid  策略id
     * timestamp  创建规则的时间戳（毫秒）
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * addr  Ip/Ip段
-    * white  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * white  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     * ipGroup  ipGroup
     * timeMode  生效模式，默认为permanent（立即生效）
     * start  规则生效的开始时间，生效模式为自定义时，此字段才有效
@@ -57,9 +57,9 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     * policyid  策略id
     * timestamp  创建规则的时间戳（毫秒）
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * addr  Ip/Ip段
-    * white  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * white  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     * ipGroup  ipGroup
     * timeMode  生效模式，默认为permanent（立即生效）
     * start  规则生效的开始时间，生效模式为自定义时，此字段才有效
@@ -110,9 +110,9 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     * policyid  策略id
     * timestamp  创建规则的时间戳（毫秒）
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * addr  Ip/Ip段
-    * white  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * white  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     * ipGroup  ipGroup
     * timeMode  生效模式，默认为permanent（立即生效）
     * start  规则生效的开始时间，生效模式为自定义时，此字段才有效
@@ -142,9 +142,9 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     * policyid  策略id
     * timestamp  创建规则的时间戳（毫秒）
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * addr  Ip/Ip段
-    * white  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * white  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     * ipGroup  ipGroup
     * timeMode  生效模式，默认为permanent（立即生效）
     * start  规则生效的开始时间，生效模式为自定义时，此字段才有效
@@ -174,9 +174,9 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     * policyid  策略id
     * timestamp  创建规则的时间戳（毫秒）
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * addr  Ip/Ip段
-    * white  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * white  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     * ipGroup  ipGroup
     * timeMode  生效模式，默认为permanent（立即生效）
     * start  规则生效的开始时间，生效模式为自定义时，此字段才有效
@@ -415,7 +415,7 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets status
-    *  规则状态，0：关闭，1：开启
+    *  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return int|null
     */
@@ -427,7 +427,7 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     /**
     * Sets status
     *
-    * @param int|null $status 规则状态，0：关闭，1：开启
+    * @param int|null $status **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -463,7 +463,7 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets white
-    *  防护动作：  - 0拦截  - 1放行  - 2仅记录
+    *  防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     *
     * @return int|null
     */
@@ -475,7 +475,7 @@ class WhiteBlackIpResponseBody implements ModelInterface, ArrayAccess
     /**
     * Sets white
     *
-    * @param int|null $white 防护动作：  - 0拦截  - 1放行  - 2仅记录
+    * @param int|null $white 防护动作：  - 0 拦截  - 1 放行  - 2 仅记录
     *
     * @return $this
     */

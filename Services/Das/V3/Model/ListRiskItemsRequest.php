@@ -22,24 +22,36 @@ class ListRiskItemsRequest implements ModelInterface, ArrayAccess
     * Array of property to type mappings. Used for (de)serialization
     * xLanguage  语言
     * datastoreType  数据库类型
+    * page  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    * limit  每页记录数，默认20。
+    * offset  开始查询的偏移量，默认0
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'xLanguage' => 'string',
-            'datastoreType' => 'string'
+            'datastoreType' => 'string',
+            'page' => 'int',
+            'limit' => 'int',
+            'offset' => 'int'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * xLanguage  语言
     * datastoreType  数据库类型
+    * page  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    * limit  每页记录数，默认20。
+    * offset  开始查询的偏移量，默认0
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'xLanguage' => null,
-        'datastoreType' => null
+        'datastoreType' => null,
+        'page' => 'int32',
+        'limit' => 'int32',
+        'offset' => 'int32'
     ];
 
     /**
@@ -67,36 +79,54 @@ class ListRiskItemsRequest implements ModelInterface, ArrayAccess
     * and the value is the original name
     * xLanguage  语言
     * datastoreType  数据库类型
+    * page  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    * limit  每页记录数，默认20。
+    * offset  开始查询的偏移量，默认0
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'xLanguage' => 'X-Language',
-            'datastoreType' => 'datastore_type'
+            'datastoreType' => 'datastore_type',
+            'page' => 'page',
+            'limit' => 'limit',
+            'offset' => 'offset'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * xLanguage  语言
     * datastoreType  数据库类型
+    * page  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    * limit  每页记录数，默认20。
+    * offset  开始查询的偏移量，默认0
     *
     * @var string[]
     */
     protected static $setters = [
             'xLanguage' => 'setXLanguage',
-            'datastoreType' => 'setDatastoreType'
+            'datastoreType' => 'setDatastoreType',
+            'page' => 'setPage',
+            'limit' => 'setLimit',
+            'offset' => 'setOffset'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * xLanguage  语言
     * datastoreType  数据库类型
+    * page  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    * limit  每页记录数，默认20。
+    * offset  开始查询的偏移量，默认0
     *
     * @var string[]
     */
     protected static $getters = [
             'xLanguage' => 'getXLanguage',
-            'datastoreType' => 'getDatastoreType'
+            'datastoreType' => 'getDatastoreType',
+            'page' => 'getPage',
+            'limit' => 'getLimit',
+            'offset' => 'getOffset'
     ];
 
     /**
@@ -174,6 +204,9 @@ class ListRiskItemsRequest implements ModelInterface, ArrayAccess
     {
         $this->container['xLanguage'] = isset($data['xLanguage']) ? $data['xLanguage'] : null;
         $this->container['datastoreType'] = isset($data['datastoreType']) ? $data['datastoreType'] : null;
+        $this->container['page'] = isset($data['page']) ? $data['page'] : null;
+        $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
+        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
     }
 
     /**
@@ -254,6 +287,78 @@ class ListRiskItemsRequest implements ModelInterface, ArrayAccess
     public function setDatastoreType($datastoreType)
     {
         $this->container['datastoreType'] = $datastoreType;
+        return $this;
+    }
+
+    /**
+    * Gets page
+    *  页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    *
+    * @return int|null
+    */
+    public function getPage()
+    {
+        return $this->container['page'];
+    }
+
+    /**
+    * Sets page
+    *
+    * @param int|null $page 页码，默认1；待废弃，不建议使用，page和offset同时存在使用offset
+    *
+    * @return $this
+    */
+    public function setPage($page)
+    {
+        $this->container['page'] = $page;
+        return $this;
+    }
+
+    /**
+    * Gets limit
+    *  每页记录数，默认20。
+    *
+    * @return int|null
+    */
+    public function getLimit()
+    {
+        return $this->container['limit'];
+    }
+
+    /**
+    * Sets limit
+    *
+    * @param int|null $limit 每页记录数，默认20。
+    *
+    * @return $this
+    */
+    public function setLimit($limit)
+    {
+        $this->container['limit'] = $limit;
+        return $this;
+    }
+
+    /**
+    * Gets offset
+    *  开始查询的偏移量，默认0
+    *
+    * @return int|null
+    */
+    public function getOffset()
+    {
+        return $this->container['offset'];
+    }
+
+    /**
+    * Sets offset
+    *
+    * @param int|null $offset 开始查询的偏移量，默认0
+    *
+    * @return $this
+    */
+    public function setOffset($offset)
+    {
+        $this->container['offset'] = $offset;
         return $this;
     }
 

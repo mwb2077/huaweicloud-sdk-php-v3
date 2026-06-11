@@ -20,7 +20,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * groupId  资源分组ID。
+    * groupId  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @var string[]
     */
@@ -30,7 +30,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * groupId  资源分组ID。
+    * groupId  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @var string[]
     */
@@ -61,7 +61,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * groupId  资源分组ID。
+    * groupId  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @var string[]
     */
@@ -71,7 +71,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * groupId  资源分组ID。
+    * groupId  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @var string[]
     */
@@ -81,7 +81,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * groupId  资源分组ID。
+    * groupId  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @var string[]
     */
@@ -161,6 +161,9 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
         if ($this->container['groupId'] === null) {
             $invalidProperties[] = "'groupId' can't be null";
         }
+            if (!preg_match("/^rg([a-z]|[A-Z]|[0-9]){22}$/", $this->container['groupId'])) {
+                $invalidProperties[] = "invalid value for 'groupId', must be conform to the pattern /^rg([a-z]|[A-Z]|[0-9]){22}$/.";
+            }
         return $invalidProperties;
     }
 
@@ -177,7 +180,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets groupId
-    *  资源分组ID。
+    *  **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @return string
     */
@@ -189,7 +192,7 @@ class DeleteResourceGroupRequest implements ModelInterface, ArrayAccess
     /**
     * Sets groupId
     *
-    * @param string $groupId 资源分组ID。
+    * @param string $groupId **参数解释** 资源分组ID。 **约束限制** 不涉及。 **取值范围** 以\"rg\"开头，后面跟着22个字母或数字。 **默认取值** 不涉及。
     *
     * @return $this
     */

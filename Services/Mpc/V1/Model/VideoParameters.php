@@ -23,14 +23,16 @@ class VideoParameters implements ModelInterface, ArrayAccess
     * outputPolicy  输出策略。  取值如下： - discard - transcode  >- 当视频参数中的“output_policy”为\"discard\"，且音频参数中的“output_policy”为“transcode”时，表示只输出音频。 >- 当视频参数中的“output_policy”为\"transcode\"，且音频参数中的“output_policy”为“discard”时，表示只输出视频。 >- 同时为\"discard\"时不合法。 >- 同时为“transcode”时，表示输出音视频。
     * codec  视频编码格式。  取值如下： - 1：VIDEO_CODEC_H264 - 2：VIDEO_CODEC_H265
     * crf  视频恒定码率控制因子。  取值范围为[0, 51]
-    * maxBitrate  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
-    * bitrate  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * maxBitrate  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * bitrate  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * bufSize  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
     * profile  编码档次  取值如下： - 1：VIDEO_PROFILE_H264_BASE - 2：VIDEO_PROFILE_H264_MAIN - 3：VIDEO_PROFILE_H264_HIGH - 4：VIDEO_PROFILE_H265_MAIN
     * level  编码级别  取值如下： - 1：VIDEO_LEVEL_1_0 - 2：VIDEO_LEVEL_1_1 - 3：VIDEO_LEVEL_1_2 - 4：VIDEO_LEVEL_1_3 - 5：VIDEO_LEVEL_2_0 - 6：VIDEO_LEVEL_2_1 - 7：VIDEO_LEVEL_2_2 - 8：VIDEO_LEVEL_3_0 - 9：VIDEO_LEVEL_3_1 - 10：VIDEO_LEVEL_3_2 - 11：VIDEO_LEVEL_4_0 - 12：VIDEO_LEVEL_4_1 - 13：VIDEO_LEVEL_4_2 - 14：VIDEO_LEVEL_5_0 - 15：VIDEO_LEVEL_5_1 - 16：VIDEO_LEVEL_x_x
-    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     * maxIframesInterval  I帧最大间隔  取值范围：[2，10]。  默认值：5。  单位：秒。
     * bframesCount  最大B帧间隔。  取值范围： - H264：[0，7]，默认值为4。 - H265：[0，7]，默认值为7。  单位：帧。
     * frameRate  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    * frameRateFloat  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
     * width  视频宽度（单位：像素）  - H264：范围[32,4096]，必须为2的倍数 - H265：范围[320,4096]，必须是4的倍数
     * height  视频高度（单位：像素）  - H264：范围[32,2880]，必须为2的倍数 - H265：范围[240,2880] ，必须是4的倍数
     * blackCut  黑边剪裁类型  - 0：不开启黑边剪裁 - 1：开启黑边剪裁，低复杂度算法，针对长视频（>5分钟） - 2：开启黑边剪裁，高复杂度算法，针对短视频（<=5分钟）
@@ -44,12 +46,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
             'crf' => 'object',
             'maxBitrate' => 'int',
             'bitrate' => 'int',
+            'bufSize' => 'int',
             'profile' => 'int',
             'level' => 'int',
             'preset' => 'int',
             'maxIframesInterval' => 'int',
             'bframesCount' => 'int',
             'frameRate' => 'int',
+            'frameRateFloat' => 'float',
             'width' => 'int',
             'height' => 'int',
             'blackCut' => 'int',
@@ -61,14 +65,16 @@ class VideoParameters implements ModelInterface, ArrayAccess
     * outputPolicy  输出策略。  取值如下： - discard - transcode  >- 当视频参数中的“output_policy”为\"discard\"，且音频参数中的“output_policy”为“transcode”时，表示只输出音频。 >- 当视频参数中的“output_policy”为\"transcode\"，且音频参数中的“output_policy”为“discard”时，表示只输出视频。 >- 同时为\"discard\"时不合法。 >- 同时为“transcode”时，表示输出音视频。
     * codec  视频编码格式。  取值如下： - 1：VIDEO_CODEC_H264 - 2：VIDEO_CODEC_H265
     * crf  视频恒定码率控制因子。  取值范围为[0, 51]
-    * maxBitrate  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
-    * bitrate  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * maxBitrate  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * bitrate  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * bufSize  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
     * profile  编码档次  取值如下： - 1：VIDEO_PROFILE_H264_BASE - 2：VIDEO_PROFILE_H264_MAIN - 3：VIDEO_PROFILE_H264_HIGH - 4：VIDEO_PROFILE_H265_MAIN
     * level  编码级别  取值如下： - 1：VIDEO_LEVEL_1_0 - 2：VIDEO_LEVEL_1_1 - 3：VIDEO_LEVEL_1_2 - 4：VIDEO_LEVEL_1_3 - 5：VIDEO_LEVEL_2_0 - 6：VIDEO_LEVEL_2_1 - 7：VIDEO_LEVEL_2_2 - 8：VIDEO_LEVEL_3_0 - 9：VIDEO_LEVEL_3_1 - 10：VIDEO_LEVEL_3_2 - 11：VIDEO_LEVEL_4_0 - 12：VIDEO_LEVEL_4_1 - 13：VIDEO_LEVEL_4_2 - 14：VIDEO_LEVEL_5_0 - 15：VIDEO_LEVEL_5_1 - 16：VIDEO_LEVEL_x_x
-    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     * maxIframesInterval  I帧最大间隔  取值范围：[2，10]。  默认值：5。  单位：秒。
     * bframesCount  最大B帧间隔。  取值范围： - H264：[0，7]，默认值为4。 - H265：[0，7]，默认值为7。  单位：帧。
     * frameRate  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    * frameRateFloat  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
     * width  视频宽度（单位：像素）  - H264：范围[32,4096]，必须为2的倍数 - H265：范围[320,4096]，必须是4的倍数
     * height  视频高度（单位：像素）  - H264：范围[32,2880]，必须为2的倍数 - H265：范围[240,2880] ，必须是4的倍数
     * blackCut  黑边剪裁类型  - 0：不开启黑边剪裁 - 1：开启黑边剪裁，低复杂度算法，针对长视频（>5分钟） - 2：开启黑边剪裁，高复杂度算法，针对短视频（<=5分钟）
@@ -82,12 +88,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
         'crf' => null,
         'maxBitrate' => 'int32',
         'bitrate' => 'int32',
+        'bufSize' => 'int32',
         'profile' => 'int32',
         'level' => 'int32',
         'preset' => 'int32',
         'maxIframesInterval' => 'int32',
         'bframesCount' => 'int32',
         'frameRate' => 'int32',
+        'frameRateFloat' => 'float',
         'width' => 'int32',
         'height' => 'int32',
         'blackCut' => 'int32',
@@ -120,14 +128,16 @@ class VideoParameters implements ModelInterface, ArrayAccess
     * outputPolicy  输出策略。  取值如下： - discard - transcode  >- 当视频参数中的“output_policy”为\"discard\"，且音频参数中的“output_policy”为“transcode”时，表示只输出音频。 >- 当视频参数中的“output_policy”为\"transcode\"，且音频参数中的“output_policy”为“discard”时，表示只输出视频。 >- 同时为\"discard\"时不合法。 >- 同时为“transcode”时，表示输出音视频。
     * codec  视频编码格式。  取值如下： - 1：VIDEO_CODEC_H264 - 2：VIDEO_CODEC_H265
     * crf  视频恒定码率控制因子。  取值范围为[0, 51]
-    * maxBitrate  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
-    * bitrate  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * maxBitrate  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * bitrate  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * bufSize  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
     * profile  编码档次  取值如下： - 1：VIDEO_PROFILE_H264_BASE - 2：VIDEO_PROFILE_H264_MAIN - 3：VIDEO_PROFILE_H264_HIGH - 4：VIDEO_PROFILE_H265_MAIN
     * level  编码级别  取值如下： - 1：VIDEO_LEVEL_1_0 - 2：VIDEO_LEVEL_1_1 - 3：VIDEO_LEVEL_1_2 - 4：VIDEO_LEVEL_1_3 - 5：VIDEO_LEVEL_2_0 - 6：VIDEO_LEVEL_2_1 - 7：VIDEO_LEVEL_2_2 - 8：VIDEO_LEVEL_3_0 - 9：VIDEO_LEVEL_3_1 - 10：VIDEO_LEVEL_3_2 - 11：VIDEO_LEVEL_4_0 - 12：VIDEO_LEVEL_4_1 - 13：VIDEO_LEVEL_4_2 - 14：VIDEO_LEVEL_5_0 - 15：VIDEO_LEVEL_5_1 - 16：VIDEO_LEVEL_x_x
-    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     * maxIframesInterval  I帧最大间隔  取值范围：[2，10]。  默认值：5。  单位：秒。
     * bframesCount  最大B帧间隔。  取值范围： - H264：[0，7]，默认值为4。 - H265：[0，7]，默认值为7。  单位：帧。
     * frameRate  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    * frameRateFloat  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
     * width  视频宽度（单位：像素）  - H264：范围[32,4096]，必须为2的倍数 - H265：范围[320,4096]，必须是4的倍数
     * height  视频高度（单位：像素）  - H264：范围[32,2880]，必须为2的倍数 - H265：范围[240,2880] ，必须是4的倍数
     * blackCut  黑边剪裁类型  - 0：不开启黑边剪裁 - 1：开启黑边剪裁，低复杂度算法，针对长视频（>5分钟） - 2：开启黑边剪裁，高复杂度算法，针对短视频（<=5分钟）
@@ -141,12 +151,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
             'crf' => 'crf',
             'maxBitrate' => 'max_bitrate',
             'bitrate' => 'bitrate',
+            'bufSize' => 'buf_size',
             'profile' => 'profile',
             'level' => 'level',
             'preset' => 'preset',
             'maxIframesInterval' => 'max_iframes_interval',
             'bframesCount' => 'bframes_count',
             'frameRate' => 'frame_rate',
+            'frameRateFloat' => 'frame_rate_float',
             'width' => 'width',
             'height' => 'height',
             'blackCut' => 'black_cut',
@@ -158,14 +170,16 @@ class VideoParameters implements ModelInterface, ArrayAccess
     * outputPolicy  输出策略。  取值如下： - discard - transcode  >- 当视频参数中的“output_policy”为\"discard\"，且音频参数中的“output_policy”为“transcode”时，表示只输出音频。 >- 当视频参数中的“output_policy”为\"transcode\"，且音频参数中的“output_policy”为“discard”时，表示只输出视频。 >- 同时为\"discard\"时不合法。 >- 同时为“transcode”时，表示输出音视频。
     * codec  视频编码格式。  取值如下： - 1：VIDEO_CODEC_H264 - 2：VIDEO_CODEC_H265
     * crf  视频恒定码率控制因子。  取值范围为[0, 51]
-    * maxBitrate  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
-    * bitrate  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * maxBitrate  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * bitrate  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * bufSize  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
     * profile  编码档次  取值如下： - 1：VIDEO_PROFILE_H264_BASE - 2：VIDEO_PROFILE_H264_MAIN - 3：VIDEO_PROFILE_H264_HIGH - 4：VIDEO_PROFILE_H265_MAIN
     * level  编码级别  取值如下： - 1：VIDEO_LEVEL_1_0 - 2：VIDEO_LEVEL_1_1 - 3：VIDEO_LEVEL_1_2 - 4：VIDEO_LEVEL_1_3 - 5：VIDEO_LEVEL_2_0 - 6：VIDEO_LEVEL_2_1 - 7：VIDEO_LEVEL_2_2 - 8：VIDEO_LEVEL_3_0 - 9：VIDEO_LEVEL_3_1 - 10：VIDEO_LEVEL_3_2 - 11：VIDEO_LEVEL_4_0 - 12：VIDEO_LEVEL_4_1 - 13：VIDEO_LEVEL_4_2 - 14：VIDEO_LEVEL_5_0 - 15：VIDEO_LEVEL_5_1 - 16：VIDEO_LEVEL_x_x
-    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     * maxIframesInterval  I帧最大间隔  取值范围：[2，10]。  默认值：5。  单位：秒。
     * bframesCount  最大B帧间隔。  取值范围： - H264：[0，7]，默认值为4。 - H265：[0，7]，默认值为7。  单位：帧。
     * frameRate  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    * frameRateFloat  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
     * width  视频宽度（单位：像素）  - H264：范围[32,4096]，必须为2的倍数 - H265：范围[320,4096]，必须是4的倍数
     * height  视频高度（单位：像素）  - H264：范围[32,2880]，必须为2的倍数 - H265：范围[240,2880] ，必须是4的倍数
     * blackCut  黑边剪裁类型  - 0：不开启黑边剪裁 - 1：开启黑边剪裁，低复杂度算法，针对长视频（>5分钟） - 2：开启黑边剪裁，高复杂度算法，针对短视频（<=5分钟）
@@ -179,12 +193,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
             'crf' => 'setCrf',
             'maxBitrate' => 'setMaxBitrate',
             'bitrate' => 'setBitrate',
+            'bufSize' => 'setBufSize',
             'profile' => 'setProfile',
             'level' => 'setLevel',
             'preset' => 'setPreset',
             'maxIframesInterval' => 'setMaxIframesInterval',
             'bframesCount' => 'setBframesCount',
             'frameRate' => 'setFrameRate',
+            'frameRateFloat' => 'setFrameRateFloat',
             'width' => 'setWidth',
             'height' => 'setHeight',
             'blackCut' => 'setBlackCut',
@@ -196,14 +212,16 @@ class VideoParameters implements ModelInterface, ArrayAccess
     * outputPolicy  输出策略。  取值如下： - discard - transcode  >- 当视频参数中的“output_policy”为\"discard\"，且音频参数中的“output_policy”为“transcode”时，表示只输出音频。 >- 当视频参数中的“output_policy”为\"transcode\"，且音频参数中的“output_policy”为“discard”时，表示只输出视频。 >- 同时为\"discard\"时不合法。 >- 同时为“transcode”时，表示输出音视频。
     * codec  视频编码格式。  取值如下： - 1：VIDEO_CODEC_H264 - 2：VIDEO_CODEC_H265
     * crf  视频恒定码率控制因子。  取值范围为[0, 51]
-    * maxBitrate  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
-    * bitrate  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * maxBitrate  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * bitrate  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * bufSize  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
     * profile  编码档次  取值如下： - 1：VIDEO_PROFILE_H264_BASE - 2：VIDEO_PROFILE_H264_MAIN - 3：VIDEO_PROFILE_H264_HIGH - 4：VIDEO_PROFILE_H265_MAIN
     * level  编码级别  取值如下： - 1：VIDEO_LEVEL_1_0 - 2：VIDEO_LEVEL_1_1 - 3：VIDEO_LEVEL_1_2 - 4：VIDEO_LEVEL_1_3 - 5：VIDEO_LEVEL_2_0 - 6：VIDEO_LEVEL_2_1 - 7：VIDEO_LEVEL_2_2 - 8：VIDEO_LEVEL_3_0 - 9：VIDEO_LEVEL_3_1 - 10：VIDEO_LEVEL_3_2 - 11：VIDEO_LEVEL_4_0 - 12：VIDEO_LEVEL_4_1 - 13：VIDEO_LEVEL_4_2 - 14：VIDEO_LEVEL_5_0 - 15：VIDEO_LEVEL_5_1 - 16：VIDEO_LEVEL_x_x
-    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * preset  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     * maxIframesInterval  I帧最大间隔  取值范围：[2，10]。  默认值：5。  单位：秒。
     * bframesCount  最大B帧间隔。  取值范围： - H264：[0，7]，默认值为4。 - H265：[0，7]，默认值为7。  单位：帧。
     * frameRate  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    * frameRateFloat  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
     * width  视频宽度（单位：像素）  - H264：范围[32,4096]，必须为2的倍数 - H265：范围[320,4096]，必须是4的倍数
     * height  视频高度（单位：像素）  - H264：范围[32,2880]，必须为2的倍数 - H265：范围[240,2880] ，必须是4的倍数
     * blackCut  黑边剪裁类型  - 0：不开启黑边剪裁 - 1：开启黑边剪裁，低复杂度算法，针对长视频（>5分钟） - 2：开启黑边剪裁，高复杂度算法，针对短视频（<=5分钟）
@@ -217,12 +235,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
             'crf' => 'getCrf',
             'maxBitrate' => 'getMaxBitrate',
             'bitrate' => 'getBitrate',
+            'bufSize' => 'getBufSize',
             'profile' => 'getProfile',
             'level' => 'getLevel',
             'preset' => 'getPreset',
             'maxIframesInterval' => 'getMaxIframesInterval',
             'bframesCount' => 'getBframesCount',
             'frameRate' => 'getFrameRate',
+            'frameRateFloat' => 'getFrameRateFloat',
             'width' => 'getWidth',
             'height' => 'getHeight',
             'blackCut' => 'getBlackCut',
@@ -309,12 +329,14 @@ class VideoParameters implements ModelInterface, ArrayAccess
         $this->container['crf'] = isset($data['crf']) ? $data['crf'] : null;
         $this->container['maxBitrate'] = isset($data['maxBitrate']) ? $data['maxBitrate'] : null;
         $this->container['bitrate'] = isset($data['bitrate']) ? $data['bitrate'] : null;
+        $this->container['bufSize'] = isset($data['bufSize']) ? $data['bufSize'] : null;
         $this->container['profile'] = isset($data['profile']) ? $data['profile'] : null;
         $this->container['level'] = isset($data['level']) ? $data['level'] : null;
         $this->container['preset'] = isset($data['preset']) ? $data['preset'] : null;
         $this->container['maxIframesInterval'] = isset($data['maxIframesInterval']) ? $data['maxIframesInterval'] : null;
         $this->container['bframesCount'] = isset($data['bframesCount']) ? $data['bframesCount'] : null;
         $this->container['frameRate'] = isset($data['frameRate']) ? $data['frameRate'] : null;
+        $this->container['frameRateFloat'] = isset($data['frameRateFloat']) ? $data['frameRateFloat'] : null;
         $this->container['width'] = isset($data['width']) ? $data['width'] : null;
         $this->container['height'] = isset($data['height']) ? $data['height'] : null;
         $this->container['blackCut'] = isset($data['blackCut']) ? $data['blackCut'] : null;
@@ -349,17 +371,23 @@ class VideoParameters implements ModelInterface, ArrayAccess
             if (!is_null($this->container['codec']) && ($this->container['codec'] < 0)) {
                 $invalidProperties[] = "invalid value for 'codec', must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['maxBitrate']) && ($this->container['maxBitrate'] > 500000)) {
-                $invalidProperties[] = "invalid value for 'maxBitrate', must be smaller than or equal to 500000.";
+            if (!is_null($this->container['maxBitrate']) && ($this->container['maxBitrate'] > 800000)) {
+                $invalidProperties[] = "invalid value for 'maxBitrate', must be smaller than or equal to 800000.";
             }
             if (!is_null($this->container['maxBitrate']) && ($this->container['maxBitrate'] < 0)) {
                 $invalidProperties[] = "invalid value for 'maxBitrate', must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['bitrate']) && ($this->container['bitrate'] > 30000)) {
-                $invalidProperties[] = "invalid value for 'bitrate', must be smaller than or equal to 30000.";
+            if (!is_null($this->container['bitrate']) && ($this->container['bitrate'] > 50000)) {
+                $invalidProperties[] = "invalid value for 'bitrate', must be smaller than or equal to 50000.";
             }
             if (!is_null($this->container['bitrate']) && ($this->container['bitrate'] < 0)) {
                 $invalidProperties[] = "invalid value for 'bitrate', must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['bufSize']) && ($this->container['bufSize'] > 800000)) {
+                $invalidProperties[] = "invalid value for 'bufSize', must be smaller than or equal to 800000.";
+            }
+            if (!is_null($this->container['bufSize']) && ($this->container['bufSize'] < 0)) {
+                $invalidProperties[] = "invalid value for 'bufSize', must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['profile']) && ($this->container['profile'] > 5)) {
                 $invalidProperties[] = "invalid value for 'profile', must be smaller than or equal to 5.";
@@ -373,8 +401,8 @@ class VideoParameters implements ModelInterface, ArrayAccess
             if (!is_null($this->container['level']) && ($this->container['level'] < 0)) {
                 $invalidProperties[] = "invalid value for 'level', must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['preset']) && ($this->container['preset'] > 4)) {
-                $invalidProperties[] = "invalid value for 'preset', must be smaller than or equal to 4.";
+            if (!is_null($this->container['preset']) && ($this->container['preset'] > 5)) {
+                $invalidProperties[] = "invalid value for 'preset', must be smaller than or equal to 5.";
             }
             if (!is_null($this->container['preset']) && ($this->container['preset'] < 0)) {
                 $invalidProperties[] = "invalid value for 'preset', must be bigger than or equal to 0.";
@@ -396,6 +424,12 @@ class VideoParameters implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['frameRate']) && ($this->container['frameRate'] < 0)) {
                 $invalidProperties[] = "invalid value for 'frameRate', must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['frameRateFloat']) && ($this->container['frameRateFloat'] > 2147483647)) {
+                $invalidProperties[] = "invalid value for 'frameRateFloat', must be smaller than or equal to 2147483647.";
+            }
+            if (!is_null($this->container['frameRateFloat']) && ($this->container['frameRateFloat'] < 0)) {
+                $invalidProperties[] = "invalid value for 'frameRateFloat', must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['width']) && ($this->container['width'] > 4096)) {
                 $invalidProperties[] = "invalid value for 'width', must be smaller than or equal to 4096.";
@@ -512,7 +546,7 @@ class VideoParameters implements ModelInterface, ArrayAccess
 
     /**
     * Gets maxBitrate
-    *  输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    *  输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
     *
     * @return int|null
     */
@@ -524,7 +558,7 @@ class VideoParameters implements ModelInterface, ArrayAccess
     /**
     * Sets maxBitrate
     *
-    * @param int|null $maxBitrate 输出最大码率  单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
+    * @param int|null $maxBitrate 输出最大码率，基于crf，设置max_bitrate字段才会开启ccrf  取值范围：0或[40,800000]之间的整数。   单位：kbit/s  带crf时使用，参考原片的平均码率进行设置（一般为1.5倍）
     *
     * @return $this
     */
@@ -536,7 +570,7 @@ class VideoParameters implements ModelInterface, ArrayAccess
 
     /**
     * Gets bitrate
-    *  输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    *  输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
     *
     * @return int|null
     */
@@ -548,13 +582,37 @@ class VideoParameters implements ModelInterface, ArrayAccess
     /**
     * Sets bitrate
     *
-    * @param int|null $bitrate 输出平均码率。  取值范围：0或[40,30000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
+    * @param int|null $bitrate 输出平均码率。  取值范围：0或[40,50000]之间的整数。  单位：kbit/s  若设置为0，则输出平均码率为自适应值。
     *
     * @return $this
     */
     public function setBitrate($bitrate)
     {
         $this->container['bitrate'] = $bitrate;
+        return $this;
+    }
+
+    /**
+    * Gets bufSize
+    *  ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
+    *
+    * @return int|null
+    */
+    public function getBufSize()
+    {
+        return $this->container['bufSize'];
+    }
+
+    /**
+    * Sets bufSize
+    *
+    * @param int|null $bufSize ccrf时的缓冲区大小,建议与max_bitrate保持一致，避免编码器缓冲区溢出  取值范围：0或[40,800000]之间的整数。  单位：kbit
+    *
+    * @return $this
+    */
+    public function setBufSize($bufSize)
+    {
+        $this->container['bufSize'] = $bufSize;
         return $this;
     }
 
@@ -608,7 +666,7 @@ class VideoParameters implements ModelInterface, ArrayAccess
 
     /**
     * Gets preset
-    *  编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    *  编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     *
     * @return int|null
     */
@@ -620,7 +678,7 @@ class VideoParameters implements ModelInterface, ArrayAccess
     /**
     * Sets preset
     *
-    * @param int|null $preset 编码质量等级  取值如下： - 1：VIDEO_PRESET_HSPEED2 (只用于h.265, h.265 default) - 2：VIDEO_PRESET_HSPEED (只用于h.265) - 3：VIDEO_PRESET_NORMAL (h264/h.265可用，h.264 default)
+    * @param int|null $preset 编码质量等级  取值如下： - 1：VIDEO_PRESET_SPEED，编码快速档位 - 3：VIDEO_PRESET_HIGHQUALITY，编码高质量档位 - 4：VIDEO_PRESET_QUALITY，编码质量档位 - 5：VIDEO_PRESET_BALANCE，编码平衡档位  默认值1。
     *
     * @return $this
     */
@@ -699,6 +757,30 @@ class VideoParameters implements ModelInterface, ArrayAccess
     public function setFrameRate($frameRate)
     {
         $this->container['frameRate'] = $frameRate;
+        return $this;
+    }
+
+    /**
+    * Gets frameRateFloat
+    *  帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    *
+    * @return float|null
+    */
+    public function getFrameRateFloat()
+    {
+        return $this->container['frameRateFloat'];
+    }
+
+    /**
+    * Sets frameRateFloat
+    *
+    * @param float|null $frameRateFloat 帧率。  取值范围：0或[5,60]，0表示自适应。  单位：帧每秒。  > 若设置的帧率不在取值范围内，则自动调整为0，若设置的帧率高于片源帧率，则自动调整为片源帧率。
+    *
+    * @return $this
+    */
+    public function setFrameRateFloat($frameRateFloat)
+    {
+        $this->container['frameRateFloat'] = $frameRateFloat;
         return $this;
     }
 

@@ -21,8 +21,8 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
-    * policyId  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
-    * ruleId  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -35,8 +35,8 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
-    * policyId  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
-    * ruleId  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -70,8 +70,8 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
-    * policyId  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
-    * ruleId  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -84,8 +84,8 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
-    * policyId  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
-    * ruleId  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -98,8 +98,8 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
-    * policyId  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
-    * ruleId  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -229,7 +229,7 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets policyId
-    *  **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    *  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return string
     */
@@ -241,7 +241,7 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Sets policyId
     *
-    * @param string $policyId **参数解释：** policyid **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * @param string $policyId **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id，响应体的id字段 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -253,7 +253,7 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets ruleId
-    *  **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    *  **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return string
     */
@@ -265,7 +265,7 @@ class ConfirmIpReputationRuleRequest implements ModelInterface, ArrayAccess
     /**
     * Sets ruleId
     *
-    * @param string $ruleId **参数解释：** geoipRuleId **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** ''
+    * @param string $ruleId **参数解释：** 威胁情报规则ip，从接口 “查询威胁情报规则列表”（ListIpReputationRules）获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */

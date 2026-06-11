@@ -20,7 +20,7 @@ class CcCondition implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * category  字段类型
+    * category  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     * logicOperation  条件列表匹配逻辑。   -  如果字段类型category是url， 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、 not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal或者len_not_equal   - 如果字段类型category是ip或者ipv6，匹配逻辑可以为： equal、not_equal、equal_any或者not_equal_all   - 如果字段类型category是params、cookie或者header, 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal、len_not_equal、、num_greater、num_less、num_equal、num_not_equal、exist或者not_exist
     * contents  条件列表逻辑匹配内容。当logic_operation参数不以any或者all结尾时，需要传该参数。
     * valueListId  引用表id。当logic_operation参数以any或者all结尾时，需要传该参数。此外，引用表类型要与category类型保持一致。
@@ -38,7 +38,7 @@ class CcCondition implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * category  字段类型
+    * category  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     * logicOperation  条件列表匹配逻辑。   -  如果字段类型category是url， 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、 not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal或者len_not_equal   - 如果字段类型category是ip或者ipv6，匹配逻辑可以为： equal、not_equal、equal_any或者not_equal_all   - 如果字段类型category是params、cookie或者header, 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal、len_not_equal、、num_greater、num_less、num_equal、num_not_equal、exist或者not_exist
     * contents  条件列表逻辑匹配内容。当logic_operation参数不以any或者all结尾时，需要传该参数。
     * valueListId  引用表id。当logic_operation参数以any或者all结尾时，需要传该参数。此外，引用表类型要与category类型保持一致。
@@ -77,7 +77,7 @@ class CcCondition implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * category  字段类型
+    * category  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     * logicOperation  条件列表匹配逻辑。   -  如果字段类型category是url， 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、 not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal或者len_not_equal   - 如果字段类型category是ip或者ipv6，匹配逻辑可以为： equal、not_equal、equal_any或者not_equal_all   - 如果字段类型category是params、cookie或者header, 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal、len_not_equal、、num_greater、num_less、num_equal、num_not_equal、exist或者not_exist
     * contents  条件列表逻辑匹配内容。当logic_operation参数不以any或者all结尾时，需要传该参数。
     * valueListId  引用表id。当logic_operation参数以any或者all结尾时，需要传该参数。此外，引用表类型要与category类型保持一致。
@@ -95,7 +95,7 @@ class CcCondition implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * category  字段类型
+    * category  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     * logicOperation  条件列表匹配逻辑。   -  如果字段类型category是url， 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、 not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal或者len_not_equal   - 如果字段类型category是ip或者ipv6，匹配逻辑可以为： equal、not_equal、equal_any或者not_equal_all   - 如果字段类型category是params、cookie或者header, 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal、len_not_equal、、num_greater、num_less、num_equal、num_not_equal、exist或者not_exist
     * contents  条件列表逻辑匹配内容。当logic_operation参数不以any或者all结尾时，需要传该参数。
     * valueListId  引用表id。当logic_operation参数以any或者all结尾时，需要传该参数。此外，引用表类型要与category类型保持一致。
@@ -113,7 +113,7 @@ class CcCondition implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * category  字段类型
+    * category  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     * logicOperation  条件列表匹配逻辑。   -  如果字段类型category是url， 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、 not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal或者len_not_equal   - 如果字段类型category是ip或者ipv6，匹配逻辑可以为： equal、not_equal、equal_any或者not_equal_all   - 如果字段类型category是params、cookie或者header, 匹配逻辑可以为：contain、 not_contain、 equal、 not_equal、 prefix、 not_prefix、 suffix、 not_suffix、 contain_any、 not_contain_all、 equal_any、not_equal_all、 equal_any、 not_equal_all、 prefix_any、 not_prefix_all、 suffix_any、 not_suffix_all、 len_greater、 len_less、len_equal、len_not_equal、、num_greater、num_less、num_equal、num_not_equal、exist或者not_exist
     * contents  条件列表逻辑匹配内容。当logic_operation参数不以any或者all结尾时，需要传该参数。
     * valueListId  引用表id。当logic_operation参数以any或者all结尾时，需要传该参数。此外，引用表类型要与category类型保持一致。
@@ -172,9 +172,19 @@ class CcCondition implements ModelInterface, ArrayAccess
     const CATEGORY_URL = 'url';
     const CATEGORY_IP = 'ip';
     const CATEGORY_IPV6 = 'ipv6';
+    const CATEGORY_ASN = 'asn';
     const CATEGORY_PARAMS = 'params';
     const CATEGORY_COOKIE = 'cookie';
+    const CATEGORY_REFERER = 'referer';
+    const CATEGORY_USER_AGENT = 'user-agent';
     const CATEGORY_HEADER = 'header';
+    const CATEGORY_RESPONSE_CODE = 'response_code';
+    const CATEGORY_RESPONSE_HEADER = 'response_header';
+    const CATEGORY_RESPONSE_BODY = 'response_body';
+    const CATEGORY_REQUEST_BODY = 'request_body';
+    const CATEGORY_METHOD = 'method';
+    const CATEGORY_TLS_FINGERPRINT = 'tls_fingerprint';
+    const CATEGORY_TLS_JA3_FINGERPRINT = 'tls_ja3_fingerprint';
     
 
     /**
@@ -188,9 +198,19 @@ class CcCondition implements ModelInterface, ArrayAccess
             self::CATEGORY_URL,
             self::CATEGORY_IP,
             self::CATEGORY_IPV6,
+            self::CATEGORY_ASN,
             self::CATEGORY_PARAMS,
             self::CATEGORY_COOKIE,
+            self::CATEGORY_REFERER,
+            self::CATEGORY_USER_AGENT,
             self::CATEGORY_HEADER,
+            self::CATEGORY_RESPONSE_CODE,
+            self::CATEGORY_RESPONSE_HEADER,
+            self::CATEGORY_RESPONSE_BODY,
+            self::CATEGORY_REQUEST_BODY,
+            self::CATEGORY_METHOD,
+            self::CATEGORY_TLS_FINGERPRINT,
+            self::CATEGORY_TLS_JA3_FINGERPRINT,
         ];
     }
 
@@ -255,7 +275,7 @@ class CcCondition implements ModelInterface, ArrayAccess
 
     /**
     * Gets category
-    *  字段类型
+    *  **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     *
     * @return string
     */
@@ -267,7 +287,7 @@ class CcCondition implements ModelInterface, ArrayAccess
     /**
     * Sets category
     *
-    * @param string $category 字段类型
+    * @param string $category **参数解释：** 字段类型 **约束限制：** 不涉及 **取值范围：**  - url  - ip  - ipv6  - asn  - params  - cookie  - referer  - user-agent  - header  - response_code  - response_header  - response_body  - request_body  - method  - tls_fingerprint  - tls_ja3_fingerprint **默认取值：** 不涉及
     *
     * @return $this
     */

@@ -24,16 +24,23 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 默认为0
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostIp  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * hostIp  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * vulId  **参数解释**: 漏洞ID **约束限制**: 不涉及 **取值范围**: 字符范围0-64 **默认取值**: 不涉及
     * type  **参数解释**: 查询的漏洞类型 **约束限制**: 不涉及 **取值范围**: - linux_vul   : linux漏洞 - windows_vul : windows漏洞 - web_cms     : Web-CMS漏洞 - app_vul     : 应用漏洞 - urgent_vul  : 应急漏洞  **默认取值**: 不涉及
     * status  **参数解释**: 漏洞当前的漏洞状态 **约束限制**: 不涉及 **取值范围**: - vul_status_unfix            : 未处理 - vul_status_ignored          : 已忽略 - vul_status_verified         : 验证中 - vul_status_fixing           : 修复中 - vul_status_fixed            : 修复成功 - vul_status_reboot           : 修复成功待重启 - vul_status_failed           : 修复失败 - vul_status_fix_after_reboot : 请重启主机再次修复  **默认取值**: 不涉及
     * assetValue  **参数解释**: 资产重要性 **约束限制**: 不涉及 **取值范围**: - important : 重要 - common    : 一般 - test      : 测试  **默认取值**: 不涉及
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符范围0-256位  **默认取值**: 不涉及
     * handleStatus  **参数解释**: 漏洞当前的处置状态 **约束限制**: 不涉及 **取值范围**: - unhandled : 未处理 - handled   : 已处理  **默认取值**: 不涉及
-    * severityLevel  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
-    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
-    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * severityLevel  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
+    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * clusterName  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    * clusterId  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    * isContainer  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    * containerName  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    * minScanTime  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * maxScanTime  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * nodeType  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -51,7 +58,14 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
             'handleStatus' => 'string',
             'severityLevel' => 'string',
             'isAffectBusiness' => 'bool',
-            'repairPriority' => 'string'
+            'repairPriority' => 'string',
+            'clusterName' => 'string',
+            'clusterId' => 'string',
+            'isContainer' => 'bool',
+            'containerName' => 'string',
+            'minScanTime' => 'int',
+            'maxScanTime' => 'int',
+            'nodeType' => 'string'
     ];
 
     /**
@@ -60,16 +74,23 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 默认为0
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostIp  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * hostIp  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * vulId  **参数解释**: 漏洞ID **约束限制**: 不涉及 **取值范围**: 字符范围0-64 **默认取值**: 不涉及
     * type  **参数解释**: 查询的漏洞类型 **约束限制**: 不涉及 **取值范围**: - linux_vul   : linux漏洞 - windows_vul : windows漏洞 - web_cms     : Web-CMS漏洞 - app_vul     : 应用漏洞 - urgent_vul  : 应急漏洞  **默认取值**: 不涉及
     * status  **参数解释**: 漏洞当前的漏洞状态 **约束限制**: 不涉及 **取值范围**: - vul_status_unfix            : 未处理 - vul_status_ignored          : 已忽略 - vul_status_verified         : 验证中 - vul_status_fixing           : 修复中 - vul_status_fixed            : 修复成功 - vul_status_reboot           : 修复成功待重启 - vul_status_failed           : 修复失败 - vul_status_fix_after_reboot : 请重启主机再次修复  **默认取值**: 不涉及
     * assetValue  **参数解释**: 资产重要性 **约束限制**: 不涉及 **取值范围**: - important : 重要 - common    : 一般 - test      : 测试  **默认取值**: 不涉及
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符范围0-256位  **默认取值**: 不涉及
     * handleStatus  **参数解释**: 漏洞当前的处置状态 **约束限制**: 不涉及 **取值范围**: - unhandled : 未处理 - handled   : 已处理  **默认取值**: 不涉及
-    * severityLevel  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
-    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
-    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * severityLevel  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
+    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * clusterName  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    * clusterId  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    * isContainer  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    * containerName  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    * minScanTime  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * maxScanTime  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * nodeType  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -87,7 +108,14 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
         'handleStatus' => null,
         'severityLevel' => null,
         'isAffectBusiness' => null,
-        'repairPriority' => null
+        'repairPriority' => null,
+        'clusterName' => null,
+        'clusterId' => null,
+        'isContainer' => null,
+        'containerName' => null,
+        'minScanTime' => 'int64',
+        'maxScanTime' => 'int64',
+        'nodeType' => null
     ];
 
     /**
@@ -117,16 +145,23 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 默认为0
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostIp  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * hostIp  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * vulId  **参数解释**: 漏洞ID **约束限制**: 不涉及 **取值范围**: 字符范围0-64 **默认取值**: 不涉及
     * type  **参数解释**: 查询的漏洞类型 **约束限制**: 不涉及 **取值范围**: - linux_vul   : linux漏洞 - windows_vul : windows漏洞 - web_cms     : Web-CMS漏洞 - app_vul     : 应用漏洞 - urgent_vul  : 应急漏洞  **默认取值**: 不涉及
     * status  **参数解释**: 漏洞当前的漏洞状态 **约束限制**: 不涉及 **取值范围**: - vul_status_unfix            : 未处理 - vul_status_ignored          : 已忽略 - vul_status_verified         : 验证中 - vul_status_fixing           : 修复中 - vul_status_fixed            : 修复成功 - vul_status_reboot           : 修复成功待重启 - vul_status_failed           : 修复失败 - vul_status_fix_after_reboot : 请重启主机再次修复  **默认取值**: 不涉及
     * assetValue  **参数解释**: 资产重要性 **约束限制**: 不涉及 **取值范围**: - important : 重要 - common    : 一般 - test      : 测试  **默认取值**: 不涉及
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符范围0-256位  **默认取值**: 不涉及
     * handleStatus  **参数解释**: 漏洞当前的处置状态 **约束限制**: 不涉及 **取值范围**: - unhandled : 未处理 - handled   : 已处理  **默认取值**: 不涉及
-    * severityLevel  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
-    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
-    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * severityLevel  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
+    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * clusterName  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    * clusterId  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    * isContainer  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    * containerName  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    * minScanTime  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * maxScanTime  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * nodeType  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -144,7 +179,14 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
             'handleStatus' => 'handle_status',
             'severityLevel' => 'severity_level',
             'isAffectBusiness' => 'is_affect_business',
-            'repairPriority' => 'repair_priority'
+            'repairPriority' => 'repair_priority',
+            'clusterName' => 'cluster_name',
+            'clusterId' => 'cluster_id',
+            'isContainer' => 'is_container',
+            'containerName' => 'container_name',
+            'minScanTime' => 'min_scan_time',
+            'maxScanTime' => 'max_scan_time',
+            'nodeType' => 'node_type'
     ];
 
     /**
@@ -153,16 +195,23 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 默认为0
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostIp  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * hostIp  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * vulId  **参数解释**: 漏洞ID **约束限制**: 不涉及 **取值范围**: 字符范围0-64 **默认取值**: 不涉及
     * type  **参数解释**: 查询的漏洞类型 **约束限制**: 不涉及 **取值范围**: - linux_vul   : linux漏洞 - windows_vul : windows漏洞 - web_cms     : Web-CMS漏洞 - app_vul     : 应用漏洞 - urgent_vul  : 应急漏洞  **默认取值**: 不涉及
     * status  **参数解释**: 漏洞当前的漏洞状态 **约束限制**: 不涉及 **取值范围**: - vul_status_unfix            : 未处理 - vul_status_ignored          : 已忽略 - vul_status_verified         : 验证中 - vul_status_fixing           : 修复中 - vul_status_fixed            : 修复成功 - vul_status_reboot           : 修复成功待重启 - vul_status_failed           : 修复失败 - vul_status_fix_after_reboot : 请重启主机再次修复  **默认取值**: 不涉及
     * assetValue  **参数解释**: 资产重要性 **约束限制**: 不涉及 **取值范围**: - important : 重要 - common    : 一般 - test      : 测试  **默认取值**: 不涉及
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符范围0-256位  **默认取值**: 不涉及
     * handleStatus  **参数解释**: 漏洞当前的处置状态 **约束限制**: 不涉及 **取值范围**: - unhandled : 未处理 - handled   : 已处理  **默认取值**: 不涉及
-    * severityLevel  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
-    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
-    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * severityLevel  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
+    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * clusterName  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    * clusterId  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    * isContainer  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    * containerName  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    * minScanTime  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * maxScanTime  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * nodeType  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -180,7 +229,14 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
             'handleStatus' => 'setHandleStatus',
             'severityLevel' => 'setSeverityLevel',
             'isAffectBusiness' => 'setIsAffectBusiness',
-            'repairPriority' => 'setRepairPriority'
+            'repairPriority' => 'setRepairPriority',
+            'clusterName' => 'setClusterName',
+            'clusterId' => 'setClusterId',
+            'isContainer' => 'setIsContainer',
+            'containerName' => 'setContainerName',
+            'minScanTime' => 'setMinScanTime',
+            'maxScanTime' => 'setMaxScanTime',
+            'nodeType' => 'setNodeType'
     ];
 
     /**
@@ -189,16 +245,23 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 默认为0
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostIp  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * hostIp  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * vulId  **参数解释**: 漏洞ID **约束限制**: 不涉及 **取值范围**: 字符范围0-64 **默认取值**: 不涉及
     * type  **参数解释**: 查询的漏洞类型 **约束限制**: 不涉及 **取值范围**: - linux_vul   : linux漏洞 - windows_vul : windows漏洞 - web_cms     : Web-CMS漏洞 - app_vul     : 应用漏洞 - urgent_vul  : 应急漏洞  **默认取值**: 不涉及
     * status  **参数解释**: 漏洞当前的漏洞状态 **约束限制**: 不涉及 **取值范围**: - vul_status_unfix            : 未处理 - vul_status_ignored          : 已忽略 - vul_status_verified         : 验证中 - vul_status_fixing           : 修复中 - vul_status_fixed            : 修复成功 - vul_status_reboot           : 修复成功待重启 - vul_status_failed           : 修复失败 - vul_status_fix_after_reboot : 请重启主机再次修复  **默认取值**: 不涉及
     * assetValue  **参数解释**: 资产重要性 **约束限制**: 不涉及 **取值范围**: - important : 重要 - common    : 一般 - test      : 测试  **默认取值**: 不涉及
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符范围0-256位  **默认取值**: 不涉及
     * handleStatus  **参数解释**: 漏洞当前的处置状态 **约束限制**: 不涉及 **取值范围**: - unhandled : 未处理 - handled   : 已处理  **默认取值**: 不涉及
-    * severityLevel  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
-    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
-    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * severityLevel  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * isAffectBusiness  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
+    * repairPriority  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * clusterName  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    * clusterId  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    * isContainer  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    * containerName  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    * minScanTime  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * maxScanTime  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    * nodeType  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -216,7 +279,14 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
             'handleStatus' => 'getHandleStatus',
             'severityLevel' => 'getSeverityLevel',
             'isAffectBusiness' => 'getIsAffectBusiness',
-            'repairPriority' => 'getRepairPriority'
+            'repairPriority' => 'getRepairPriority',
+            'clusterName' => 'getClusterName',
+            'clusterId' => 'getClusterId',
+            'isContainer' => 'getIsContainer',
+            'containerName' => 'getContainerName',
+            'minScanTime' => 'getMinScanTime',
+            'maxScanTime' => 'getMaxScanTime',
+            'nodeType' => 'getNodeType'
     ];
 
     /**
@@ -291,6 +361,13 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
         $this->container['severityLevel'] = isset($data['severityLevel']) ? $data['severityLevel'] : null;
         $this->container['isAffectBusiness'] = isset($data['isAffectBusiness']) ? $data['isAffectBusiness'] : null;
         $this->container['repairPriority'] = isset($data['repairPriority']) ? $data['repairPriority'] : null;
+        $this->container['clusterName'] = isset($data['clusterName']) ? $data['clusterName'] : null;
+        $this->container['clusterId'] = isset($data['clusterId']) ? $data['clusterId'] : null;
+        $this->container['isContainer'] = isset($data['isContainer']) ? $data['isContainer'] : null;
+        $this->container['containerName'] = isset($data['containerName']) ? $data['containerName'] : null;
+        $this->container['minScanTime'] = isset($data['minScanTime']) ? $data['minScanTime'] : null;
+        $this->container['maxScanTime'] = isset($data['maxScanTime']) ? $data['maxScanTime'] : null;
+        $this->container['nodeType'] = isset($data['nodeType']) ? $data['nodeType'] : null;
     }
 
     /**
@@ -418,6 +495,51 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
             if (!is_null($this->container['repairPriority']) && !preg_match("/^.*$/", $this->container['repairPriority'])) {
                 $invalidProperties[] = "invalid value for 'repairPriority', must be conform to the pattern /^.*$/.";
             }
+            if (!is_null($this->container['clusterName']) && (mb_strlen($this->container['clusterName']) > 64)) {
+                $invalidProperties[] = "invalid value for 'clusterName', the character length must be smaller than or equal to 64.";
+            }
+            if (!is_null($this->container['clusterName']) && (mb_strlen($this->container['clusterName']) < 1)) {
+                $invalidProperties[] = "invalid value for 'clusterName', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['clusterName']) && !preg_match("/^.*$/", $this->container['clusterName'])) {
+                $invalidProperties[] = "invalid value for 'clusterName', must be conform to the pattern /^.*$/.";
+            }
+            if (!is_null($this->container['clusterId']) && (mb_strlen($this->container['clusterId']) > 64)) {
+                $invalidProperties[] = "invalid value for 'clusterId', the character length must be smaller than or equal to 64.";
+            }
+            if (!is_null($this->container['clusterId']) && (mb_strlen($this->container['clusterId']) < 1)) {
+                $invalidProperties[] = "invalid value for 'clusterId', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['clusterId']) && !preg_match("/^.*$/", $this->container['clusterId'])) {
+                $invalidProperties[] = "invalid value for 'clusterId', must be conform to the pattern /^.*$/.";
+            }
+            if (!is_null($this->container['containerName']) && (mb_strlen($this->container['containerName']) > 128)) {
+                $invalidProperties[] = "invalid value for 'containerName', the character length must be smaller than or equal to 128.";
+            }
+            if (!is_null($this->container['containerName']) && (mb_strlen($this->container['containerName']) < 0)) {
+                $invalidProperties[] = "invalid value for 'containerName', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['minScanTime']) && ($this->container['minScanTime'] > 9223372036854775807)) {
+                $invalidProperties[] = "invalid value for 'minScanTime', must be smaller than or equal to 9223372036854775807.";
+            }
+            if (!is_null($this->container['minScanTime']) && ($this->container['minScanTime'] < 0)) {
+                $invalidProperties[] = "invalid value for 'minScanTime', must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['maxScanTime']) && ($this->container['maxScanTime'] > 9223372036854775807)) {
+                $invalidProperties[] = "invalid value for 'maxScanTime', must be smaller than or equal to 9223372036854775807.";
+            }
+            if (!is_null($this->container['maxScanTime']) && ($this->container['maxScanTime'] < 0)) {
+                $invalidProperties[] = "invalid value for 'maxScanTime', must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['nodeType']) && (mb_strlen($this->container['nodeType']) > 64)) {
+                $invalidProperties[] = "invalid value for 'nodeType', the character length must be smaller than or equal to 64.";
+            }
+            if (!is_null($this->container['nodeType']) && (mb_strlen($this->container['nodeType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'nodeType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['nodeType']) && !preg_match("/^cce|not_cce$/", $this->container['nodeType'])) {
+                $invalidProperties[] = "invalid value for 'nodeType', must be conform to the pattern /^cce|not_cce$/.";
+            }
         return $invalidProperties;
     }
 
@@ -530,7 +652,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostIp
-    *  **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    *  **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -542,7 +664,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets hostIp
     *
-    * @param string|null $hostIp **参数解释**: 主机IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
+    * @param string|null $hostIp **参数解释**: 服务器IP **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -698,7 +820,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets severityLevel
-    *  **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    *  **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -710,7 +832,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets severityLevel
     *
-    * @param string|null $severityLevel **参数解释**: 危险程度 **约束限制**: 不涉及 **取值范围**: - Critical : 漏洞cvss评分大于等于9；对应控制台页面的高危 - High     : 漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium   : 漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low      : 漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
+    * @param string|null $severityLevel **参数解释**: 危险程度（风险等级） **约束限制**: 不涉及 **取值范围**: - Critical：漏洞cvss评分大于等于9；对应控制台页面的高危 - High：漏洞cvss评分大于等于7，小于9；对应控制台页面的中危 - Medium：漏洞cvss评分大于等于4，小于7；对应控制台页面的中危 - Low：漏洞cvss评分小于4；对应控制台页面的低危  可用逗号连接作为多选 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -722,7 +844,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets isAffectBusiness
-    *  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
+    *  **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
     *
     * @return bool|null
     */
@@ -734,7 +856,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets isAffectBusiness
     *
-    * @param bool|null $isAffectBusiness **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true  : 影响业务 - false : 不影响业务  **默认取值**: 不涉及
+    * @param bool|null $isAffectBusiness **参数解释**: 是否影响业务 **约束限制**: 不涉及 **取值范围**: - true：影响业务 - false：不影响业务  **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -746,7 +868,7 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets repairPriority
-    *  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    *  **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
     *
     * @return string|null
     */
@@ -758,13 +880,181 @@ class ListVulHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets repairPriority
     *
-    * @param string|null $repairPriority **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical : 紧急 - High     : 高危 - Medium   : 中危 - Low      : 低危  可用逗号连接作为多选 **默认取值**:   不涉及
+    * @param string|null $repairPriority **参数解释**: 修复优先级 **约束限制**: 不涉及 **取值范围**: - Critical：紧急 - High：高危 - Medium：中危 - Low：低危  可用逗号连接作为多选 **默认取值**:   不涉及
     *
     * @return $this
     */
     public function setRepairPriority($repairPriority)
     {
         $this->container['repairPriority'] = $repairPriority;
+        return $this;
+    }
+
+    /**
+    * Gets clusterName
+    *  **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getClusterName()
+    {
+        return $this->container['clusterName'];
+    }
+
+    /**
+    * Sets clusterName
+    *
+    * @param string|null $clusterName **参数解释**: 集群名称。 **约束限制**: 不涉及 **取值范围**: 字符长度1-64。 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setClusterName($clusterName)
+    {
+        $this->container['clusterName'] = $clusterName;
+        return $this;
+    }
+
+    /**
+    * Gets clusterId
+    *  **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getClusterId()
+    {
+        return $this->container['clusterId'];
+    }
+
+    /**
+    * Sets clusterId
+    *
+    * @param string|null $clusterId **参数解释**:  集群id **约束限制**: 不涉及 **取值范围**: 长度范围1-64位 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setClusterId($clusterId)
+    {
+        $this->container['clusterId'] = $clusterId;
+        return $this;
+    }
+
+    /**
+    * Gets isContainer
+    *  **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    *
+    * @return bool|null
+    */
+    public function getIsContainer()
+    {
+        return $this->container['isContainer'];
+    }
+
+    /**
+    * Sets isContainer
+    *
+    * @param bool|null $isContainer **参数解释**: 是否是容器场景 **约束限制**: 不涉及 **取值范围**: - true：是容器场景 - false：不是容器场景  **默认取值**: false
+    *
+    * @return $this
+    */
+    public function setIsContainer($isContainer)
+    {
+        $this->container['isContainer'] = $isContainer;
+        return $this;
+    }
+
+    /**
+    * Gets containerName
+    *  **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getContainerName()
+    {
+        return $this->container['containerName'];
+    }
+
+    /**
+    * Sets containerName
+    *
+    * @param string|null $containerName **参数解释**: 容器名称（容器场景生效） **约束限制**: 不涉及 **取值范围**: 字符长度0-128位 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setContainerName($containerName)
+    {
+        $this->container['containerName'] = $containerName;
+        return $this;
+    }
+
+    /**
+    * Gets minScanTime
+    *  **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    *
+    * @return int|null
+    */
+    public function getMinScanTime()
+    {
+        return $this->container['minScanTime'];
+    }
+
+    /**
+    * Sets minScanTime
+    *
+    * @param int|null $minScanTime **参数解释**： 扫描任务开始时间的最小值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setMinScanTime($minScanTime)
+    {
+        $this->container['minScanTime'] = $minScanTime;
+        return $this;
+    }
+
+    /**
+    * Gets maxScanTime
+    *  **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    *
+    * @return int|null
+    */
+    public function getMaxScanTime()
+    {
+        return $this->container['maxScanTime'];
+    }
+
+    /**
+    * Sets maxScanTime
+    *
+    * @param int|null $maxScanTime **参数解释**： 扫描任务开始时间的最大值（容器场景生效） **约束限制**: 不涉及 **取值范围**： 最小值0，最大值2^63-1 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setMaxScanTime($maxScanTime)
+    {
+        $this->container['maxScanTime'] = $maxScanTime;
+        return $this;
+    }
+
+    /**
+    * Gets nodeType
+    *  **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getNodeType()
+    {
+        return $this->container['nodeType'];
+    }
+
+    /**
+    * Sets nodeType
+    *
+    * @param string|null $nodeType **参数解释**: 节点类型 **约束限制**: 不涉及 **取值范围**: - cce：cce节点 - not_cce：非cce节点 字符长度0-256位 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setNodeType($nodeType)
+    {
+        $this->container['nodeType'] = $nodeType;
         return $this;
     }
 

@@ -21,33 +21,45 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * scaleOut  scaleOut
+    * logicalClusterName  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
     * createNodeOnly  **参数解释**： 当前是否仅添加空闲节点。 **约束限制**： 不涉及。 **取值范围**： true：仅添加节点，如需扩容则需要单独操作 false：添加节点并扩容集群 **默认取值**： false
     * waitingForKilling  **参数解释**： 自动查杀作业等待时间。 **约束限制**： guestAgent插件版本8.2.1及以上才支持。 **取值范围**： 30~1200 **默认取值**： 0，即不限制。
-    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
+    * mode  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    * redisConf  redisConf
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'scaleOut' => '\HuaweiCloud\SDK\Dws\V2\Model\ScaleOut',
+            'logicalClusterName' => 'string',
             'createNodeOnly' => 'bool',
             'waitingForKilling' => 'int',
-            'autoRedistribute' => 'bool'
+            'autoRedistribute' => 'bool',
+            'mode' => 'string',
+            'redisConf' => '\HuaweiCloud\SDK\Dws\V2\Model\RedisConfReq'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * scaleOut  scaleOut
+    * logicalClusterName  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
     * createNodeOnly  **参数解释**： 当前是否仅添加空闲节点。 **约束限制**： 不涉及。 **取值范围**： true：仅添加节点，如需扩容则需要单独操作 false：添加节点并扩容集群 **默认取值**： false
     * waitingForKilling  **参数解释**： 自动查杀作业等待时间。 **约束限制**： guestAgent插件版本8.2.1及以上才支持。 **取值范围**： 30~1200 **默认取值**： 0，即不限制。
-    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
+    * mode  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    * redisConf  redisConf
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'scaleOut' => null,
+        'logicalClusterName' => null,
         'createNodeOnly' => null,
         'waitingForKilling' => 'int32',
-        'autoRedistribute' => null
+        'autoRedistribute' => null,
+        'mode' => null,
+        'redisConf' => null
     ];
 
     /**
@@ -74,49 +86,67 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * scaleOut  scaleOut
+    * logicalClusterName  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
     * createNodeOnly  **参数解释**： 当前是否仅添加空闲节点。 **约束限制**： 不涉及。 **取值范围**： true：仅添加节点，如需扩容则需要单独操作 false：添加节点并扩容集群 **默认取值**： false
     * waitingForKilling  **参数解释**： 自动查杀作业等待时间。 **约束限制**： guestAgent插件版本8.2.1及以上才支持。 **取值范围**： 30~1200 **默认取值**： 0，即不限制。
-    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
+    * mode  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    * redisConf  redisConf
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'scaleOut' => 'scale_out',
+            'logicalClusterName' => 'logical_cluster_name',
             'createNodeOnly' => 'create_node_only',
             'waitingForKilling' => 'waiting_for_killing',
-            'autoRedistribute' => 'auto_redistribute'
+            'autoRedistribute' => 'auto_redistribute',
+            'mode' => 'mode',
+            'redisConf' => 'redis_conf'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * scaleOut  scaleOut
+    * logicalClusterName  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
     * createNodeOnly  **参数解释**： 当前是否仅添加空闲节点。 **约束限制**： 不涉及。 **取值范围**： true：仅添加节点，如需扩容则需要单独操作 false：添加节点并扩容集群 **默认取值**： false
     * waitingForKilling  **参数解释**： 自动查杀作业等待时间。 **约束限制**： guestAgent插件版本8.2.1及以上才支持。 **取值范围**： 30~1200 **默认取值**： 0，即不限制。
-    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
+    * mode  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    * redisConf  redisConf
     *
     * @var string[]
     */
     protected static $setters = [
             'scaleOut' => 'setScaleOut',
+            'logicalClusterName' => 'setLogicalClusterName',
             'createNodeOnly' => 'setCreateNodeOnly',
             'waitingForKilling' => 'setWaitingForKilling',
-            'autoRedistribute' => 'setAutoRedistribute'
+            'autoRedistribute' => 'setAutoRedistribute',
+            'mode' => 'setMode',
+            'redisConf' => 'setRedisConf'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * scaleOut  scaleOut
+    * logicalClusterName  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
     * createNodeOnly  **参数解释**： 当前是否仅添加空闲节点。 **约束限制**： 不涉及。 **取值范围**： true：仅添加节点，如需扩容则需要单独操作 false：添加节点并扩容集群 **默认取值**： false
     * waitingForKilling  **参数解释**： 自动查杀作业等待时间。 **约束限制**： guestAgent插件版本8.2.1及以上才支持。 **取值范围**： 30~1200 **默认取值**： 0，即不限制。
-    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * autoRedistribute  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
+    * mode  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    * redisConf  redisConf
     *
     * @var string[]
     */
     protected static $getters = [
             'scaleOut' => 'getScaleOut',
+            'logicalClusterName' => 'getLogicalClusterName',
             'createNodeOnly' => 'getCreateNodeOnly',
             'waitingForKilling' => 'getWaitingForKilling',
-            'autoRedistribute' => 'getAutoRedistribute'
+            'autoRedistribute' => 'getAutoRedistribute',
+            'mode' => 'getMode',
+            'redisConf' => 'getRedisConf'
     ];
 
     /**
@@ -178,9 +208,12 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['scaleOut'] = isset($data['scaleOut']) ? $data['scaleOut'] : null;
+        $this->container['logicalClusterName'] = isset($data['logicalClusterName']) ? $data['logicalClusterName'] : null;
         $this->container['createNodeOnly'] = isset($data['createNodeOnly']) ? $data['createNodeOnly'] : null;
         $this->container['waitingForKilling'] = isset($data['waitingForKilling']) ? $data['waitingForKilling'] : null;
         $this->container['autoRedistribute'] = isset($data['autoRedistribute']) ? $data['autoRedistribute'] : null;
+        $this->container['mode'] = isset($data['mode']) ? $data['mode'] : null;
+        $this->container['redisConf'] = isset($data['redisConf']) ? $data['redisConf'] : null;
     }
 
     /**
@@ -191,6 +224,9 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['scaleOut'] === null) {
+            $invalidProperties[] = "'scaleOut' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -209,7 +245,7 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     * Gets scaleOut
     *  scaleOut
     *
-    * @return \HuaweiCloud\SDK\Dws\V2\Model\ScaleOut|null
+    * @return \HuaweiCloud\SDK\Dws\V2\Model\ScaleOut
     */
     public function getScaleOut()
     {
@@ -219,13 +255,37 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets scaleOut
     *
-    * @param \HuaweiCloud\SDK\Dws\V2\Model\ScaleOut|null $scaleOut scaleOut
+    * @param \HuaweiCloud\SDK\Dws\V2\Model\ScaleOut $scaleOut scaleOut
     *
     * @return $this
     */
     public function setScaleOut($scaleOut)
     {
         $this->container['scaleOut'] = $scaleOut;
+        return $this;
+    }
+
+    /**
+    * Gets logicalClusterName
+    *  **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
+    *
+    * @return string|null
+    */
+    public function getLogicalClusterName()
+    {
+        return $this->container['logicalClusterName'];
+    }
+
+    /**
+    * Sets logicalClusterName
+    *
+    * @param string|null $logicalClusterName **参数解释**： 逻辑集群名字，扩容到逻辑集群时，需要填写。 **约束限制**： 不涉及。 **取值范围**： 不涉及。 **默认取值**： 不涉及。
+    *
+    * @return $this
+    */
+    public function setLogicalClusterName($logicalClusterName)
+    {
+        $this->container['logicalClusterName'] = $logicalClusterName;
         return $this;
     }
 
@@ -279,7 +339,7 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets autoRedistribute
-    *  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    *  **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
     *
     * @return bool|null
     */
@@ -291,13 +351,61 @@ class ResizeClusterRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets autoRedistribute
     *
-    * @param bool|null $autoRedistribute **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： true：扩容后立即重分布。 false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。 **默认取值**： true
+    * @param bool|null $autoRedistribute **参数解释**： 扩容完成后是否自动启动重分布，默认是。如果设置为false，扩容后不进行重分布，此时集群任务信息处于“待重分布”状态，无法进行其他操作。 **约束限制**： 不涉及。 **取值范围**： - true：扩容后立即重分布。 - false：扩容后不进行重分布，此时集群任务信息处于“待重分布”状态。  **默认取值**： true
     *
     * @return $this
     */
     public function setAutoRedistribute($autoRedistribute)
     {
         $this->container['autoRedistribute'] = $autoRedistribute;
+        return $this;
+    }
+
+    /**
+    * Gets mode
+    *  **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    *
+    * @return string|null
+    */
+    public function getMode()
+    {
+        return $this->container['mode'];
+    }
+
+    /**
+    * Sets mode
+    *
+    * @param string|null $mode **参数解释**： 扩容模式，分为在线和离线。在线扩容过程中，支持数据增删改查及部分DDL语法，其余不支持的语法将会报错。在线扩容对业务影响更小，离线模式存在短暂的中断，数据库不可用。 **约束限制**： 不涉及。 **取值范围**： - insert：在线模式。 - read-only：离线模式。  **默认取值**： read-only
+    *
+    * @return $this
+    */
+    public function setMode($mode)
+    {
+        $this->container['mode'] = $mode;
+        return $this;
+    }
+
+    /**
+    * Gets redisConf
+    *  redisConf
+    *
+    * @return \HuaweiCloud\SDK\Dws\V2\Model\RedisConfReq|null
+    */
+    public function getRedisConf()
+    {
+        return $this->container['redisConf'];
+    }
+
+    /**
+    * Sets redisConf
+    *
+    * @param \HuaweiCloud\SDK\Dws\V2\Model\RedisConfReq|null $redisConf redisConf
+    *
+    * @return $this
+    */
+    public function setRedisConf($redisConf)
+    {
+        $this->container['redisConf'] = $redisConf;
         return $this;
     }
 

@@ -20,20 +20,20 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     * progress  当前上报的子任务的最新百分比进度
     * replicatesize  当前任务已经复制的数据量大小（B）
     * totalsize  当前任务的总迁移数据大小
     * processTrace  迁移或同步时，具体的迁移详情
-    * migrateSpeed  实施迁移速率，单位Mb/s
+    * migrateSpeed  实施迁移速率，单位Mbit/s
     * compressRate  实施文件压缩率
     * remainTime  剩余时间
     * totalCpuUsage  主机的CPU使用率，0到100，单位是百分比
     * agentCpuUsage  Agent的CPU使用率，0到100，单位是百分比
     * totalMemUsage  主机的内存使用值，单位是MB
     * agentMemUsage  Agent的内存使用值，单位是MB
-    * totalDiskIo  主机的磁盘I/O值，单位是MB/s
-    * agentDiskIo  Agent的磁盘I/O值，单位是MB/s
+    * totalDiskIo  主机的磁盘I/O值，单位是Mbit/s
+    * agentDiskIo  Agent的磁盘I/O值，单位是Mbit/s
     * needMigrationTest  是否开启迁移演练
     * agentTime  Agent的当前时间，用于超速检测，因为限速值是可以分时间段设置的
     *
@@ -60,20 +60,20 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     * progress  当前上报的子任务的最新百分比进度
     * replicatesize  当前任务已经复制的数据量大小（B）
     * totalsize  当前任务的总迁移数据大小
     * processTrace  迁移或同步时，具体的迁移详情
-    * migrateSpeed  实施迁移速率，单位Mb/s
+    * migrateSpeed  实施迁移速率，单位Mbit/s
     * compressRate  实施文件压缩率
     * remainTime  剩余时间
     * totalCpuUsage  主机的CPU使用率，0到100，单位是百分比
     * agentCpuUsage  Agent的CPU使用率，0到100，单位是百分比
     * totalMemUsage  主机的内存使用值，单位是MB
     * agentMemUsage  Agent的内存使用值，单位是MB
-    * totalDiskIo  主机的磁盘I/O值，单位是MB/s
-    * agentDiskIo  Agent的磁盘I/O值，单位是MB/s
+    * totalDiskIo  主机的磁盘I/O值，单位是Mbit/s
+    * agentDiskIo  Agent的磁盘I/O值，单位是Mbit/s
     * needMigrationTest  是否开启迁移演练
     * agentTime  Agent的当前时间，用于超速检测，因为限速值是可以分时间段设置的
     *
@@ -121,20 +121,20 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     * progress  当前上报的子任务的最新百分比进度
     * replicatesize  当前任务已经复制的数据量大小（B）
     * totalsize  当前任务的总迁移数据大小
     * processTrace  迁移或同步时，具体的迁移详情
-    * migrateSpeed  实施迁移速率，单位Mb/s
+    * migrateSpeed  实施迁移速率，单位Mbit/s
     * compressRate  实施文件压缩率
     * remainTime  剩余时间
     * totalCpuUsage  主机的CPU使用率，0到100，单位是百分比
     * agentCpuUsage  Agent的CPU使用率，0到100，单位是百分比
     * totalMemUsage  主机的内存使用值，单位是MB
     * agentMemUsage  Agent的内存使用值，单位是MB
-    * totalDiskIo  主机的磁盘I/O值，单位是MB/s
-    * agentDiskIo  Agent的磁盘I/O值，单位是MB/s
+    * totalDiskIo  主机的磁盘I/O值，单位是Mbit/s
+    * agentDiskIo  Agent的磁盘I/O值，单位是Mbit/s
     * needMigrationTest  是否开启迁移演练
     * agentTime  Agent的当前时间，用于超速检测，因为限速值是可以分时间段设置的
     *
@@ -161,20 +161,20 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     * progress  当前上报的子任务的最新百分比进度
     * replicatesize  当前任务已经复制的数据量大小（B）
     * totalsize  当前任务的总迁移数据大小
     * processTrace  迁移或同步时，具体的迁移详情
-    * migrateSpeed  实施迁移速率，单位Mb/s
+    * migrateSpeed  实施迁移速率，单位Mbit/s
     * compressRate  实施文件压缩率
     * remainTime  剩余时间
     * totalCpuUsage  主机的CPU使用率，0到100，单位是百分比
     * agentCpuUsage  Agent的CPU使用率，0到100，单位是百分比
     * totalMemUsage  主机的内存使用值，单位是MB
     * agentMemUsage  Agent的内存使用值，单位是MB
-    * totalDiskIo  主机的磁盘I/O值，单位是MB/s
-    * agentDiskIo  Agent的磁盘I/O值，单位是MB/s
+    * totalDiskIo  主机的磁盘I/O值，单位是Mbit/s
+    * agentDiskIo  Agent的磁盘I/O值，单位是Mbit/s
     * needMigrationTest  是否开启迁移演练
     * agentTime  Agent的当前时间，用于超速检测，因为限速值是可以分时间段设置的
     *
@@ -201,20 +201,20 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * subtaskName  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     * progress  当前上报的子任务的最新百分比进度
     * replicatesize  当前任务已经复制的数据量大小（B）
     * totalsize  当前任务的总迁移数据大小
     * processTrace  迁移或同步时，具体的迁移详情
-    * migrateSpeed  实施迁移速率，单位Mb/s
+    * migrateSpeed  实施迁移速率，单位Mbit/s
     * compressRate  实施文件压缩率
     * remainTime  剩余时间
     * totalCpuUsage  主机的CPU使用率，0到100，单位是百分比
     * agentCpuUsage  Agent的CPU使用率，0到100，单位是百分比
     * totalMemUsage  主机的内存使用值，单位是MB
     * agentMemUsage  Agent的内存使用值，单位是MB
-    * totalDiskIo  主机的磁盘I/O值，单位是MB/s
-    * agentDiskIo  Agent的磁盘I/O值，单位是MB/s
+    * totalDiskIo  主机的磁盘I/O值，单位是Mbit/s
+    * agentDiskIo  Agent的磁盘I/O值，单位是Mbit/s
     * needMigrationTest  是否开启迁移演练
     * agentTime  Agent的当前时间，用于超速检测，因为限速值是可以分时间段设置的
     *
@@ -501,7 +501,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets subtaskName
-    *  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    *  当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     *
     * @return string
     */
@@ -513,7 +513,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
     /**
     * Sets subtaskName
     *
-    * @param string $subtaskName 当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
+    * @param string $subtaskName 当前上报进度的子任务名称，子任务名称包括： 创建虚拟机 CREATE_CLOUD_SERVER 配置安全通道 SSL_CONFIG 挂载代理镜像 ATTACH_AGENT_IMAGE 卸载代理镜像 DETTACH_AGENT_IMAGE Linux分区格式化 FORMAT_DISK_LINUX Linux分区格式化(文件级） FORMAT_DISK_LINUX_FILE Linux分区格式化(块级） FORMAT_DISK_LINUX_BLOCK Windows分区格式化 FORMAT_DISK_WINDOWS Linux文件级数据迁移 MIGRATE_LINUX_FILE, Linux块级数据迁移 MIGRATE_LINUX_BLOCK Windows块级数据迁移 MIGRATE_WINDOWS_BLOCK 克隆一个虚拟机 CLONE_VM Linux文件级数据同步 SYNC_LINUX_FILE Linux块级数据同步 SYNC_LINUX_BLOCK Windows块级数据同步 SYNC_WINDOWS_BLOCK Linux配置修改 CONFIGURE_LINUX Linux配置修改(块级）CONFIGURE_LINUX_BLOCK Linux配置修改（文件级） CONFIGURE_LINUX_FILE Windows配置修改 CONFIGURE_WINDOWS
     *
     * @return $this
     */
@@ -621,7 +621,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets migrateSpeed
-    *  实施迁移速率，单位Mb/s
+    *  实施迁移速率，单位Mbit/s
     *
     * @return double|null
     */
@@ -633,7 +633,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
     /**
     * Sets migrateSpeed
     *
-    * @param double|null $migrateSpeed 实施迁移速率，单位Mb/s
+    * @param double|null $migrateSpeed 实施迁移速率，单位Mbit/s
     *
     * @return $this
     */
@@ -789,7 +789,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets totalDiskIo
-    *  主机的磁盘I/O值，单位是MB/s
+    *  主机的磁盘I/O值，单位是Mbit/s
     *
     * @return double|null
     */
@@ -801,7 +801,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
     /**
     * Sets totalDiskIo
     *
-    * @param double|null $totalDiskIo 主机的磁盘I/O值，单位是MB/s
+    * @param double|null $totalDiskIo 主机的磁盘I/O值，单位是Mbit/s
     *
     * @return $this
     */
@@ -813,7 +813,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets agentDiskIo
-    *  Agent的磁盘I/O值，单位是MB/s
+    *  Agent的磁盘I/O值，单位是Mbit/s
     *
     * @return double|null
     */
@@ -825,7 +825,7 @@ class UpdateTaskSpeedReq implements ModelInterface, ArrayAccess
     /**
     * Sets agentDiskIo
     *
-    * @param double|null $agentDiskIo Agent的磁盘I/O值，单位是MB/s
+    * @param double|null $agentDiskIo Agent的磁盘I/O值，单位是Mbit/s
     *
     * @return $this
     */

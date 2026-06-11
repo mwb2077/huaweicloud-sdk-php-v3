@@ -20,12 +20,12 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     * variationType  **参数解释**: 变更类型 **取值范围**: - add：新建 - delete：删除 - modify：修改
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * appName  **参数解释**: 软件名称 **取值范围**: 字符长度1-256位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     * version  **参数解释**: 版本号 **取值范围**: 字符长度1-128位
     * updateTime  **参数解释**: 软件更新时间，单位毫秒 **取值范围**: 最小值0，最大值10000
     * recentScanTime  **参数解释**: 最近扫描时间，单位毫秒 **取值范围**: 最小值0，最大值10000
@@ -46,12 +46,12 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     * variationType  **参数解释**: 变更类型 **取值范围**: - add：新建 - delete：删除 - modify：修改
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * appName  **参数解释**: 软件名称 **取值范围**: 字符长度1-256位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     * version  **参数解释**: 版本号 **取值范围**: 字符长度1-128位
     * updateTime  **参数解释**: 软件更新时间，单位毫秒 **取值范围**: 最小值0，最大值10000
     * recentScanTime  **参数解释**: 最近扫描时间，单位毫秒 **取值范围**: 最小值0，最大值10000
@@ -93,12 +93,12 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     * variationType  **参数解释**: 变更类型 **取值范围**: - add：新建 - delete：删除 - modify：修改
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * appName  **参数解释**: 软件名称 **取值范围**: 字符长度1-256位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     * version  **参数解释**: 版本号 **取值范围**: 字符长度1-128位
     * updateTime  **参数解释**: 软件更新时间，单位毫秒 **取值范围**: 最小值0，最大值10000
     * recentScanTime  **参数解释**: 最近扫描时间，单位毫秒 **取值范围**: 最小值0，最大值10000
@@ -119,12 +119,12 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     * variationType  **参数解释**: 变更类型 **取值范围**: - add：新建 - delete：删除 - modify：修改
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * appName  **参数解释**: 软件名称 **取值范围**: 字符长度1-256位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     * version  **参数解释**: 版本号 **取值范围**: 字符长度1-128位
     * updateTime  **参数解释**: 软件更新时间，单位毫秒 **取值范围**: 最小值0，最大值10000
     * recentScanTime  **参数解释**: 最近扫描时间，单位毫秒 **取值范围**: 最小值0，最大值10000
@@ -145,12 +145,12 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     * variationType  **参数解释**: 变更类型 **取值范围**: - add：新建 - delete：删除 - modify：修改
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * appName  **参数解释**: 软件名称 **取值范围**: 字符长度1-256位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     * version  **参数解释**: 版本号 **取值范围**: 字符长度1-128位
     * updateTime  **参数解释**: 软件更新时间，单位毫秒 **取值范围**: 最小值0，最大值10000
     * recentScanTime  **参数解释**: 最近扫描时间，单位毫秒 **取值范围**: 最小值0，最大值10000
@@ -322,7 +322,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets agentId
-    *  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    *  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     *
     * @return string|null
     */
@@ -334,7 +334,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets agentId
     *
-    * @param string|null $agentId **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * @param string|null $agentId **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     *
     * @return $this
     */
@@ -370,7 +370,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostId
-    *  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    *  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return string|null
     */
@@ -382,7 +382,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostId
     *
-    * @param string|null $hostId **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * @param string|null $hostId **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return $this
     */
@@ -442,7 +442,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostIp
-    *  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    *  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return string|null
     */
@@ -454,7 +454,7 @@ class AppChangeResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostIp
     *
-    * @param string|null $hostIp **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * @param string|null $hostIp **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return $this
     */

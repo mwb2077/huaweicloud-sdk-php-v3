@@ -23,12 +23,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * input  input
     * output  output
     * transTemplateId  转码模板ID，没带av_parameter参数时，必须带该参数，数组，每一路转码输出对应一个转码配置模板ID，最多支持9个模板ID。  多个转码模板中如下参数可变，其他都必须一致：  视频bitrate，height，width。
+    * transTemplateList  转码模板数组
     * avParameters  转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。
     * additionalManifests  主索引定制参数。
     * outputFilenames  输出文件名称，每一路转码输出对应一个名称，需要与转码模板ID数组的顺序对应。  - 若设置该参数，表示输出文件按该参数命名。 - 若不设置该参数，表示输出文件按默认方式命名。
     * userData  用户自定义数据，该字段可在查询接口或消息通知中按原内容透传给用户。
     * watermarks  图片水印参数，数组，最多支持20个成员。
     * thumbnail  thumbnail
+    * thumbnails  多截图任务，数组，最多支持20个成员。
+    * imageSprites  雪碧图参数，数组，最多支持20个成员。
     * priority  任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。
     * subtitle  subtitle
     * encryption  encryption
@@ -37,6 +40,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * multiAudio  multiAudio
     * videoProcess  videoProcess
     * audioProcess  audioProcess
+    * metadata  metadata设置，默认只支持AIGC
     *
     * @var string[]
     */
@@ -44,12 +48,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'input' => '\HuaweiCloud\SDK\Mpc\V1\Model\ObsObjInfo',
             'output' => '\HuaweiCloud\SDK\Mpc\V1\Model\ObsObjInfo',
             'transTemplateId' => 'int[]',
+            'transTemplateList' => '\HuaweiCloud\SDK\Mpc\V1\Model\TransIdTemplate[]',
             'avParameters' => '\HuaweiCloud\SDK\Mpc\V1\Model\AvParameters[]',
             'additionalManifests' => '\HuaweiCloud\SDK\Mpc\V1\Model\AdditionalManifests[]',
             'outputFilenames' => 'string[]',
             'userData' => 'string',
             'watermarks' => '\HuaweiCloud\SDK\Mpc\V1\Model\WatermarkRequest[]',
             'thumbnail' => '\HuaweiCloud\SDK\Mpc\V1\Model\Thumbnail',
+            'thumbnails' => '\HuaweiCloud\SDK\Mpc\V1\Model\Thumbnail[]',
+            'imageSprites' => '\HuaweiCloud\SDK\Mpc\V1\Model\ImageSprite[]',
             'priority' => 'int',
             'subtitle' => '\HuaweiCloud\SDK\Mpc\V1\Model\Subtitle',
             'encryption' => '\HuaweiCloud\SDK\Mpc\V1\Model\Encryption',
@@ -57,7 +64,8 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'audioTrack' => '\HuaweiCloud\SDK\Mpc\V1\Model\AudioTrack',
             'multiAudio' => '\HuaweiCloud\SDK\Mpc\V1\Model\MultiAudio',
             'videoProcess' => '\HuaweiCloud\SDK\Mpc\V1\Model\VideoProcess',
-            'audioProcess' => '\HuaweiCloud\SDK\Mpc\V1\Model\AudioProcess'
+            'audioProcess' => '\HuaweiCloud\SDK\Mpc\V1\Model\AudioProcess',
+            'metadata' => '\HuaweiCloud\SDK\Mpc\V1\Model\FileMetaData[]'
     ];
 
     /**
@@ -65,12 +73,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * input  input
     * output  output
     * transTemplateId  转码模板ID，没带av_parameter参数时，必须带该参数，数组，每一路转码输出对应一个转码配置模板ID，最多支持9个模板ID。  多个转码模板中如下参数可变，其他都必须一致：  视频bitrate，height，width。
+    * transTemplateList  转码模板数组
     * avParameters  转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。
     * additionalManifests  主索引定制参数。
     * outputFilenames  输出文件名称，每一路转码输出对应一个名称，需要与转码模板ID数组的顺序对应。  - 若设置该参数，表示输出文件按该参数命名。 - 若不设置该参数，表示输出文件按默认方式命名。
     * userData  用户自定义数据，该字段可在查询接口或消息通知中按原内容透传给用户。
     * watermarks  图片水印参数，数组，最多支持20个成员。
     * thumbnail  thumbnail
+    * thumbnails  多截图任务，数组，最多支持20个成员。
+    * imageSprites  雪碧图参数，数组，最多支持20个成员。
     * priority  任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。
     * subtitle  subtitle
     * encryption  encryption
@@ -79,6 +90,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * multiAudio  multiAudio
     * videoProcess  videoProcess
     * audioProcess  audioProcess
+    * metadata  metadata设置，默认只支持AIGC
     *
     * @var string[]
     */
@@ -86,12 +98,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
         'input' => null,
         'output' => null,
         'transTemplateId' => null,
+        'transTemplateList' => null,
         'avParameters' => null,
         'additionalManifests' => null,
         'outputFilenames' => null,
         'userData' => null,
         'watermarks' => null,
         'thumbnail' => null,
+        'thumbnails' => null,
+        'imageSprites' => null,
         'priority' => 'int32',
         'subtitle' => null,
         'encryption' => null,
@@ -99,7 +114,8 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
         'audioTrack' => null,
         'multiAudio' => null,
         'videoProcess' => null,
-        'audioProcess' => null
+        'audioProcess' => null,
+        'metadata' => null
     ];
 
     /**
@@ -128,12 +144,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * input  input
     * output  output
     * transTemplateId  转码模板ID，没带av_parameter参数时，必须带该参数，数组，每一路转码输出对应一个转码配置模板ID，最多支持9个模板ID。  多个转码模板中如下参数可变，其他都必须一致：  视频bitrate，height，width。
+    * transTemplateList  转码模板数组
     * avParameters  转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。
     * additionalManifests  主索引定制参数。
     * outputFilenames  输出文件名称，每一路转码输出对应一个名称，需要与转码模板ID数组的顺序对应。  - 若设置该参数，表示输出文件按该参数命名。 - 若不设置该参数，表示输出文件按默认方式命名。
     * userData  用户自定义数据，该字段可在查询接口或消息通知中按原内容透传给用户。
     * watermarks  图片水印参数，数组，最多支持20个成员。
     * thumbnail  thumbnail
+    * thumbnails  多截图任务，数组，最多支持20个成员。
+    * imageSprites  雪碧图参数，数组，最多支持20个成员。
     * priority  任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。
     * subtitle  subtitle
     * encryption  encryption
@@ -142,6 +161,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * multiAudio  multiAudio
     * videoProcess  videoProcess
     * audioProcess  audioProcess
+    * metadata  metadata设置，默认只支持AIGC
     *
     * @var string[]
     */
@@ -149,12 +169,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'input' => 'input',
             'output' => 'output',
             'transTemplateId' => 'trans_template_id',
+            'transTemplateList' => 'trans_template_list',
             'avParameters' => 'av_parameters',
             'additionalManifests' => 'additional_manifests',
             'outputFilenames' => 'output_filenames',
             'userData' => 'user_data',
             'watermarks' => 'watermarks',
             'thumbnail' => 'thumbnail',
+            'thumbnails' => 'thumbnails',
+            'imageSprites' => 'image_sprites',
             'priority' => 'priority',
             'subtitle' => 'subtitle',
             'encryption' => 'encryption',
@@ -162,7 +185,8 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'audioTrack' => 'audio_track',
             'multiAudio' => 'multi_audio',
             'videoProcess' => 'video_process',
-            'audioProcess' => 'audio_process'
+            'audioProcess' => 'audio_process',
+            'metadata' => 'metadata'
     ];
 
     /**
@@ -170,12 +194,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * input  input
     * output  output
     * transTemplateId  转码模板ID，没带av_parameter参数时，必须带该参数，数组，每一路转码输出对应一个转码配置模板ID，最多支持9个模板ID。  多个转码模板中如下参数可变，其他都必须一致：  视频bitrate，height，width。
+    * transTemplateList  转码模板数组
     * avParameters  转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。
     * additionalManifests  主索引定制参数。
     * outputFilenames  输出文件名称，每一路转码输出对应一个名称，需要与转码模板ID数组的顺序对应。  - 若设置该参数，表示输出文件按该参数命名。 - 若不设置该参数，表示输出文件按默认方式命名。
     * userData  用户自定义数据，该字段可在查询接口或消息通知中按原内容透传给用户。
     * watermarks  图片水印参数，数组，最多支持20个成员。
     * thumbnail  thumbnail
+    * thumbnails  多截图任务，数组，最多支持20个成员。
+    * imageSprites  雪碧图参数，数组，最多支持20个成员。
     * priority  任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。
     * subtitle  subtitle
     * encryption  encryption
@@ -184,6 +211,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * multiAudio  multiAudio
     * videoProcess  videoProcess
     * audioProcess  audioProcess
+    * metadata  metadata设置，默认只支持AIGC
     *
     * @var string[]
     */
@@ -191,12 +219,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'input' => 'setInput',
             'output' => 'setOutput',
             'transTemplateId' => 'setTransTemplateId',
+            'transTemplateList' => 'setTransTemplateList',
             'avParameters' => 'setAvParameters',
             'additionalManifests' => 'setAdditionalManifests',
             'outputFilenames' => 'setOutputFilenames',
             'userData' => 'setUserData',
             'watermarks' => 'setWatermarks',
             'thumbnail' => 'setThumbnail',
+            'thumbnails' => 'setThumbnails',
+            'imageSprites' => 'setImageSprites',
             'priority' => 'setPriority',
             'subtitle' => 'setSubtitle',
             'encryption' => 'setEncryption',
@@ -204,7 +235,8 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'audioTrack' => 'setAudioTrack',
             'multiAudio' => 'setMultiAudio',
             'videoProcess' => 'setVideoProcess',
-            'audioProcess' => 'setAudioProcess'
+            'audioProcess' => 'setAudioProcess',
+            'metadata' => 'setMetadata'
     ];
 
     /**
@@ -212,12 +244,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * input  input
     * output  output
     * transTemplateId  转码模板ID，没带av_parameter参数时，必须带该参数，数组，每一路转码输出对应一个转码配置模板ID，最多支持9个模板ID。  多个转码模板中如下参数可变，其他都必须一致：  视频bitrate，height，width。
+    * transTemplateList  转码模板数组
     * avParameters  转码参数。  若同时设置“trans_template_id”和此参数，则优先使用此参数进行转码，不带trans_template_id时，该参数必选。
     * additionalManifests  主索引定制参数。
     * outputFilenames  输出文件名称，每一路转码输出对应一个名称，需要与转码模板ID数组的顺序对应。  - 若设置该参数，表示输出文件按该参数命名。 - 若不设置该参数，表示输出文件按默认方式命名。
     * userData  用户自定义数据，该字段可在查询接口或消息通知中按原内容透传给用户。
     * watermarks  图片水印参数，数组，最多支持20个成员。
     * thumbnail  thumbnail
+    * thumbnails  多截图任务，数组，最多支持20个成员。
+    * imageSprites  雪碧图参数，数组，最多支持20个成员。
     * priority  任务优先级，取值如下： - 9代表高优先级。 - 6代表中优先级，默认为6。  暂时只支持6和9。
     * subtitle  subtitle
     * encryption  encryption
@@ -226,6 +261,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     * multiAudio  multiAudio
     * videoProcess  videoProcess
     * audioProcess  audioProcess
+    * metadata  metadata设置，默认只支持AIGC
     *
     * @var string[]
     */
@@ -233,12 +269,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'input' => 'getInput',
             'output' => 'getOutput',
             'transTemplateId' => 'getTransTemplateId',
+            'transTemplateList' => 'getTransTemplateList',
             'avParameters' => 'getAvParameters',
             'additionalManifests' => 'getAdditionalManifests',
             'outputFilenames' => 'getOutputFilenames',
             'userData' => 'getUserData',
             'watermarks' => 'getWatermarks',
             'thumbnail' => 'getThumbnail',
+            'thumbnails' => 'getThumbnails',
+            'imageSprites' => 'getImageSprites',
             'priority' => 'getPriority',
             'subtitle' => 'getSubtitle',
             'encryption' => 'getEncryption',
@@ -246,7 +285,8 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
             'audioTrack' => 'getAudioTrack',
             'multiAudio' => 'getMultiAudio',
             'videoProcess' => 'getVideoProcess',
-            'audioProcess' => 'getAudioProcess'
+            'audioProcess' => 'getAudioProcess',
+            'metadata' => 'getMetadata'
     ];
 
     /**
@@ -310,12 +350,15 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
         $this->container['input'] = isset($data['input']) ? $data['input'] : null;
         $this->container['output'] = isset($data['output']) ? $data['output'] : null;
         $this->container['transTemplateId'] = isset($data['transTemplateId']) ? $data['transTemplateId'] : null;
+        $this->container['transTemplateList'] = isset($data['transTemplateList']) ? $data['transTemplateList'] : null;
         $this->container['avParameters'] = isset($data['avParameters']) ? $data['avParameters'] : null;
         $this->container['additionalManifests'] = isset($data['additionalManifests']) ? $data['additionalManifests'] : null;
         $this->container['outputFilenames'] = isset($data['outputFilenames']) ? $data['outputFilenames'] : null;
         $this->container['userData'] = isset($data['userData']) ? $data['userData'] : null;
         $this->container['watermarks'] = isset($data['watermarks']) ? $data['watermarks'] : null;
         $this->container['thumbnail'] = isset($data['thumbnail']) ? $data['thumbnail'] : null;
+        $this->container['thumbnails'] = isset($data['thumbnails']) ? $data['thumbnails'] : null;
+        $this->container['imageSprites'] = isset($data['imageSprites']) ? $data['imageSprites'] : null;
         $this->container['priority'] = isset($data['priority']) ? $data['priority'] : null;
         $this->container['subtitle'] = isset($data['subtitle']) ? $data['subtitle'] : null;
         $this->container['encryption'] = isset($data['encryption']) ? $data['encryption'] : null;
@@ -324,6 +367,7 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
         $this->container['multiAudio'] = isset($data['multiAudio']) ? $data['multiAudio'] : null;
         $this->container['videoProcess'] = isset($data['videoProcess']) ? $data['videoProcess'] : null;
         $this->container['audioProcess'] = isset($data['audioProcess']) ? $data['audioProcess'] : null;
+        $this->container['metadata'] = isset($data['metadata']) ? $data['metadata'] : null;
     }
 
     /**
@@ -432,6 +476,30 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     public function setTransTemplateId($transTemplateId)
     {
         $this->container['transTemplateId'] = $transTemplateId;
+        return $this;
+    }
+
+    /**
+    * Gets transTemplateList
+    *  转码模板数组
+    *
+    * @return \HuaweiCloud\SDK\Mpc\V1\Model\TransIdTemplate[]|null
+    */
+    public function getTransTemplateList()
+    {
+        return $this->container['transTemplateList'];
+    }
+
+    /**
+    * Sets transTemplateList
+    *
+    * @param \HuaweiCloud\SDK\Mpc\V1\Model\TransIdTemplate[]|null $transTemplateList 转码模板数组
+    *
+    * @return $this
+    */
+    public function setTransTemplateList($transTemplateList)
+    {
+        $this->container['transTemplateList'] = $transTemplateList;
         return $this;
     }
 
@@ -576,6 +644,54 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     public function setThumbnail($thumbnail)
     {
         $this->container['thumbnail'] = $thumbnail;
+        return $this;
+    }
+
+    /**
+    * Gets thumbnails
+    *  多截图任务，数组，最多支持20个成员。
+    *
+    * @return \HuaweiCloud\SDK\Mpc\V1\Model\Thumbnail[]|null
+    */
+    public function getThumbnails()
+    {
+        return $this->container['thumbnails'];
+    }
+
+    /**
+    * Sets thumbnails
+    *
+    * @param \HuaweiCloud\SDK\Mpc\V1\Model\Thumbnail[]|null $thumbnails 多截图任务，数组，最多支持20个成员。
+    *
+    * @return $this
+    */
+    public function setThumbnails($thumbnails)
+    {
+        $this->container['thumbnails'] = $thumbnails;
+        return $this;
+    }
+
+    /**
+    * Gets imageSprites
+    *  雪碧图参数，数组，最多支持20个成员。
+    *
+    * @return \HuaweiCloud\SDK\Mpc\V1\Model\ImageSprite[]|null
+    */
+    public function getImageSprites()
+    {
+        return $this->container['imageSprites'];
+    }
+
+    /**
+    * Sets imageSprites
+    *
+    * @param \HuaweiCloud\SDK\Mpc\V1\Model\ImageSprite[]|null $imageSprites 雪碧图参数，数组，最多支持20个成员。
+    *
+    * @return $this
+    */
+    public function setImageSprites($imageSprites)
+    {
+        $this->container['imageSprites'] = $imageSprites;
         return $this;
     }
 
@@ -768,6 +884,30 @@ class CreateTranscodingReq implements ModelInterface, ArrayAccess
     public function setAudioProcess($audioProcess)
     {
         $this->container['audioProcess'] = $audioProcess;
+        return $this;
+    }
+
+    /**
+    * Gets metadata
+    *  metadata设置，默认只支持AIGC
+    *
+    * @return \HuaweiCloud\SDK\Mpc\V1\Model\FileMetaData[]|null
+    */
+    public function getMetadata()
+    {
+        return $this->container['metadata'];
+    }
+
+    /**
+    * Sets metadata
+    *
+    * @param \HuaweiCloud\SDK\Mpc\V1\Model\FileMetaData[]|null $metadata metadata设置，默认只支持AIGC
+    *
+    * @return $this
+    */
+    public function setMetadata($metadata)
+    {
+        $this->container['metadata'] = $metadata;
         return $this;
     }
 

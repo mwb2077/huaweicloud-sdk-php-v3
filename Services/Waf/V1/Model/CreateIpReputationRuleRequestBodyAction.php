@@ -20,7 +20,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * category  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * category  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -30,7 +30,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * category  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * category  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -61,7 +61,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * category  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * category  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -71,7 +71,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * category  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * category  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -81,7 +81,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * category  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * category  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -129,7 +129,24 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
     {
         return self::$openAPIModelName;
     }
+    const CATEGORY_LOG = 'log';
+    const CATEGORY_PASS = 'pass';
+    const CATEGORY_BLOCK = 'block';
     
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getCategoryAllowableValues()
+    {
+        return [
+            self::CATEGORY_LOG,
+            self::CATEGORY_PASS,
+            self::CATEGORY_BLOCK,
+        ];
+    }
 
 
     /**
@@ -158,6 +175,17 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['category'] === null) {
+            $invalidProperties[] = "'category' can't be null";
+        }
+            $allowedValues = $this->getCategoryAllowableValues();
+                if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'category', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
         return $invalidProperties;
     }
 
@@ -174,9 +202,9 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
 
     /**
     * Gets category
-    *  **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    *  **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
-    * @return string|null
+    * @return string
     */
     public function getCategory()
     {
@@ -186,7 +214,7 @@ class CreateIpReputationRuleRequestBodyAction implements ModelInterface, ArrayAc
     /**
     * Sets category
     *
-    * @param string|null $category **参数解释：** 动作类型（如log表示仅记录） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * @param string $category **参数解释：** 动作类型 **约束限制：** 不涉及 **取值范围：** - pass :放行 - log ： 仅记录 - block： 拦截 **默认取值：** 不涉及
     *
     * @return $this
     */

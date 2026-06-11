@@ -28,7 +28,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * osType  操作系统类型，OS_TYPE (WINDOWS/LINUX)
     * osVersion  系统详细版本号，如CENTOS7.6等
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  源端服务器与主机迁移服务端是否连接
     * cpuQuantity  源端CPU核心数
     * memory  源端物理内存大小（单位：字节）
@@ -43,6 +43,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * stateActionTime  源端状态（state）上次发生变化的时间
     * isConsistencyResultExist  是否有一致性校验结果
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -69,7 +70,8 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             'migrationCycle' => 'string',
             'stateActionTime' => 'int',
             'isConsistencyResultExist' => 'bool',
-            'hasTc' => 'bool'
+            'hasTc' => 'bool',
+            'startType' => 'string'
     ];
 
     /**
@@ -82,7 +84,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * osType  操作系统类型，OS_TYPE (WINDOWS/LINUX)
     * osVersion  系统详细版本号，如CENTOS7.6等
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  源端服务器与主机迁移服务端是否连接
     * cpuQuantity  源端CPU核心数
     * memory  源端物理内存大小（单位：字节）
@@ -97,6 +99,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * stateActionTime  源端状态（state）上次发生变化的时间
     * isConsistencyResultExist  是否有一致性校验结果
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -123,7 +126,8 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
         'migrationCycle' => null,
         'stateActionTime' => 'int64',
         'isConsistencyResultExist' => null,
-        'hasTc' => null
+        'hasTc' => null,
+        'startType' => null
     ];
 
     /**
@@ -157,7 +161,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * osType  操作系统类型，OS_TYPE (WINDOWS/LINUX)
     * osVersion  系统详细版本号，如CENTOS7.6等
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  源端服务器与主机迁移服务端是否连接
     * cpuQuantity  源端CPU核心数
     * memory  源端物理内存大小（单位：字节）
@@ -172,6 +176,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * stateActionTime  源端状态（state）上次发生变化的时间
     * isConsistencyResultExist  是否有一致性校验结果
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -198,7 +203,8 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             'migrationCycle' => 'migration_cycle',
             'stateActionTime' => 'state_action_time',
             'isConsistencyResultExist' => 'is_consistency_result_exist',
-            'hasTc' => 'has_tc'
+            'hasTc' => 'has_tc',
+            'startType' => 'start_type'
     ];
 
     /**
@@ -211,7 +217,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * osType  操作系统类型，OS_TYPE (WINDOWS/LINUX)
     * osVersion  系统详细版本号，如CENTOS7.6等
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  源端服务器与主机迁移服务端是否连接
     * cpuQuantity  源端CPU核心数
     * memory  源端物理内存大小（单位：字节）
@@ -226,6 +232,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * stateActionTime  源端状态（state）上次发生变化的时间
     * isConsistencyResultExist  是否有一致性校验结果
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -252,7 +259,8 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             'migrationCycle' => 'setMigrationCycle',
             'stateActionTime' => 'setStateActionTime',
             'isConsistencyResultExist' => 'setIsConsistencyResultExist',
-            'hasTc' => 'setHasTc'
+            'hasTc' => 'setHasTc',
+            'startType' => 'setStartType'
     ];
 
     /**
@@ -265,7 +273,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * osType  操作系统类型，OS_TYPE (WINDOWS/LINUX)
     * osVersion  系统详细版本号，如CENTOS7.6等
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  源端服务器与主机迁移服务端是否连接
     * cpuQuantity  源端CPU核心数
     * memory  源端物理内存大小（单位：字节）
@@ -280,6 +288,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     * stateActionTime  源端状态（state）上次发生变化的时间
     * isConsistencyResultExist  是否有一致性校验结果
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -306,7 +315,8 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             'migrationCycle' => 'getMigrationCycle',
             'stateActionTime' => 'getStateActionTime',
             'isConsistencyResultExist' => 'getIsConsistencyResultExist',
-            'hasTc' => 'getHasTc'
+            'hasTc' => 'getHasTc',
+            'startType' => 'getStartType'
     ];
 
     /**
@@ -358,18 +368,18 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     const STATE_SYNCING = 'syncing';
     const STATE_STOPPING = 'stopping';
     const STATE_STOPPED = 'stopped';
+    const STATE_SKIPPING = 'skipping';
     const STATE_DELETING = 'deleting';
-    const STATE_ERROR = 'error';
-    const STATE_CLONING = 'cloning';
-    const STATE_CUTOVERING = 'cutovering';
-    const STATE_FINISHED = 'finished';
     const STATE_CLEARING = 'clearing';
     const STATE_CLEARED = 'cleared';
     const STATE_CLEARFAILED = 'clearfailed';
     const STATE_PREMIGREADY = 'premigready';
-    const STATE_PREMIGING = 'premiging';
     const STATE_PREMIGED = 'premiged';
     const STATE_PREMIGFAILED = 'premigfailed';
+    const STATE_CLONING = 'cloning';
+    const STATE_CUTOVERING = 'cutovering';
+    const STATE_FINISHED = 'finished';
+    const STATE_ERROR = 'error';
     const MIGRATION_CYCLE_CUTOVERING = 'cutovering';
     const MIGRATION_CYCLE_CUTOVERED = 'cutovered';
     const MIGRATION_CYCLE_CHECKING = 'checking';
@@ -406,18 +416,18 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             self::STATE_SYNCING,
             self::STATE_STOPPING,
             self::STATE_STOPPED,
+            self::STATE_SKIPPING,
             self::STATE_DELETING,
-            self::STATE_ERROR,
-            self::STATE_CLONING,
-            self::STATE_CUTOVERING,
-            self::STATE_FINISHED,
             self::STATE_CLEARING,
             self::STATE_CLEARED,
             self::STATE_CLEARFAILED,
             self::STATE_PREMIGREADY,
-            self::STATE_PREMIGING,
             self::STATE_PREMIGED,
             self::STATE_PREMIGFAILED,
+            self::STATE_CLONING,
+            self::STATE_CUTOVERING,
+            self::STATE_FINISHED,
+            self::STATE_ERROR,
         ];
     }
 
@@ -477,6 +487,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
         $this->container['stateActionTime'] = isset($data['stateActionTime']) ? $data['stateActionTime'] : null;
         $this->container['isConsistencyResultExist'] = isset($data['isConsistencyResultExist']) ? $data['isConsistencyResultExist'] : null;
         $this->container['hasTc'] = isset($data['hasTc']) ? $data['hasTc'] : null;
+        $this->container['startType'] = isset($data['startType']) ? $data['startType'] : null;
     }
 
     /**
@@ -606,6 +617,12 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['stateActionTime']) && ($this->container['stateActionTime'] < 0)) {
                 $invalidProperties[] = "invalid value for 'stateActionTime', must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) > 255)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) < 0)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be bigger than or equal to 0.";
             }
         return $invalidProperties;
     }
@@ -815,7 +832,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets state
-    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return string|null
     */
@@ -827,7 +844,7 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     /**
     * Sets state
     *
-    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return $this
     */
@@ -1170,6 +1187,30 @@ class SourceServersResponseBody implements ModelInterface, ArrayAccess
     public function setHasTc($hasTc)
     {
         $this->container['hasTc'] = $hasTc;
+        return $this;
+    }
+
+    /**
+    * Gets startType
+    *  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
+    *
+    * @return string|null
+    */
+    public function getStartType()
+    {
+        return $this->container['startType'];
+    }
+
+    /**
+    * Sets startType
+    *
+    * @param string|null $startType 启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
+    *
+    * @return $this
+    */
+    public function setStartType($startType)
+    {
+        $this->container['startType'] = $startType;
         return $this;
     }
 

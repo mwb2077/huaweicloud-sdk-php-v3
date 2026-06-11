@@ -303,6 +303,137 @@ class CssAsyncClient extends Client
     }
 
     /**
+     * 关闭智能运维定时检测
+     *
+     * CSS服务提供智能运维功能的定时检测，支持每日定时检测集群的潜在风险。此接口用于关闭智能运维定时检测。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function closeAiOpsSettingAsync($request)
+    {
+        return $this->closeAiOpsSettingAsyncWithHttpInfo($request);
+    }
+    
+    public function closeAiOpsSettingAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/ai-ops/close';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\CloseAiOpsSettingResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\CloseAiOpsSettingRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 自动创建委托
+     *
+     * 当CSS预置委托不存在时，自动创建委托并赋予CSS依赖的权限。
+     * 当CSS预置委托存在时，去除依赖的高风险权限，设置为最小化权限。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function createAgencyAsync($request)
+    {
+        return $this->createAgencyAsyncWithHttpInfo($request);
+    }
+    
+    public function createAgencyAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/agency/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\CreateAgencyResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\CreateAgencyRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 创建一次集群检测任务
      *
      * 该接口用于创建一个集群检测任务。
@@ -643,9 +774,9 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * es监听器配置。
+     * 集群负载均衡监听器配置。
      *
-     * 该接口用于es监听器配置。
+     * 该接口用于集群负载均衡监听器配置。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -1313,9 +1444,9 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * 打开或关闭es负载均衡器
+     * 为集群打开或关闭负载均衡器
      *
-     * 该接口打开或关闭es负载均衡器。
+     * 该接口为集群打开或关闭负载均衡器。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -1383,7 +1514,7 @@ class CssAsyncClient extends Client
     /**
      * 获取智能运维任务列表及详情
      *
-     * 该接口用于获取智能运维任务列表及详情。
+     * CSS服务提供智能运维功能，支持检测集群潜在风险。检测任务完成后，可以查看集群存在的风险项详情，根据风险建议及时处理集群存在的风险。此接口用于获取智能运维任务列表及详情。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -1416,6 +1547,9 @@ class CssAsyncClient extends Client
         }
         if ($localVarParams['offset'] !== null) {
             $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['report'] !== null) {
+            $queryParams['report'] = $localVarParams['report'];
         }
         if ($localVarParams['clusterId'] !== null) {
             $pathParams['cluster_id'] = $localVarParams['clusterId'];
@@ -1584,6 +1718,68 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\ListClustersTagsResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\ListClustersTagsRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 列举磁盘类型
+     *
+     * 获取各可用区支持的磁盘类型。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listDiskTypeAsync($request)
+    {
+        return $this->listDiskTypeAsyncWithHttpInfo($request);
+    }
+    
+    public function listDiskTypeAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/disktypes';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ListDiskTypeResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ListDiskTypeRequest',
             $asyncRequest = true);
     }
 
@@ -1780,7 +1976,7 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * 获取目标镜像ID
+     * 获取可升级的目标镜像ID
      *
      * 该接口用于获取当前集群的可升级目标镜像ID。
      * 
@@ -1921,6 +2117,71 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\ListLogsJobResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\ListLogsJobRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 获取集群路由
+     *
+     * 该接口用于获取集群路由。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listRoutesAsync($request)
+    {
+        return $this->listRoutesAsyncWithHttpInfo($request);
+    }
+    
+    public function listRoutesAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/route';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ListRoutesResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ListRoutesRequest',
             $asyncRequest = true);
     }
 
@@ -2466,6 +2727,136 @@ class CssAsyncClient extends Client
     }
 
     /**
+     * 查看智能运维检测项
+     *
+     * CSS服务提供智能运维功能，支持检测集群潜在风险。此接口用于获取智能运维的检测项。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showAiOpsDetectorAsync($request)
+    {
+        return $this->showAiOpsDetectorAsyncWithHttpInfo($request);
+    }
+    
+    public function showAiOpsDetectorAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/ai-ops/detector';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowAiOpsDetectorResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowAiOpsDetectorRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查看智能运维定时检测设置
+     *
+     * CSS服务提供智能运维功能的定时检测，支持每日定时检测集群的潜在风险。此接口用于获取智能运维定时检测设置。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showAiOpsSettingAsync($request)
+    {
+        return $this->showAiOpsSettingAsyncWithHttpInfo($request);
+    }
+    
+    public function showAiOpsSettingAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/ai-ops/setting';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowAiOpsSettingResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowAiOpsSettingRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 查询自动创建快照的策略
      *
      * 该接口用于查询自动创建快照策略。
@@ -2664,9 +3055,142 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * 获取该esELB的信息，以及页面需要展示健康检查状态
+     * 查询集群磁盘使用情况
      *
-     * 该接口用于获取该esELB的信息，以及页面需要展示健康检查状态。
+     * 查询集群磁盘使用情况
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showClusterVolumeUsageAsync($request)
+    {
+        return $this->showClusterVolumeUsageAsyncWithHttpInfo($request);
+    }
+    
+    public function showClusterVolumeUsageAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/volume';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowClusterVolumeUsageResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowClusterVolumeUsageRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询指定引擎支持的规格。
+     *
+     * 查询指定引擎支持的规格。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showDataStoreFlavorDetailAsync($request)
+    {
+        return $this->showDataStoreFlavorDetailAsyncWithHttpInfo($request);
+    }
+    
+    public function showDataStoreFlavorDetailAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/datastore/{datastore_id}/flavors';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['datastoreVersionId'] !== null) {
+            $queryParams['datastore_version_id'] = $localVarParams['datastoreVersionId'];
+        }
+        if ($localVarParams['datastoreId'] !== null) {
+            $pathParams['datastore_id'] = $localVarParams['datastoreId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowDataStoreFlavorDetailResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowDataStoreFlavorDetailRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 获取集群的负载均衡器信息
+     *
+     * 该接口用于获取集群的负载均衡器信息。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -2725,6 +3249,71 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowElbDetailResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowElbDetailRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询规格详情
+     *
+     * 查询规格详细信息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showFlavorDetailAsync($request)
+    {
+        return $this->showFlavorDetailAsyncWithHttpInfo($request);
+    }
+    
+    public function showFlavorDetailAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/flavors/{flavor_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['flavorId'] !== null) {
+            $pathParams['flavor_id'] = $localVarParams['flavorId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowFlavorDetailResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowFlavorDetailRequest',
             $asyncRequest = true);
     }
 
@@ -2923,6 +3512,71 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowLogBackupResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowLogBackupRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询指定集群的可变更规格列表
+     *
+     * 查询指定集群可以变更到哪些规格
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showResizeFlavorsAsync($request)
+    {
+        return $this->showResizeFlavorsAsyncWithHttpInfo($request);
+    }
+    
+    public function showResizeFlavorsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/resize-flavors';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $queryParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowResizeFlavorsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowResizeFlavorsRequest',
             $asyncRequest = true);
     }
 
@@ -3740,6 +4394,74 @@ class CssAsyncClient extends Client
     }
 
     /**
+     * 更新智能运维定时检测设置
+     *
+     * CSS服务提供智能运维功能的定时检测，支持每日定时检测集群的潜在风险。此接口用于设置智能运维定时检测。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateAiOpsSettingAsync($request)
+    {
+        return $this->updateAiOpsSettingAsyncWithHttpInfo($request);
+    }
+    
+    public function updateAiOpsSettingAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/ai-ops/setting';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\UpdateAiOpsSettingResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\UpdateAiOpsSettingRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 切换集群实例可用区
      *
      * 该接口通过指定节点类型切换AZ。
@@ -3950,9 +4672,9 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * 更新es监听器
+     * 更新集群负载均衡监听器
      *
-     * 该接口用于更新es监听器。
+     * 该接口用于更新集群负载均衡监听器。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -4580,6 +5302,74 @@ class CssAsyncClient extends Client
     }
 
     /**
+     * 更新集群路由
+     *
+     * 该接口用于更新集群路由。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateRouteAsync($request)
+    {
+        return $this->updateRouteAsyncWithHttpInfo($request);
+    }
+    
+    public function updateRouteAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/route';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\UpdateRouteResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\UpdateRouteRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 指定节点类型缩容
      *
      * 该接口用于集群对不同类型实例的个数以及存储容量进行缩容。包周期类型的集群不支持通过api进行指定节点类型缩容操作。
@@ -5129,7 +5919,7 @@ class CssAsyncClient extends Client
     }
 
     /**
-     * 获取升级详情信息
+     * 获取集群升级或切换AZ的详情信息
      *
      * 由于升级过程时间较长，该接口可以展示当前升级（切换AZ）节点的各个阶段信息。
      * 
@@ -5672,6 +6462,74 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\CreateCnfResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\CreateCnfRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 删除证书文件
+     *
+     * 该接口用于删除证书文件。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function deleteCertsAsync($request)
+    {
+        return $this->deleteCertsAsyncWithHttpInfo($request);
+    }
+    
+    public function deleteCertsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/certs/{cert_id}/delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['certId'] !== null) {
+            $pathParams['cert_id'] = $localVarParams['certId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='DELETE',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\DeleteCertsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\DeleteCertsRequest',
             $asyncRequest = true);
     }
 
@@ -6229,6 +7087,139 @@ class CssAsyncClient extends Client
     }
 
     /**
+     * 强制重启集群VMs
+     *
+     * 重启过程中集群不可用，请谨慎操作。 工作中状态的集群，重启过程会主动停止logstash进程，管道列表“是否保持常驻”值为否，会将所有运行中管道状态置为已停止。“是否保持常驻”值为是，会触发logstash进程恢复机制，将工作中的管道状态置为恢复中，若十分钟内重新拉起logstash进程，管道状态恢复为工作中，否则置为失败状态。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function rebootClusterAsync($request)
+    {
+        return $this->rebootClusterAsyncWithHttpInfo($request);
+    }
+    
+    public function rebootClusterAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/reboot';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\RebootClusterResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\RebootClusterRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询证书文件信息
+     *
+     * 该接口用于查询证书文件信息。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showCertsDetailAsync($request)
+    {
+        return $this->showCertsDetailAsyncWithHttpInfo($request);
+    }
+    
+    public function showCertsDetailAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/certs/{cert_id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['certId'] !== null) {
+            $pathParams['cert_id'] = $localVarParams['certId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\ShowCertsDetailResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\ShowCertsDetailRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 查询配置文件内容
      *
      * 该接口用于查询配置文件内容。
@@ -6361,6 +7352,74 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\StartConnectivityTestResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\StartConnectivityTestRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 热启动pipeline迁移数据。
+     *
+     * 该接口用于热启动pipeline迁移数据。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function startHotPipelineAsync($request)
+    {
+        return $this->startHotPipelineAsyncWithHttpInfo($request);
+    }
+    
+    public function startHotPipelineAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/lgsconf/hot-start';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\StartHotPipelineResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\StartHotPipelineRequest',
             $asyncRequest = true);
     }
 
@@ -6630,6 +7689,74 @@ class CssAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Css\V1\Model\UpdateCnfResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Css\V1\Model\UpdateCnfRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 上传证书文件
+     *
+     * 该接口用于上传证书文件。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function uploadCertsAsync($request)
+    {
+        return $this->uploadCertsAsyncWithHttpInfo($request);
+    }
+    
+    public function uploadCertsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v1.0/{project_id}/clusters/{cluster_id}/certs/upload';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['clusterId'] !== null) {
+            $pathParams['cluster_id'] = $localVarParams['clusterId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Css\V1\Model\UploadCertsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Css\V1\Model\UploadCertsRequest',
             $asyncRequest = true);
     }
 

@@ -21,13 +21,13 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * name  规则名称
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才需要填写该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才需要填写该参数。
     * description  规则描述
     * conditions  匹配条件列表
     * action  action
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @var string[]
     */
@@ -45,13 +45,13 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * name  规则名称
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才需要填写该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才需要填写该参数。
     * description  规则描述
     * conditions  匹配条件列表
     * action  action
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @var string[]
     */
@@ -90,13 +90,13 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * name  规则名称
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才需要填写该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才需要填写该参数。
     * description  规则描述
     * conditions  匹配条件列表
     * action  action
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @var string[]
     */
@@ -114,13 +114,13 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * name  规则名称
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才需要填写该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才需要填写该参数。
     * description  规则描述
     * conditions  匹配条件列表
     * action  action
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @var string[]
     */
@@ -138,13 +138,13 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * name  规则名称
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才需要填写该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才需要填写该参数。
     * description  规则描述
     * conditions  匹配条件列表
     * action  action
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @var string[]
     */
@@ -290,7 +290,7 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets time
-    *  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    *  精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     *
     * @return bool
     */
@@ -302,7 +302,7 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets time
     *
-    * @param bool $time 精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * @param bool $time 精准防护规则生效时间:  - false：表示该规则立即生效 - true：表示自定义生效时间
     *
     * @return $this
     */
@@ -434,7 +434,7 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets priority
-    *  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    *  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @return int
     */
@@ -446,7 +446,7 @@ class UpdateCustomRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets priority
     *
-    * @param int $priority 执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * @param int $priority 执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @return $this
     */

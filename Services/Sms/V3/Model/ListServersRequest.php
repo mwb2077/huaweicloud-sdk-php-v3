@@ -20,10 +20,11 @@ class ListServersRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * name  源端服务器名称
     * id  源端服务器ID
     * ip  源端服务器IP地址
+    * ipv6  源端服务器IPV6地址，优先使用IP进行查询
     * migproject  迁移项目ID，填写该参数将查询迁移项目下的所有虚拟机
     * limit  每一页记录的源端服务器数量，0表示用默认值 200
     * offset  偏移量，默认值0
@@ -31,6 +32,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     * connected  查询失去连接的源端
     * enterpriseProjectId  需要查询的企业项目ID
     * isConsistencyResultExist  是否存在一致性校验结果
+    * vmId  平台的克隆服务器id
     *
     * @var string[]
     */
@@ -39,21 +41,24 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             'name' => 'string',
             'id' => 'string',
             'ip' => 'string',
+            'ipv6' => 'string',
             'migproject' => 'string',
             'limit' => 'int',
             'offset' => 'int',
             'migrationCycle' => 'string',
             'connected' => 'bool',
             'enterpriseProjectId' => 'string',
-            'isConsistencyResultExist' => 'bool'
+            'isConsistencyResultExist' => 'bool',
+            'vmId' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * name  源端服务器名称
     * id  源端服务器ID
     * ip  源端服务器IP地址
+    * ipv6  源端服务器IPV6地址，优先使用IP进行查询
     * migproject  迁移项目ID，填写该参数将查询迁移项目下的所有虚拟机
     * limit  每一页记录的源端服务器数量，0表示用默认值 200
     * offset  偏移量，默认值0
@@ -61,6 +66,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     * connected  查询失去连接的源端
     * enterpriseProjectId  需要查询的企业项目ID
     * isConsistencyResultExist  是否存在一致性校验结果
+    * vmId  平台的克隆服务器id
     *
     * @var string[]
     */
@@ -69,13 +75,15 @@ class ListServersRequest implements ModelInterface, ArrayAccess
         'name' => null,
         'id' => null,
         'ip' => null,
+        'ipv6' => null,
         'migproject' => null,
         'limit' => 'int32',
         'offset' => 'int32',
         'migrationCycle' => null,
         'connected' => null,
         'enterpriseProjectId' => null,
-        'isConsistencyResultExist' => null
+        'isConsistencyResultExist' => null,
+        'vmId' => null
     ];
 
     /**
@@ -101,10 +109,11 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * name  源端服务器名称
     * id  源端服务器ID
     * ip  源端服务器IP地址
+    * ipv6  源端服务器IPV6地址，优先使用IP进行查询
     * migproject  迁移项目ID，填写该参数将查询迁移项目下的所有虚拟机
     * limit  每一页记录的源端服务器数量，0表示用默认值 200
     * offset  偏移量，默认值0
@@ -112,6 +121,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     * connected  查询失去连接的源端
     * enterpriseProjectId  需要查询的企业项目ID
     * isConsistencyResultExist  是否存在一致性校验结果
+    * vmId  平台的克隆服务器id
     *
     * @var string[]
     */
@@ -120,21 +130,24 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             'name' => 'name',
             'id' => 'id',
             'ip' => 'ip',
+            'ipv6' => 'ipv6',
             'migproject' => 'migproject',
             'limit' => 'limit',
             'offset' => 'offset',
             'migrationCycle' => 'migration_cycle',
             'connected' => 'connected',
             'enterpriseProjectId' => 'enterprise_project_id',
-            'isConsistencyResultExist' => 'is_consistency_result_exist'
+            'isConsistencyResultExist' => 'is_consistency_result_exist',
+            'vmId' => 'vm_id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * name  源端服务器名称
     * id  源端服务器ID
     * ip  源端服务器IP地址
+    * ipv6  源端服务器IPV6地址，优先使用IP进行查询
     * migproject  迁移项目ID，填写该参数将查询迁移项目下的所有虚拟机
     * limit  每一页记录的源端服务器数量，0表示用默认值 200
     * offset  偏移量，默认值0
@@ -142,6 +155,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     * connected  查询失去连接的源端
     * enterpriseProjectId  需要查询的企业项目ID
     * isConsistencyResultExist  是否存在一致性校验结果
+    * vmId  平台的克隆服务器id
     *
     * @var string[]
     */
@@ -150,21 +164,24 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             'name' => 'setName',
             'id' => 'setId',
             'ip' => 'setIp',
+            'ipv6' => 'setIpv6',
             'migproject' => 'setMigproject',
             'limit' => 'setLimit',
             'offset' => 'setOffset',
             'migrationCycle' => 'setMigrationCycle',
             'connected' => 'setConnected',
             'enterpriseProjectId' => 'setEnterpriseProjectId',
-            'isConsistencyResultExist' => 'setIsConsistencyResultExist'
+            'isConsistencyResultExist' => 'setIsConsistencyResultExist',
+            'vmId' => 'setVmId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * name  源端服务器名称
     * id  源端服务器ID
     * ip  源端服务器IP地址
+    * ipv6  源端服务器IPV6地址，优先使用IP进行查询
     * migproject  迁移项目ID，填写该参数将查询迁移项目下的所有虚拟机
     * limit  每一页记录的源端服务器数量，0表示用默认值 200
     * offset  偏移量，默认值0
@@ -172,6 +189,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     * connected  查询失去连接的源端
     * enterpriseProjectId  需要查询的企业项目ID
     * isConsistencyResultExist  是否存在一致性校验结果
+    * vmId  平台的克隆服务器id
     *
     * @var string[]
     */
@@ -180,13 +198,15 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             'name' => 'getName',
             'id' => 'getId',
             'ip' => 'getIp',
+            'ipv6' => 'getIpv6',
             'migproject' => 'getMigproject',
             'limit' => 'getLimit',
             'offset' => 'getOffset',
             'migrationCycle' => 'getMigrationCycle',
             'connected' => 'getConnected',
             'enterpriseProjectId' => 'getEnterpriseProjectId',
-            'isConsistencyResultExist' => 'getIsConsistencyResultExist'
+            'isConsistencyResultExist' => 'getIsConsistencyResultExist',
+            'vmId' => 'getVmId'
     ];
 
     /**
@@ -238,17 +258,16 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     const STATE_STOPPED = 'stopped';
     const STATE_SKIPPING = 'skipping';
     const STATE_DELETING = 'deleting';
-    const STATE_ERROR = 'error';
-    const STATE_CLONING = 'cloning';
-    const STATE_CUTOVERING = 'cutovering';
-    const STATE_FINISHED = 'finished';
     const STATE_CLEARING = 'clearing';
     const STATE_CLEARED = 'cleared';
     const STATE_CLEARFAILED = 'clearfailed';
     const STATE_PREMIGREADY = 'premigready';
-    const STATE_PREMIGING = 'premiging';
     const STATE_PREMIGED = 'premiged';
     const STATE_PREMIGFAILED = 'premigfailed';
+    const STATE_CLONING = 'cloning';
+    const STATE_CUTOVERING = 'cutovering';
+    const STATE_FINISHED = 'finished';
+    const STATE_ERROR = 'error';
     const MIGRATION_CYCLE_CHECKING = 'checking';
     const MIGRATION_CYCLE_SETTING = 'setting';
     const MIGRATION_CYCLE_REPLICATING = 'replicating';
@@ -274,17 +293,16 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             self::STATE_STOPPED,
             self::STATE_SKIPPING,
             self::STATE_DELETING,
-            self::STATE_ERROR,
-            self::STATE_CLONING,
-            self::STATE_CUTOVERING,
-            self::STATE_FINISHED,
             self::STATE_CLEARING,
             self::STATE_CLEARED,
             self::STATE_CLEARFAILED,
             self::STATE_PREMIGREADY,
-            self::STATE_PREMIGING,
             self::STATE_PREMIGED,
             self::STATE_PREMIGFAILED,
+            self::STATE_CLONING,
+            self::STATE_CUTOVERING,
+            self::STATE_FINISHED,
+            self::STATE_ERROR,
         ];
     }
 
@@ -325,6 +343,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['ip'] = isset($data['ip']) ? $data['ip'] : null;
+        $this->container['ipv6'] = isset($data['ipv6']) ? $data['ipv6'] : null;
         $this->container['migproject'] = isset($data['migproject']) ? $data['migproject'] : null;
         $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
         $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
@@ -332,6 +351,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
         $this->container['connected'] = isset($data['connected']) ? $data['connected'] : null;
         $this->container['enterpriseProjectId'] = isset($data['enterpriseProjectId']) ? $data['enterpriseProjectId'] : null;
         $this->container['isConsistencyResultExist'] = isset($data['isConsistencyResultExist']) ? $data['isConsistencyResultExist'] : null;
+        $this->container['vmId'] = isset($data['vmId']) ? $data['vmId'] : null;
     }
 
     /**
@@ -367,6 +387,12 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['ip']) && (mb_strlen($this->container['ip']) < 0)) {
                 $invalidProperties[] = "invalid value for 'ip', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['ipv6']) && (mb_strlen($this->container['ipv6']) > 255)) {
+                $invalidProperties[] = "invalid value for 'ipv6', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['ipv6']) && (mb_strlen($this->container['ipv6']) < 0)) {
+                $invalidProperties[] = "invalid value for 'ipv6', the character length must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['migproject']) && (mb_strlen($this->container['migproject']) > 255)) {
                 $invalidProperties[] = "invalid value for 'migproject', the character length must be smaller than or equal to 255.";
@@ -406,6 +432,12 @@ class ListServersRequest implements ModelInterface, ArrayAccess
             if (!is_null($this->container['enterpriseProjectId']) && (mb_strlen($this->container['enterpriseProjectId']) < 0)) {
                 $invalidProperties[] = "invalid value for 'enterpriseProjectId', the character length must be bigger than or equal to 0.";
             }
+            if (!is_null($this->container['vmId']) && (mb_strlen($this->container['vmId']) > 255)) {
+                $invalidProperties[] = "invalid value for 'vmId', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['vmId']) && (mb_strlen($this->container['vmId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'vmId', the character length must be bigger than or equal to 0.";
+            }
         return $invalidProperties;
     }
 
@@ -422,7 +454,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets state
-    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return string|null
     */
@@ -434,7 +466,7 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     /**
     * Sets state
     *
-    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return $this
     */
@@ -513,6 +545,30 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     public function setIp($ip)
     {
         $this->container['ip'] = $ip;
+        return $this;
+    }
+
+    /**
+    * Gets ipv6
+    *  源端服务器IPV6地址，优先使用IP进行查询
+    *
+    * @return string|null
+    */
+    public function getIpv6()
+    {
+        return $this->container['ipv6'];
+    }
+
+    /**
+    * Sets ipv6
+    *
+    * @param string|null $ipv6 源端服务器IPV6地址，优先使用IP进行查询
+    *
+    * @return $this
+    */
+    public function setIpv6($ipv6)
+    {
+        $this->container['ipv6'] = $ipv6;
         return $this;
     }
 
@@ -681,6 +737,30 @@ class ListServersRequest implements ModelInterface, ArrayAccess
     public function setIsConsistencyResultExist($isConsistencyResultExist)
     {
         $this->container['isConsistencyResultExist'] = $isConsistencyResultExist;
+        return $this;
+    }
+
+    /**
+    * Gets vmId
+    *  平台的克隆服务器id
+    *
+    * @return string|null
+    */
+    public function getVmId()
+    {
+        return $this->container['vmId'];
+    }
+
+    /**
+    * Sets vmId
+    *
+    * @param string|null $vmId 平台的克隆服务器id
+    *
+    * @return $this
+    */
+    public function setVmId($vmId)
+    {
+        $this->container['vmId'] = $vmId;
         return $this;
     }
 

@@ -30,7 +30,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  与Agent连接状态
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * initTargetServer  initTargetServer
@@ -50,6 +50,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * stageActionTime  迁移周期（migration_cycle）上一次变化的时间戳
     * agentVersion  Agent版本信息
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -82,7 +83,8 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             'lastVisitTime' => 'int',
             'stageActionTime' => 'int',
             'agentVersion' => 'string',
-            'hasTc' => 'bool'
+            'hasTc' => 'bool',
+            'startType' => 'string'
     ];
 
     /**
@@ -96,7 +98,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  与Agent连接状态
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * initTargetServer  initTargetServer
@@ -116,6 +118,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * stageActionTime  迁移周期（migration_cycle）上一次变化的时间戳
     * agentVersion  Agent版本信息
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -148,7 +151,8 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
         'lastVisitTime' => 'int64',
         'stageActionTime' => 'int64',
         'agentVersion' => null,
-        'hasTc' => null
+        'hasTc' => null,
+        'startType' => null
     ];
 
     /**
@@ -183,7 +187,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  与Agent连接状态
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * initTargetServer  initTargetServer
@@ -203,6 +207,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * stageActionTime  迁移周期（migration_cycle）上一次变化的时间戳
     * agentVersion  Agent版本信息
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -235,7 +240,8 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             'lastVisitTime' => 'last_visit_time',
             'stageActionTime' => 'stage_action_time',
             'agentVersion' => 'agent_version',
-            'hasTc' => 'has_tc'
+            'hasTc' => 'has_tc',
+            'startType' => 'start_type'
     ];
 
     /**
@@ -249,7 +255,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  与Agent连接状态
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * initTargetServer  initTargetServer
@@ -269,6 +275,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * stageActionTime  迁移周期（migration_cycle）上一次变化的时间戳
     * agentVersion  Agent版本信息
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -301,7 +308,8 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             'lastVisitTime' => 'setLastVisitTime',
             'stageActionTime' => 'setStageActionTime',
             'agentVersion' => 'setAgentVersion',
-            'hasTc' => 'setHasTc'
+            'hasTc' => 'setHasTc',
+            'startType' => 'setStartType'
     ];
 
     /**
@@ -315,7 +323,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
     * oemSystem  是否是OEM操作系统(Windows)
-    * state  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * connected  与Agent连接状态
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * initTargetServer  initTargetServer
@@ -335,6 +343,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     * stageActionTime  迁移周期（migration_cycle）上一次变化的时间戳
     * agentVersion  Agent版本信息
     * hasTc  是否安装tc组件，Linux系统此参数为必选
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @var string[]
     */
@@ -367,7 +376,8 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             'lastVisitTime' => 'getLastVisitTime',
             'stageActionTime' => 'getStageActionTime',
             'agentVersion' => 'getAgentVersion',
-            'hasTc' => 'getHasTc'
+            'hasTc' => 'getHasTc',
+            'startType' => 'getStartType'
     ];
 
     /**
@@ -419,17 +429,16 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     const STATE_STOPPED = 'stopped';
     const STATE_SKIPPING = 'skipping';
     const STATE_DELETING = 'deleting';
-    const STATE_ERROR = 'error';
-    const STATE_CLONING = 'cloning';
-    const STATE_TESTING = 'testing';
-    const STATE_FINISHED = 'finished';
     const STATE_CLEARING = 'clearing';
     const STATE_CLEARED = 'cleared';
     const STATE_CLEARFAILED = 'clearfailed';
     const STATE_PREMIGREADY = 'premigready';
-    const STATE_PREMIGING = 'premiging';
     const STATE_PREMIGED = 'premiged';
     const STATE_PREMIGFAILED = 'premigfailed';
+    const STATE_CLONING = 'cloning';
+    const STATE_CUTOVERING = 'cutovering';
+    const STATE_FINISHED = 'finished';
+    const STATE_ERROR = 'error';
     const FIRMWARE_BIOS = 'BIOS';
     const FIRMWARE_UEFI = 'UEFI';
     const MIGRATION_CYCLE_CUTOVERING = 'cutovering';
@@ -457,17 +466,16 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             self::STATE_STOPPED,
             self::STATE_SKIPPING,
             self::STATE_DELETING,
-            self::STATE_ERROR,
-            self::STATE_CLONING,
-            self::STATE_TESTING,
-            self::STATE_FINISHED,
             self::STATE_CLEARING,
             self::STATE_CLEARED,
             self::STATE_CLEARFAILED,
             self::STATE_PREMIGREADY,
-            self::STATE_PREMIGING,
             self::STATE_PREMIGED,
             self::STATE_PREMIGFAILED,
+            self::STATE_CLONING,
+            self::STATE_CUTOVERING,
+            self::STATE_FINISHED,
+            self::STATE_ERROR,
         ];
     }
 
@@ -546,6 +554,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
         $this->container['stageActionTime'] = isset($data['stageActionTime']) ? $data['stageActionTime'] : null;
         $this->container['agentVersion'] = isset($data['agentVersion']) ? $data['agentVersion'] : null;
         $this->container['hasTc'] = isset($data['hasTc']) ? $data['hasTc'] : null;
+        $this->container['startType'] = isset($data['startType']) ? $data['startType'] : null;
     }
 
     /**
@@ -681,6 +690,12 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['agentVersion']) && (mb_strlen($this->container['agentVersion']) < 0)) {
                 $invalidProperties[] = "invalid value for 'agentVersion', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) > 255)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) < 0)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be bigger than or equal to 0.";
             }
         return $invalidProperties;
     }
@@ -914,7 +929,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
 
     /**
     * Gets state
-    *  当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return string|null
     */
@@ -926,7 +941,7 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     /**
     * Sets state
     *
-    * @param string|null $state 当前源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 testing：测试中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return $this
     */
@@ -1389,6 +1404,30 @@ class ShowServerResponse implements ModelInterface, ArrayAccess
     public function setHasTc($hasTc)
     {
         $this->container['hasTc'] = $hasTc;
+        return $this;
+    }
+
+    /**
+    * Gets startType
+    *  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
+    *
+    * @return string|null
+    */
+    public function getStartType()
+    {
+        return $this->container['startType'];
+    }
+
+    /**
+    * Sets startType
+    *
+    * @param string|null $startType 启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
+    *
+    * @return $this
+    */
+    public function setStartType($startType)
+    {
+        $this->container['startType'] = $startType;
         return $this;
     }
 

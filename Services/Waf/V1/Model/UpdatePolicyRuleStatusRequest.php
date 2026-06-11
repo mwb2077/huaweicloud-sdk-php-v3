@@ -20,11 +20,11 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * contentType  内容类型
-    * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
-    * policyId  策略id（策略id从查询防护策略列表接口获取）
-    * ruletype  策略类型
-    * ruleId  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
+    * enterpriseProjectId  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleType  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * body  body
     *
     * @var string[]
@@ -33,18 +33,18 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
             'contentType' => 'string',
             'enterpriseProjectId' => 'string',
             'policyId' => 'string',
-            'ruletype' => 'string',
+            'ruleType' => 'string',
             'ruleId' => 'string',
             'body' => '\HuaweiCloud\SDK\Waf\V1\Model\UpdatePolicyRuleStatusRequestBody'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * contentType  内容类型
-    * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
-    * policyId  策略id（策略id从查询防护策略列表接口获取）
-    * ruletype  策略类型
-    * ruleId  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
+    * enterpriseProjectId  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleType  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * body  body
     *
     * @var string[]
@@ -53,7 +53,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
         'contentType' => null,
         'enterpriseProjectId' => null,
         'policyId' => null,
-        'ruletype' => null,
+        'ruleType' => null,
         'ruleId' => null,
         'body' => null
     ];
@@ -81,11 +81,11 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * contentType  内容类型
-    * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
-    * policyId  策略id（策略id从查询防护策略列表接口获取）
-    * ruletype  策略类型
-    * ruleId  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
+    * enterpriseProjectId  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleType  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * body  body
     *
     * @var string[]
@@ -94,18 +94,18 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
             'contentType' => 'Content-Type',
             'enterpriseProjectId' => 'enterprise_project_id',
             'policyId' => 'policy_id',
-            'ruletype' => 'ruletype',
+            'ruleType' => 'rule_type',
             'ruleId' => 'rule_id',
             'body' => 'body'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * contentType  内容类型
-    * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
-    * policyId  策略id（策略id从查询防护策略列表接口获取）
-    * ruletype  策略类型
-    * ruleId  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
+    * enterpriseProjectId  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleType  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * body  body
     *
     * @var string[]
@@ -114,18 +114,18 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
             'contentType' => 'setContentType',
             'enterpriseProjectId' => 'setEnterpriseProjectId',
             'policyId' => 'setPolicyId',
-            'ruletype' => 'setRuletype',
+            'ruleType' => 'setRuleType',
             'ruleId' => 'setRuleId',
             'body' => 'setBody'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * contentType  内容类型
-    * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
-    * policyId  策略id（策略id从查询防护策略列表接口获取）
-    * ruletype  策略类型
-    * ruleId  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
+    * enterpriseProjectId  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * ruleType  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
+    * ruleId  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * body  body
     *
     * @var string[]
@@ -134,7 +134,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
             'contentType' => 'getContentType',
             'enterpriseProjectId' => 'getEnterpriseProjectId',
             'policyId' => 'getPolicyId',
-            'ruletype' => 'getRuletype',
+            'ruleType' => 'getRuleType',
             'ruleId' => 'getRuleId',
             'body' => 'getBody'
     ];
@@ -179,13 +179,15 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     {
         return self::$openAPIModelName;
     }
-    const RULETYPE_WHITEBLACKIP = 'whiteblackip';
-    const RULETYPE_GEOIP = 'geoip';
-    const RULETYPE_PRIVACY = 'privacy';
-    const RULETYPE_ANTITAMPER = 'antitamper';
-    const RULETYPE_CUSTOM = 'custom';
-    const RULETYPE_IGNORE = 'ignore';
-    const RULETYPE_CC = 'cc';
+    const RULE_TYPE_CC = 'cc';
+    const RULE_TYPE_CUSTOM = 'custom';
+    const RULE_TYPE_WHITEBLACKIP = 'whiteblackip';
+    const RULE_TYPE_PRIVACY = 'privacy';
+    const RULE_TYPE_IGNORE = 'ignore';
+    const RULE_TYPE_GEOIP = 'geoip';
+    const RULE_TYPE_ANTITAMPER = 'antitamper';
+    const RULE_TYPE_ANTILEAKAGE = 'antileakage';
+    const RULE_TYPE_IP_REPUTATION = 'ip-reputation';
     
 
     /**
@@ -193,16 +195,18 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     *
     * @return string[]
     */
-    public function getRuletypeAllowableValues()
+    public function getRuleTypeAllowableValues()
     {
         return [
-            self::RULETYPE_WHITEBLACKIP,
-            self::RULETYPE_GEOIP,
-            self::RULETYPE_PRIVACY,
-            self::RULETYPE_ANTITAMPER,
-            self::RULETYPE_CUSTOM,
-            self::RULETYPE_IGNORE,
-            self::RULETYPE_CC,
+            self::RULE_TYPE_CC,
+            self::RULE_TYPE_CUSTOM,
+            self::RULE_TYPE_WHITEBLACKIP,
+            self::RULE_TYPE_PRIVACY,
+            self::RULE_TYPE_IGNORE,
+            self::RULE_TYPE_GEOIP,
+            self::RULE_TYPE_ANTITAMPER,
+            self::RULE_TYPE_ANTILEAKAGE,
+            self::RULE_TYPE_IP_REPUTATION,
         ];
     }
 
@@ -225,7 +229,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
         $this->container['contentType'] = isset($data['contentType']) ? $data['contentType'] : null;
         $this->container['enterpriseProjectId'] = isset($data['enterpriseProjectId']) ? $data['enterpriseProjectId'] : null;
         $this->container['policyId'] = isset($data['policyId']) ? $data['policyId'] : null;
-        $this->container['ruletype'] = isset($data['ruletype']) ? $data['ruletype'] : null;
+        $this->container['ruleType'] = isset($data['ruleType']) ? $data['ruleType'] : null;
         $this->container['ruleId'] = isset($data['ruleId']) ? $data['ruleId'] : null;
         $this->container['body'] = isset($data['body']) ? $data['body'] : null;
     }
@@ -244,13 +248,13 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
         if ($this->container['policyId'] === null) {
             $invalidProperties[] = "'policyId' can't be null";
         }
-        if ($this->container['ruletype'] === null) {
-            $invalidProperties[] = "'ruletype' can't be null";
+        if ($this->container['ruleType'] === null) {
+            $invalidProperties[] = "'ruleType' can't be null";
         }
-            $allowedValues = $this->getRuletypeAllowableValues();
-                if (!is_null($this->container['ruletype']) && !in_array($this->container['ruletype'], $allowedValues, true)) {
+            $allowedValues = $this->getRuleTypeAllowableValues();
+                if (!is_null($this->container['ruleType']) && !in_array($this->container['ruleType'], $allowedValues, true)) {
                 $invalidProperties[] = sprintf(
-                "invalid value for 'ruletype', must be one of '%s'",
+                "invalid value for 'ruleType', must be one of '%s'",
                 implode("', '", $allowedValues)
                 );
             }
@@ -274,7 +278,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets contentType
-    *  内容类型
+    *  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     *
     * @return string
     */
@@ -286,7 +290,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets contentType
     *
-    * @param string $contentType 内容类型
+    * @param string $contentType **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     *
     * @return $this
     */
@@ -298,7 +302,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets enterpriseProjectId
-    *  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
+    *  **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
     *
     * @return string|null
     */
@@ -310,7 +314,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets enterpriseProjectId
     *
-    * @param string|null $enterpriseProjectId 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id
+    * @param string|null $enterpriseProjectId **参数解释：** 您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目ID。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。 **约束限制：** 不涉及 **取值范围：**  - 0：代表default企业项目  - all_granted_eps：代表所有企业项目  - 其它企业项目ID：长度为36个字符 **默认取值：** 0
     *
     * @return $this
     */
@@ -322,7 +326,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets policyId
-    *  策略id（策略id从查询防护策略列表接口获取）
+    *  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return string
     */
@@ -334,7 +338,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets policyId
     *
-    * @param string $policyId 策略id（策略id从查询防护策略列表接口获取）
+    * @param string $policyId **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -345,32 +349,32 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets ruletype
-    *  策略类型
+    * Gets ruleType
+    *  **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
     *
     * @return string
     */
-    public function getRuletype()
+    public function getRuleType()
     {
-        return $this->container['ruletype'];
+        return $this->container['ruleType'];
     }
 
     /**
-    * Sets ruletype
+    * Sets ruleType
     *
-    * @param string $ruletype 策略类型
+    * @param string $ruleType **参数解释：** 规则类型 **约束限制：** 不涉及 **取值范围：** - cc CC防护 - custom 精准防护 - whiteblackip 黑白名单 - geoip 地理位置防护 - ip-reputation 威胁情报 - antitamper 防篡改 - antileakage 防敏感信息泄露 - ignore 全局白名单(原误报屏蔽) - privacy 隐私屏蔽 **默认取值：** 不涉及
     *
     * @return $this
     */
-    public function setRuletype($ruletype)
+    public function setRuleType($ruleType)
     {
-        $this->container['ruletype'] = $ruletype;
+        $this->container['ruleType'] = $ruleType;
         return $this;
     }
 
     /**
     * Gets ruleId
-    *  规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    *  **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return string
     */
@@ -382,7 +386,7 @@ class UpdatePolicyRuleStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets ruleId
     *
-    * @param string $ruleId 规则id，根据不同的规则类型（ruletype）调用规则列表接口获取规则id，例如黑白名单（whiteblackip）规则id，您可以通过调用查询黑白名单规则列表（ListWhiteblackipRule）获取规则id
+    * @param string $ruleId **参数解释：** 规则id，通过对应规则类型的查询防护规则列表接口获取 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */

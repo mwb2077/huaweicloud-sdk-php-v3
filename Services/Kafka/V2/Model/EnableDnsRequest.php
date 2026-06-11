@@ -20,7 +20,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * instanceId  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * instanceId  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @var string[]
     */
@@ -30,7 +30,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * instanceId  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * instanceId  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @var string[]
     */
@@ -61,7 +61,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * instanceId  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * instanceId  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @var string[]
     */
@@ -71,7 +71,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * instanceId  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * instanceId  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @var string[]
     */
@@ -81,7 +81,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * instanceId  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * instanceId  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @var string[]
     */
@@ -183,7 +183,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets instanceId
-    *  实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    *  实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @return string
     */
@@ -195,7 +195,7 @@ class EnableDnsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets instanceId
     *
-    * @param string $instanceId 实例ID，从[查询所有实例列表](ListInstancesDetails.xml)获取实例ID。
+    * @param string $instanceId 实例ID，从[查询所有实例列表](ListInstances.xml)获取实例ID。
     *
     * @return $this
     */

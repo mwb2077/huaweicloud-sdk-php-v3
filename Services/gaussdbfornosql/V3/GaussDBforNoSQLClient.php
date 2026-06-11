@@ -2196,6 +2196,92 @@ class GaussDBforNoSQLClient extends Client
     }
 
     /**
+     * 查询备份列表（推荐）
+     *
+     * 根据指定条件查询备份列表。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listBackups($request)
+    {
+        return $this->listBackupsWithHttpInfo($request);
+    }
+
+    public function listBackupsWithHttpInfo($request)
+    {
+        $resourcePath = '/v4/{project_id}/backups';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $queryParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['datastoreType'] !== null) {
+            $queryParams['datastore_type'] = $localVarParams['datastoreType'];
+        }
+        if ($localVarParams['backupId'] !== null) {
+            $queryParams['backup_id'] = $localVarParams['backupId'];
+        }
+        if ($localVarParams['backupType'] !== null) {
+            $queryParams['backup_type'] = $localVarParams['backupType'];
+        }
+        if ($localVarParams['type'] !== null) {
+            $queryParams['type'] = $localVarParams['type'];
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['beginTime'] !== null) {
+            $queryParams['begin_time'] = $localVarParams['beginTime'];
+        }
+        if ($localVarParams['endTime'] !== null) {
+            $queryParams['end_time'] = $localVarParams['endTime'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ListBackupsResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ListBackupsRequest');
+    }
+
+    /**
      * 查询GeminiDB(for Cassandra)数据库慢日志
      *
      * 查询GeminiDB(for Cassandra)数据库慢日志信息，支持日志关键字搜索。
@@ -4618,6 +4704,136 @@ class GaussDBforNoSQLClient extends Client
     }
 
     /**
+     * 获取SSL证书下载地址
+     *
+     * 获取SSL证书下载地址。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listSslCertDownloadAddresses($request)
+    {
+        return $this->listSslCertDownloadAddressesWithHttpInfo($request);
+    }
+
+    public function listSslCertDownloadAddressesWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/instances/{instance_id}/ssl-cert/download-link';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ListSslCertDownloadAddressesResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ListSslCertDownloadAddressesRequest');
+    }
+
+    /**
+     * 设置节点自动扩容策略
+     *
+     * 设置节点自动扩容策略。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function modifyAutoNodeExpansionPolicy($request)
+    {
+        return $this->modifyAutoNodeExpansionPolicyWithHttpInfo($request);
+    }
+
+    public function modifyAutoNodeExpansionPolicyWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/instances/{instance_id}/node-auto-expansion-policy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['xLanguage'] !== null) {
+            $headerParams[$arr['xLanguage']] = $localVarParams['xLanguage'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ModifyAutoNodeExpansionPolicyResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ModifyAutoNodeExpansionPolicyRequest');
+    }
+
+    /**
      * 修改Redis数据库帐号权限
      *
      * 修改Redis数据库帐号权限。
@@ -5657,6 +5873,71 @@ class GaussDBforNoSQLClient extends Client
     }
 
     /**
+     * 数据文件导入已有实例
+     *
+     * 数据导入已有实例。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function restoreRedisData($request)
+    {
+        return $this->restoreRedisDataWithHttpInfo($request);
+    }
+
+    public function restoreRedisDataWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/redis/instances/{instance_id}/recovery';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\RestoreRedisDataResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\RestoreRedisDataRequest');
+    }
+
+    /**
      * 恢复当前Redis实例到指定时间点
      *
      * 恢复当前Redis实例到指定时间点。
@@ -6441,6 +6722,12 @@ class GaussDBforNoSQLClient extends Client
         if ($localVarParams['limit'] !== null) {
             $queryParams['limit'] = $localVarParams['limit'];
         }
+        if ($localVarParams['instanceName'] !== null) {
+            $queryParams['instance_name'] = $localVarParams['instanceName'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $queryParams['instance_id'] = $localVarParams['instanceId'];
+        }
         if ($localVarParams['configId'] !== null) {
             $pathParams['config_id'] = $localVarParams['configId'];
         }
@@ -6599,6 +6886,71 @@ class GaussDBforNoSQLClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ShowAutoEnlargePolicyResponse',
             $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ShowAutoEnlargePolicyRequest');
+    }
+
+    /**
+     * 查询节点自动扩容策略
+     *
+     * 查询节点自动扩容策略。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function showAutoNodeExpansionPolicy($request)
+    {
+        return $this->showAutoNodeExpansionPolicyWithHttpInfo($request);
+    }
+
+    public function showAutoNodeExpansionPolicyWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/instances/{instance_id}/node-auto-expansion-policy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['xLanguage'] !== null) {
+            $headerParams[$arr['xLanguage']] = $localVarParams['xLanguage'];
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ShowAutoNodeExpansionPolicyResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\ShowAutoNodeExpansionPolicyRequest');
     }
 
     /**
@@ -7317,9 +7669,9 @@ class GaussDBforNoSQLClient extends Client
     }
 
     /**
-     * 查询实例参数的修改历史
+     * 查询参数组修改历史。
      *
-     * 查询实例参数的修改历史
+     * 查询指定实例的参数组修改历史记录，支持分页查询，支持参数搜索。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -7346,6 +7698,9 @@ class GaussDBforNoSQLClient extends Client
             $getter = $request::getters()[$k];
             $value = $request->$getter();
             $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['parameterName'] !== null) {
+            $queryParams['parameter_name'] = $localVarParams['parameterName'];
         }
         if ($localVarParams['offset'] !== null) {
             $queryParams['offset'] = $localVarParams['offset'];
@@ -9193,6 +9548,71 @@ class GaussDBforNoSQLClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\UpdateInstanceConfigurationsResponse',
             $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\UpdateInstanceConfigurationsRequest');
+    }
+
+    /**
+     * 修改负载均衡地址
+     *
+     * 修改负载均衡地址。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function updateInstanceLb($request)
+    {
+        return $this->updateInstanceLbWithHttpInfo($request);
+    }
+
+    public function updateInstanceLbWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/instances/{instance_id}/lb';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='PUT',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\UpdateInstanceLbResponse',
+            $requestType='\HuaweiCloud\SDK\GaussDBforNoSQL\V3\Model\UpdateInstanceLbRequest');
     }
 
     /**

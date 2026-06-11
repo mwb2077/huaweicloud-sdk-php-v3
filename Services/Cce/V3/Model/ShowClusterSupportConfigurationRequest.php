@@ -20,33 +20,33 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * clusterId  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterType  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterVersion  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * networkMode  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * clusterType  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
+    * clusterVersion  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * clusterId  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * networkMode  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'clusterId' => 'string',
             'clusterType' => 'string',
             'clusterVersion' => 'string',
+            'clusterId' => 'string',
             'networkMode' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * clusterId  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterType  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterVersion  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * networkMode  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * clusterType  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
+    * clusterVersion  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * clusterId  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * networkMode  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'clusterId' => null,
         'clusterType' => null,
         'clusterVersion' => null,
+        'clusterId' => null,
         'networkMode' => null
     ];
 
@@ -73,49 +73,49 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * clusterId  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterType  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterVersion  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * networkMode  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * clusterType  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
+    * clusterVersion  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * clusterId  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * networkMode  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'clusterId' => 'cluster_id',
-            'clusterType' => 'cluster_type',
-            'clusterVersion' => 'cluster_version',
-            'networkMode' => 'network_mode'
+            'clusterType' => 'clusterType',
+            'clusterVersion' => 'clusterVersion',
+            'clusterId' => 'clusterID',
+            'networkMode' => 'networkMode'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * clusterId  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterType  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterVersion  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * networkMode  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * clusterType  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
+    * clusterVersion  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * clusterId  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * networkMode  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @var string[]
     */
     protected static $setters = [
-            'clusterId' => 'setClusterId',
             'clusterType' => 'setClusterType',
             'clusterVersion' => 'setClusterVersion',
+            'clusterId' => 'setClusterId',
             'networkMode' => 'setNetworkMode'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * clusterId  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterType  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * clusterVersion  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    * networkMode  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * clusterType  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
+    * clusterVersion  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * clusterId  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * networkMode  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @var string[]
     */
     protected static $getters = [
-            'clusterId' => 'getClusterId',
             'clusterType' => 'getClusterType',
             'clusterVersion' => 'getClusterVersion',
+            'clusterId' => 'getClusterId',
             'networkMode' => 'getNetworkMode'
     ];
 
@@ -177,9 +177,9 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     */
     public function __construct(array $data = null)
     {
-        $this->container['clusterId'] = isset($data['clusterId']) ? $data['clusterId'] : null;
         $this->container['clusterType'] = isset($data['clusterType']) ? $data['clusterType'] : null;
         $this->container['clusterVersion'] = isset($data['clusterVersion']) ? $data['clusterVersion'] : null;
+        $this->container['clusterId'] = isset($data['clusterId']) ? $data['clusterId'] : null;
         $this->container['networkMode'] = isset($data['networkMode']) ? $data['networkMode'] : null;
     }
 
@@ -191,9 +191,6 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-            if (!is_null($this->container['clusterId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['clusterId'])) {
-                $invalidProperties[] = "invalid value for 'clusterId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
-            }
         return $invalidProperties;
     }
 
@@ -209,32 +206,8 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     }
 
     /**
-    * Gets clusterId
-    *  集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    *
-    * @return string|null
-    */
-    public function getClusterId()
-    {
-        return $this->container['clusterId'];
-    }
-
-    /**
-    * Sets clusterId
-    *
-    * @param string|null $clusterId 集群ID，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
-    *
-    * @return $this
-    */
-    public function setClusterId($clusterId)
-    {
-        $this->container['clusterId'] = $clusterId;
-        return $this;
-    }
-
-    /**
     * Gets clusterType
-    *  集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    *  **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -246,7 +219,7 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     /**
     * Sets clusterType
     *
-    * @param string|null $clusterType 集群类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * @param string|null $clusterType **参数解释**： 该参数用于过滤集群架构 **约束限制**： 不涉及 **取值范围**： - ARM64: 仅获取鲲鹏集群支持的配置项  **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -258,7 +231,7 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
 
     /**
     * Gets clusterVersion
-    *  集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    *  **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -270,7 +243,7 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     /**
     * Sets clusterVersion
     *
-    * @param string|null $clusterVersion 集群版本，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * @param string|null $clusterVersion **参数解释**： 该参数用于获取指定集群版本支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -281,8 +254,32 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     }
 
     /**
+    * Gets clusterId
+    *  **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return string|null
+    */
+    public function getClusterId()
+    {
+        return $this->container['clusterId'];
+    }
+
+    /**
+    * Sets clusterId
+    *
+    * @param string|null $clusterId **参数解释**： 该参数用于获取指定集群支持的配置项 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setClusterId($clusterId)
+    {
+        $this->container['clusterId'] = $clusterId;
+        return $this;
+    }
+
+    /**
     * Gets networkMode
-    *  集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    *  **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -294,7 +291,7 @@ class ShowClusterSupportConfigurationRequest implements ModelInterface, ArrayAcc
     /**
     * Sets networkMode
     *
-    * @param string|null $networkMode 集群网络类型，获取方式请参见[如何获取接口URI中参数](cce_02_0271.xml)。
+    * @param string|null $networkMode **参数解释**： 该参数用于过滤掉集群网络模型相关配置项 **约束限制**： 不涉及 **取值范围**： - eni: 过滤掉云原生网络2.0模型相关配置  **默认取值**： 不涉及
     *
     * @return $this
     */

@@ -6,6 +6,9 @@
 
 <h1 align="center">华为云开发者 Php 软件开发工具包（Php SDK）</h1>
 
+[![GitHub Release](https://img.shields.io/github/v/release/huaweicloud/huaweicloud-sdk-php-v3)](https://github.com/huaweicloud/huaweicloud-sdk-php-v3/releases)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
+
 欢迎使用华为云 Php SDK 。
 
 华为云 Php SDK 让您无需关心请求细节即可快速使用弹性云服务器（ECS）、虚拟私有云（VPC）等多个华为云服务。
@@ -21,6 +24,19 @@
   ，您需要确认已在 [华为云控制台](https://console.huaweicloud.com/console/?locale=zh-cn&region=cn-north-4#/home) 开通当前服务。
 
 - 华为云 Php SDK 支持 **PHP 5.6** 及以上版本，可执行 `php --version` 检查当前 Php 的版本信息。
+
+## 隐私声明
+
+- 收集信息：
+  为完成华为云服务开放API调用的必要校验，SDK需要使用由华为云控制台下载的用户访问密钥（AK）进行签名，该过程不会上传您的私有密钥（SK）。
+
+- 数据处理方式：当您使用本工具提供的服务开放API功能时，您的相关数据（如上传的文件、提交的文本内容）将通过加密传输通道（HTTPS） 直接发送至华为云服务端进行处理。
+
+- 该过程由华为云服务端完成计算、存储或分析，数据不会在本应用客户端本地处理或持久化存储。
+
+- 华为云将根据其服务协议和隐私政策作为数据处理方独立处理这些数据，我们仅作为控制方发起API请求。数据处理结果将返回至本工具供您使用。
+
+- 华为云官方隐私声明：https://www.huaweicloud.com/declaration/sa_prp.html
 
 ## SDK 获取和安装
 
@@ -127,6 +143,7 @@ listPermanentAccessKeys($iamClient);
     * [2.2 使用临时 AK 和 SK](#22-使用临时-ak-和-sk-top)
 * [3. 客户端初始化](#3-客户端初始化-top)
     * [3.1 指定云服务 Endpoint 方式](#31-指定云服务-endpoint-方式-top)
+    * [3.2 用户自定义User-Agent](#32-用户自定义User-Agent-top)
 * [4. 发送请求并查看响应](#4-发送请求并查看响应-top)
     * [4.1 异常处理](#41-异常处理-top)
 * [5. 异步客户端使用](#5-异步客户端使用-top)
@@ -237,6 +254,24 @@ $iamClient = IamClient::newBuilder()
 **说明：**
 
 - `endpoint` 是华为云各服务应用区域和各服务的终端节点，详情请查看 [地区和终端节点](https://developer.huaweicloud.com/endpoint) 。
+
+#### 3.2 用户自定义User-Agent [:top:](#用户手册-top)
+
+从**3.1.180**版本起，默认会在请求头User-Agent中附加额外信息，用于识别客户端调用服务时所使用的SDK语言、客户端库版本以及平台信息等。 User-Agent包含PHP版本、操作系统和时区语言信息，同时会生成一个随机标识符追加到User-Agent信息中。随机标识符会存储在用户主目录下，linux为 `~/.huaweicloud/application_id`，windows为`C:\Users\USER_NAME\.huaweicloud\application_id`。
+
+上述信息将用于保护您及您的用户的华为云账号安全。
+
+您可以通过自定义User-Agent的方式关闭上述行为，自定义User-Agent信息建议长度不超过50个字符，仅可包含ASCII可打印字符：
+
+```php
+# 初始化指定云服务的客户端 {Service}Client ，以初始化 IamClient 为例
+$iamClient = IamClient::newBuilder()
+    ->withHttpConfig($config)
+    ->withEndpoint($endpoint)
+    ->withUserAgent("custom user agent...")
+    ->withCredentials($globalCredentials)
+    ->build();
+```
 
 ### 4. 发送请求并查看响应 [:top:](#用户手册-top)
 

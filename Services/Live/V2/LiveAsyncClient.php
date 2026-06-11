@@ -195,6 +195,9 @@ class LiveAsyncClient extends Client
         if ($localVarParams['serviceType'] !== null) {
             $queryParams['service_type'] = $localVarParams['serviceType'];
         }
+        if ($localVarParams['ipType'] !== null) {
+            $queryParams['ip_type'] = $localVarParams['ipType'];
+        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -894,6 +897,84 @@ class LiveAsyncClient extends Client
     }
 
     /**
+     * 查询推流域名转码路数
+     *
+     * 查询推流域名下的转码路数，根据输入时间点和时间粒度，返回转码路数。
+     * 最大查询跨度1天，最大查询周期90天，数据延迟5分钟。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listTranscodeConcurrencyNumAsync($request)
+    {
+        return $this->listTranscodeConcurrencyNumAsyncWithHttpInfo($request);
+    }
+    
+    public function listTranscodeConcurrencyNumAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v2/{project_id}/stats/transcode/concurrency';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['publishDomains'] !== null) {
+            $queryParams['publish_domains'] = $localVarParams['publishDomains'];
+        }
+        if ($localVarParams['app'] !== null) {
+            $queryParams['app'] = $localVarParams['app'];
+        }
+        if ($localVarParams['interval'] !== null) {
+            $queryParams['interval'] = $localVarParams['interval'];
+        }
+        if ($localVarParams['startTime'] !== null) {
+            $queryParams['start_time'] = $localVarParams['startTime'];
+        }
+        if ($localVarParams['endTime'] !== null) {
+            $queryParams['end_time'] = $localVarParams['endTime'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8', 'application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeConcurrencyNumResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeConcurrencyNumRequest',
+            $asyncRequest = true);
+    }
+
+    /**
      * 查询转码用量接口
      *
      * 查询直播域名每小时的转码时长数据。  最大查询跨度31天，最大查询周期90天。
@@ -964,6 +1045,81 @@ class LiveAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeDataResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeDataRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询转码明细
+     *
+     * 查询流粒度转码明细，包含流名、模版、格式、时长。
+     * 最大查询跨度1天，最大查询周期14天。
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listTranscodeTaskDetailAsync($request)
+    {
+        return $this->listTranscodeTaskDetailAsyncWithHttpInfo($request);
+    }
+    
+    public function listTranscodeTaskDetailAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v2/{project_id}/stats/transcode/detail';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['domain'] !== null) {
+            $queryParams['domain'] = $localVarParams['domain'];
+        }
+        if ($localVarParams['streamNameList'] !== null) {
+            $queryParams['stream_name_list'] = $localVarParams['streamNameList'];
+        }
+        if ($localVarParams['startTime'] !== null) {
+            $queryParams['start_time'] = $localVarParams['startTime'];
+        }
+        if ($localVarParams['endTime'] !== null) {
+            $queryParams['end_time'] = $localVarParams['endTime'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json;charset=utf-8', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json;charset=utf-8', 'application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeTaskDetailResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Live\V2\Model\ListTranscodeTaskDetailRequest',
             $asyncRequest = true);
     }
 
@@ -1337,6 +1493,9 @@ class LiveAsyncClient extends Client
         }
         if ($localVarParams['stream'] !== null) {
             $queryParams['stream'] = $localVarParams['stream'];
+        }
+        if ($localVarParams['type'] !== null) {
+            $queryParams['type'] = $localVarParams['type'];
         }
         if ($localVarParams['startTime'] !== null) {
             $queryParams['start_time'] = $localVarParams['startTime'];

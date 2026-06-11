@@ -20,6 +20,7 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
+    * id  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
     * url  客户自定义的拉流地址，包括方法、域名、路径
     * streamSelection  从全量流中过滤出一个码率在[min, max]区间的流。如果不需要码率过滤可不选。
     * hlsVersion  HLS版本号
@@ -30,10 +31,20 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     * extArgs  其他额外参数
     * requestArgs  requestArgs
     * adMarker  广告标识。  HLS取值：[\"ENHANCED_SCTE35\"]。
+    * enableAccess  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    * allowAllIpAccess  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    * ipWhitelist  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    * cdnIdentifierHeader  cdnIdentifierHeader
+    * originDomainMaster  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * originDomainSlave  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * manifestName  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    * slaveUrl  客户自定义的拉流地址，包括方法、域名、路径
+    * manifestSelection  manifestSelection
     *
     * @var string[]
     */
     protected static $openAPITypes = [
+            'id' => 'string',
             'url' => 'string',
             'streamSelection' => '\HuaweiCloud\SDK\Live\V1\Model\StreamSelectionItem[]',
             'hlsVersion' => 'string',
@@ -43,11 +54,21 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
             'ads' => 'object',
             'extArgs' => 'object',
             'requestArgs' => '\HuaweiCloud\SDK\Live\V1\Model\PackageRequestArgs',
-            'adMarker' => 'string[]'
+            'adMarker' => 'string[]',
+            'enableAccess' => 'bool',
+            'allowAllIpAccess' => 'bool',
+            'ipWhitelist' => 'string',
+            'cdnIdentifierHeader' => '\HuaweiCloud\SDK\Live\V1\Model\HttpHeader',
+            'originDomainMaster' => 'string',
+            'originDomainSlave' => 'string',
+            'manifestName' => 'string',
+            'slaveUrl' => 'string',
+            'manifestSelection' => '\HuaweiCloud\SDK\Live\V1\Model\ManifestSelection'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
+    * id  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
     * url  客户自定义的拉流地址，包括方法、域名、路径
     * streamSelection  从全量流中过滤出一个码率在[min, max]区间的流。如果不需要码率过滤可不选。
     * hlsVersion  HLS版本号
@@ -58,10 +79,20 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     * extArgs  其他额外参数
     * requestArgs  requestArgs
     * adMarker  广告标识。  HLS取值：[\"ENHANCED_SCTE35\"]。
+    * enableAccess  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    * allowAllIpAccess  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    * ipWhitelist  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    * cdnIdentifierHeader  cdnIdentifierHeader
+    * originDomainMaster  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * originDomainSlave  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * manifestName  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    * slaveUrl  客户自定义的拉流地址，包括方法、域名、路径
+    * manifestSelection  manifestSelection
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
+        'id' => null,
         'url' => null,
         'streamSelection' => null,
         'hlsVersion' => null,
@@ -71,7 +102,16 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
         'ads' => null,
         'extArgs' => null,
         'requestArgs' => null,
-        'adMarker' => null
+        'adMarker' => null,
+        'enableAccess' => null,
+        'allowAllIpAccess' => null,
+        'ipWhitelist' => null,
+        'cdnIdentifierHeader' => null,
+        'originDomainMaster' => null,
+        'originDomainSlave' => null,
+        'manifestName' => null,
+        'slaveUrl' => null,
+        'manifestSelection' => null
     ];
 
     /**
@@ -97,6 +137,7 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
+    * id  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
     * url  客户自定义的拉流地址，包括方法、域名、路径
     * streamSelection  从全量流中过滤出一个码率在[min, max]区间的流。如果不需要码率过滤可不选。
     * hlsVersion  HLS版本号
@@ -107,10 +148,20 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     * extArgs  其他额外参数
     * requestArgs  requestArgs
     * adMarker  广告标识。  HLS取值：[\"ENHANCED_SCTE35\"]。
+    * enableAccess  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    * allowAllIpAccess  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    * ipWhitelist  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    * cdnIdentifierHeader  cdnIdentifierHeader
+    * originDomainMaster  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * originDomainSlave  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * manifestName  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    * slaveUrl  客户自定义的拉流地址，包括方法、域名、路径
+    * manifestSelection  manifestSelection
     *
     * @var string[]
     */
     protected static $attributeMap = [
+            'id' => 'id',
             'url' => 'url',
             'streamSelection' => 'stream_selection',
             'hlsVersion' => 'hls_version',
@@ -120,11 +171,21 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
             'ads' => 'ads',
             'extArgs' => 'ext_args',
             'requestArgs' => 'request_args',
-            'adMarker' => 'ad_marker'
+            'adMarker' => 'ad_marker',
+            'enableAccess' => 'enable_access',
+            'allowAllIpAccess' => 'allow_all_ip_access',
+            'ipWhitelist' => 'ip_whitelist',
+            'cdnIdentifierHeader' => 'cdn_identifier_header',
+            'originDomainMaster' => 'origin_domain_master',
+            'originDomainSlave' => 'origin_domain_slave',
+            'manifestName' => 'manifest_name',
+            'slaveUrl' => 'slave_url',
+            'manifestSelection' => 'manifest_selection'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
+    * id  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
     * url  客户自定义的拉流地址，包括方法、域名、路径
     * streamSelection  从全量流中过滤出一个码率在[min, max]区间的流。如果不需要码率过滤可不选。
     * hlsVersion  HLS版本号
@@ -135,10 +196,20 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     * extArgs  其他额外参数
     * requestArgs  requestArgs
     * adMarker  广告标识。  HLS取值：[\"ENHANCED_SCTE35\"]。
+    * enableAccess  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    * allowAllIpAccess  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    * ipWhitelist  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    * cdnIdentifierHeader  cdnIdentifierHeader
+    * originDomainMaster  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * originDomainSlave  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * manifestName  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    * slaveUrl  客户自定义的拉流地址，包括方法、域名、路径
+    * manifestSelection  manifestSelection
     *
     * @var string[]
     */
     protected static $setters = [
+            'id' => 'setId',
             'url' => 'setUrl',
             'streamSelection' => 'setStreamSelection',
             'hlsVersion' => 'setHlsVersion',
@@ -148,11 +219,21 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
             'ads' => 'setAds',
             'extArgs' => 'setExtArgs',
             'requestArgs' => 'setRequestArgs',
-            'adMarker' => 'setAdMarker'
+            'adMarker' => 'setAdMarker',
+            'enableAccess' => 'setEnableAccess',
+            'allowAllIpAccess' => 'setAllowAllIpAccess',
+            'ipWhitelist' => 'setIpWhitelist',
+            'cdnIdentifierHeader' => 'setCdnIdentifierHeader',
+            'originDomainMaster' => 'setOriginDomainMaster',
+            'originDomainSlave' => 'setOriginDomainSlave',
+            'manifestName' => 'setManifestName',
+            'slaveUrl' => 'setSlaveUrl',
+            'manifestSelection' => 'setManifestSelection'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
+    * id  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
     * url  客户自定义的拉流地址，包括方法、域名、路径
     * streamSelection  从全量流中过滤出一个码率在[min, max]区间的流。如果不需要码率过滤可不选。
     * hlsVersion  HLS版本号
@@ -163,10 +244,20 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     * extArgs  其他额外参数
     * requestArgs  requestArgs
     * adMarker  广告标识。  HLS取值：[\"ENHANCED_SCTE35\"]。
+    * enableAccess  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    * allowAllIpAccess  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    * ipWhitelist  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    * cdnIdentifierHeader  cdnIdentifierHeader
+    * originDomainMaster  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * originDomainSlave  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    * manifestName  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    * slaveUrl  客户自定义的拉流地址，包括方法、域名、路径
+    * manifestSelection  manifestSelection
     *
     * @var string[]
     */
     protected static $getters = [
+            'id' => 'getId',
             'url' => 'getUrl',
             'streamSelection' => 'getStreamSelection',
             'hlsVersion' => 'getHlsVersion',
@@ -176,7 +267,16 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
             'ads' => 'getAds',
             'extArgs' => 'getExtArgs',
             'requestArgs' => 'getRequestArgs',
-            'adMarker' => 'getAdMarker'
+            'adMarker' => 'getAdMarker',
+            'enableAccess' => 'getEnableAccess',
+            'allowAllIpAccess' => 'getAllowAllIpAccess',
+            'ipWhitelist' => 'getIpWhitelist',
+            'cdnIdentifierHeader' => 'getCdnIdentifierHeader',
+            'originDomainMaster' => 'getOriginDomainMaster',
+            'originDomainSlave' => 'getOriginDomainSlave',
+            'manifestName' => 'getManifestName',
+            'slaveUrl' => 'getSlaveUrl',
+            'manifestSelection' => 'getManifestSelection'
     ];
 
     /**
@@ -237,6 +337,7 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['streamSelection'] = isset($data['streamSelection']) ? $data['streamSelection'] : null;
         $this->container['hlsVersion'] = isset($data['hlsVersion']) ? $data['hlsVersion'] : null;
@@ -247,6 +348,15 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
         $this->container['extArgs'] = isset($data['extArgs']) ? $data['extArgs'] : null;
         $this->container['requestArgs'] = isset($data['requestArgs']) ? $data['requestArgs'] : null;
         $this->container['adMarker'] = isset($data['adMarker']) ? $data['adMarker'] : null;
+        $this->container['enableAccess'] = isset($data['enableAccess']) ? $data['enableAccess'] : null;
+        $this->container['allowAllIpAccess'] = isset($data['allowAllIpAccess']) ? $data['allowAllIpAccess'] : null;
+        $this->container['ipWhitelist'] = isset($data['ipWhitelist']) ? $data['ipWhitelist'] : null;
+        $this->container['cdnIdentifierHeader'] = isset($data['cdnIdentifierHeader']) ? $data['cdnIdentifierHeader'] : null;
+        $this->container['originDomainMaster'] = isset($data['originDomainMaster']) ? $data['originDomainMaster'] : null;
+        $this->container['originDomainSlave'] = isset($data['originDomainSlave']) ? $data['originDomainSlave'] : null;
+        $this->container['manifestName'] = isset($data['manifestName']) ? $data['manifestName'] : null;
+        $this->container['slaveUrl'] = isset($data['slaveUrl']) ? $data['slaveUrl'] : null;
+        $this->container['manifestSelection'] = isset($data['manifestSelection']) ? $data['manifestSelection'] : null;
     }
 
     /**
@@ -257,13 +367,16 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if ($this->container['url'] === null) {
-            $invalidProperties[] = "'url' can't be null";
-        }
-            if ((mb_strlen($this->container['url']) > 1024)) {
+            if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) > 32)) {
+                $invalidProperties[] = "invalid value for 'id', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) < 0)) {
+                $invalidProperties[] = "invalid value for 'id', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) > 1024)) {
                 $invalidProperties[] = "invalid value for 'url', the character length must be smaller than or equal to 1024.";
             }
-            if ((mb_strlen($this->container['url']) < 1)) {
+            if (!is_null($this->container['url']) && (mb_strlen($this->container['url']) < 1)) {
                 $invalidProperties[] = "invalid value for 'url', the character length must be bigger than or equal to 1.";
             }
             if (!is_null($this->container['hlsVersion']) && (mb_strlen($this->container['hlsVersion']) > 10)) {
@@ -287,6 +400,36 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
             if (!is_null($this->container['playlistWindowSeconds']) && ($this->container['playlistWindowSeconds'] < 0)) {
                 $invalidProperties[] = "invalid value for 'playlistWindowSeconds', must be bigger than or equal to 0.";
             }
+            if (!is_null($this->container['ipWhitelist']) && (mb_strlen($this->container['ipWhitelist']) > 2048)) {
+                $invalidProperties[] = "invalid value for 'ipWhitelist', the character length must be smaller than or equal to 2048.";
+            }
+            if (!is_null($this->container['ipWhitelist']) && (mb_strlen($this->container['ipWhitelist']) < 0)) {
+                $invalidProperties[] = "invalid value for 'ipWhitelist', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['originDomainMaster']) && (mb_strlen($this->container['originDomainMaster']) > 255)) {
+                $invalidProperties[] = "invalid value for 'originDomainMaster', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['originDomainMaster']) && (mb_strlen($this->container['originDomainMaster']) < 0)) {
+                $invalidProperties[] = "invalid value for 'originDomainMaster', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['originDomainSlave']) && (mb_strlen($this->container['originDomainSlave']) > 255)) {
+                $invalidProperties[] = "invalid value for 'originDomainSlave', the character length must be smaller than or equal to 255.";
+            }
+            if (!is_null($this->container['originDomainSlave']) && (mb_strlen($this->container['originDomainSlave']) < 0)) {
+                $invalidProperties[] = "invalid value for 'originDomainSlave', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['manifestName']) && (mb_strlen($this->container['manifestName']) > 128)) {
+                $invalidProperties[] = "invalid value for 'manifestName', the character length must be smaller than or equal to 128.";
+            }
+            if (!is_null($this->container['manifestName']) && (mb_strlen($this->container['manifestName']) < 0)) {
+                $invalidProperties[] = "invalid value for 'manifestName', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['slaveUrl']) && (mb_strlen($this->container['slaveUrl']) > 1024)) {
+                $invalidProperties[] = "invalid value for 'slaveUrl', the character length must be smaller than or equal to 1024.";
+            }
+            if (!is_null($this->container['slaveUrl']) && (mb_strlen($this->container['slaveUrl']) < 0)) {
+                $invalidProperties[] = "invalid value for 'slaveUrl', the character length must be bigger than or equal to 0.";
+            }
         return $invalidProperties;
     }
 
@@ -302,10 +445,34 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets id
+    *  package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
+    *
+    * @return string|null
+    */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+    * Sets id
+    *
+    * @param string|null $id package唯一标识id，由服务创建并在查询时返回，修改endpoints时需要携带。
+    *
+    * @return $this
+    */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+        return $this;
+    }
+
+    /**
     * Gets url
     *  客户自定义的拉流地址，包括方法、域名、路径
     *
-    * @return string
+    * @return string|null
     */
     public function getUrl()
     {
@@ -315,7 +482,7 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     /**
     * Sets url
     *
-    * @param string $url 客户自定义的拉流地址，包括方法、域名、路径
+    * @param string|null $url 客户自定义的拉流地址，包括方法、域名、路径
     *
     * @return $this
     */
@@ -538,6 +705,222 @@ class HlsPackageItem implements ModelInterface, ArrayAccess
     public function setAdMarker($adMarker)
     {
         $this->container['adMarker'] = $adMarker;
+        return $this;
+    }
+
+    /**
+    * Gets enableAccess
+    *  当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    *
+    * @return bool|null
+    */
+    public function getEnableAccess()
+    {
+        return $this->container['enableAccess'];
+    }
+
+    /**
+    * Sets enableAccess
+    *
+    * @param bool|null $enableAccess 当频道mode是ONLY_OS类型时，允许本输出可以直接从源站拉流，默认：false true：允许output访问 false：禁止output访问
+    *
+    * @return $this
+    */
+    public function setEnableAccess($enableAccess)
+    {
+        $this->container['enableAccess'] = $enableAccess;
+        return $this;
+    }
+
+    /**
+    * Gets allowAllIpAccess
+    *  是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    *
+    * @return bool|null
+    */
+    public function getAllowAllIpAccess()
+    {
+        return $this->container['allowAllIpAccess'];
+    }
+
+    /**
+    * Sets allowAllIpAccess
+    *
+    * @param bool|null $allowAllIpAccess 是否放通所有的IP访问，默认：false true：允许所有的IP地址访问，ip_whitelist配置不生效 false：不允许所有的IP地址访问，ip_whitelist生效，仅在ip_whitelist配置的ip地址才能访问
+    *
+    * @return $this
+    */
+    public function setAllowAllIpAccess($allowAllIpAccess)
+    {
+        $this->container['allowAllIpAccess'] = $allowAllIpAccess;
+        return $this;
+    }
+
+    /**
+    * Gets ipWhitelist
+    *  当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    *
+    * @return string|null
+    */
+    public function getIpWhitelist()
+    {
+        return $this->container['ipWhitelist'];
+    }
+
+    /**
+    * Sets ipWhitelist
+    *
+    * @param string|null $ipWhitelist 当频道类型mode是ONLY_OS类型时，允许直接从源站拉流的IP白名单
+    *
+    * @return $this
+    */
+    public function setIpWhitelist($ipWhitelist)
+    {
+        $this->container['ipWhitelist'] = $ipWhitelist;
+        return $this;
+    }
+
+    /**
+    * Gets cdnIdentifierHeader
+    *  cdnIdentifierHeader
+    *
+    * @return \HuaweiCloud\SDK\Live\V1\Model\HttpHeader|null
+    */
+    public function getCdnIdentifierHeader()
+    {
+        return $this->container['cdnIdentifierHeader'];
+    }
+
+    /**
+    * Sets cdnIdentifierHeader
+    *
+    * @param \HuaweiCloud\SDK\Live\V1\Model\HttpHeader|null $cdnIdentifierHeader cdnIdentifierHeader
+    *
+    * @return $this
+    */
+    public function setCdnIdentifierHeader($cdnIdentifierHeader)
+    {
+        $this->container['cdnIdentifierHeader'] = $cdnIdentifierHeader;
+        return $this;
+    }
+
+    /**
+    * Gets originDomainMaster
+    *  源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    *
+    * @return string|null
+    */
+    public function getOriginDomainMaster()
+    {
+        return $this->container['originDomainMaster'];
+    }
+
+    /**
+    * Sets originDomainMaster
+    *
+    * @param string|null $originDomainMaster 源站分发域名-主region 跟CreateOttChannelInfoReq.region一致 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    *
+    * @return $this
+    */
+    public function setOriginDomainMaster($originDomainMaster)
+    {
+        $this->container['originDomainMaster'] = $originDomainMaster;
+        return $this;
+    }
+
+    /**
+    * Gets originDomainSlave
+    *  源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    *
+    * @return string|null
+    */
+    public function getOriginDomainSlave()
+    {
+        return $this->container['originDomainSlave'];
+    }
+
+    /**
+    * Sets originDomainSlave
+    *
+    * @param string|null $originDomainSlave 源站分发域名-备region 满足正则：^(\\[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.){2,}[a-zA-Z]{2,16}$ 最大长度255
+    *
+    * @return $this
+    */
+    public function setOriginDomainSlave($originDomainSlave)
+    {
+        $this->container['originDomainSlave'] = $originDomainSlave;
+        return $this;
+    }
+
+    /**
+    * Gets manifestName
+    *  output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    *
+    * @return string|null
+    */
+    public function getManifestName()
+    {
+        return $this->container['manifestName'];
+    }
+
+    /**
+    * Sets manifestName
+    *
+    * @param string|null $manifestName output的索引文件名字 默认：index 长度：0-128 字符集：大小写字母、数字、\"-\"、\".\"、\"_\"，不能有/路径
+    *
+    * @return $this
+    */
+    public function setManifestName($manifestName)
+    {
+        $this->container['manifestName'] = $manifestName;
+        return $this;
+    }
+
+    /**
+    * Gets slaveUrl
+    *  客户自定义的拉流地址，包括方法、域名、路径
+    *
+    * @return string|null
+    */
+    public function getSlaveUrl()
+    {
+        return $this->container['slaveUrl'];
+    }
+
+    /**
+    * Sets slaveUrl
+    *
+    * @param string|null $slaveUrl 客户自定义的拉流地址，包括方法、域名、路径
+    *
+    * @return $this
+    */
+    public function setSlaveUrl($slaveUrl)
+    {
+        $this->container['slaveUrl'] = $slaveUrl;
+        return $this;
+    }
+
+    /**
+    * Gets manifestSelection
+    *  manifestSelection
+    *
+    * @return \HuaweiCloud\SDK\Live\V1\Model\ManifestSelection|null
+    */
+    public function getManifestSelection()
+    {
+        return $this->container['manifestSelection'];
+    }
+
+    /**
+    * Sets manifestSelection
+    *
+    * @param \HuaweiCloud\SDK\Live\V1\Model\ManifestSelection|null $manifestSelection manifestSelection
+    *
+    * @return $this
+    */
+    public function setManifestSelection($manifestSelection)
+    {
+        $this->container['manifestSelection'] = $manifestSelection;
         return $this;
     }
 

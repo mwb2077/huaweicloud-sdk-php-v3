@@ -26,16 +26,20 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为两类： - installed：已安装。已安装状态包含以下四种情况：   - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。   - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。   - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。   - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * detectResult  **参数解释**: 检测结果 **约束限制**: 不涉及 **取值范围**: 包含如下4种。   - undetected ：未检测。   - clean ：无风险。   - risk ：有风险。   - scanning ：检测中。 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * hostId  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostStatus  **参数解释**: 主机状态 **约束限制**: 不涉及 **取值范围**: 包含如下4种。 - ACTIVE ：正在运行。 - SHUTOFF ：关机。 - BUILDING ：创建中。 - ERROR ：故障。 **默认取值**: 不涉及
     * osType  **参数解释**: 操作系统类型 **约束限制**: 不涉及 **取值范围**: 包含如下2种。 - Linux ：Linux。 - Windows ：Windows。 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     * ipAddr  **参数解释**: 公网或私网IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     * protectStatus  **参数解释**: 防护状态 **约束限制**: 不涉及 **取值范围**: 包含如下3种： - closed ：关闭。 - opened ：开启。 - protection_exception ：防护异常。 **默认取值**: 不涉及
-    * groupId  服务器组ID
+    * groupId  服务器组的唯一标识ID
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * vpcId  **参数解释**: VPC的ID **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * hostNameList  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    * hostIdList  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * publicIpList  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * privateIpList  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
     * hasIntrusion  **参数解释**: 存在告警事件 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasVul  **参数解释**: 存在漏洞风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasBaseline  **参数解释**: 存在基线风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
@@ -80,6 +84,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
             'groupId' => 'string',
             'groupName' => 'string',
             'vpcId' => 'string',
+            'hostNameList' => 'string',
+            'hostIdList' => 'string',
+            'publicIpList' => 'string',
+            'privateIpList' => 'string',
             'hasIntrusion' => 'bool',
             'hasVul' => 'bool',
             'hasBaseline' => 'bool',
@@ -114,16 +122,20 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为两类： - installed：已安装。已安装状态包含以下四种情况：   - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。   - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。   - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。   - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * detectResult  **参数解释**: 检测结果 **约束限制**: 不涉及 **取值范围**: 包含如下4种。   - undetected ：未检测。   - clean ：无风险。   - risk ：有风险。   - scanning ：检测中。 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * hostId  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostStatus  **参数解释**: 主机状态 **约束限制**: 不涉及 **取值范围**: 包含如下4种。 - ACTIVE ：正在运行。 - SHUTOFF ：关机。 - BUILDING ：创建中。 - ERROR ：故障。 **默认取值**: 不涉及
     * osType  **参数解释**: 操作系统类型 **约束限制**: 不涉及 **取值范围**: 包含如下2种。 - Linux ：Linux。 - Windows ：Windows。 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     * ipAddr  **参数解释**: 公网或私网IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     * protectStatus  **参数解释**: 防护状态 **约束限制**: 不涉及 **取值范围**: 包含如下3种： - closed ：关闭。 - opened ：开启。 - protection_exception ：防护异常。 **默认取值**: 不涉及
-    * groupId  服务器组ID
+    * groupId  服务器组的唯一标识ID
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * vpcId  **参数解释**: VPC的ID **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * hostNameList  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    * hostIdList  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * publicIpList  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * privateIpList  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
     * hasIntrusion  **参数解释**: 存在告警事件 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasVul  **参数解释**: 存在漏洞风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasBaseline  **参数解释**: 存在基线风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
@@ -168,6 +180,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
         'groupId' => null,
         'groupName' => null,
         'vpcId' => null,
+        'hostNameList' => null,
+        'hostIdList' => null,
+        'publicIpList' => null,
+        'privateIpList' => null,
         'hasIntrusion' => null,
         'hasVul' => null,
         'hasBaseline' => null,
@@ -223,16 +239,20 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为两类： - installed：已安装。已安装状态包含以下四种情况：   - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。   - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。   - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。   - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * detectResult  **参数解释**: 检测结果 **约束限制**: 不涉及 **取值范围**: 包含如下4种。   - undetected ：未检测。   - clean ：无风险。   - risk ：有风险。   - scanning ：检测中。 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * hostId  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostStatus  **参数解释**: 主机状态 **约束限制**: 不涉及 **取值范围**: 包含如下4种。 - ACTIVE ：正在运行。 - SHUTOFF ：关机。 - BUILDING ：创建中。 - ERROR ：故障。 **默认取值**: 不涉及
     * osType  **参数解释**: 操作系统类型 **约束限制**: 不涉及 **取值范围**: 包含如下2种。 - Linux ：Linux。 - Windows ：Windows。 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     * ipAddr  **参数解释**: 公网或私网IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     * protectStatus  **参数解释**: 防护状态 **约束限制**: 不涉及 **取值范围**: 包含如下3种： - closed ：关闭。 - opened ：开启。 - protection_exception ：防护异常。 **默认取值**: 不涉及
-    * groupId  服务器组ID
+    * groupId  服务器组的唯一标识ID
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * vpcId  **参数解释**: VPC的ID **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * hostNameList  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    * hostIdList  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * publicIpList  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * privateIpList  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
     * hasIntrusion  **参数解释**: 存在告警事件 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasVul  **参数解释**: 存在漏洞风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasBaseline  **参数解释**: 存在基线风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
@@ -277,6 +297,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
             'groupId' => 'group_id',
             'groupName' => 'group_name',
             'vpcId' => 'vpc_id',
+            'hostNameList' => 'host_name_list',
+            'hostIdList' => 'host_id_list',
+            'publicIpList' => 'public_ip_list',
+            'privateIpList' => 'private_ip_list',
             'hasIntrusion' => 'has_intrusion',
             'hasVul' => 'has_vul',
             'hasBaseline' => 'has_baseline',
@@ -311,16 +335,20 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为两类： - installed：已安装。已安装状态包含以下四种情况：   - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。   - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。   - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。   - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * detectResult  **参数解释**: 检测结果 **约束限制**: 不涉及 **取值范围**: 包含如下4种。   - undetected ：未检测。   - clean ：无风险。   - risk ：有风险。   - scanning ：检测中。 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * hostId  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostStatus  **参数解释**: 主机状态 **约束限制**: 不涉及 **取值范围**: 包含如下4种。 - ACTIVE ：正在运行。 - SHUTOFF ：关机。 - BUILDING ：创建中。 - ERROR ：故障。 **默认取值**: 不涉及
     * osType  **参数解释**: 操作系统类型 **约束限制**: 不涉及 **取值范围**: 包含如下2种。 - Linux ：Linux。 - Windows ：Windows。 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     * ipAddr  **参数解释**: 公网或私网IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     * protectStatus  **参数解释**: 防护状态 **约束限制**: 不涉及 **取值范围**: 包含如下3种： - closed ：关闭。 - opened ：开启。 - protection_exception ：防护异常。 **默认取值**: 不涉及
-    * groupId  服务器组ID
+    * groupId  服务器组的唯一标识ID
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * vpcId  **参数解释**: VPC的ID **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * hostNameList  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    * hostIdList  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * publicIpList  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * privateIpList  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
     * hasIntrusion  **参数解释**: 存在告警事件 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasVul  **参数解释**: 存在漏洞风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasBaseline  **参数解释**: 存在基线风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
@@ -365,6 +393,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
             'groupId' => 'setGroupId',
             'groupName' => 'setGroupName',
             'vpcId' => 'setVpcId',
+            'hostNameList' => 'setHostNameList',
+            'hostIdList' => 'setHostIdList',
+            'publicIpList' => 'setPublicIpList',
+            'privateIpList' => 'setPrivateIpList',
             'hasIntrusion' => 'setHasIntrusion',
             'hasVul' => 'setHasVul',
             'hasBaseline' => 'setHasBaseline',
@@ -399,16 +431,20 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为两类： - installed：已安装。已安装状态包含以下四种情况：   - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。   - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。   - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。   - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * detectResult  **参数解释**: 检测结果 **约束限制**: 不涉及 **取值范围**: 包含如下4种。   - undetected ：未检测。   - clean ：无风险。   - risk ：有风险。   - scanning ：检测中。 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
-    * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * hostId  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostStatus  **参数解释**: 主机状态 **约束限制**: 不涉及 **取值范围**: 包含如下4种。 - ACTIVE ：正在运行。 - SHUTOFF ：关机。 - BUILDING ：创建中。 - ERROR ：故障。 **默认取值**: 不涉及
     * osType  **参数解释**: 操作系统类型 **约束限制**: 不涉及 **取值范围**: 包含如下2种。 - Linux ：Linux。 - Windows ：Windows。 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     * ipAddr  **参数解释**: 公网或私网IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     * protectStatus  **参数解释**: 防护状态 **约束限制**: 不涉及 **取值范围**: 包含如下3种： - closed ：关闭。 - opened ：开启。 - protection_exception ：防护异常。 **默认取值**: 不涉及
-    * groupId  服务器组ID
+    * groupId  服务器组的唯一标识ID
     * groupName  **参数解释**: 服务器组名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * vpcId  **参数解释**: VPC的ID **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * hostNameList  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    * hostIdList  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * publicIpList  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    * privateIpList  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
     * hasIntrusion  **参数解释**: 存在告警事件 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasVul  **参数解释**: 存在漏洞风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
     * hasBaseline  **参数解释**: 存在基线风险 **约束限制**: 不涉及 **取值范围**: true或者false **默认取值**: 不涉及
@@ -453,6 +489,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
             'groupId' => 'getGroupId',
             'groupName' => 'getGroupName',
             'vpcId' => 'getVpcId',
+            'hostNameList' => 'getHostNameList',
+            'hostIdList' => 'getHostIdList',
+            'publicIpList' => 'getPublicIpList',
+            'privateIpList' => 'getPrivateIpList',
             'hasIntrusion' => 'getHasIntrusion',
             'hasVul' => 'getHasVul',
             'hasBaseline' => 'getHasBaseline',
@@ -553,6 +593,10 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
         $this->container['groupId'] = isset($data['groupId']) ? $data['groupId'] : null;
         $this->container['groupName'] = isset($data['groupName']) ? $data['groupName'] : null;
         $this->container['vpcId'] = isset($data['vpcId']) ? $data['vpcId'] : null;
+        $this->container['hostNameList'] = isset($data['hostNameList']) ? $data['hostNameList'] : null;
+        $this->container['hostIdList'] = isset($data['hostIdList']) ? $data['hostIdList'] : null;
+        $this->container['publicIpList'] = isset($data['publicIpList']) ? $data['publicIpList'] : null;
+        $this->container['privateIpList'] = isset($data['privateIpList']) ? $data['privateIpList'] : null;
         $this->container['hasIntrusion'] = isset($data['hasIntrusion']) ? $data['hasIntrusion'] : null;
         $this->container['hasVul'] = isset($data['hasVul']) ? $data['hasVul'] : null;
         $this->container['hasBaseline'] = isset($data['hasBaseline']) ? $data['hasBaseline'] : null;
@@ -709,6 +753,30 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['vpcId']) && !preg_match("/^.*$/", $this->container['vpcId'])) {
                 $invalidProperties[] = "invalid value for 'vpcId', must be conform to the pattern /^.*$/.";
+            }
+            if (!is_null($this->container['hostNameList']) && (mb_strlen($this->container['hostNameList']) > 3900)) {
+                $invalidProperties[] = "invalid value for 'hostNameList', the character length must be smaller than or equal to 3900.";
+            }
+            if (!is_null($this->container['hostNameList']) && (mb_strlen($this->container['hostNameList']) < 1)) {
+                $invalidProperties[] = "invalid value for 'hostNameList', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['hostIdList']) && (mb_strlen($this->container['hostIdList']) > 3700)) {
+                $invalidProperties[] = "invalid value for 'hostIdList', the character length must be smaller than or equal to 3700.";
+            }
+            if (!is_null($this->container['hostIdList']) && (mb_strlen($this->container['hostIdList']) < 1)) {
+                $invalidProperties[] = "invalid value for 'hostIdList', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['publicIpList']) && (mb_strlen($this->container['publicIpList']) > 4000)) {
+                $invalidProperties[] = "invalid value for 'publicIpList', the character length must be smaller than or equal to 4000.";
+            }
+            if (!is_null($this->container['publicIpList']) && (mb_strlen($this->container['publicIpList']) < 1)) {
+                $invalidProperties[] = "invalid value for 'publicIpList', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['privateIpList']) && (mb_strlen($this->container['privateIpList']) > 4000)) {
+                $invalidProperties[] = "invalid value for 'privateIpList', the character length must be smaller than or equal to 4000.";
+            }
+            if (!is_null($this->container['privateIpList']) && (mb_strlen($this->container['privateIpList']) < 1)) {
+                $invalidProperties[] = "invalid value for 'privateIpList', the character length must be bigger than or equal to 1.";
             }
             if (!is_null($this->container['sortKey']) && !preg_match("/^risk_num$/", $this->container['sortKey'])) {
                 $invalidProperties[] = "invalid value for 'sortKey', must be conform to the pattern /^risk_num$/.";
@@ -933,7 +1001,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostId
-    *  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    *  **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -945,7 +1013,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets hostId
     *
-    * @param string|null $hostId **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * @param string|null $hostId **参数解释**: 服务器的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -1029,7 +1097,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets publicIp
-    *  服务器公网IP
+    *  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return string|null
     */
@@ -1041,7 +1109,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets publicIp
     *
-    * @param string|null $publicIp 服务器公网IP
+    * @param string|null $publicIp **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return $this
     */
@@ -1101,7 +1169,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets groupId
-    *  服务器组ID
+    *  服务器组的唯一标识ID
     *
     * @return string|null
     */
@@ -1113,7 +1181,7 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     /**
     * Sets groupId
     *
-    * @param string|null $groupId 服务器组ID
+    * @param string|null $groupId 服务器组的唯一标识ID
     *
     * @return $this
     */
@@ -1168,6 +1236,102 @@ class ListHostStatusRequest implements ModelInterface, ArrayAccess
     public function setVpcId($vpcId)
     {
         $this->container['vpcId'] = $vpcId;
+        return $this;
+    }
+
+    /**
+    * Gets hostNameList
+    *  **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getHostNameList()
+    {
+        return $this->container['hostNameList'];
+    }
+
+    /**
+    * Sets hostNameList
+    *
+    * @param string|null $hostNameList **参数解释**: 服务器名称列表 **约束限制**: 不涉及 **取值范围**: 单个服务器名称字符长度1-64位 批量查询服务器名称个数1-60个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setHostNameList($hostNameList)
+    {
+        $this->container['hostNameList'] = $hostNameList;
+        return $this;
+    }
+
+    /**
+    * Gets hostIdList
+    *  **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getHostIdList()
+    {
+        return $this->container['hostIdList'];
+    }
+
+    /**
+    * Sets hostIdList
+    *
+    * @param string|null $hostIdList **参数解释**: 服务器ID列表 **约束限制**: 不涉及 **取值范围**: 单个服务器ID字符长度1-36位 批量查询服务器ID个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setHostIdList($hostIdList)
+    {
+        $this->container['hostIdList'] = $hostIdList;
+        return $this;
+    }
+
+    /**
+    * Gets publicIpList
+    *  **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getPublicIpList()
+    {
+        return $this->container['publicIpList'];
+    }
+
+    /**
+    * Sets publicIpList
+    *
+    * @param string|null $publicIpList **参数解释**: 服务器公网IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器公网IP字符长度1-39位 批量查询服务器公网IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setPublicIpList($publicIpList)
+    {
+        $this->container['publicIpList'] = $publicIpList;
+        return $this;
+    }
+
+    /**
+    * Gets privateIpList
+    *  **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return string|null
+    */
+    public function getPrivateIpList()
+    {
+        return $this->container['privateIpList'];
+    }
+
+    /**
+    * Sets privateIpList
+    *
+    * @param string|null $privateIpList **参数解释**: 服务器私有IP列表 **约束限制**: 不涉及 **取值范围**: 单个服务器私有IP字符长度1-39位 批量查询服务器私有IP个数1-100个 采用逗号分割 **默认取值**: 不涉及
+    *
+    * @return $this
+    */
+    public function setPrivateIpList($privateIpList)
+    {
+        $this->container['privateIpList'] = $privateIpList;
         return $this;
     }
 

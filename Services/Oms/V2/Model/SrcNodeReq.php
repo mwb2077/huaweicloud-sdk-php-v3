@@ -20,16 +20,19 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     * region  源端桶所处的区域，task_type为非url_list时，本参数为必选。
     * ak  源端桶的AK（最大长度100个字符），task_type为非url_list时，本参数为必选。
     * sk  源端桶的SK（最大长度100个字符），task_type为非url_list时，本参数为必选。
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * securityToken  源端桶的临时Token（最大长度16384个字符）
-    * appId  当源端为腾讯云时，需要填写此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucket  源端桶的名称，task_type为非url_list时，本参数为必选。
     * objectKey  任务类型为对象迁移任务时，表示待迁移对象名称（以“/”结尾的字符串代表待迁移的文件夹，非“/”结尾的字符串代表待迁移的文件。）； 任务类型为前缀迁移任务时，表示待迁移前缀。 整桶迁移时，此参数设置为[\"\"]。
     * listFile  listFile
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -38,26 +41,32 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             'region' => 'string',
             'ak' => 'string',
             'sk' => 'string',
+            'connectionString' => 'string',
             'jsonAuthFile' => 'string',
             'securityToken' => 'string',
             'appId' => 'string',
             'bucket' => 'string',
             'objectKey' => 'string[]',
-            'listFile' => '\HuaweiCloud\SDK\Oms\V2\Model\ListFile'
+            'listFile' => '\HuaweiCloud\SDK\Oms\V2\Model\ListFile',
+            'cryptoType' => 'string',
+            'kmsKeyId' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     * region  源端桶所处的区域，task_type为非url_list时，本参数为必选。
     * ak  源端桶的AK（最大长度100个字符），task_type为非url_list时，本参数为必选。
     * sk  源端桶的SK（最大长度100个字符），task_type为非url_list时，本参数为必选。
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * securityToken  源端桶的临时Token（最大长度16384个字符）
-    * appId  当源端为腾讯云时，需要填写此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucket  源端桶的名称，task_type为非url_list时，本参数为必选。
     * objectKey  任务类型为对象迁移任务时，表示待迁移对象名称（以“/”结尾的字符串代表待迁移的文件夹，非“/”结尾的字符串代表待迁移的文件。）； 任务类型为前缀迁移任务时，表示待迁移前缀。 整桶迁移时，此参数设置为[\"\"]。
     * listFile  listFile
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -66,12 +75,15 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
         'region' => null,
         'ak' => null,
         'sk' => null,
+        'connectionString' => null,
         'jsonAuthFile' => null,
         'securityToken' => null,
         'appId' => null,
         'bucket' => null,
         'objectKey' => null,
-        'listFile' => null
+        'listFile' => null,
+        'cryptoType' => null,
+        'kmsKeyId' => null
     ];
 
     /**
@@ -97,16 +109,19 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     * region  源端桶所处的区域，task_type为非url_list时，本参数为必选。
     * ak  源端桶的AK（最大长度100个字符），task_type为非url_list时，本参数为必选。
     * sk  源端桶的SK（最大长度100个字符），task_type为非url_list时，本参数为必选。
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * securityToken  源端桶的临时Token（最大长度16384个字符）
-    * appId  当源端为腾讯云时，需要填写此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucket  源端桶的名称，task_type为非url_list时，本参数为必选。
     * objectKey  任务类型为对象迁移任务时，表示待迁移对象名称（以“/”结尾的字符串代表待迁移的文件夹，非“/”结尾的字符串代表待迁移的文件。）； 任务类型为前缀迁移任务时，表示待迁移前缀。 整桶迁移时，此参数设置为[\"\"]。
     * listFile  listFile
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -115,26 +130,32 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             'region' => 'region',
             'ak' => 'ak',
             'sk' => 'sk',
+            'connectionString' => 'connection_string',
             'jsonAuthFile' => 'json_auth_file',
             'securityToken' => 'security_token',
             'appId' => 'app_id',
             'bucket' => 'bucket',
             'objectKey' => 'object_key',
-            'listFile' => 'list_file'
+            'listFile' => 'list_file',
+            'cryptoType' => 'crypto_type',
+            'kmsKeyId' => 'kms_key_id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     * region  源端桶所处的区域，task_type为非url_list时，本参数为必选。
     * ak  源端桶的AK（最大长度100个字符），task_type为非url_list时，本参数为必选。
     * sk  源端桶的SK（最大长度100个字符），task_type为非url_list时，本参数为必选。
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * securityToken  源端桶的临时Token（最大长度16384个字符）
-    * appId  当源端为腾讯云时，需要填写此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucket  源端桶的名称，task_type为非url_list时，本参数为必选。
     * objectKey  任务类型为对象迁移任务时，表示待迁移对象名称（以“/”结尾的字符串代表待迁移的文件夹，非“/”结尾的字符串代表待迁移的文件。）； 任务类型为前缀迁移任务时，表示待迁移前缀。 整桶迁移时，此参数设置为[\"\"]。
     * listFile  listFile
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -143,26 +164,32 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             'region' => 'setRegion',
             'ak' => 'setAk',
             'sk' => 'setSk',
+            'connectionString' => 'setConnectionString',
             'jsonAuthFile' => 'setJsonAuthFile',
             'securityToken' => 'setSecurityToken',
             'appId' => 'setAppId',
             'bucket' => 'setBucket',
             'objectKey' => 'setObjectKey',
-            'listFile' => 'setListFile'
+            'listFile' => 'setListFile',
+            'cryptoType' => 'setCryptoType',
+            'kmsKeyId' => 'setKmsKeyId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * cloudType  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     * region  源端桶所处的区域，task_type为非url_list时，本参数为必选。
     * ak  源端桶的AK（最大长度100个字符），task_type为非url_list时，本参数为必选。
     * sk  源端桶的SK（最大长度100个字符），task_type为非url_list时，本参数为必选。
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * securityToken  源端桶的临时Token（最大长度16384个字符）
-    * appId  当源端为腾讯云时，需要填写此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucket  源端桶的名称，task_type为非url_list时，本参数为必选。
     * objectKey  任务类型为对象迁移任务时，表示待迁移对象名称（以“/”结尾的字符串代表待迁移的文件夹，非“/”结尾的字符串代表待迁移的文件。）； 任务类型为前缀迁移任务时，表示待迁移前缀。 整桶迁移时，此参数设置为[\"\"]。
     * listFile  listFile
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -171,12 +198,15 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             'region' => 'getRegion',
             'ak' => 'getAk',
             'sk' => 'getSk',
+            'connectionString' => 'getConnectionString',
             'jsonAuthFile' => 'getJsonAuthFile',
             'securityToken' => 'getSecurityToken',
             'appId' => 'getAppId',
             'bucket' => 'getBucket',
             'objectKey' => 'getObjectKey',
-            'listFile' => 'getListFile'
+            'listFile' => 'getListFile',
+            'cryptoType' => 'getCryptoType',
+            'kmsKeyId' => 'getKmsKeyId'
     ];
 
     /**
@@ -219,7 +249,22 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     {
         return self::$openAPIModelName;
     }
+    const CRYPTO_TYPE__DEFAULT = 'DEFAULT';
+    const CRYPTO_TYPE_KMS = 'KMS';
     
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getCryptoTypeAllowableValues()
+    {
+        return [
+            self::CRYPTO_TYPE__DEFAULT,
+            self::CRYPTO_TYPE_KMS,
+        ];
+    }
 
 
     /**
@@ -241,12 +286,15 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
         $this->container['region'] = isset($data['region']) ? $data['region'] : null;
         $this->container['ak'] = isset($data['ak']) ? $data['ak'] : null;
         $this->container['sk'] = isset($data['sk']) ? $data['sk'] : null;
+        $this->container['connectionString'] = isset($data['connectionString']) ? $data['connectionString'] : null;
         $this->container['jsonAuthFile'] = isset($data['jsonAuthFile']) ? $data['jsonAuthFile'] : null;
         $this->container['securityToken'] = isset($data['securityToken']) ? $data['securityToken'] : null;
         $this->container['appId'] = isset($data['appId']) ? $data['appId'] : null;
         $this->container['bucket'] = isset($data['bucket']) ? $data['bucket'] : null;
         $this->container['objectKey'] = isset($data['objectKey']) ? $data['objectKey'] : null;
         $this->container['listFile'] = isset($data['listFile']) ? $data['listFile'] : null;
+        $this->container['cryptoType'] = isset($data['cryptoType']) ? $data['cryptoType'] : null;
+        $this->container['kmsKeyId'] = isset($data['kmsKeyId']) ? $data['kmsKeyId'] : null;
     }
 
     /**
@@ -287,6 +335,12 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             if (!is_null($this->container['sk']) && !preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['sk'])) {
                 $invalidProperties[] = "invalid value for 'sk', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
             }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) > 2048)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be smaller than or equal to 2048.";
+            }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) < 0)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be bigger than or equal to 0.";
+            }
             if (!is_null($this->container['jsonAuthFile']) && (mb_strlen($this->container['jsonAuthFile']) > 65535)) {
                 $invalidProperties[] = "invalid value for 'jsonAuthFile', the character length must be smaller than or equal to 65535.";
             }
@@ -320,6 +374,29 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
             if (!is_null($this->container['bucket']) && !preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['bucket'])) {
                 $invalidProperties[] = "invalid value for 'bucket', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
             }
+            $allowedValues = $this->getCryptoTypeAllowableValues();
+                if (!is_null($this->container['cryptoType']) && !in_array($this->container['cryptoType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'cryptoType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
+            if (!is_null($this->container['cryptoType']) && (mb_strlen($this->container['cryptoType']) > 32)) {
+                $invalidProperties[] = "invalid value for 'cryptoType', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['cryptoType']) && (mb_strlen($this->container['cryptoType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'cryptoType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && (mb_strlen($this->container['kmsKeyId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', the character length must be smaller than or equal to 36.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && (mb_strlen($this->container['kmsKeyId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['kmsKeyId'])) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
+            }
         return $invalidProperties;
     }
 
@@ -336,7 +413,7 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets cloudType
-    *  源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    *  源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     *
     * @return string|null
     */
@@ -348,7 +425,7 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     /**
     * Sets cloudType
     *
-    * @param string|null $cloudType 源端云服务提供商，task_type为非url_list时，本参数为URLSource。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
+    * @param string|null $cloudType 源端云服务提供商，task_type为非url_list时，本参数为URLSource且必选。  可选值有AWS、Azure、Aliyun、Tencent、HuaweiCloud、QingCloud、KingsoftCloud、Baidu、Qiniu、Google、URLSource或者UCloud。默认值为Aliyun。
     *
     * @return $this
     */
@@ -431,6 +508,30 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets connectionString
+    *  连接字符串，用于微软云Blob鉴权
+    *
+    * @return string|null
+    */
+    public function getConnectionString()
+    {
+        return $this->container['connectionString'];
+    }
+
+    /**
+    * Sets connectionString
+    *
+    * @param string|null $connectionString 连接字符串，用于微软云Blob鉴权
+    *
+    * @return $this
+    */
+    public function setConnectionString($connectionString)
+    {
+        $this->container['connectionString'] = $connectionString;
+        return $this;
+    }
+
+    /**
     * Gets jsonAuthFile
     *  用于谷歌云Cloud Storage鉴权
     *
@@ -480,7 +581,7 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets appId
-    *  当源端为腾讯云时，需要填写此参数。
+    *  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     *
     * @return string|null
     */
@@ -492,7 +593,7 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     /**
     * Sets appId
     *
-    * @param string|null $appId 当源端为腾讯云时，需要填写此参数。
+    * @param string|null $appId 腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     *
     * @return $this
     */
@@ -571,6 +672,54 @@ class SrcNodeReq implements ModelInterface, ArrayAccess
     public function setListFile($listFile)
     {
         $this->container['listFile'] = $listFile;
+        return $this;
+    }
+
+    /**
+    * Gets cryptoType
+    *  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return string|null
+    */
+    public function getCryptoType()
+    {
+        return $this->container['cryptoType'];
+    }
+
+    /**
+    * Sets cryptoType
+    *
+    * @param string|null $cryptoType 加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return $this
+    */
+    public function setCryptoType($cryptoType)
+    {
+        $this->container['cryptoType'] = $cryptoType;
+        return $this;
+    }
+
+    /**
+    * Gets kmsKeyId
+    *  KMS密钥ID，36个字符
+    *
+    * @return string|null
+    */
+    public function getKmsKeyId()
+    {
+        return $this->container['kmsKeyId'];
+    }
+
+    /**
+    * Sets kmsKeyId
+    *
+    * @param string|null $kmsKeyId KMS密钥ID，36个字符
+    *
+    * @return $this
+    */
+    public function setKmsKeyId($kmsKeyId)
+    {
+        $this->container['kmsKeyId'] = $kmsKeyId;
         return $this;
     }
 

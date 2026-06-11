@@ -20,11 +20,11 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * userName  用户名
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * userName  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     * loginPermission  **参数解释**: 是否允许登录 **约束限制**: 不涉及 **取值范围**: - true：是 - false：否  **默认取值**: 不涉及
     * rootPermission  **参数解释**： 管理员权限 **取值范围**： - true：是 - false：否
     * userGroupName  **参数解释**： 用户组 **取值范围**： 字符长度1-128位
@@ -56,11 +56,11 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * userName  用户名
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * userName  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     * loginPermission  **参数解释**: 是否允许登录 **约束限制**: 不涉及 **取值范围**: - true：是 - false：否  **默认取值**: 不涉及
     * rootPermission  **参数解释**： 管理员权限 **取值范围**： - true：是 - false：否
     * userGroupName  **参数解释**： 用户组 **取值范围**： 字符长度1-128位
@@ -113,11 +113,11 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * userName  用户名
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * userName  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     * loginPermission  **参数解释**: 是否允许登录 **约束限制**: 不涉及 **取值范围**: - true：是 - false：否  **默认取值**: 不涉及
     * rootPermission  **参数解释**： 管理员权限 **取值范围**： - true：是 - false：否
     * userGroupName  **参数解释**： 用户组 **取值范围**： 字符长度1-128位
@@ -149,11 +149,11 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * userName  用户名
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * userName  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     * loginPermission  **参数解释**: 是否允许登录 **约束限制**: 不涉及 **取值范围**: - true：是 - false：否  **默认取值**: 不涉及
     * rootPermission  **参数解释**： 管理员权限 **取值范围**： - true：是 - false：否
     * userGroupName  **参数解释**： 用户组 **取值范围**： 字符长度1-128位
@@ -185,11 +185,11 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * agentId  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * agentId  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * userName  用户名
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * userName  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     * loginPermission  **参数解释**: 是否允许登录 **约束限制**: 不涉及 **取值范围**: - true：是 - false：否  **默认取值**: 不涉及
     * rootPermission  **参数解释**： 管理员权限 **取值范围**： - true：是 - false：否
     * userGroupName  **参数解释**： 用户组 **取值范围**： 字符长度1-128位
@@ -380,7 +380,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets agentId
-    *  **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    *  **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     *
     * @return string|null
     */
@@ -392,7 +392,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets agentId
     *
-    * @param string|null $agentId **参数解释**: Agent ID **取值范围**: 字符长度1-64位
+    * @param string|null $agentId **参数解释**: 主机上安装的杀毒Agent的唯一标识ID，用于关联主机与杀毒服务 **取值范围**: 字符长度1-64位
     *
     * @return $this
     */
@@ -404,7 +404,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostId
-    *  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    *  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return string|null
     */
@@ -416,7 +416,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostId
     *
-    * @param string|null $hostId **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * @param string|null $hostId **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return $this
     */
@@ -452,7 +452,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostIp
-    *  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    *  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return string|null
     */
@@ -464,7 +464,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostIp
     *
-    * @param string|null $hostIp **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * @param string|null $hostIp **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return $this
     */
@@ -476,7 +476,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets userName
-    *  用户名
+    *  **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     *
     * @return string|null
     */
@@ -488,7 +488,7 @@ class UserResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets userName
     *
-    * @param string|null $userName 用户名
+    * @param string|null $userName **参数解释**: 用户名 **取值范围**: 字符长度1-64位
     *
     * @return $this
     */

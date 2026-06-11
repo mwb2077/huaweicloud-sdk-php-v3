@@ -21,33 +21,33 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * syncTaskId  同步任务ID。
-    * dataType  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * dataType  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     * startTime  查询开始时间
-    * endTime  查询开始时间
+    * endTime  查询结束时间
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'syncTaskId' => 'string',
             'dataType' => 'string',
-            'startTime' => 'string',
-            'endTime' => 'string'
+            'startTime' => 'int',
+            'endTime' => 'int'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * syncTaskId  同步任务ID。
-    * dataType  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * dataType  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     * startTime  查询开始时间
-    * endTime  查询开始时间
+    * endTime  查询结束时间
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'syncTaskId' => null,
         'dataType' => null,
-        'startTime' => null,
-        'endTime' => null
+        'startTime' => 'int64',
+        'endTime' => 'int64'
     ];
 
     /**
@@ -74,9 +74,9 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * syncTaskId  同步任务ID。
-    * dataType  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * dataType  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     * startTime  查询开始时间
-    * endTime  查询开始时间
+    * endTime  查询结束时间
     *
     * @var string[]
     */
@@ -90,9 +90,9 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * syncTaskId  同步任务ID。
-    * dataType  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * dataType  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     * startTime  查询开始时间
-    * endTime  查询开始时间
+    * endTime  查询结束时间
     *
     * @var string[]
     */
@@ -106,9 +106,9 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * syncTaskId  同步任务ID。
-    * dataType  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * dataType  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     * startTime  查询开始时间
-    * endTime  查询开始时间
+    * endTime  查询结束时间
     *
     * @var string[]
     */
@@ -241,20 +241,20 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
         if ($this->container['startTime'] === null) {
             $invalidProperties[] = "'startTime' can't be null";
         }
-            if ((mb_strlen($this->container['startTime']) > 1024)) {
-                $invalidProperties[] = "invalid value for 'startTime', the character length must be smaller than or equal to 1024.";
+            if (($this->container['startTime'] > 9223372036854775807)) {
+                $invalidProperties[] = "invalid value for 'startTime', must be smaller than or equal to 9223372036854775807.";
             }
-            if ((mb_strlen($this->container['startTime']) < 1)) {
-                $invalidProperties[] = "invalid value for 'startTime', the character length must be bigger than or equal to 1.";
+            if (($this->container['startTime'] < 0)) {
+                $invalidProperties[] = "invalid value for 'startTime', must be bigger than or equal to 0.";
             }
         if ($this->container['endTime'] === null) {
             $invalidProperties[] = "'endTime' can't be null";
         }
-            if ((mb_strlen($this->container['endTime']) > 1024)) {
-                $invalidProperties[] = "invalid value for 'endTime', the character length must be smaller than or equal to 1024.";
+            if (($this->container['endTime'] > 9223372036854775807)) {
+                $invalidProperties[] = "invalid value for 'endTime', must be smaller than or equal to 9223372036854775807.";
             }
-            if ((mb_strlen($this->container['endTime']) < 1)) {
-                $invalidProperties[] = "invalid value for 'endTime', the character length must be bigger than or equal to 1.";
+            if (($this->container['endTime'] < 0)) {
+                $invalidProperties[] = "invalid value for 'endTime', must be bigger than or equal to 0.";
             }
         return $invalidProperties;
     }
@@ -296,7 +296,7 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets dataType
-    *  统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    *  统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     *
     * @return string
     */
@@ -308,7 +308,7 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Sets dataType
     *
-    * @param string $dataType 统计数据类型： 多类型查询用‘,’分割； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
+    * @param string $dataType 统计数据类型： 多类型查询用‘,’分隔； REQUEST：接收同步请求对象数 SUCCESS：同步成功对象数 FAILURE：同步失败对象数 SKIP：同步跳过对象数 SIZE：同步成功对象容量(Byte)
     *
     * @return $this
     */
@@ -322,7 +322,7 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     * Gets startTime
     *  查询开始时间
     *
-    * @return string
+    * @return int
     */
     public function getStartTime()
     {
@@ -332,7 +332,7 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Sets startTime
     *
-    * @param string $startTime 查询开始时间
+    * @param int $startTime 查询开始时间
     *
     * @return $this
     */
@@ -344,9 +344,9 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets endTime
-    *  查询开始时间
+    *  查询结束时间
     *
-    * @return string
+    * @return int
     */
     public function getEndTime()
     {
@@ -356,7 +356,7 @@ class ListSyncTaskStatisticRequest implements ModelInterface, ArrayAccess
     /**
     * Sets endTime
     *
-    * @param string $endTime 查询开始时间
+    * @param int $endTime 查询结束时间
     *
     * @return $this
     */

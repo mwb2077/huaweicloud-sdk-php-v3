@@ -1037,68 +1037,6 @@ class CesClient extends Client
     }
 
     /**
-     * 创建自定义告警模板
-     *
-     * 创建自定义告警模板
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function createAlarmTemplate($request)
-    {
-        return $this->createAlarmTemplateWithHttpInfo($request);
-    }
-
-    public function createAlarmTemplateWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/alarm-templates';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json', 'text/plain; charset=utf-8'],
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\CreateAlarmTemplateResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\CreateAlarmTemplateRequest');
-    }
-
-    /**
      * 创建/复制/批量创建监控视图到指定的监控看板
      *
      * 创建/复制/批量创建监控视图到指定的监控看板
@@ -1688,6 +1626,9 @@ class CesClient extends Client
         if ($localVarParams['orderBy'] !== null) {
             $queryParams['order_by'] = $localVarParams['orderBy'];
         }
+        if ($localVarParams['maskStatus'] !== null) {
+            $queryParams['mask_status'] = $localVarParams['maskStatus'];
+        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -1714,74 +1655,6 @@ class CesClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ListAlarmHistoriesResponse',
             $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ListAlarmHistoriesRequest');
-    }
-
-    /**
-     * 查询告警规则策略列表
-     *
-     * 根据告警规则ID查询策略列表
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listAlarmRulePolicies($request)
-    {
-        return $this->listAlarmRulePoliciesWithHttpInfo($request);
-    }
-
-    public function listAlarmRulePoliciesWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/alarms/{alarm_id}/policies';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['offset'] !== null) {
-            $queryParams['offset'] = $localVarParams['offset'];
-        }
-        if ($localVarParams['limit'] !== null) {
-            $queryParams['limit'] = $localVarParams['limit'];
-        }
-        if ($localVarParams['alarmId'] !== null) {
-            $pathParams['alarm_id'] = $localVarParams['alarmId'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json', 'text/plain; charset=utf-8'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ListAlarmRulePoliciesResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ListAlarmRulePoliciesRequest');
     }
 
     /**
@@ -2356,142 +2229,6 @@ class CesClient extends Client
     }
 
     /**
-     * 查询告警通知屏蔽列表
-     *
-     * 批量查询指定类型的通知屏蔽规则，目前最多支持100个通知屏蔽规则的批量查询。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listNotificationMasks($request)
-    {
-        return $this->listNotificationMasksWithHttpInfo($request);
-    }
-
-    public function listNotificationMasksWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/notification-masks/batch-query';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['offset'] !== null) {
-            $queryParams['offset'] = $localVarParams['offset'];
-        }
-        if ($localVarParams['limit'] !== null) {
-            $queryParams['limit'] = $localVarParams['limit'];
-        }
-        if ($localVarParams['sortKey'] !== null) {
-            $queryParams['sort_key'] = $localVarParams['sortKey'];
-        }
-        if ($localVarParams['sortDir'] !== null) {
-            $queryParams['sort_dir'] = $localVarParams['sortDir'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ListNotificationMasksResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ListNotificationMasksRequest');
-    }
-
-    /**
-     * 查询一键告警关联告警规则列表
-     *
-     * 查询一键告警关联告警规则列表
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listOneClickAlarmRules($request)
-    {
-        return $this->listOneClickAlarmRulesWithHttpInfo($request);
-    }
-
-    public function listOneClickAlarmRulesWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/one-click-alarms/{one_click_alarm_id}/alarms';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['oneClickAlarmId'] !== null) {
-            $pathParams['one_click_alarm_id'] = $localVarParams['oneClickAlarmId'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json', 'text/plain; charset=utf-8'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ListOneClickAlarmRulesResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ListOneClickAlarmRulesRequest');
-    }
-
-    /**
      * 查询一键告警列表
      *
      * 查询一键告警列表
@@ -2599,6 +2336,9 @@ class CesClient extends Client
         if ($localVarParams['type'] !== null) {
             $queryParams['type'] = $localVarParams['type'];
         }
+        if ($localVarParams['status'] !== null) {
+            $queryParams['status'] = $localVarParams['status'];
+        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json', 'text/plain; charset=utf-8']
@@ -2658,14 +2398,14 @@ class CesClient extends Client
             $value = $request->$getter();
             $localVarParams[$k] = $value;
         }
-        if ($localVarParams['dimName'] !== null) {
-            $queryParams['dim_name'] = $localVarParams['dimName'];
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
         }
         if ($localVarParams['limit'] !== null) {
             $queryParams['limit'] = $localVarParams['limit'];
         }
-        if ($localVarParams['offset'] !== null) {
-            $queryParams['offset'] = $localVarParams['offset'];
+        if ($localVarParams['dimName'] !== null) {
+            $queryParams['dim_name'] = $localVarParams['dimName'];
         }
         if ($localVarParams['status'] !== null) {
             $queryParams['status'] = $localVarParams['status'];
@@ -2720,68 +2460,6 @@ class CesClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ListResourceGroupsServicesResourcesResponse',
             $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ListResourceGroupsServicesResourcesRequest');
-    }
-
-    /**
-     * 查询告警模板详情
-     *
-     * 查询告警模板详情
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function showAlarmTemplate($request)
-    {
-        return $this->showAlarmTemplateWithHttpInfo($request);
-    }
-
-    public function showAlarmTemplateWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/alarm-templates/{template_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['templateId'] !== null) {
-            $pathParams['template_id'] = $localVarParams['templateId'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json', 'text/plain; charset=utf-8'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\ShowAlarmTemplateResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\ShowAlarmTemplateRequest');
     }
 
     /**
@@ -3039,71 +2717,6 @@ class CesClient extends Client
     }
 
     /**
-     * 修改自定义告警模板
-     *
-     * 修改自定义告警模板
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function updateAlarmTemplate($request)
-    {
-        return $this->updateAlarmTemplateWithHttpInfo($request);
-    }
-
-    public function updateAlarmTemplateWithHttpInfo($request)
-    {
-        $resourcePath = '/v2/{project_id}/alarm-templates/{template_id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['templateId'] !== null) {
-            $pathParams['template_id'] = $localVarParams['templateId'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                ['application/json', 'text/plain; charset=utf-8']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='PUT',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Ces\V2\Model\UpdateAlarmTemplateResponse',
-            $requestType='\HuaweiCloud\SDK\Ces\V2\Model\UpdateAlarmTemplateRequest');
-    }
-
-    /**
      * 修改监控看板
      *
      * 修改监控看板
@@ -3171,7 +2784,8 @@ class CesClient extends Client
     /**
      * 修改告警通知屏蔽规则
      *
-     * 修改告警通知屏蔽规则
+     * 修改告警通知屏蔽规则。
+     * 不能修改通过告警规则屏蔽的告警通知，只能修改通过资源屏蔽、策略屏蔽、事件屏蔽创建的告警屏蔽。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *

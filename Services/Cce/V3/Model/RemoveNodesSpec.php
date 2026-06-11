@@ -21,7 +21,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * login  login
-    * nodes  待操作节点列表
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -33,7 +33,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * login  login
-    * nodes  待操作节点列表
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -66,7 +66,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * login  login
-    * nodes  待操作节点列表
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -78,7 +78,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * login  login
-    * nodes  待操作节点列表
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -90,7 +90,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * login  login
-    * nodes  待操作节点列表
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -169,9 +169,6 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-        if ($this->container['login'] === null) {
-            $invalidProperties[] = "'login' can't be null";
-        }
         if ($this->container['nodes'] === null) {
             $invalidProperties[] = "'nodes' can't be null";
         }
@@ -193,7 +190,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     * Gets login
     *  login
     *
-    * @return \HuaweiCloud\SDK\Cce\V3\Model\Login
+    * @return \HuaweiCloud\SDK\Cce\V3\Model\Login|null
     */
     public function getLogin()
     {
@@ -203,7 +200,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Sets login
     *
-    * @param \HuaweiCloud\SDK\Cce\V3\Model\Login $login login
+    * @param \HuaweiCloud\SDK\Cce\V3\Model\Login|null $login login
     *
     * @return $this
     */
@@ -215,7 +212,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
 
     /**
     * Gets nodes
-    *  待操作节点列表
+    *  **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @return \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[]
     */
@@ -227,7 +224,7 @@ class RemoveNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Sets nodes
     *
-    * @param \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[] $nodes 待操作节点列表
+    * @param \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[] $nodes **参数解释**： 待操作节点列表，当前最多支持同时移除200个节点。 **约束限制**： 不涉及
     *
     * @return $this
     */

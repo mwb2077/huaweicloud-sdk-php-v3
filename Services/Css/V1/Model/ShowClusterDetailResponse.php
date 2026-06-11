@@ -28,6 +28,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * updated  集群上次修改时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * name  集群名称。
     * publicIp  公网IP信息。
+    * snapshotPolicy  snapshotPolicy
     * created  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * id  集群ID。
     * status  集群状态值。  - 100：操作进行中，如创建中。 - 200：可用。 - 303：不可用，如创建失败。
@@ -36,6 +37,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * subnetId  子网ID。
     * securityGroupId  安全组ID。
     * vpcepIp  终端节点IP。
+    * vpcepIpv6Address  终端节点IPv6。
     * bandwidthSize  公网带宽大小。单位：Mbit/s
     * httpsEnable  通信加密状态。 - false：未设置通信加密。 - true：已设置通信加密。
     * diskEncrypted  磁盘是否加密。  - true : 磁盘已加密。 - false : 磁盘未加密。
@@ -48,6 +50,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * failedReason  failedReason
     * period  是否为包周期集群。 - \"true\" 表示是包周期计费的集群。 - \"false\" 表示是按需计费的集群。
     * bandwidthResourceId  es公网访问的资源id
+    * ipv6Endpoint  集群内网访问IPv6地址和端口号。
+    * supportVpcep  当前集群是否支持开启终端节点服务。
+    * cmkId  当前集群使用的磁盘加密密钥ID。
+    * orderId  包周期集群的订单号。
+    * currentSubnetIds  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    * desc  集群描述。
     *
     * @var string[]
     */
@@ -59,6 +67,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'updated' => 'string',
             'name' => 'string',
             'publicIp' => 'string',
+            'snapshotPolicy' => '\HuaweiCloud\SDK\Css\V1\Model\SnapshotPolicyResp',
             'created' => 'string',
             'id' => 'string',
             'status' => 'string',
@@ -67,6 +76,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'subnetId' => 'string',
             'securityGroupId' => 'string',
             'vpcepIp' => 'string',
+            'vpcepIpv6Address' => 'string',
             'bandwidthSize' => 'int',
             'httpsEnable' => 'bool',
             'diskEncrypted' => 'bool',
@@ -78,7 +88,13 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'tags' => '\HuaweiCloud\SDK\Css\V1\Model\ClusterDetailTags[]',
             'failedReason' => '\HuaweiCloud\SDK\Css\V1\Model\ClusterDetailFailedReasons',
             'period' => 'bool',
-            'bandwidthResourceId' => 'string'
+            'bandwidthResourceId' => 'string',
+            'ipv6Endpoint' => 'string',
+            'supportVpcep' => 'bool',
+            'cmkId' => 'string',
+            'orderId' => 'string',
+            'currentSubnetIds' => 'string',
+            'desc' => 'string'
     ];
 
     /**
@@ -90,6 +106,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * updated  集群上次修改时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * name  集群名称。
     * publicIp  公网IP信息。
+    * snapshotPolicy  snapshotPolicy
     * created  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * id  集群ID。
     * status  集群状态值。  - 100：操作进行中，如创建中。 - 200：可用。 - 303：不可用，如创建失败。
@@ -98,6 +115,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * subnetId  子网ID。
     * securityGroupId  安全组ID。
     * vpcepIp  终端节点IP。
+    * vpcepIpv6Address  终端节点IPv6。
     * bandwidthSize  公网带宽大小。单位：Mbit/s
     * httpsEnable  通信加密状态。 - false：未设置通信加密。 - true：已设置通信加密。
     * diskEncrypted  磁盘是否加密。  - true : 磁盘已加密。 - false : 磁盘未加密。
@@ -110,6 +128,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * failedReason  failedReason
     * period  是否为包周期集群。 - \"true\" 表示是包周期计费的集群。 - \"false\" 表示是按需计费的集群。
     * bandwidthResourceId  es公网访问的资源id
+    * ipv6Endpoint  集群内网访问IPv6地址和端口号。
+    * supportVpcep  当前集群是否支持开启终端节点服务。
+    * cmkId  当前集群使用的磁盘加密密钥ID。
+    * orderId  包周期集群的订单号。
+    * currentSubnetIds  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    * desc  集群描述。
     *
     * @var string[]
     */
@@ -121,6 +145,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         'updated' => null,
         'name' => null,
         'publicIp' => null,
+        'snapshotPolicy' => null,
         'created' => null,
         'id' => null,
         'status' => null,
@@ -129,6 +154,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         'subnetId' => null,
         'securityGroupId' => null,
         'vpcepIp' => null,
+        'vpcepIpv6Address' => null,
         'bandwidthSize' => 'int32',
         'httpsEnable' => null,
         'diskEncrypted' => null,
@@ -140,7 +166,13 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         'tags' => null,
         'failedReason' => null,
         'period' => null,
-        'bandwidthResourceId' => null
+        'bandwidthResourceId' => null,
+        'ipv6Endpoint' => null,
+        'supportVpcep' => null,
+        'cmkId' => null,
+        'orderId' => null,
+        'currentSubnetIds' => null,
+        'desc' => null
     ];
 
     /**
@@ -173,6 +205,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * updated  集群上次修改时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * name  集群名称。
     * publicIp  公网IP信息。
+    * snapshotPolicy  snapshotPolicy
     * created  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * id  集群ID。
     * status  集群状态值。  - 100：操作进行中，如创建中。 - 200：可用。 - 303：不可用，如创建失败。
@@ -181,6 +214,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * subnetId  子网ID。
     * securityGroupId  安全组ID。
     * vpcepIp  终端节点IP。
+    * vpcepIpv6Address  终端节点IPv6。
     * bandwidthSize  公网带宽大小。单位：Mbit/s
     * httpsEnable  通信加密状态。 - false：未设置通信加密。 - true：已设置通信加密。
     * diskEncrypted  磁盘是否加密。  - true : 磁盘已加密。 - false : 磁盘未加密。
@@ -193,6 +227,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * failedReason  failedReason
     * period  是否为包周期集群。 - \"true\" 表示是包周期计费的集群。 - \"false\" 表示是按需计费的集群。
     * bandwidthResourceId  es公网访问的资源id
+    * ipv6Endpoint  集群内网访问IPv6地址和端口号。
+    * supportVpcep  当前集群是否支持开启终端节点服务。
+    * cmkId  当前集群使用的磁盘加密密钥ID。
+    * orderId  包周期集群的订单号。
+    * currentSubnetIds  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    * desc  集群描述。
     *
     * @var string[]
     */
@@ -204,6 +244,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'updated' => 'updated',
             'name' => 'name',
             'publicIp' => 'publicIp',
+            'snapshotPolicy' => 'snapshotPolicy',
             'created' => 'created',
             'id' => 'id',
             'status' => 'status',
@@ -212,6 +253,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'subnetId' => 'subnetId',
             'securityGroupId' => 'securityGroupId',
             'vpcepIp' => 'vpcepIp',
+            'vpcepIpv6Address' => 'vpcepIpv6Address',
             'bandwidthSize' => 'bandwidthSize',
             'httpsEnable' => 'httpsEnable',
             'diskEncrypted' => 'diskEncrypted',
@@ -223,7 +265,13 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'tags' => 'tags',
             'failedReason' => 'failedReason',
             'period' => 'period',
-            'bandwidthResourceId' => 'bandwidthResourceId'
+            'bandwidthResourceId' => 'bandwidthResourceId',
+            'ipv6Endpoint' => 'ipv6Endpoint',
+            'supportVpcep' => 'supportVpcep',
+            'cmkId' => 'cmkId',
+            'orderId' => 'orderId',
+            'currentSubnetIds' => 'currentSubnetIds',
+            'desc' => 'desc'
     ];
 
     /**
@@ -235,6 +283,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * updated  集群上次修改时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * name  集群名称。
     * publicIp  公网IP信息。
+    * snapshotPolicy  snapshotPolicy
     * created  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * id  集群ID。
     * status  集群状态值。  - 100：操作进行中，如创建中。 - 200：可用。 - 303：不可用，如创建失败。
@@ -243,6 +292,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * subnetId  子网ID。
     * securityGroupId  安全组ID。
     * vpcepIp  终端节点IP。
+    * vpcepIpv6Address  终端节点IPv6。
     * bandwidthSize  公网带宽大小。单位：Mbit/s
     * httpsEnable  通信加密状态。 - false：未设置通信加密。 - true：已设置通信加密。
     * diskEncrypted  磁盘是否加密。  - true : 磁盘已加密。 - false : 磁盘未加密。
@@ -255,6 +305,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * failedReason  failedReason
     * period  是否为包周期集群。 - \"true\" 表示是包周期计费的集群。 - \"false\" 表示是按需计费的集群。
     * bandwidthResourceId  es公网访问的资源id
+    * ipv6Endpoint  集群内网访问IPv6地址和端口号。
+    * supportVpcep  当前集群是否支持开启终端节点服务。
+    * cmkId  当前集群使用的磁盘加密密钥ID。
+    * orderId  包周期集群的订单号。
+    * currentSubnetIds  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    * desc  集群描述。
     *
     * @var string[]
     */
@@ -266,6 +322,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'updated' => 'setUpdated',
             'name' => 'setName',
             'publicIp' => 'setPublicIp',
+            'snapshotPolicy' => 'setSnapshotPolicy',
             'created' => 'setCreated',
             'id' => 'setId',
             'status' => 'setStatus',
@@ -274,6 +331,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'subnetId' => 'setSubnetId',
             'securityGroupId' => 'setSecurityGroupId',
             'vpcepIp' => 'setVpcepIp',
+            'vpcepIpv6Address' => 'setVpcepIpv6Address',
             'bandwidthSize' => 'setBandwidthSize',
             'httpsEnable' => 'setHttpsEnable',
             'diskEncrypted' => 'setDiskEncrypted',
@@ -285,7 +343,13 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'tags' => 'setTags',
             'failedReason' => 'setFailedReason',
             'period' => 'setPeriod',
-            'bandwidthResourceId' => 'setBandwidthResourceId'
+            'bandwidthResourceId' => 'setBandwidthResourceId',
+            'ipv6Endpoint' => 'setIpv6Endpoint',
+            'supportVpcep' => 'setSupportVpcep',
+            'cmkId' => 'setCmkId',
+            'orderId' => 'setOrderId',
+            'currentSubnetIds' => 'setCurrentSubnetIds',
+            'desc' => 'setDesc'
     ];
 
     /**
@@ -297,6 +361,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * updated  集群上次修改时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * name  集群名称。
     * publicIp  公网IP信息。
+    * snapshotPolicy  snapshotPolicy
     * created  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     * id  集群ID。
     * status  集群状态值。  - 100：操作进行中，如创建中。 - 200：可用。 - 303：不可用，如创建失败。
@@ -305,6 +370,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * subnetId  子网ID。
     * securityGroupId  安全组ID。
     * vpcepIp  终端节点IP。
+    * vpcepIpv6Address  终端节点IPv6。
     * bandwidthSize  公网带宽大小。单位：Mbit/s
     * httpsEnable  通信加密状态。 - false：未设置通信加密。 - true：已设置通信加密。
     * diskEncrypted  磁盘是否加密。  - true : 磁盘已加密。 - false : 磁盘未加密。
@@ -317,6 +383,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     * failedReason  failedReason
     * period  是否为包周期集群。 - \"true\" 表示是包周期计费的集群。 - \"false\" 表示是按需计费的集群。
     * bandwidthResourceId  es公网访问的资源id
+    * ipv6Endpoint  集群内网访问IPv6地址和端口号。
+    * supportVpcep  当前集群是否支持开启终端节点服务。
+    * cmkId  当前集群使用的磁盘加密密钥ID。
+    * orderId  包周期集群的订单号。
+    * currentSubnetIds  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    * desc  集群描述。
     *
     * @var string[]
     */
@@ -328,6 +400,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'updated' => 'getUpdated',
             'name' => 'getName',
             'publicIp' => 'getPublicIp',
+            'snapshotPolicy' => 'getSnapshotPolicy',
             'created' => 'getCreated',
             'id' => 'getId',
             'status' => 'getStatus',
@@ -336,6 +409,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'subnetId' => 'getSubnetId',
             'securityGroupId' => 'getSecurityGroupId',
             'vpcepIp' => 'getVpcepIp',
+            'vpcepIpv6Address' => 'getVpcepIpv6Address',
             'bandwidthSize' => 'getBandwidthSize',
             'httpsEnable' => 'getHttpsEnable',
             'diskEncrypted' => 'getDiskEncrypted',
@@ -347,7 +421,13 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
             'tags' => 'getTags',
             'failedReason' => 'getFailedReason',
             'period' => 'getPeriod',
-            'bandwidthResourceId' => 'getBandwidthResourceId'
+            'bandwidthResourceId' => 'getBandwidthResourceId',
+            'ipv6Endpoint' => 'getIpv6Endpoint',
+            'supportVpcep' => 'getSupportVpcep',
+            'cmkId' => 'getCmkId',
+            'orderId' => 'getOrderId',
+            'currentSubnetIds' => 'getCurrentSubnetIds',
+            'desc' => 'getDesc'
     ];
 
     /**
@@ -415,6 +495,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['publicIp'] = isset($data['publicIp']) ? $data['publicIp'] : null;
+        $this->container['snapshotPolicy'] = isset($data['snapshotPolicy']) ? $data['snapshotPolicy'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
@@ -423,6 +504,7 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         $this->container['subnetId'] = isset($data['subnetId']) ? $data['subnetId'] : null;
         $this->container['securityGroupId'] = isset($data['securityGroupId']) ? $data['securityGroupId'] : null;
         $this->container['vpcepIp'] = isset($data['vpcepIp']) ? $data['vpcepIp'] : null;
+        $this->container['vpcepIpv6Address'] = isset($data['vpcepIpv6Address']) ? $data['vpcepIpv6Address'] : null;
         $this->container['bandwidthSize'] = isset($data['bandwidthSize']) ? $data['bandwidthSize'] : null;
         $this->container['httpsEnable'] = isset($data['httpsEnable']) ? $data['httpsEnable'] : null;
         $this->container['diskEncrypted'] = isset($data['diskEncrypted']) ? $data['diskEncrypted'] : null;
@@ -435,6 +517,12 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
         $this->container['failedReason'] = isset($data['failedReason']) ? $data['failedReason'] : null;
         $this->container['period'] = isset($data['period']) ? $data['period'] : null;
         $this->container['bandwidthResourceId'] = isset($data['bandwidthResourceId']) ? $data['bandwidthResourceId'] : null;
+        $this->container['ipv6Endpoint'] = isset($data['ipv6Endpoint']) ? $data['ipv6Endpoint'] : null;
+        $this->container['supportVpcep'] = isset($data['supportVpcep']) ? $data['supportVpcep'] : null;
+        $this->container['cmkId'] = isset($data['cmkId']) ? $data['cmkId'] : null;
+        $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
+        $this->container['currentSubnetIds'] = isset($data['currentSubnetIds']) ? $data['currentSubnetIds'] : null;
+        $this->container['desc'] = isset($data['desc']) ? $data['desc'] : null;
     }
 
     /**
@@ -628,6 +716,30 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets snapshotPolicy
+    *  snapshotPolicy
+    *
+    * @return \HuaweiCloud\SDK\Css\V1\Model\SnapshotPolicyResp|null
+    */
+    public function getSnapshotPolicy()
+    {
+        return $this->container['snapshotPolicy'];
+    }
+
+    /**
+    * Sets snapshotPolicy
+    *
+    * @param \HuaweiCloud\SDK\Css\V1\Model\SnapshotPolicyResp|null $snapshotPolicy snapshotPolicy
+    *
+    * @return $this
+    */
+    public function setSnapshotPolicy($snapshotPolicy)
+    {
+        $this->container['snapshotPolicy'] = $snapshotPolicy;
+        return $this;
+    }
+
+    /**
     * Gets created
     *  集群创建时间，格式为ISO8601： CCYY-MM-DDThh:mm:ss。
     *
@@ -816,6 +928,30 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     public function setVpcepIp($vpcepIp)
     {
         $this->container['vpcepIp'] = $vpcepIp;
+        return $this;
+    }
+
+    /**
+    * Gets vpcepIpv6Address
+    *  终端节点IPv6。
+    *
+    * @return string|null
+    */
+    public function getVpcepIpv6Address()
+    {
+        return $this->container['vpcepIpv6Address'];
+    }
+
+    /**
+    * Sets vpcepIpv6Address
+    *
+    * @param string|null $vpcepIpv6Address 终端节点IPv6。
+    *
+    * @return $this
+    */
+    public function setVpcepIpv6Address($vpcepIpv6Address)
+    {
+        $this->container['vpcepIpv6Address'] = $vpcepIpv6Address;
         return $this;
     }
 
@@ -1104,6 +1240,150 @@ class ShowClusterDetailResponse implements ModelInterface, ArrayAccess
     public function setBandwidthResourceId($bandwidthResourceId)
     {
         $this->container['bandwidthResourceId'] = $bandwidthResourceId;
+        return $this;
+    }
+
+    /**
+    * Gets ipv6Endpoint
+    *  集群内网访问IPv6地址和端口号。
+    *
+    * @return string|null
+    */
+    public function getIpv6Endpoint()
+    {
+        return $this->container['ipv6Endpoint'];
+    }
+
+    /**
+    * Sets ipv6Endpoint
+    *
+    * @param string|null $ipv6Endpoint 集群内网访问IPv6地址和端口号。
+    *
+    * @return $this
+    */
+    public function setIpv6Endpoint($ipv6Endpoint)
+    {
+        $this->container['ipv6Endpoint'] = $ipv6Endpoint;
+        return $this;
+    }
+
+    /**
+    * Gets supportVpcep
+    *  当前集群是否支持开启终端节点服务。
+    *
+    * @return bool|null
+    */
+    public function getSupportVpcep()
+    {
+        return $this->container['supportVpcep'];
+    }
+
+    /**
+    * Sets supportVpcep
+    *
+    * @param bool|null $supportVpcep 当前集群是否支持开启终端节点服务。
+    *
+    * @return $this
+    */
+    public function setSupportVpcep($supportVpcep)
+    {
+        $this->container['supportVpcep'] = $supportVpcep;
+        return $this;
+    }
+
+    /**
+    * Gets cmkId
+    *  当前集群使用的磁盘加密密钥ID。
+    *
+    * @return string|null
+    */
+    public function getCmkId()
+    {
+        return $this->container['cmkId'];
+    }
+
+    /**
+    * Sets cmkId
+    *
+    * @param string|null $cmkId 当前集群使用的磁盘加密密钥ID。
+    *
+    * @return $this
+    */
+    public function setCmkId($cmkId)
+    {
+        $this->container['cmkId'] = $cmkId;
+        return $this;
+    }
+
+    /**
+    * Gets orderId
+    *  包周期集群的订单号。
+    *
+    * @return string|null
+    */
+    public function getOrderId()
+    {
+        return $this->container['orderId'];
+    }
+
+    /**
+    * Sets orderId
+    *
+    * @param string|null $orderId 包周期集群的订单号。
+    *
+    * @return $this
+    */
+    public function setOrderId($orderId)
+    {
+        $this->container['orderId'] = $orderId;
+        return $this;
+    }
+
+    /**
+    * Gets currentSubnetIds
+    *  集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    *
+    * @return string|null
+    */
+    public function getCurrentSubnetIds()
+    {
+        return $this->container['currentSubnetIds'];
+    }
+
+    /**
+    * Sets currentSubnetIds
+    *
+    * @param string|null $currentSubnetIds 集群当前所有节点用到的子网，如果存在多个（最多支持两个），使用英文逗号隔开。
+    *
+    * @return $this
+    */
+    public function setCurrentSubnetIds($currentSubnetIds)
+    {
+        $this->container['currentSubnetIds'] = $currentSubnetIds;
+        return $this;
+    }
+
+    /**
+    * Gets desc
+    *  集群描述。
+    *
+    * @return string|null
+    */
+    public function getDesc()
+    {
+        return $this->container['desc'];
+    }
+
+    /**
+    * Sets desc
+    *
+    * @param string|null $desc 集群描述。
+    *
+    * @return $this
+    */
+    public function setDesc($desc)
+    {
+        $this->container['desc'] = $desc;
         return $this;
     }
 

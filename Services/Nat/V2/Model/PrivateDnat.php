@@ -25,15 +25,16 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     * description  DNAT规则的描述。长度范围小于等于255个字符，不能包含“<”和“>”。
     * transitIpId  中转IP的ID。
     * gatewayId  私网NAT网关实例的ID。
-    * networkInterfaceId  网络接口ID，支持计算、ELB、VIP等实例的端口。
-    * type  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * networkInterfaceId  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
+    * type  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     * protocol  协议类型。 目前支持TCP/tcp、UDP/udp、ANY/any。 对应协议号6、17、0。
-    * privateIpAddress  后端实例的私网IP地址。
-    * internalServicePort  后端实例的端口号。
+    * privateIpAddress  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
+    * internalServicePort  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     * transitServicePort  中转IP的端口号。
     * enterpriseProjectId  企业项目ID。创建DNAT规则时，关联的企业项目ID。
     * createdAt  DNAT规则的创建时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
     * updatedAt  DNAT规则的更新时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
+    * status  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
     *
     * @var string[]
     */
@@ -51,7 +52,8 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             'transitServicePort' => 'string',
             'enterpriseProjectId' => 'string',
             'createdAt' => '\DateTime',
-            'updatedAt' => '\DateTime'
+            'updatedAt' => '\DateTime',
+            'status' => 'string'
     ];
 
     /**
@@ -61,15 +63,16 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     * description  DNAT规则的描述。长度范围小于等于255个字符，不能包含“<”和“>”。
     * transitIpId  中转IP的ID。
     * gatewayId  私网NAT网关实例的ID。
-    * networkInterfaceId  网络接口ID，支持计算、ELB、VIP等实例的端口。
-    * type  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * networkInterfaceId  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
+    * type  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     * protocol  协议类型。 目前支持TCP/tcp、UDP/udp、ANY/any。 对应协议号6、17、0。
-    * privateIpAddress  后端实例的私网IP地址。
-    * internalServicePort  后端实例的端口号。
+    * privateIpAddress  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
+    * internalServicePort  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     * transitServicePort  中转IP的端口号。
     * enterpriseProjectId  企业项目ID。创建DNAT规则时，关联的企业项目ID。
     * createdAt  DNAT规则的创建时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
     * updatedAt  DNAT规则的更新时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
+    * status  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
     *
     * @var string[]
     */
@@ -87,7 +90,8 @@ class PrivateDnat implements ModelInterface, ArrayAccess
         'transitServicePort' => null,
         'enterpriseProjectId' => null,
         'createdAt' => 'date-time',
-        'updatedAt' => 'date-time'
+        'updatedAt' => 'date-time',
+        'status' => null
     ];
 
     /**
@@ -118,15 +122,16 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     * description  DNAT规则的描述。长度范围小于等于255个字符，不能包含“<”和“>”。
     * transitIpId  中转IP的ID。
     * gatewayId  私网NAT网关实例的ID。
-    * networkInterfaceId  网络接口ID，支持计算、ELB、VIP等实例的端口。
-    * type  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * networkInterfaceId  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
+    * type  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     * protocol  协议类型。 目前支持TCP/tcp、UDP/udp、ANY/any。 对应协议号6、17、0。
-    * privateIpAddress  后端实例的私网IP地址。
-    * internalServicePort  后端实例的端口号。
+    * privateIpAddress  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
+    * internalServicePort  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     * transitServicePort  中转IP的端口号。
     * enterpriseProjectId  企业项目ID。创建DNAT规则时，关联的企业项目ID。
     * createdAt  DNAT规则的创建时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
     * updatedAt  DNAT规则的更新时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
+    * status  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
     *
     * @var string[]
     */
@@ -144,7 +149,8 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             'transitServicePort' => 'transit_service_port',
             'enterpriseProjectId' => 'enterprise_project_id',
             'createdAt' => 'created_at',
-            'updatedAt' => 'updated_at'
+            'updatedAt' => 'updated_at',
+            'status' => 'status'
     ];
 
     /**
@@ -154,15 +160,16 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     * description  DNAT规则的描述。长度范围小于等于255个字符，不能包含“<”和“>”。
     * transitIpId  中转IP的ID。
     * gatewayId  私网NAT网关实例的ID。
-    * networkInterfaceId  网络接口ID，支持计算、ELB、VIP等实例的端口。
-    * type  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * networkInterfaceId  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
+    * type  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     * protocol  协议类型。 目前支持TCP/tcp、UDP/udp、ANY/any。 对应协议号6、17、0。
-    * privateIpAddress  后端实例的私网IP地址。
-    * internalServicePort  后端实例的端口号。
+    * privateIpAddress  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
+    * internalServicePort  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     * transitServicePort  中转IP的端口号。
     * enterpriseProjectId  企业项目ID。创建DNAT规则时，关联的企业项目ID。
     * createdAt  DNAT规则的创建时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
     * updatedAt  DNAT规则的更新时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
+    * status  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
     *
     * @var string[]
     */
@@ -180,7 +187,8 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             'transitServicePort' => 'setTransitServicePort',
             'enterpriseProjectId' => 'setEnterpriseProjectId',
             'createdAt' => 'setCreatedAt',
-            'updatedAt' => 'setUpdatedAt'
+            'updatedAt' => 'setUpdatedAt',
+            'status' => 'setStatus'
     ];
 
     /**
@@ -190,15 +198,16 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     * description  DNAT规则的描述。长度范围小于等于255个字符，不能包含“<”和“>”。
     * transitIpId  中转IP的ID。
     * gatewayId  私网NAT网关实例的ID。
-    * networkInterfaceId  网络接口ID，支持计算、ELB、VIP等实例的端口。
-    * type  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * networkInterfaceId  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
+    * type  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     * protocol  协议类型。 目前支持TCP/tcp、UDP/udp、ANY/any。 对应协议号6、17、0。
-    * privateIpAddress  后端实例的私网IP地址。
-    * internalServicePort  后端实例的端口号。
+    * privateIpAddress  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
+    * internalServicePort  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     * transitServicePort  中转IP的端口号。
     * enterpriseProjectId  企业项目ID。创建DNAT规则时，关联的企业项目ID。
     * createdAt  DNAT规则的创建时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
     * updatedAt  DNAT规则的更新时间，遵循UTC时间，格式是yyyy-mm-ddThh:mm:ssZ。
+    * status  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
     *
     * @var string[]
     */
@@ -216,7 +225,8 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             'transitServicePort' => 'getTransitServicePort',
             'enterpriseProjectId' => 'getEnterpriseProjectId',
             'createdAt' => 'getCreatedAt',
-            'updatedAt' => 'getUpdatedAt'
+            'updatedAt' => 'getUpdatedAt',
+            'status' => 'getStatus'
     ];
 
     /**
@@ -262,6 +272,9 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     const PROTOCOL_TCP = 'tcp';
     const PROTOCOL_UDP = 'udp';
     const PROTOCOL_ANY = 'any';
+    const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_FROZEN = 'FROZEN';
+    const STATUS_INACTIVE = 'INACTIVE';
     
 
     /**
@@ -275,6 +288,20 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             self::PROTOCOL_TCP,
             self::PROTOCOL_UDP,
             self::PROTOCOL_ANY,
+        ];
+    }
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_FROZEN,
+            self::STATUS_INACTIVE,
         ];
     }
 
@@ -308,6 +335,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
         $this->container['enterpriseProjectId'] = isset($data['enterpriseProjectId']) ? $data['enterpriseProjectId'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
     }
 
     /**
@@ -398,6 +426,14 @@ class PrivateDnat implements ModelInterface, ArrayAccess
             if (!is_null($this->container['enterpriseProjectId']) && (mb_strlen($this->container['enterpriseProjectId']) < 1)) {
                 $invalidProperties[] = "invalid value for 'enterpriseProjectId', the character length must be bigger than or equal to 1.";
             }
+            $allowedValues = $this->getStatusAllowableValues();
+                if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'status', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
         return $invalidProperties;
     }
 
@@ -534,7 +570,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
 
     /**
     * Gets networkInterfaceId
-    *  网络接口ID，支持计算、ELB、VIP等实例的端口。
+    *  网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
     *
     * @return string|null
     */
@@ -546,7 +582,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     /**
     * Sets networkInterfaceId
     *
-    * @param string|null $networkInterfaceId 网络接口ID，支持计算、ELB、VIP等实例的端口。
+    * @param string|null $networkInterfaceId 网络接口ID，支持计算、ELBV2、ELBV3、VIP等实例的端口。
     *
     * @return $this
     */
@@ -558,7 +594,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
 
     /**
     * Gets type
-    *  DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    *  DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     *
     * @return string|null
     */
@@ -570,7 +606,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     /**
     * Sets type
     *
-    * @param string|null $type DNAT规则后端的类型。 取值：     COMPUTE：后端为计算实例。     VIP：后端为VIP的实例。     ELB：后端为ELB的实例。     ELBv3：后端为ELBv3的实例。     CUSTOMIZE：后端为自定义IP。
+    * @param string|null $type DNAT规则后端的类型。 取值： - COMPUTE：后端为计算实例。 - VIP：后端为VIP的实例。 - ELB：后端为ELBv2的实例。 - ELBv3：后端为ELBv3的实例。 - CUSTOMIZE：后端为自定义IP。
     *
     * @return $this
     */
@@ -606,7 +642,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
 
     /**
     * Gets privateIpAddress
-    *  后端实例的私网IP地址。
+    *  后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
     *
     * @return string|null
     */
@@ -618,7 +654,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     /**
     * Sets privateIpAddress
     *
-    * @param string|null $privateIpAddress 后端实例的私网IP地址。
+    * @param string|null $privateIpAddress 后端资源（计算实例、ELBV2、ELBV3、VIP等）的私网IP地址。
     *
     * @return $this
     */
@@ -630,7 +666,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
 
     /**
     * Gets internalServicePort
-    *  后端实例的端口号。
+    *  后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     *
     * @return string|null
     */
@@ -642,7 +678,7 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     /**
     * Sets internalServicePort
     *
-    * @param string|null $internalServicePort 后端实例的端口号。
+    * @param string|null $internalServicePort 后端实例的端口号（计算实例、ELBV2、ELBV3、VIP等)。
     *
     * @return $this
     */
@@ -745,6 +781,30 @@ class PrivateDnat implements ModelInterface, ArrayAccess
     public function setUpdatedAt($updatedAt)
     {
         $this->container['updatedAt'] = $updatedAt;
+        return $this;
+    }
+
+    /**
+    * Gets status
+    *  私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
+    *
+    * @return string|null
+    */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+    * Sets status
+    *
+    * @param string|null $status 私网NAT的DNAT规则状态。 取值为： - ACTIVE：正常运行 - FROZEN：冻结 - INACTIVE：不可用
+    *
+    * @return $this
+    */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
         return $this;
     }
 

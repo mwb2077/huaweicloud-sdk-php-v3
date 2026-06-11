@@ -21,49 +21,49 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * id  源端在SMS数据库中的ID
-    * ip  源端服务器ip，注册源端时必选，更新非必选
+    * ip  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
+    * ipv6  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
     * name  用来区分不同源端服务器的名称
-    * hostname  源端主机名，注册源端必选，更新非必选
+    * hostname  源端主机名
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
-    * virtualizationType  操作系统虚拟化方式
     * linuxBlockCheck  Linux操作系统块检查
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * cpuQuantity  CPU个数，单位vCPU
     * memory  内存大小，单位MB
     * disks  源端服务器的磁盘信息
-    * btrfsList  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * btrfsList  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     * networks  源端服务器的网卡信息
     * domainId  租户的domainId
-    * hasRsync  是否安装rsync组件，Linux系统此参数为必选
-    * paravirtualization  Linux场景必选，源端是否是半虚拟化
-    * rawDevices  Linux必选，裸设备列表
-    * driverFiles  Windows 必选，是否缺少驱动文件
-    * systemServices  Windows必选，是否存在不正常服务
-    * accountRights  Windows必选，权限是否满足要求
-    * bootLoader  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
-    * systemDir  Windows必选，系统目录
-    * volumeGroups  Linux必选，如果没有卷组，输入[]
+    * hasRsync  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * paravirtualization  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
+    * rawDevices  裸设备列表 Linux场景必选，否则无法通过后续环境检查
+    * driverFiles  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
+    * systemServices  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
+    * accountRights  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
+    * bootLoader  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
+    * systemDir  系统目录 Windows场景必选，否则无法通过后续环境检查
+    * volumeGroups  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     * agentVersion  Agent版本
     * kernelVersion  内核版本信息
     * migrationCycle  迁移周期 cutovering:启动目的端中 cutovered:启动目的端完成 checking:检查中 setting:设置中 replicating:复制中 syncing:同步中
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * oemSystem  是否是OEM操作系统(Windows)
-    * startType  启动方式，可以取值MANUAL、MGC或者空。
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     * ioReadWait  磁盘IO读时延，单位为ms
-    * hasTc  是否安装tc组件，Linux系统此参数为必选
-    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * hasTc  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'id' => 'string',
             'ip' => 'string',
+            'ipv6' => 'string',
             'name' => 'string',
             'hostname' => 'string',
             'osType' => 'string',
             'osVersion' => 'string',
-            'virtualizationType' => 'string',
             'linuxBlockCheck' => 'string',
             'firmware' => 'string',
             'cpuQuantity' => 'int',
@@ -95,49 +95,49 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * id  源端在SMS数据库中的ID
-    * ip  源端服务器ip，注册源端时必选，更新非必选
+    * ip  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
+    * ipv6  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
     * name  用来区分不同源端服务器的名称
-    * hostname  源端主机名，注册源端必选，更新非必选
+    * hostname  源端主机名
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
-    * virtualizationType  操作系统虚拟化方式
     * linuxBlockCheck  Linux操作系统块检查
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * cpuQuantity  CPU个数，单位vCPU
     * memory  内存大小，单位MB
     * disks  源端服务器的磁盘信息
-    * btrfsList  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * btrfsList  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     * networks  源端服务器的网卡信息
     * domainId  租户的domainId
-    * hasRsync  是否安装rsync组件，Linux系统此参数为必选
-    * paravirtualization  Linux场景必选，源端是否是半虚拟化
-    * rawDevices  Linux必选，裸设备列表
-    * driverFiles  Windows 必选，是否缺少驱动文件
-    * systemServices  Windows必选，是否存在不正常服务
-    * accountRights  Windows必选，权限是否满足要求
-    * bootLoader  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
-    * systemDir  Windows必选，系统目录
-    * volumeGroups  Linux必选，如果没有卷组，输入[]
+    * hasRsync  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * paravirtualization  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
+    * rawDevices  裸设备列表 Linux场景必选，否则无法通过后续环境检查
+    * driverFiles  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
+    * systemServices  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
+    * accountRights  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
+    * bootLoader  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
+    * systemDir  系统目录 Windows场景必选，否则无法通过后续环境检查
+    * volumeGroups  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     * agentVersion  Agent版本
     * kernelVersion  内核版本信息
     * migrationCycle  迁移周期 cutovering:启动目的端中 cutovered:启动目的端完成 checking:检查中 setting:设置中 replicating:复制中 syncing:同步中
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * oemSystem  是否是OEM操作系统(Windows)
-    * startType  启动方式，可以取值MANUAL、MGC或者空。
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     * ioReadWait  磁盘IO读时延，单位为ms
-    * hasTc  是否安装tc组件，Linux系统此参数为必选
-    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * hasTc  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'id' => null,
         'ip' => null,
+        'ipv6' => null,
         'name' => null,
         'hostname' => null,
         'osType' => null,
         'osVersion' => null,
-        'virtualizationType' => null,
         'linuxBlockCheck' => null,
         'firmware' => null,
         'cpuQuantity' => 'int32',
@@ -190,49 +190,49 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * id  源端在SMS数据库中的ID
-    * ip  源端服务器ip，注册源端时必选，更新非必选
+    * ip  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
+    * ipv6  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
     * name  用来区分不同源端服务器的名称
-    * hostname  源端主机名，注册源端必选，更新非必选
+    * hostname  源端主机名
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
-    * virtualizationType  操作系统虚拟化方式
     * linuxBlockCheck  Linux操作系统块检查
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * cpuQuantity  CPU个数，单位vCPU
     * memory  内存大小，单位MB
     * disks  源端服务器的磁盘信息
-    * btrfsList  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * btrfsList  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     * networks  源端服务器的网卡信息
     * domainId  租户的domainId
-    * hasRsync  是否安装rsync组件，Linux系统此参数为必选
-    * paravirtualization  Linux场景必选，源端是否是半虚拟化
-    * rawDevices  Linux必选，裸设备列表
-    * driverFiles  Windows 必选，是否缺少驱动文件
-    * systemServices  Windows必选，是否存在不正常服务
-    * accountRights  Windows必选，权限是否满足要求
-    * bootLoader  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
-    * systemDir  Windows必选，系统目录
-    * volumeGroups  Linux必选，如果没有卷组，输入[]
+    * hasRsync  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * paravirtualization  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
+    * rawDevices  裸设备列表 Linux场景必选，否则无法通过后续环境检查
+    * driverFiles  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
+    * systemServices  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
+    * accountRights  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
+    * bootLoader  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
+    * systemDir  系统目录 Windows场景必选，否则无法通过后续环境检查
+    * volumeGroups  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     * agentVersion  Agent版本
     * kernelVersion  内核版本信息
     * migrationCycle  迁移周期 cutovering:启动目的端中 cutovered:启动目的端完成 checking:检查中 setting:设置中 replicating:复制中 syncing:同步中
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * oemSystem  是否是OEM操作系统(Windows)
-    * startType  启动方式，可以取值MANUAL、MGC或者空。
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     * ioReadWait  磁盘IO读时延，单位为ms
-    * hasTc  是否安装tc组件，Linux系统此参数为必选
-    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * hasTc  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'id' => 'id',
             'ip' => 'ip',
+            'ipv6' => 'ipv6',
             'name' => 'name',
             'hostname' => 'hostname',
             'osType' => 'os_type',
             'osVersion' => 'os_version',
-            'virtualizationType' => 'virtualization_type',
             'linuxBlockCheck' => 'linux_block_check',
             'firmware' => 'firmware',
             'cpuQuantity' => 'cpu_quantity',
@@ -264,49 +264,49 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * id  源端在SMS数据库中的ID
-    * ip  源端服务器ip，注册源端时必选，更新非必选
+    * ip  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
+    * ipv6  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
     * name  用来区分不同源端服务器的名称
-    * hostname  源端主机名，注册源端必选，更新非必选
+    * hostname  源端主机名
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
-    * virtualizationType  操作系统虚拟化方式
     * linuxBlockCheck  Linux操作系统块检查
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * cpuQuantity  CPU个数，单位vCPU
     * memory  内存大小，单位MB
     * disks  源端服务器的磁盘信息
-    * btrfsList  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * btrfsList  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     * networks  源端服务器的网卡信息
     * domainId  租户的domainId
-    * hasRsync  是否安装rsync组件，Linux系统此参数为必选
-    * paravirtualization  Linux场景必选，源端是否是半虚拟化
-    * rawDevices  Linux必选，裸设备列表
-    * driverFiles  Windows 必选，是否缺少驱动文件
-    * systemServices  Windows必选，是否存在不正常服务
-    * accountRights  Windows必选，权限是否满足要求
-    * bootLoader  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
-    * systemDir  Windows必选，系统目录
-    * volumeGroups  Linux必选，如果没有卷组，输入[]
+    * hasRsync  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * paravirtualization  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
+    * rawDevices  裸设备列表 Linux场景必选，否则无法通过后续环境检查
+    * driverFiles  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
+    * systemServices  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
+    * accountRights  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
+    * bootLoader  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
+    * systemDir  系统目录 Windows场景必选，否则无法通过后续环境检查
+    * volumeGroups  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     * agentVersion  Agent版本
     * kernelVersion  内核版本信息
     * migrationCycle  迁移周期 cutovering:启动目的端中 cutovered:启动目的端完成 checking:检查中 setting:设置中 replicating:复制中 syncing:同步中
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * oemSystem  是否是OEM操作系统(Windows)
-    * startType  启动方式，可以取值MANUAL、MGC或者空。
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     * ioReadWait  磁盘IO读时延，单位为ms
-    * hasTc  是否安装tc组件，Linux系统此参数为必选
-    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * hasTc  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @var string[]
     */
     protected static $setters = [
             'id' => 'setId',
             'ip' => 'setIp',
+            'ipv6' => 'setIpv6',
             'name' => 'setName',
             'hostname' => 'setHostname',
             'osType' => 'setOsType',
             'osVersion' => 'setOsVersion',
-            'virtualizationType' => 'setVirtualizationType',
             'linuxBlockCheck' => 'setLinuxBlockCheck',
             'firmware' => 'setFirmware',
             'cpuQuantity' => 'setCpuQuantity',
@@ -338,49 +338,49 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * id  源端在SMS数据库中的ID
-    * ip  源端服务器ip，注册源端时必选，更新非必选
+    * ip  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
+    * ipv6  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
     * name  用来区分不同源端服务器的名称
-    * hostname  源端主机名，注册源端必选，更新非必选
+    * hostname  源端主机名
     * osType  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     * osVersion  操作系统版本，注册必选，更新非必选
-    * virtualizationType  操作系统虚拟化方式
     * linuxBlockCheck  Linux操作系统块检查
     * firmware  源端服务器启动类型，如BIOS或者UEFI
     * cpuQuantity  CPU个数，单位vCPU
     * memory  内存大小，单位MB
     * disks  源端服务器的磁盘信息
-    * btrfsList  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * btrfsList  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     * networks  源端服务器的网卡信息
     * domainId  租户的domainId
-    * hasRsync  是否安装rsync组件，Linux系统此参数为必选
-    * paravirtualization  Linux场景必选，源端是否是半虚拟化
-    * rawDevices  Linux必选，裸设备列表
-    * driverFiles  Windows 必选，是否缺少驱动文件
-    * systemServices  Windows必选，是否存在不正常服务
-    * accountRights  Windows必选，权限是否满足要求
-    * bootLoader  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
-    * systemDir  Windows必选，系统目录
-    * volumeGroups  Linux必选，如果没有卷组，输入[]
+    * hasRsync  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * paravirtualization  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
+    * rawDevices  裸设备列表 Linux场景必选，否则无法通过后续环境检查
+    * driverFiles  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
+    * systemServices  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
+    * accountRights  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
+    * bootLoader  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
+    * systemDir  系统目录 Windows场景必选，否则无法通过后续环境检查
+    * volumeGroups  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     * agentVersion  Agent版本
     * kernelVersion  内核版本信息
     * migrationCycle  迁移周期 cutovering:启动目的端中 cutovered:启动目的端完成 checking:检查中 setting:设置中 replicating:复制中 syncing:同步中
-    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * state  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     * oemSystem  是否是OEM操作系统(Windows)
-    * startType  启动方式，可以取值MANUAL、MGC或者空。
+    * startType  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     * ioReadWait  磁盘IO读时延，单位为ms
-    * hasTc  是否安装tc组件，Linux系统此参数为必选
-    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * hasTc  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
+    * platform  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @var string[]
     */
     protected static $getters = [
             'id' => 'getId',
             'ip' => 'getIp',
+            'ipv6' => 'getIpv6',
             'name' => 'getName',
             'hostname' => 'getHostname',
             'osType' => 'getOsType',
             'osVersion' => 'getOsVersion',
-            'virtualizationType' => 'getVirtualizationType',
             'linuxBlockCheck' => 'getLinuxBlockCheck',
             'firmware' => 'getFirmware',
             'cpuQuantity' => 'getCpuQuantity',
@@ -453,8 +453,6 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     const OS_TYPE_LINUX = 'LINUX';
     const FIRMWARE_BIOS = 'BIOS';
     const FIRMWARE_UEFI = 'UEFI';
-    const BOOT_LOADER_GRUB = 'GRUB';
-    const BOOT_LOADER_LILO = 'LILO';
     const MIGRATION_CYCLE_CUTOVERING = 'cutovering';
     const MIGRATION_CYCLE_CUTOVERED = 'cutovered';
     const MIGRATION_CYCLE_CHECKING = 'checking';
@@ -470,20 +468,16 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     const STATE_STOPPED = 'stopped';
     const STATE_SKIPPING = 'skipping';
     const STATE_DELETING = 'deleting';
-    const STATE_ERROR = 'error';
-    const STATE_CLONING = 'cloning';
-    const STATE_CUTOVERING = 'cutovering';
-    const STATE_FINISHED = 'finished';
     const STATE_CLEARING = 'clearing';
     const STATE_CLEARED = 'cleared';
     const STATE_CLEARFAILED = 'clearfailed';
     const STATE_PREMIGREADY = 'premigready';
-    const STATE_PREMIGING = 'premiging';
     const STATE_PREMIGED = 'premiged';
     const STATE_PREMIGFAILED = 'premigfailed';
-    const START_TYPE_MANUAL = 'MANUAL';
-    const START_TYPE_MGC = 'MGC';
-    const START_TYPE_EMPTY = '';
+    const STATE_CLONING = 'cloning';
+    const STATE_CUTOVERING = 'cutovering';
+    const STATE_FINISHED = 'finished';
+    const STATE_ERROR = 'error';
     const PLATFORM_HW = 'hw';
     const PLATFORM_ALI = 'ali';
     const PLATFORM_AWS = 'aws';
@@ -493,6 +487,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     const PLATFORM_VMWARE = 'vmware';
     const PLATFORM_HYPERV = 'hyperv';
     const PLATFORM_OTHER = 'other';
+    const PLATFORM__DEFAULT = 'default';
     
 
     /**
@@ -518,19 +513,6 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
         return [
             self::FIRMWARE_BIOS,
             self::FIRMWARE_UEFI,
-        ];
-    }
-
-    /**
-    * Gets allowable values of the enum
-    *
-    * @return string[]
-    */
-    public function getBootLoaderAllowableValues()
-    {
-        return [
-            self::BOOT_LOADER_GRUB,
-            self::BOOT_LOADER_LILO,
         ];
     }
 
@@ -568,31 +550,16 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             self::STATE_STOPPED,
             self::STATE_SKIPPING,
             self::STATE_DELETING,
-            self::STATE_ERROR,
-            self::STATE_CLONING,
-            self::STATE_CUTOVERING,
-            self::STATE_FINISHED,
             self::STATE_CLEARING,
             self::STATE_CLEARED,
             self::STATE_CLEARFAILED,
             self::STATE_PREMIGREADY,
-            self::STATE_PREMIGING,
             self::STATE_PREMIGED,
             self::STATE_PREMIGFAILED,
-        ];
-    }
-
-    /**
-    * Gets allowable values of the enum
-    *
-    * @return string[]
-    */
-    public function getStartTypeAllowableValues()
-    {
-        return [
-            self::START_TYPE_MANUAL,
-            self::START_TYPE_MGC,
-            self::START_TYPE_EMPTY,
+            self::STATE_CLONING,
+            self::STATE_CUTOVERING,
+            self::STATE_FINISHED,
+            self::STATE_ERROR,
         ];
     }
 
@@ -613,6 +580,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             self::PLATFORM_VMWARE,
             self::PLATFORM_HYPERV,
             self::PLATFORM_OTHER,
+            self::PLATFORM__DEFAULT,
         ];
     }
 
@@ -634,11 +602,11 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['ip'] = isset($data['ip']) ? $data['ip'] : null;
+        $this->container['ipv6'] = isset($data['ipv6']) ? $data['ipv6'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['hostname'] = isset($data['hostname']) ? $data['hostname'] : null;
         $this->container['osType'] = isset($data['osType']) ? $data['osType'] : null;
         $this->container['osVersion'] = isset($data['osVersion']) ? $data['osVersion'] : null;
-        $this->container['virtualizationType'] = isset($data['virtualizationType']) ? $data['virtualizationType'] : null;
         $this->container['linuxBlockCheck'] = isset($data['linuxBlockCheck']) ? $data['linuxBlockCheck'] : null;
         $this->container['firmware'] = isset($data['firmware']) ? $data['firmware'] : null;
         $this->container['cpuQuantity'] = isset($data['cpuQuantity']) ? $data['cpuQuantity'] : null;
@@ -687,18 +655,30 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             if (!is_null($this->container['ip']) && (mb_strlen($this->container['ip']) < 0)) {
                 $invalidProperties[] = "invalid value for 'ip', the character length must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 255)) {
-                $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 255.";
+            if (!is_null($this->container['ipv6']) && (mb_strlen($this->container['ipv6']) > 255)) {
+                $invalidProperties[] = "invalid value for 'ipv6', the character length must be smaller than or equal to 255.";
             }
-            if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 0)) {
-                $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 0.";
+            if (!is_null($this->container['ipv6']) && (mb_strlen($this->container['ipv6']) < 0)) {
+                $invalidProperties[] = "invalid value for 'ipv6', the character length must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['hostname']) && (mb_strlen($this->container['hostname']) > 255)) {
-                $invalidProperties[] = "invalid value for 'hostname', the character length must be smaller than or equal to 255.";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+            if ((mb_strlen($this->container['name']) > 64)) {
+                $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 64.";
             }
-            if (!is_null($this->container['hostname']) && (mb_strlen($this->container['hostname']) < 0)) {
-                $invalidProperties[] = "invalid value for 'hostname', the character length must be bigger than or equal to 0.";
+            if ((mb_strlen($this->container['name']) < 1)) {
+                $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
             }
+            if (!is_null($this->container['hostname']) && (mb_strlen($this->container['hostname']) > 64)) {
+                $invalidProperties[] = "invalid value for 'hostname', the character length must be smaller than or equal to 64.";
+            }
+            if (!is_null($this->container['hostname']) && (mb_strlen($this->container['hostname']) < 1)) {
+                $invalidProperties[] = "invalid value for 'hostname', the character length must be bigger than or equal to 1.";
+            }
+        if ($this->container['osType'] === null) {
+            $invalidProperties[] = "'osType' can't be null";
+        }
             $allowedValues = $this->getOsTypeAllowableValues();
                 if (!is_null($this->container['osType']) && !in_array($this->container['osType'], $allowedValues, true)) {
                 $invalidProperties[] = sprintf(
@@ -707,23 +687,20 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
                 );
             }
 
-            if (!is_null($this->container['osType']) && (mb_strlen($this->container['osType']) > 255)) {
+            if ((mb_strlen($this->container['osType']) > 255)) {
                 $invalidProperties[] = "invalid value for 'osType', the character length must be smaller than or equal to 255.";
             }
-            if (!is_null($this->container['osType']) && (mb_strlen($this->container['osType']) < 0)) {
+            if ((mb_strlen($this->container['osType']) < 0)) {
                 $invalidProperties[] = "invalid value for 'osType', the character length must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['osVersion']) && (mb_strlen($this->container['osVersion']) > 255)) {
+        if ($this->container['osVersion'] === null) {
+            $invalidProperties[] = "'osVersion' can't be null";
+        }
+            if ((mb_strlen($this->container['osVersion']) > 255)) {
                 $invalidProperties[] = "invalid value for 'osVersion', the character length must be smaller than or equal to 255.";
             }
-            if (!is_null($this->container['osVersion']) && (mb_strlen($this->container['osVersion']) < 0)) {
+            if ((mb_strlen($this->container['osVersion']) < 0)) {
                 $invalidProperties[] = "invalid value for 'osVersion', the character length must be bigger than or equal to 0.";
-            }
-            if (!is_null($this->container['virtualizationType']) && (mb_strlen($this->container['virtualizationType']) > 255)) {
-                $invalidProperties[] = "invalid value for 'virtualizationType', the character length must be smaller than or equal to 255.";
-            }
-            if (!is_null($this->container['virtualizationType']) && (mb_strlen($this->container['virtualizationType']) < 0)) {
-                $invalidProperties[] = "invalid value for 'virtualizationType', the character length must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['linuxBlockCheck']) && (mb_strlen($this->container['linuxBlockCheck']) > 255)) {
                 $invalidProperties[] = "invalid value for 'linuxBlockCheck', the character length must be smaller than or equal to 255.";
@@ -757,6 +734,9 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             if (!is_null($this->container['memory']) && ($this->container['memory'] < 0)) {
                 $invalidProperties[] = "invalid value for 'memory', must be bigger than or equal to 0.";
             }
+        if ($this->container['networks'] === null) {
+            $invalidProperties[] = "'networks' can't be null";
+        }
             if (!is_null($this->container['domainId']) && (mb_strlen($this->container['domainId']) > 255)) {
                 $invalidProperties[] = "invalid value for 'domainId', the character length must be smaller than or equal to 255.";
             }
@@ -769,24 +749,25 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             if (!is_null($this->container['rawDevices']) && (mb_strlen($this->container['rawDevices']) < 0)) {
                 $invalidProperties[] = "invalid value for 'rawDevices', the character length must be bigger than or equal to 0.";
             }
-            $allowedValues = $this->getBootLoaderAllowableValues();
-                if (!is_null($this->container['bootLoader']) && !in_array($this->container['bootLoader'], $allowedValues, true)) {
-                $invalidProperties[] = sprintf(
-                "invalid value for 'bootLoader', must be one of '%s'",
-                implode("', '", $allowedValues)
-                );
+            if (!is_null($this->container['bootLoader']) && (mb_strlen($this->container['bootLoader']) > 255)) {
+                $invalidProperties[] = "invalid value for 'bootLoader', the character length must be smaller than or equal to 255.";
             }
-
+            if (!is_null($this->container['bootLoader']) && (mb_strlen($this->container['bootLoader']) < 0)) {
+                $invalidProperties[] = "invalid value for 'bootLoader', the character length must be bigger than or equal to 0.";
+            }
             if (!is_null($this->container['systemDir']) && (mb_strlen($this->container['systemDir']) > 255)) {
                 $invalidProperties[] = "invalid value for 'systemDir', the character length must be smaller than or equal to 255.";
             }
             if (!is_null($this->container['systemDir']) && (mb_strlen($this->container['systemDir']) < 0)) {
                 $invalidProperties[] = "invalid value for 'systemDir', the character length must be bigger than or equal to 0.";
             }
-            if (!is_null($this->container['agentVersion']) && (mb_strlen($this->container['agentVersion']) > 255)) {
+        if ($this->container['agentVersion'] === null) {
+            $invalidProperties[] = "'agentVersion' can't be null";
+        }
+            if ((mb_strlen($this->container['agentVersion']) > 255)) {
                 $invalidProperties[] = "invalid value for 'agentVersion', the character length must be smaller than or equal to 255.";
             }
-            if (!is_null($this->container['agentVersion']) && (mb_strlen($this->container['agentVersion']) < 0)) {
+            if ((mb_strlen($this->container['agentVersion']) < 0)) {
                 $invalidProperties[] = "invalid value for 'agentVersion', the character length must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['kernelVersion']) && (mb_strlen($this->container['kernelVersion']) > 255)) {
@@ -817,14 +798,12 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
             if (!is_null($this->container['state']) && (mb_strlen($this->container['state']) < 0)) {
                 $invalidProperties[] = "invalid value for 'state', the character length must be bigger than or equal to 0.";
             }
-            $allowedValues = $this->getStartTypeAllowableValues();
-                if (!is_null($this->container['startType']) && !in_array($this->container['startType'], $allowedValues, true)) {
-                $invalidProperties[] = sprintf(
-                "invalid value for 'startType', must be one of '%s'",
-                implode("', '", $allowedValues)
-                );
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) > 255)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be smaller than or equal to 255.";
             }
-
+            if (!is_null($this->container['startType']) && (mb_strlen($this->container['startType']) < 0)) {
+                $invalidProperties[] = "invalid value for 'startType', the character length must be bigger than or equal to 0.";
+            }
             if (!is_null($this->container['ioReadWait']) && ($this->container['ioReadWait'] > 1E+4)) {
                 $invalidProperties[] = "invalid value for 'ioReadWait', must be smaller than or equal to 1E+4.";
             }
@@ -879,7 +858,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets ip
-    *  源端服务器ip，注册源端时必选，更新非必选
+    *  源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
     *
     * @return string|null
     */
@@ -891,7 +870,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets ip
     *
-    * @param string|null $ip 源端服务器ip，注册源端时必选，更新非必选
+    * @param string|null $ip 源端服务器ip，格式需满足ip标准格式。ip与ipv6必填一个。
     *
     * @return $this
     */
@@ -902,10 +881,34 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets ipv6
+    *  源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
+    *
+    * @return string|null
+    */
+    public function getIpv6()
+    {
+        return $this->container['ipv6'];
+    }
+
+    /**
+    * Sets ipv6
+    *
+    * @param string|null $ipv6 源端服务器ip，格式需满足ipv6标准格式。ip与ipv6必填一个。
+    *
+    * @return $this
+    */
+    public function setIpv6($ipv6)
+    {
+        $this->container['ipv6'] = $ipv6;
+        return $this;
+    }
+
+    /**
     * Gets name
     *  用来区分不同源端服务器的名称
     *
-    * @return string|null
+    * @return string
     */
     public function getName()
     {
@@ -915,7 +918,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets name
     *
-    * @param string|null $name 用来区分不同源端服务器的名称
+    * @param string $name 用来区分不同源端服务器的名称
     *
     * @return $this
     */
@@ -927,7 +930,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostname
-    *  源端主机名，注册源端必选，更新非必选
+    *  源端主机名
     *
     * @return string|null
     */
@@ -939,7 +942,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets hostname
     *
-    * @param string|null $hostname 源端主机名，注册源端必选，更新非必选
+    * @param string|null $hostname 源端主机名
     *
     * @return $this
     */
@@ -953,7 +956,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     * Gets osType
     *  源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     *
-    * @return string|null
+    * @return string
     */
     public function getOsType()
     {
@@ -963,7 +966,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets osType
     *
-    * @param string|null $osType 源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
+    * @param string $osType 源端服务器的OS类型，分为Windows和Linux，注册必选，更新非必选
     *
     * @return $this
     */
@@ -977,7 +980,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     * Gets osVersion
     *  操作系统版本，注册必选，更新非必选
     *
-    * @return string|null
+    * @return string
     */
     public function getOsVersion()
     {
@@ -987,37 +990,13 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets osVersion
     *
-    * @param string|null $osVersion 操作系统版本，注册必选，更新非必选
+    * @param string $osVersion 操作系统版本，注册必选，更新非必选
     *
     * @return $this
     */
     public function setOsVersion($osVersion)
     {
         $this->container['osVersion'] = $osVersion;
-        return $this;
-    }
-
-    /**
-    * Gets virtualizationType
-    *  操作系统虚拟化方式
-    *
-    * @return string|null
-    */
-    public function getVirtualizationType()
-    {
-        return $this->container['virtualizationType'];
-    }
-
-    /**
-    * Sets virtualizationType
-    *
-    * @param string|null $virtualizationType 操作系统虚拟化方式
-    *
-    * @return $this
-    */
-    public function setVirtualizationType($virtualizationType)
-    {
-        $this->container['virtualizationType'] = $virtualizationType;
         return $this;
     }
 
@@ -1143,7 +1122,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets btrfsList
-    *  Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    *  源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     *
     * @return \HuaweiCloud\SDK\Sms\V3\Model\BtrfsFileSystem[]|null
     */
@@ -1155,7 +1134,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets btrfsList
     *
-    * @param \HuaweiCloud\SDK\Sms\V3\Model\BtrfsFileSystem[]|null $btrfsList Linux 必选，源端的Btrfs信息。如果源端不存在Btrfs，则为[]
+    * @param \HuaweiCloud\SDK\Sms\V3\Model\BtrfsFileSystem[]|null $btrfsList 源端的Btrfs信息。如果源端不存在Btrfs，则为[] Linux场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1169,7 +1148,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     * Gets networks
     *  源端服务器的网卡信息
     *
-    * @return \HuaweiCloud\SDK\Sms\V3\Model\NetWork[]|null
+    * @return \HuaweiCloud\SDK\Sms\V3\Model\NetWork[]
     */
     public function getNetworks()
     {
@@ -1179,7 +1158,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets networks
     *
-    * @param \HuaweiCloud\SDK\Sms\V3\Model\NetWork[]|null $networks 源端服务器的网卡信息
+    * @param \HuaweiCloud\SDK\Sms\V3\Model\NetWork[] $networks 源端服务器的网卡信息
     *
     * @return $this
     */
@@ -1215,7 +1194,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets hasRsync
-    *  是否安装rsync组件，Linux系统此参数为必选
+    *  是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1227,7 +1206,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets hasRsync
     *
-    * @param bool|null $hasRsync 是否安装rsync组件，Linux系统此参数为必选
+    * @param bool|null $hasRsync 是否安装rsync组件，Linux系统此参数为必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1239,7 +1218,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets paravirtualization
-    *  Linux场景必选，源端是否是半虚拟化
+    *  源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1251,7 +1230,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets paravirtualization
     *
-    * @param bool|null $paravirtualization Linux场景必选，源端是否是半虚拟化
+    * @param bool|null $paravirtualization 源端是否是半虚拟化 Linux场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1263,7 +1242,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets rawDevices
-    *  Linux必选，裸设备列表
+    *  裸设备列表 Linux场景必选，否则无法通过后续环境检查
     *
     * @return string|null
     */
@@ -1275,7 +1254,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets rawDevices
     *
-    * @param string|null $rawDevices Linux必选，裸设备列表
+    * @param string|null $rawDevices 裸设备列表 Linux场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1287,7 +1266,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets driverFiles
-    *  Windows 必选，是否缺少驱动文件
+    *  是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1299,7 +1278,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets driverFiles
     *
-    * @param bool|null $driverFiles Windows 必选，是否缺少驱动文件
+    * @param bool|null $driverFiles 是否缺少驱动文件 Windows场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1311,7 +1290,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets systemServices
-    *  Windows必选，是否存在不正常服务
+    *  是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1323,7 +1302,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets systemServices
     *
-    * @param bool|null $systemServices Windows必选，是否存在不正常服务
+    * @param bool|null $systemServices 是否存在不正常服务 Windows场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1335,7 +1314,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets accountRights
-    *  Windows必选，权限是否满足要求
+    *  权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1347,7 +1326,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets accountRights
     *
-    * @param bool|null $accountRights Windows必选，权限是否满足要求
+    * @param bool|null $accountRights 权限是否满足要求 Windows场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1359,7 +1338,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets bootLoader
-    *  Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
+    *  系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
     *
     * @return string|null
     */
@@ -1371,7 +1350,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets bootLoader
     *
-    * @param string|null $bootLoader Linux必选，系统引导类型，BOOT_LOADER(GRUB/LILO)
+    * @param string|null $bootLoader 系统引导类型 仅允许“GRUB”取值，Linux场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1383,7 +1362,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets systemDir
-    *  Windows必选，系统目录
+    *  系统目录 Windows场景必选，否则无法通过后续环境检查
     *
     * @return string|null
     */
@@ -1395,7 +1374,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets systemDir
     *
-    * @param string|null $systemDir Windows必选，系统目录
+    * @param string|null $systemDir 系统目录 Windows场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1407,7 +1386,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets volumeGroups
-    *  Linux必选，如果没有卷组，输入[]
+    *  卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     *
     * @return \HuaweiCloud\SDK\Sms\V3\Model\VolumeGroups[]|null
     */
@@ -1419,7 +1398,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets volumeGroups
     *
-    * @param \HuaweiCloud\SDK\Sms\V3\Model\VolumeGroups[]|null $volumeGroups Linux必选，如果没有卷组，输入[]
+    * @param \HuaweiCloud\SDK\Sms\V3\Model\VolumeGroups[]|null $volumeGroups 卷组 如果没有卷组，输入[] Linux场景必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1433,7 +1412,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     * Gets agentVersion
     *  Agent版本
     *
-    * @return string|null
+    * @return string
     */
     public function getAgentVersion()
     {
@@ -1443,7 +1422,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets agentVersion
     *
-    * @param string|null $agentVersion Agent版本
+    * @param string $agentVersion Agent版本
     *
     * @return $this
     */
@@ -1503,7 +1482,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets state
-    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    *  源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return string|null
     */
@@ -1515,7 +1494,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets state
     *
-    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 error：错误 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready: 迁移演练已就绪 premiging: 迁移演练中 premiged: 迁移演练已完成 premigfailed: 迁移演练失败
+    * @param string|null $state 源端服务器状态 unavailable：环境校验不通过 waiting：等待 initialize：初始化 replicate：复制 syncing：持续同步 stopping：暂停中 stopped：已暂停 skipping：跳过中 deleting：删除中 clearing: 清理快照资源中 cleared：清理快照资源完成 clearfailed：清理快照资源失败 premigready：迁移演练就绪 premiging：迁移演练中 premiged：迁移演练完成 premigfailed：迁移演练失败 cloning：等待克隆完成 cutovering：启动目的端中 finished：启动目的端完成 error：错误
     *
     * @return $this
     */
@@ -1551,7 +1530,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets startType
-    *  启动方式，可以取值MANUAL、MGC或者空。
+    *  启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @return string|null
     */
@@ -1563,7 +1542,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets startType
     *
-    * @param string|null $startType 启动方式，可以取值MANUAL、MGC或者空。
+    * @param string|null $startType 启动方式 可以取值MANUAL、AUTO或者空，不进行校验。 默认值取值MANUAL，其余则表示从MGC平台启动
     *
     * @return $this
     */
@@ -1599,7 +1578,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets hasTc
-    *  是否安装tc组件，Linux系统此参数为必选
+    *  是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
     *
     * @return bool|null
     */
@@ -1611,7 +1590,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets hasTc
     *
-    * @param bool|null $hasTc 是否安装tc组件，Linux系统此参数为必选
+    * @param bool|null $hasTc 是否安装tc组件，Linux系统此参数为必选，否则无法通过后续环境检查
     *
     * @return $this
     */
@@ -1623,7 +1602,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets platform
-    *  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    *  平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @return string|null
     */
@@ -1635,7 +1614,7 @@ class PostSourceServerBody implements ModelInterface, ArrayAccess
     /**
     * Sets platform
     *
-    * @param string|null $platform 平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware hyperv other：其他
+    * @param string|null $platform 平台信息: hw：华为  ali：阿里 aws：亚马逊 azure：微软云 gcp：谷歌云 tencent：腾讯云 vmware：VMware hyperv：HyperV other：其他 default：默认
     *
     * @return $this
     */

@@ -24,11 +24,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     * filePath  目标桶中需要查询的对象文件路径，/结尾
     * ak  源端桶的AK（最大长度100个字符）
     * sk  源端桶的SK（最大长度100个字符）
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * dataCenter  数据中心，区域
     * pageSize  分页信息，页大小
     * behindFilename  分页信息，当前页最后一个对象名称（偏移量）
-    * appId  当源端为腾讯云时，会返回此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucketName  桶名
     *
     * @var string[]
@@ -38,6 +39,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
             'filePath' => 'string',
             'ak' => 'string',
             'sk' => 'string',
+            'connectionString' => 'string',
             'jsonAuthFile' => 'string',
             'dataCenter' => 'string',
             'pageSize' => 'int',
@@ -52,11 +54,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     * filePath  目标桶中需要查询的对象文件路径，/结尾
     * ak  源端桶的AK（最大长度100个字符）
     * sk  源端桶的SK（最大长度100个字符）
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * dataCenter  数据中心，区域
     * pageSize  分页信息，页大小
     * behindFilename  分页信息，当前页最后一个对象名称（偏移量）
-    * appId  当源端为腾讯云时，会返回此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucketName  桶名
     *
     * @var string[]
@@ -66,6 +69,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
         'filePath' => null,
         'ak' => null,
         'sk' => null,
+        'connectionString' => null,
         'jsonAuthFile' => null,
         'dataCenter' => null,
         'pageSize' => 'int32',
@@ -101,11 +105,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     * filePath  目标桶中需要查询的对象文件路径，/结尾
     * ak  源端桶的AK（最大长度100个字符）
     * sk  源端桶的SK（最大长度100个字符）
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * dataCenter  数据中心，区域
     * pageSize  分页信息，页大小
     * behindFilename  分页信息，当前页最后一个对象名称（偏移量）
-    * appId  当源端为腾讯云时，会返回此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucketName  桶名
     *
     * @var string[]
@@ -115,6 +120,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
             'filePath' => 'file_path',
             'ak' => 'ak',
             'sk' => 'sk',
+            'connectionString' => 'connection_string',
             'jsonAuthFile' => 'json_auth_file',
             'dataCenter' => 'data_center',
             'pageSize' => 'page_size',
@@ -129,11 +135,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     * filePath  目标桶中需要查询的对象文件路径，/结尾
     * ak  源端桶的AK（最大长度100个字符）
     * sk  源端桶的SK（最大长度100个字符）
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * dataCenter  数据中心，区域
     * pageSize  分页信息，页大小
     * behindFilename  分页信息，当前页最后一个对象名称（偏移量）
-    * appId  当源端为腾讯云时，会返回此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucketName  桶名
     *
     * @var string[]
@@ -143,6 +150,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
             'filePath' => 'setFilePath',
             'ak' => 'setAk',
             'sk' => 'setSk',
+            'connectionString' => 'setConnectionString',
             'jsonAuthFile' => 'setJsonAuthFile',
             'dataCenter' => 'setDataCenter',
             'pageSize' => 'setPageSize',
@@ -157,11 +165,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     * filePath  目标桶中需要查询的对象文件路径，/结尾
     * ak  源端桶的AK（最大长度100个字符）
     * sk  源端桶的SK（最大长度100个字符）
+    * connectionString  连接字符串，用于微软云Blob鉴权
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * dataCenter  数据中心，区域
     * pageSize  分页信息，页大小
     * behindFilename  分页信息，当前页最后一个对象名称（偏移量）
-    * appId  当源端为腾讯云时，会返回此参数。
+    * appId  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     * bucketName  桶名
     *
     * @var string[]
@@ -171,6 +180,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
             'filePath' => 'getFilePath',
             'ak' => 'getAk',
             'sk' => 'getSk',
+            'connectionString' => 'getConnectionString',
             'jsonAuthFile' => 'getJsonAuthFile',
             'dataCenter' => 'getDataCenter',
             'pageSize' => 'getPageSize',
@@ -241,6 +251,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
         $this->container['filePath'] = isset($data['filePath']) ? $data['filePath'] : null;
         $this->container['ak'] = isset($data['ak']) ? $data['ak'] : null;
         $this->container['sk'] = isset($data['sk']) ? $data['sk'] : null;
+        $this->container['connectionString'] = isset($data['connectionString']) ? $data['connectionString'] : null;
         $this->container['jsonAuthFile'] = isset($data['jsonAuthFile']) ? $data['jsonAuthFile'] : null;
         $this->container['dataCenter'] = isset($data['dataCenter']) ? $data['dataCenter'] : null;
         $this->container['pageSize'] = isset($data['pageSize']) ? $data['pageSize'] : null;
@@ -295,6 +306,12 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['sk']) && !preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['sk'])) {
                 $invalidProperties[] = "invalid value for 'sk', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
+            }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) > 2048)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be smaller than or equal to 2048.";
+            }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) < 0)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be bigger than or equal to 0.";
             }
             if (!is_null($this->container['jsonAuthFile']) && (mb_strlen($this->container['jsonAuthFile']) > 65535)) {
                 $invalidProperties[] = "invalid value for 'jsonAuthFile', the character length must be smaller than or equal to 65535.";
@@ -461,6 +478,30 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets connectionString
+    *  连接字符串，用于微软云Blob鉴权
+    *
+    * @return string|null
+    */
+    public function getConnectionString()
+    {
+        return $this->container['connectionString'];
+    }
+
+    /**
+    * Sets connectionString
+    *
+    * @param string|null $connectionString 连接字符串，用于微软云Blob鉴权
+    *
+    * @return $this
+    */
+    public function setConnectionString($connectionString)
+    {
+        $this->container['connectionString'] = $connectionString;
+        return $this;
+    }
+
+    /**
     * Gets jsonAuthFile
     *  用于谷歌云Cloud Storage鉴权
     *
@@ -558,7 +599,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets appId
-    *  当源端为腾讯云时，会返回此参数。
+    *  腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     *
     * @return string|null
     */
@@ -570,7 +611,7 @@ class ShowBucketReq implements ModelInterface, ArrayAccess
     /**
     * Sets appId
     *
-    * @param string|null $appId 当源端为腾讯云时，会返回此参数。
+    * @param string|null $appId 腾讯云APPID，当源端为腾讯云时，需要填写此参数，您可以在腾讯云控制台账号信息页面获取。
     *
     * @return $this
     */

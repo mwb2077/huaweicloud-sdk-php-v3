@@ -21,29 +21,33 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * excludedAccounts  需要排除配置规则的帐号。
-    * organizationPolicyAssignmentName  组织合规规则名称。
+    * organizationPolicyAssignmentName  组织合规规则名称
     * managedPolicyAssignmentMetadata  managedPolicyAssignmentMetadata
+    * customPolicyAssignmentMetadata  customPolicyAssignmentMetadata
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'excludedAccounts' => 'string[]',
             'organizationPolicyAssignmentName' => 'string',
-            'managedPolicyAssignmentMetadata' => '\HuaweiCloud\SDK\Config\V1\Model\ManagedPolicyAssignmentMetadata'
+            'managedPolicyAssignmentMetadata' => '\HuaweiCloud\SDK\Config\V1\Model\ManagedPolicyAssignmentMetadata',
+            'customPolicyAssignmentMetadata' => '\HuaweiCloud\SDK\Config\V1\Model\CustomPolicyAssignmentMetadata'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * excludedAccounts  需要排除配置规则的帐号。
-    * organizationPolicyAssignmentName  组织合规规则名称。
+    * organizationPolicyAssignmentName  组织合规规则名称
     * managedPolicyAssignmentMetadata  managedPolicyAssignmentMetadata
+    * customPolicyAssignmentMetadata  customPolicyAssignmentMetadata
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'excludedAccounts' => null,
         'organizationPolicyAssignmentName' => null,
-        'managedPolicyAssignmentMetadata' => null
+        'managedPolicyAssignmentMetadata' => null,
+        'customPolicyAssignmentMetadata' => null
     ];
 
     /**
@@ -70,43 +74,49 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * excludedAccounts  需要排除配置规则的帐号。
-    * organizationPolicyAssignmentName  组织合规规则名称。
+    * organizationPolicyAssignmentName  组织合规规则名称
     * managedPolicyAssignmentMetadata  managedPolicyAssignmentMetadata
+    * customPolicyAssignmentMetadata  customPolicyAssignmentMetadata
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'excludedAccounts' => 'excluded_accounts',
             'organizationPolicyAssignmentName' => 'organization_policy_assignment_name',
-            'managedPolicyAssignmentMetadata' => 'managed_policy_assignment_metadata'
+            'managedPolicyAssignmentMetadata' => 'managed_policy_assignment_metadata',
+            'customPolicyAssignmentMetadata' => 'custom_policy_assignment_metadata'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * excludedAccounts  需要排除配置规则的帐号。
-    * organizationPolicyAssignmentName  组织合规规则名称。
+    * organizationPolicyAssignmentName  组织合规规则名称
     * managedPolicyAssignmentMetadata  managedPolicyAssignmentMetadata
+    * customPolicyAssignmentMetadata  customPolicyAssignmentMetadata
     *
     * @var string[]
     */
     protected static $setters = [
             'excludedAccounts' => 'setExcludedAccounts',
             'organizationPolicyAssignmentName' => 'setOrganizationPolicyAssignmentName',
-            'managedPolicyAssignmentMetadata' => 'setManagedPolicyAssignmentMetadata'
+            'managedPolicyAssignmentMetadata' => 'setManagedPolicyAssignmentMetadata',
+            'customPolicyAssignmentMetadata' => 'setCustomPolicyAssignmentMetadata'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * excludedAccounts  需要排除配置规则的帐号。
-    * organizationPolicyAssignmentName  组织合规规则名称。
+    * organizationPolicyAssignmentName  组织合规规则名称
     * managedPolicyAssignmentMetadata  managedPolicyAssignmentMetadata
+    * customPolicyAssignmentMetadata  customPolicyAssignmentMetadata
     *
     * @var string[]
     */
     protected static $getters = [
             'excludedAccounts' => 'getExcludedAccounts',
             'organizationPolicyAssignmentName' => 'getOrganizationPolicyAssignmentName',
-            'managedPolicyAssignmentMetadata' => 'getManagedPolicyAssignmentMetadata'
+            'managedPolicyAssignmentMetadata' => 'getManagedPolicyAssignmentMetadata',
+            'customPolicyAssignmentMetadata' => 'getCustomPolicyAssignmentMetadata'
     ];
 
     /**
@@ -170,6 +180,7 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
         $this->container['excludedAccounts'] = isset($data['excludedAccounts']) ? $data['excludedAccounts'] : null;
         $this->container['organizationPolicyAssignmentName'] = isset($data['organizationPolicyAssignmentName']) ? $data['organizationPolicyAssignmentName'] : null;
         $this->container['managedPolicyAssignmentMetadata'] = isset($data['managedPolicyAssignmentMetadata']) ? $data['managedPolicyAssignmentMetadata'] : null;
+        $this->container['customPolicyAssignmentMetadata'] = isset($data['customPolicyAssignmentMetadata']) ? $data['customPolicyAssignmentMetadata'] : null;
     }
 
     /**
@@ -183,11 +194,11 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
         if ($this->container['organizationPolicyAssignmentName'] === null) {
             $invalidProperties[] = "'organizationPolicyAssignmentName' can't be null";
         }
-            if ((mb_strlen($this->container['organizationPolicyAssignmentName']) > 60)) {
-                $invalidProperties[] = "invalid value for 'organizationPolicyAssignmentName', the character length must be smaller than or equal to 60.";
+            if ((mb_strlen($this->container['organizationPolicyAssignmentName']) > 252)) {
+                $invalidProperties[] = "invalid value for 'organizationPolicyAssignmentName', the character length must be smaller than or equal to 252.";
             }
-            if (!preg_match("/^[\\u4e00-\\u9fa5a-zA-Z0-9_\\-]+/", $this->container['organizationPolicyAssignmentName'])) {
-                $invalidProperties[] = "invalid value for 'organizationPolicyAssignmentName', must be conform to the pattern /^[\\u4e00-\\u9fa5a-zA-Z0-9_\\-]+/.";
+            if (!preg_match("/^(?!\\s)[\\u4e00-\\u9fa5\\u00C0-\\u00FFa-zA-Z0-9_\\- ]+(?<!\\s)$/", $this->container['organizationPolicyAssignmentName'])) {
+                $invalidProperties[] = "invalid value for 'organizationPolicyAssignmentName', must be conform to the pattern /^(?!\\s)[\\u4e00-\\u9fa5\\u00C0-\\u00FFa-zA-Z0-9_\\- ]+(?<!\\s)$/.";
             }
         return $invalidProperties;
     }
@@ -229,7 +240,7 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets organizationPolicyAssignmentName
-    *  组织合规规则名称。
+    *  组织合规规则名称
     *
     * @return string
     */
@@ -241,7 +252,7 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
     /**
     * Sets organizationPolicyAssignmentName
     *
-    * @param string $organizationPolicyAssignmentName 组织合规规则名称。
+    * @param string $organizationPolicyAssignmentName 组织合规规则名称
     *
     * @return $this
     */
@@ -272,6 +283,30 @@ class OrganizationPolicyAssignmentRequest implements ModelInterface, ArrayAccess
     public function setManagedPolicyAssignmentMetadata($managedPolicyAssignmentMetadata)
     {
         $this->container['managedPolicyAssignmentMetadata'] = $managedPolicyAssignmentMetadata;
+        return $this;
+    }
+
+    /**
+    * Gets customPolicyAssignmentMetadata
+    *  customPolicyAssignmentMetadata
+    *
+    * @return \HuaweiCloud\SDK\Config\V1\Model\CustomPolicyAssignmentMetadata|null
+    */
+    public function getCustomPolicyAssignmentMetadata()
+    {
+        return $this->container['customPolicyAssignmentMetadata'];
+    }
+
+    /**
+    * Sets customPolicyAssignmentMetadata
+    *
+    * @param \HuaweiCloud\SDK\Config\V1\Model\CustomPolicyAssignmentMetadata|null $customPolicyAssignmentMetadata customPolicyAssignmentMetadata
+    *
+    * @return $this
+    */
+    public function setCustomPolicyAssignmentMetadata($customPolicyAssignmentMetadata)
+    {
+        $this->container['customPolicyAssignmentMetadata'] = $customPolicyAssignmentMetadata;
         return $this;
     }
 

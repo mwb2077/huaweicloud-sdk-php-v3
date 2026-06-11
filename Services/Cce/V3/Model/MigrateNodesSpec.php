@@ -20,11 +20,12 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * os  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * os  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * extendParam  extendParam
     * login  login
     * runtime  runtime
-    * nodes  待操作节点列表
+    * serverConfig  serverConfig
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -33,16 +34,18 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
             'extendParam' => '\HuaweiCloud\SDK\Cce\V3\Model\MigrateNodeExtendParam',
             'login' => '\HuaweiCloud\SDK\Cce\V3\Model\Login',
             'runtime' => '\HuaweiCloud\SDK\Cce\V3\Model\Runtime',
+            'serverConfig' => '\HuaweiCloud\SDK\Cce\V3\Model\MigrateServerConfig',
             'nodes' => '\HuaweiCloud\SDK\Cce\V3\Model\NodeItem[]'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * os  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * os  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * extendParam  extendParam
     * login  login
     * runtime  runtime
-    * nodes  待操作节点列表
+    * serverConfig  serverConfig
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -51,6 +54,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
         'extendParam' => null,
         'login' => null,
         'runtime' => null,
+        'serverConfig' => null,
         'nodes' => null
     ];
 
@@ -77,11 +81,12 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * os  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * os  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * extendParam  extendParam
     * login  login
     * runtime  runtime
-    * nodes  待操作节点列表
+    * serverConfig  serverConfig
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -90,16 +95,18 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
             'extendParam' => 'extendParam',
             'login' => 'login',
             'runtime' => 'runtime',
+            'serverConfig' => 'serverConfig',
             'nodes' => 'nodes'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * os  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * os  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * extendParam  extendParam
     * login  login
     * runtime  runtime
-    * nodes  待操作节点列表
+    * serverConfig  serverConfig
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -108,16 +115,18 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
             'extendParam' => 'setExtendParam',
             'login' => 'setLogin',
             'runtime' => 'setRuntime',
+            'serverConfig' => 'setServerConfig',
             'nodes' => 'setNodes'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * os  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * os  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * extendParam  extendParam
     * login  login
     * runtime  runtime
-    * nodes  待操作节点列表
+    * serverConfig  serverConfig
+    * nodes  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @var string[]
     */
@@ -126,6 +135,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
             'extendParam' => 'getExtendParam',
             'login' => 'getLogin',
             'runtime' => 'getRuntime',
+            'serverConfig' => 'getServerConfig',
             'nodes' => 'getNodes'
     ];
 
@@ -191,6 +201,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
         $this->container['extendParam'] = isset($data['extendParam']) ? $data['extendParam'] : null;
         $this->container['login'] = isset($data['login']) ? $data['login'] : null;
         $this->container['runtime'] = isset($data['runtime']) ? $data['runtime'] : null;
+        $this->container['serverConfig'] = isset($data['serverConfig']) ? $data['serverConfig'] : null;
         $this->container['nodes'] = isset($data['nodes']) ? $data['nodes'] : null;
     }
 
@@ -204,9 +215,6 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
         $invalidProperties = [];
         if ($this->container['os'] === null) {
             $invalidProperties[] = "'os' can't be null";
-        }
-        if ($this->container['login'] === null) {
-            $invalidProperties[] = "'login' can't be null";
         }
         if ($this->container['nodes'] === null) {
             $invalidProperties[] = "'nodes' can't be null";
@@ -227,7 +235,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
 
     /**
     * Gets os
-    *  操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    *  **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string
     */
@@ -239,7 +247,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Sets os
     *
-    * @param string $os 操作系统类型，须精确到版本号。 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。
+    * @param string $os **参数解释**： 操作系统类型，须精确到版本号。例：Huawei Cloud EulerOS 2.0。具体支持的操作系统请参见[节点操作系统说明](node-os.xml)。 **约束限制**： 当指定“alpha.cce/NodeImageID”参数时，“os”参数必须和用户自定义镜像的操作系统一致。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -277,7 +285,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     * Gets login
     *  login
     *
-    * @return \HuaweiCloud\SDK\Cce\V3\Model\Login
+    * @return \HuaweiCloud\SDK\Cce\V3\Model\Login|null
     */
     public function getLogin()
     {
@@ -287,7 +295,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Sets login
     *
-    * @param \HuaweiCloud\SDK\Cce\V3\Model\Login $login login
+    * @param \HuaweiCloud\SDK\Cce\V3\Model\Login|null $login login
     *
     * @return $this
     */
@@ -322,8 +330,32 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets serverConfig
+    *  serverConfig
+    *
+    * @return \HuaweiCloud\SDK\Cce\V3\Model\MigrateServerConfig|null
+    */
+    public function getServerConfig()
+    {
+        return $this->container['serverConfig'];
+    }
+
+    /**
+    * Sets serverConfig
+    *
+    * @param \HuaweiCloud\SDK\Cce\V3\Model\MigrateServerConfig|null $serverConfig serverConfig
+    *
+    * @return $this
+    */
+    public function setServerConfig($serverConfig)
+    {
+        $this->container['serverConfig'] = $serverConfig;
+        return $this;
+    }
+
+    /**
     * Gets nodes
-    *  待操作节点列表
+    *  **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @return \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[]
     */
@@ -335,7 +367,7 @@ class MigrateNodesSpec implements ModelInterface, ArrayAccess
     /**
     * Sets nodes
     *
-    * @param \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[] $nodes 待操作节点列表
+    * @param \HuaweiCloud\SDK\Cce\V3\Model\NodeItem[] $nodes **参数解释**： 待操作节点列表，当前最多支持同时迁移200个节点。 **约束限制**： 不涉及
     *
     * @return $this
     */

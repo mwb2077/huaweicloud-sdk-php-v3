@@ -34,13 +34,14 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     * projectId  **参数解释**：项目ID。获取方式请参见[获取项目ID](elb_fl_0008.xml)。  **取值范围**：长度为32个字符，由小写字母和数字组成。
     * encCertificate  **参数解释**：服务器SM双证书的证书内容。 支持最大11层证书链(含证书和证书链)。  **取值范围**：PEM编码格式。最大长度65536字符。
     * encPrivateKey  **参数解释**：服务器SM双证书的私钥。  **取值范围**：PEM编码格式，最大长度8192个字符。
-    * scmCertificateId  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * scmCertificateId  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     * commonName  **参数解释**：证书绑定的主域名。  **取值范围**：不涉及
     * fingerprint  **参数解释**：证书指纹。  **取值范围**：不涉及
     * subjectAlternativeNames  **参数解释**：证书绑定的域名列表。  **取值范围**：不涉及
-    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
-    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     * protectionReason  **参数解释**：修改保护的原因。  **取值范围**：不涉及
+    * enterpriseProjectId  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
     *
     * @var string[]
     */
@@ -65,7 +66,8 @@ class CertificateInfo implements ModelInterface, ArrayAccess
             'subjectAlternativeNames' => 'string[]',
             'source' => 'string',
             'protectionStatus' => 'string',
-            'protectionReason' => 'string'
+            'protectionReason' => 'string',
+            'enterpriseProjectId' => 'string'
     ];
 
     /**
@@ -84,13 +86,14 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     * projectId  **参数解释**：项目ID。获取方式请参见[获取项目ID](elb_fl_0008.xml)。  **取值范围**：长度为32个字符，由小写字母和数字组成。
     * encCertificate  **参数解释**：服务器SM双证书的证书内容。 支持最大11层证书链(含证书和证书链)。  **取值范围**：PEM编码格式。最大长度65536字符。
     * encPrivateKey  **参数解释**：服务器SM双证书的私钥。  **取值范围**：PEM编码格式，最大长度8192个字符。
-    * scmCertificateId  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * scmCertificateId  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     * commonName  **参数解释**：证书绑定的主域名。  **取值范围**：不涉及
     * fingerprint  **参数解释**：证书指纹。  **取值范围**：不涉及
     * subjectAlternativeNames  **参数解释**：证书绑定的域名列表。  **取值范围**：不涉及
-    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
-    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     * protectionReason  **参数解释**：修改保护的原因。  **取值范围**：不涉及
+    * enterpriseProjectId  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
     *
     * @var string[]
     */
@@ -115,7 +118,8 @@ class CertificateInfo implements ModelInterface, ArrayAccess
         'subjectAlternativeNames' => null,
         'source' => null,
         'protectionStatus' => null,
-        'protectionReason' => null
+        'protectionReason' => null,
+        'enterpriseProjectId' => null
     ];
 
     /**
@@ -155,13 +159,14 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     * projectId  **参数解释**：项目ID。获取方式请参见[获取项目ID](elb_fl_0008.xml)。  **取值范围**：长度为32个字符，由小写字母和数字组成。
     * encCertificate  **参数解释**：服务器SM双证书的证书内容。 支持最大11层证书链(含证书和证书链)。  **取值范围**：PEM编码格式。最大长度65536字符。
     * encPrivateKey  **参数解释**：服务器SM双证书的私钥。  **取值范围**：PEM编码格式，最大长度8192个字符。
-    * scmCertificateId  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * scmCertificateId  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     * commonName  **参数解释**：证书绑定的主域名。  **取值范围**：不涉及
     * fingerprint  **参数解释**：证书指纹。  **取值范围**：不涉及
     * subjectAlternativeNames  **参数解释**：证书绑定的域名列表。  **取值范围**：不涉及
-    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
-    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     * protectionReason  **参数解释**：修改保护的原因。  **取值范围**：不涉及
+    * enterpriseProjectId  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
     *
     * @var string[]
     */
@@ -186,7 +191,8 @@ class CertificateInfo implements ModelInterface, ArrayAccess
             'subjectAlternativeNames' => 'subject_alternative_names',
             'source' => 'source',
             'protectionStatus' => 'protection_status',
-            'protectionReason' => 'protection_reason'
+            'protectionReason' => 'protection_reason',
+            'enterpriseProjectId' => 'enterprise_project_id'
     ];
 
     /**
@@ -205,13 +211,14 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     * projectId  **参数解释**：项目ID。获取方式请参见[获取项目ID](elb_fl_0008.xml)。  **取值范围**：长度为32个字符，由小写字母和数字组成。
     * encCertificate  **参数解释**：服务器SM双证书的证书内容。 支持最大11层证书链(含证书和证书链)。  **取值范围**：PEM编码格式。最大长度65536字符。
     * encPrivateKey  **参数解释**：服务器SM双证书的私钥。  **取值范围**：PEM编码格式，最大长度8192个字符。
-    * scmCertificateId  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * scmCertificateId  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     * commonName  **参数解释**：证书绑定的主域名。  **取值范围**：不涉及
     * fingerprint  **参数解释**：证书指纹。  **取值范围**：不涉及
     * subjectAlternativeNames  **参数解释**：证书绑定的域名列表。  **取值范围**：不涉及
-    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
-    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     * protectionReason  **参数解释**：修改保护的原因。  **取值范围**：不涉及
+    * enterpriseProjectId  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
     *
     * @var string[]
     */
@@ -236,7 +243,8 @@ class CertificateInfo implements ModelInterface, ArrayAccess
             'subjectAlternativeNames' => 'setSubjectAlternativeNames',
             'source' => 'setSource',
             'protectionStatus' => 'setProtectionStatus',
-            'protectionReason' => 'setProtectionReason'
+            'protectionReason' => 'setProtectionReason',
+            'enterpriseProjectId' => 'setEnterpriseProjectId'
     ];
 
     /**
@@ -255,13 +263,14 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     * projectId  **参数解释**：项目ID。获取方式请参见[获取项目ID](elb_fl_0008.xml)。  **取值范围**：长度为32个字符，由小写字母和数字组成。
     * encCertificate  **参数解释**：服务器SM双证书的证书内容。 支持最大11层证书链(含证书和证书链)。  **取值范围**：PEM编码格式。最大长度65536字符。
     * encPrivateKey  **参数解释**：服务器SM双证书的私钥。  **取值范围**：PEM编码格式，最大长度8192个字符。
-    * scmCertificateId  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * scmCertificateId  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     * commonName  **参数解释**：证书绑定的主域名。  **取值范围**：不涉及
     * fingerprint  **参数解释**：证书指纹。  **取值范围**：不涉及
     * subjectAlternativeNames  **参数解释**：证书绑定的域名列表。  **取值范围**：不涉及
-    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
-    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * source  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * protectionStatus  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     * protectionReason  **参数解释**：修改保护的原因。  **取值范围**：不涉及
+    * enterpriseProjectId  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
     *
     * @var string[]
     */
@@ -286,7 +295,8 @@ class CertificateInfo implements ModelInterface, ArrayAccess
             'subjectAlternativeNames' => 'getSubjectAlternativeNames',
             'source' => 'getSource',
             'protectionStatus' => 'getProtectionStatus',
-            'protectionReason' => 'getProtectionReason'
+            'protectionReason' => 'getProtectionReason',
+            'enterpriseProjectId' => 'getEnterpriseProjectId'
     ];
 
     /**
@@ -383,6 +393,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
         $this->container['source'] = isset($data['source']) ? $data['source'] : null;
         $this->container['protectionStatus'] = isset($data['protectionStatus']) ? $data['protectionStatus'] : null;
         $this->container['protectionReason'] = isset($data['protectionReason']) ? $data['protectionReason'] : null;
+        $this->container['enterpriseProjectId'] = isset($data['enterpriseProjectId']) ? $data['enterpriseProjectId'] : null;
     }
 
     /**
@@ -807,7 +818,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets scmCertificateId
-    *  **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    *  **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     *
     * @return string|null
     */
@@ -819,7 +830,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     /**
     * Sets scmCertificateId
     *
-    * @param string|null $scmCertificateId **参数解释**：云证书管理服务（CCM）中的证书ID。  **取值范围**：不涉及
+    * @param string|null $scmCertificateId **参数解释**：云证书与管理服务（CCM）中的证书ID。  **取值范围**：不涉及
     *
     * @return $this
     */
@@ -903,7 +914,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets source
-    *  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    *  **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
     *
     * @return string|null
     */
@@ -915,7 +926,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     /**
     * Sets source
     *
-    * @param string|null $source **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书管理服务（CCM）中的证书。 - 空值：表示自有证书。
+    * @param string|null $source **参数解释**：标记当前证书来源。  **取值范围**： - scm：表示关联云证书与管理服务（CCM）中的证书。 - 空值：表示自有证书。
     *
     * @return $this
     */
@@ -927,7 +938,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets protectionStatus
-    *  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    *  **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     *
     * @return string|null
     */
@@ -939,7 +950,7 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     /**
     * Sets protectionStatus
     *
-    * @param string|null $protectionStatus **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护  - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
+    * @param string|null $protectionStatus **参数解释**：修改保护状态。  **取值范围**：  - nonProtection: 不保护 - consoleProtection: 控制台修改保护，即禁止通过控制台修改。
     *
     * @return $this
     */
@@ -970,6 +981,30 @@ class CertificateInfo implements ModelInterface, ArrayAccess
     public function setProtectionReason($protectionReason)
     {
         $this->container['protectionReason'] = $protectionReason;
+        return $this;
+    }
+
+    /**
+    * Gets enterpriseProjectId
+    *  **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
+    *
+    * @return string|null
+    */
+    public function getEnterpriseProjectId()
+    {
+        return $this->container['enterpriseProjectId'];
+    }
+
+    /**
+    * Sets enterpriseProjectId
+    *
+    * @param string|null $enterpriseProjectId **参数解释**：资源所属的企业项目ID。  **取值范围**： - \"0\"：表示资源属于default企业项目。 - UUID格式的字符串，表示非默认企业项目。  [不支持该字段，请勿使用。](tag:dt,hcso_dt)
+    *
+    * @return $this
+    */
+    public function setEnterpriseProjectId($enterpriseProjectId)
+    {
+        $this->container['enterpriseProjectId'] = $enterpriseProjectId;
         return $this;
     }
 

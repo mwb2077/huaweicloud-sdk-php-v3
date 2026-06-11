@@ -21,17 +21,15 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * name  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    * policyname  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * description  **参数解释：** 规则描述 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * action  action
-    * type  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * type  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     * tags  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'name' => 'string',
-            'policyname' => 'string',
             'description' => 'string',
             'action' => '\HuaweiCloud\SDK\Waf\V1\Model\UpdateIpReputationRuleRequestBodyAction',
             'type' => 'string',
@@ -41,17 +39,15 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * name  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    * policyname  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * description  **参数解释：** 规则描述 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * action  action
-    * type  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * type  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     * tags  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'name' => null,
-        'policyname' => null,
         'description' => null,
         'action' => null,
         'type' => null,
@@ -82,17 +78,15 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * name  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    * policyname  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * description  **参数解释：** 规则描述 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * action  action
-    * type  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * type  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     * tags  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'name' => 'name',
-            'policyname' => 'policyname',
             'description' => 'description',
             'action' => 'action',
             'type' => 'type',
@@ -102,17 +96,15 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * name  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    * policyname  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * description  **参数解释：** 规则描述 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * action  action
-    * type  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * type  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     * tags  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
     protected static $setters = [
             'name' => 'setName',
-            'policyname' => 'setPolicyname',
             'description' => 'setDescription',
             'action' => 'setAction',
             'type' => 'setType',
@@ -122,17 +114,15 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * name  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    * policyname  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * description  **参数解释：** 规则描述 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     * action  action
-    * type  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * type  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     * tags  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @var string[]
     */
     protected static $getters = [
             'name' => 'getName',
-            'policyname' => 'getPolicyname',
             'description' => 'getDescription',
             'action' => 'getAction',
             'type' => 'getType',
@@ -198,7 +188,6 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['policyname'] = isset($data['policyname']) ? $data['policyname'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['action'] = isset($data['action']) ? $data['action'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
@@ -213,6 +202,18 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['action'] === null) {
+            $invalidProperties[] = "'action' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['tags'] === null) {
+            $invalidProperties[] = "'tags' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -231,7 +232,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     * Gets name
     *  **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
-    * @return string|null
+    * @return string
     */
     public function getName()
     {
@@ -241,37 +242,13 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets name
     *
-    * @param string|null $name **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * @param string $name **参数解释：** 规则名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */
     public function setName($name)
     {
         $this->container['name'] = $name;
-        return $this;
-    }
-
-    /**
-    * Gets policyname
-    *  **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    *
-    * @return string|null
-    */
-    public function getPolicyname()
-    {
-        return $this->container['policyname'];
-    }
-
-    /**
-    * Sets policyname
-    *
-    * @param string|null $policyname **参数解释：** 策略名称 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
-    *
-    * @return $this
-    */
-    public function setPolicyname($policyname)
-    {
-        $this->container['policyname'] = $policyname;
         return $this;
     }
 
@@ -303,7 +280,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     * Gets action
     *  action
     *
-    * @return \HuaweiCloud\SDK\Waf\V1\Model\UpdateIpReputationRuleRequestBodyAction|null
+    * @return \HuaweiCloud\SDK\Waf\V1\Model\UpdateIpReputationRuleRequestBodyAction
     */
     public function getAction()
     {
@@ -313,7 +290,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets action
     *
-    * @param \HuaweiCloud\SDK\Waf\V1\Model\UpdateIpReputationRuleRequestBodyAction|null $action action
+    * @param \HuaweiCloud\SDK\Waf\V1\Model\UpdateIpReputationRuleRequestBodyAction $action action
     *
     * @return $this
     */
@@ -325,9 +302,9 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets type
-    *  **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    *  **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     *
-    * @return string|null
+    * @return string
     */
     public function getType()
     {
@@ -337,7 +314,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets type
     *
-    * @param string|null $type **参数解释：** 规则类型（如idc表示机房IP情报类型） **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * @param string $type **参数解释：** 信誉类型（目前只支持idc） **约束限制：** 不涉及 **取值范围：** - idc  **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -351,7 +328,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     * Gets tags
     *  **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
-    * @return string[]|null
+    * @return string[]
     */
     public function getTags()
     {
@@ -361,7 +338,7 @@ class UpdateIpReputationRuleRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets tags
     *
-    * @param string[]|null $tags **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * @param string[] $tags **参数解释：** 标签列表，关联的情报标识 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */

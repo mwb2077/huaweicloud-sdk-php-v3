@@ -392,139 +392,6 @@ class CcAsyncClient extends Client
     }
 
     /**
-     * 将带宽包实例绑定到云连接实例
-     *
-     * 将带宽包实例绑定到云连接实例。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function associateBandwidthPackageAsync($request)
-    {
-        return $this->associateBandwidthPackageAsyncWithHttpInfo($request);
-    }
-    
-    public function associateBandwidthPackageAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/{id}/associate';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['id'] !== null) {
-            $pathParams['id'] = $localVarParams['id'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\AssociateBandwidthPackageResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\AssociateBandwidthPackageRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 创建带宽包实例
-     *
-     * 创建带宽包实例。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function createBandwidthPackageAsync($request)
-    {
-        return $this->createBandwidthPackageAsyncWithHttpInfo($request);
-    }
-    
-    public function createBandwidthPackageAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\CreateBandwidthPackageResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\CreateBandwidthPackageRequest',
-            $asyncRequest = true);
-    }
-
-    /**
      * 删除带宽包实例
      *
      * 删除带宽包实例。
@@ -590,74 +457,6 @@ class CcAsyncClient extends Client
     }
 
     /**
-     * 解除带宽包实例与云连接实例的绑定
-     *
-     * 解除带宽包实例与云连接实例的绑定。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function disassociateBandwidthPackageAsync($request)
-    {
-        return $this->disassociateBandwidthPackageAsyncWithHttpInfo($request);
-    }
-    
-    public function disassociateBandwidthPackageAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/{id}/disassociate';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['id'] !== null) {
-            $pathParams['id'] = $localVarParams['id'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\DisassociateBandwidthPackageResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\DisassociateBandwidthPackageRequest',
-            $asyncRequest = true);
-    }
-
-    /**
      * 查询带宽包的标签信息
      *
      * 查询带宽包的标签信息。
@@ -716,226 +515,6 @@ class CcAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackageTagsResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackageTagsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询带宽包列表
-     *
-     * 查询带宽包列表。
-     * 分页查询使用的参数为marker、limit。marker和limit一起使用时才会生效，单独使用无效。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listBandwidthPackagesAsync($request)
-    {
-        return $this->listBandwidthPackagesAsyncWithHttpInfo($request);
-    }
-    
-    public function listBandwidthPackagesAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['limit'] !== null) {
-            $queryParams['limit'] = $localVarParams['limit'];
-        }
-        if ($localVarParams['marker'] !== null) {
-            $queryParams['marker'] = $localVarParams['marker'];
-        }
-        if ($localVarParams['id'] !== null) {
-            $queryParams['id'] = $localVarParams['id'];
-        }
-        if ($localVarParams['name'] !== null) {
-            $queryParams['name'] = $localVarParams['name'];
-        }
-        if ($localVarParams['enterpriseProjectId'] !== null) {
-            $queryParams['enterprise_project_id'] = $localVarParams['enterpriseProjectId'];
-        }
-        if ($localVarParams['cloudConnectionId'] !== null) {
-            $queryParams['cloud_connection_id'] = $localVarParams['cloudConnectionId'];
-        }
-        if ($localVarParams['status'] !== null) {
-            $queryParams['status'] = $localVarParams['status'];
-        }
-        if ($localVarParams['billingMode'] !== null) {
-            $queryParams['billing_mode'] = $localVarParams['billingMode'];
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $queryParams['resource_id'] = $localVarParams['resourceId'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackagesResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackagesRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 通过标签过滤带宽包实例
-     *
-     * 通过标签过滤带宽包实例。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listBandwidthPackagesByTagsAsync($request)
-    {
-        return $this->listBandwidthPackagesByTagsAsyncWithHttpInfo($request);
-    }
-    
-    public function listBandwidthPackagesByTagsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/filter';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackagesByTagsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackagesByTagsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询带宽包实例
-     *
-     * 查询带宽包实例。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function showBandwidthPackageAsync($request)
-    {
-        return $this->showBandwidthPackageAsyncWithHttpInfo($request);
-    }
-    
-    public function showBandwidthPackageAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['id'] !== null) {
-            $pathParams['id'] = $localVarParams['id'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ShowBandwidthPackageResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ShowBandwidthPackageRequest',
             $asyncRequest = true);
     }
 
@@ -1072,74 +651,6 @@ class CcAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Cc\V3\Model\UntagBandwidthPackageResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Cc\V3\Model\UntagBandwidthPackageRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 更新带宽包实例
-     *
-     * 更新带宽包实例。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function updateBandwidthPackageAsync($request)
-    {
-        return $this->updateBandwidthPackageAsyncWithHttpInfo($request);
-    }
-    
-    public function updateBandwidthPackageAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['id'] !== null) {
-            $pathParams['id'] = $localVarParams['id'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='PUT',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\UpdateBandwidthPackageResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\UpdateBandwidthPackageRequest',
             $asyncRequest = true);
     }
 
@@ -3849,6 +3360,12 @@ class CcAsyncClient extends Client
             $value = $request->$getter();
             $localVarParams[$k] = $value;
         }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
+        }
         if ($localVarParams['resourceType'] !== null) {
             $queryParams['resource_type'] = $localVarParams['resourceType'];
         }
@@ -4104,541 +3621,6 @@ class CcAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ShowCloudConnectionRoutesResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ShowCloudConnectionRoutesRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 批量添加账户全域互联带宽资源标签
-     *
-     * TMS批量添加资源标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function batchCreateGcbResourceTagsAsync($request)
-    {
-        return $this->batchCreateGcbResourceTagsAsyncWithHttpInfo($request);
-    }
-    
-    public function batchCreateGcbResourceTagsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/{resource_id}/tags/create';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $pathParams['resource_id'] = $localVarParams['resourceId'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\BatchCreateGcbResourceTagsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\BatchCreateGcbResourceTagsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 批量删除账户全域互联带宽资源标签
-     *
-     * 批量删除账户全域互联带宽资源标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function batchDeleteGcbResourceTagsAsync($request)
-    {
-        return $this->batchDeleteGcbResourceTagsAsyncWithHttpInfo($request);
-    }
-    
-    public function batchDeleteGcbResourceTagsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/{resource_id}/tags/delete';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $pathParams['resource_id'] = $localVarParams['resourceId'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\BatchDeleteGcbResourceTagsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\BatchDeleteGcbResourceTagsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询账户全域互联带宽资源标签数量
-     *
-     * 查询账户全域互联带宽资源标签数量
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function countGcbResourceByTagAsync($request)
-    {
-        return $this->countGcbResourceByTagAsyncWithHttpInfo($request);
-    }
-    
-    public function countGcbResourceByTagAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/resource-instances/count';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\CountGcbResourceByTagResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\CountGcbResourceByTagRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 添加账户全域互联带宽资源标签
-     *
-     * 添加账户全域互联带宽资源标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function createGcbResourceTagAsync($request)
-    {
-        return $this->createGcbResourceTagAsyncWithHttpInfo($request);
-    }
-    
-    public function createGcbResourceTagAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/{resource_id}/tags';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $pathParams['resource_id'] = $localVarParams['resourceId'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\CreateGcbResourceTagResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\CreateGcbResourceTagRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 删除账户全域互联带宽资源标签
-     *
-     * 删除账户全域互联带宽资源标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function deleteGcbResourceTagAsync($request)
-    {
-        return $this->deleteGcbResourceTagAsyncWithHttpInfo($request);
-    }
-    
-    public function deleteGcbResourceTagAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/{resource_id}/tags/{tag_key}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $pathParams['resource_id'] = $localVarParams['resourceId'];
-        }
-        if ($localVarParams['tagKey'] !== null) {
-            $pathParams['tag_key'] = $localVarParams['tagKey'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                []
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                [],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='DELETE',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\DeleteGcbResourceTagResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\DeleteGcbResourceTagRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询账户全域互联带宽资源实例列表
-     *
-     * 查询账户全域互联带宽资源实例列表
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listGcbResourceByTagAsync($request)
-    {
-        return $this->listGcbResourceByTagAsyncWithHttpInfo($request);
-    }
-    
-    public function listGcbResourceByTagAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/resource-instances/filter';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['limit'] !== null) {
-            $queryParams['limit'] = $localVarParams['limit'];
-        }
-        if ($localVarParams['offset'] !== null) {
-            $queryParams['offset'] = $localVarParams['offset'];
-        }
-        if ($localVarParams['body'] !== null) {
-            $httpBody= $localVarParams['body'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='POST',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceByTagResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceByTagRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询账户全域互联带宽资源的标签
-     *
-     * 查询账户全域互联带宽资源的标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listGcbResourceTagsAsync($request)
-    {
-        return $this->listGcbResourceTagsAsyncWithHttpInfo($request);
-    }
-    
-    public function listGcbResourceTagsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/{resource_id}/tags';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['resourceId'] !== null) {
-            $pathParams['resource_id'] = $localVarParams['resourceId'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceTagsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceTagsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询账户全域互联带宽所有资源标签
-     *
-     * 查询账户全域互联带宽所有资源标签
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listGcbTenantTagsAsync($request)
-    {
-        return $this->listGcbTenantTagsAsyncWithHttpInfo($request);
-    }
-    
-    public function listGcbTenantTagsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/gcb/tags';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbTenantTagsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbTenantTagsRequest',
             $asyncRequest = true);
     }
 
@@ -5523,6 +4505,541 @@ class CcAsyncClient extends Client
             $responseType='\HuaweiCloud\SDK\Cc\V3\Model\UpdateGlobalConnectionBandwidthResponse',
             $collectionFormats=$collection_formats,
             $requestType='\HuaweiCloud\SDK\Cc\V3\Model\UpdateGlobalConnectionBandwidthRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 批量添加账户全域互联带宽资源标签
+     *
+     * TMS批量添加资源标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function batchCreateGcbResourceTagsAsync($request)
+    {
+        return $this->batchCreateGcbResourceTagsAsyncWithHttpInfo($request);
+    }
+    
+    public function batchCreateGcbResourceTagsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/{resource_id}/tags/create';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['resourceId'] !== null) {
+            $pathParams['resource_id'] = $localVarParams['resourceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\BatchCreateGcbResourceTagsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\BatchCreateGcbResourceTagsRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 批量删除账户全域互联带宽资源标签
+     *
+     * 批量删除账户全域互联带宽资源标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function batchDeleteGcbResourceTagsAsync($request)
+    {
+        return $this->batchDeleteGcbResourceTagsAsyncWithHttpInfo($request);
+    }
+    
+    public function batchDeleteGcbResourceTagsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/{resource_id}/tags/delete';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['resourceId'] !== null) {
+            $pathParams['resource_id'] = $localVarParams['resourceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\BatchDeleteGcbResourceTagsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\BatchDeleteGcbResourceTagsRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询账户全域互联带宽资源标签数量
+     *
+     * 查询账户全域互联带宽资源标签数量
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function countGcbResourceByTagAsync($request)
+    {
+        return $this->countGcbResourceByTagAsyncWithHttpInfo($request);
+    }
+    
+    public function countGcbResourceByTagAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/resource-instances/count';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\CountGcbResourceByTagResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\CountGcbResourceByTagRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 添加账户全域互联带宽资源标签
+     *
+     * 添加账户全域互联带宽资源标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function createGcbResourceTagAsync($request)
+    {
+        return $this->createGcbResourceTagAsyncWithHttpInfo($request);
+    }
+    
+    public function createGcbResourceTagAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/{resource_id}/tags';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['resourceId'] !== null) {
+            $pathParams['resource_id'] = $localVarParams['resourceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\CreateGcbResourceTagResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\CreateGcbResourceTagRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 删除账户全域互联带宽资源标签
+     *
+     * 删除账户全域互联带宽资源标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function deleteGcbResourceTagAsync($request)
+    {
+        return $this->deleteGcbResourceTagAsyncWithHttpInfo($request);
+    }
+    
+    public function deleteGcbResourceTagAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/{resource_id}/tags/{tag_key}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['resourceId'] !== null) {
+            $pathParams['resource_id'] = $localVarParams['resourceId'];
+        }
+        if ($localVarParams['tagKey'] !== null) {
+            $pathParams['tag_key'] = $localVarParams['tagKey'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='DELETE',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\DeleteGcbResourceTagResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\DeleteGcbResourceTagRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询账户全域互联带宽资源实例列表
+     *
+     * 查询账户全域互联带宽资源实例列表
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listGcbResourceByTagAsync($request)
+    {
+        return $this->listGcbResourceByTagAsyncWithHttpInfo($request);
+    }
+    
+    public function listGcbResourceByTagAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/resource-instances/filter';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['offset'] !== null) {
+            $queryParams['offset'] = $localVarParams['offset'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='POST',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceByTagResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceByTagRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询账户全域互联带宽资源的标签
+     *
+     * 查询账户全域互联带宽资源的标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listGcbResourceTagsAsync($request)
+    {
+        return $this->listGcbResourceTagsAsyncWithHttpInfo($request);
+    }
+    
+    public function listGcbResourceTagsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/{resource_id}/tags';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['resourceId'] !== null) {
+            $pathParams['resource_id'] = $localVarParams['resourceId'];
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceTagsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbResourceTagsRequest',
+            $asyncRequest = true);
+    }
+
+    /**
+     * 查询账户全域互联带宽所有资源标签
+     *
+     * 查询账户全域互联带宽所有资源标签
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function listGcbTenantTagsAsync($request)
+    {
+        return $this->listGcbTenantTagsAsyncWithHttpInfo($request);
+    }
+    
+    public function listGcbTenantTagsAsyncWithHttpInfo($request){
+        $collection_formats = [];
+        $resourcePath = '/v3/gcb/tags';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='GET',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbTenantTagsResponse',
+            $collectionFormats=$collection_formats,
+            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListGcbTenantTagsRequest',
             $asyncRequest = true);
     }
 
@@ -7009,75 +6526,7 @@ class CcAsyncClient extends Client
     }
 
     /**
-     * 查询大区互通类型的带宽包资源规格列表
-     *
-     * 查询大区互通类型的带宽包资源规格列表。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listAreaBandwidthPackageSpecificationsAsync($request)
-    {
-        return $this->listAreaBandwidthPackageSpecificationsAsyncWithHttpInfo($request);
-    }
-    
-    public function listAreaBandwidthPackageSpecificationsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/area-specifications';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['localAreaId'] !== null) {
-            $queryParams['local_area_id'] = $localVarParams['localAreaId'];
-        }
-        if ($localVarParams['remoteAreaId'] !== null) {
-            $queryParams['remote_area_id'] = $localVarParams['remoteAreaId'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListAreaBandwidthPackageSpecificationsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListAreaBandwidthPackageSpecificationsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询当前支持的Area列表
+     * 查询当前支持的大区列表
      *
      * 查询当前支持的大区列表。
      * 
@@ -7106,6 +6555,12 @@ class CcAsyncClient extends Client
             $getter = $request::getters()[$k];
             $value = $request->$getter();
             $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
         }
 
         if ($multipart) {
@@ -7213,80 +6668,6 @@ class CcAsyncClient extends Client
     }
 
     /**
-     * 查询带宽包线路列表
-     *
-     * 查询带宽包线路列表。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listBandwidthPackageLinesAsync($request)
-    {
-        return $this->listBandwidthPackageLinesAsyncWithHttpInfo($request);
-    }
-    
-    public function listBandwidthPackageLinesAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/lines';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['limit'] !== null) {
-            $queryParams['limit'] = $localVarParams['limit'];
-        }
-        if ($localVarParams['marker'] !== null) {
-            $queryParams['marker'] = $localVarParams['marker'];
-        }
-        if ($localVarParams['level'] !== null) {
-            $queryParams['level'] = $localVarParams['level'];
-        }
-        if ($localVarParams['name'] !== null) {
-            $queryParams['name'] = $localVarParams['name'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackageLinesResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListBandwidthPackageLinesRequest',
-            $asyncRequest = true);
-    }
-
-    /**
      * 查询带宽包站点列表
      *
      * 查询带宽包站点列表。
@@ -7364,77 +6745,9 @@ class CcAsyncClient extends Client
     }
 
     /**
-     * 查询区域互通类型的带宽包规格列表
+     * 查询当前支持的区域列表
      *
-     * 查询区域互通类型的带宽包规格列表。
-     * 
-     * Please refer to HUAWEI cloud API Explorer for details.
-     *
-     * @param $request 请求对象
-     * @return response
-     */
-    public function listRegionBandwidthPackageSpecificationsAsync($request)
-    {
-        return $this->listRegionBandwidthPackageSpecificationsAsyncWithHttpInfo($request);
-    }
-    
-    public function listRegionBandwidthPackageSpecificationsAsyncWithHttpInfo($request){
-        $collection_formats = [];
-        $resourcePath = '/v3/{domain_id}/ccaas/bandwidth-packages/region-specifications';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $pathParams = [];
-        $httpBody = null;
-        $multipart = false;
-        $localVarParams = [];
-        $arr = $request::attributeMap();
-        foreach ($arr as $k => $v) {
-            $getter = $request::getters()[$k];
-            $value = $request->$getter();
-            $localVarParams[$k] = $value;
-        }
-        if ($localVarParams['localRegionId'] !== null) {
-            $queryParams['local_region_id'] = $localVarParams['localRegionId'];
-        }
-        if ($localVarParams['remoteRegionId'] !== null) {
-            $queryParams['remote_region_id'] = $localVarParams['remoteRegionId'];
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-        $headers = array_merge(
-            $headerParams,
-            $headers
-        );
-
-        return $this->callApi(
-            $method='GET',
-            $resourcePath,
-            $pathParams,
-            $queryParams,
-            $headerParams=$headers,
-            $body=$httpBody,
-            $multipart = $multipart,
-            $postParams=$formParams,
-            $responseType='\HuaweiCloud\SDK\Cc\V3\Model\ListRegionBandwidthPackageSpecificationsResponse',
-            $collectionFormats=$collection_formats,
-            $requestType='\HuaweiCloud\SDK\Cc\V3\Model\ListRegionBandwidthPackageSpecificationsRequest',
-            $asyncRequest = true);
-    }
-
-    /**
-     * 查询当前支持的Region列表
-     *
-     * 查询当前支持的Region列表。
+     * 查询当前支持的区域列表。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -7461,6 +6774,12 @@ class CcAsyncClient extends Client
             $getter = $request::getters()[$k];
             $value = $request->$getter();
             $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['limit'] !== null) {
+            $queryParams['limit'] = $localVarParams['limit'];
+        }
+        if ($localVarParams['marker'] !== null) {
+            $queryParams['marker'] = $localVarParams['marker'];
         }
 
         if ($multipart) {

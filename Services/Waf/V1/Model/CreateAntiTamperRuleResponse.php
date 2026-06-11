@@ -24,9 +24,9 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     * id  规则id
     * policyid  策略id
     * hostname  防篡改的域名
-    * url  防篡改的url，
+    * url  防篡改的url
     * description  创建规则的时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -44,9 +44,9 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     * id  规则id
     * policyid  策略id
     * hostname  防篡改的域名
-    * url  防篡改的url，
+    * url  防篡改的url
     * description  创建规则的时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -85,9 +85,9 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     * id  规则id
     * policyid  策略id
     * hostname  防篡改的域名
-    * url  防篡改的url，
+    * url  防篡改的url
     * description  创建规则的时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -105,9 +105,9 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     * id  规则id
     * policyid  策略id
     * hostname  防篡改的域名
-    * url  防篡改的url，
+    * url  防篡改的url
     * description  创建规则的时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -125,9 +125,9 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     * id  规则id
     * policyid  策略id
     * hostname  防篡改的域名
-    * url  防篡改的url，
+    * url  防篡改的url
     * description  创建规则的时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @var string[]
     */
@@ -302,7 +302,7 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
 
     /**
     * Gets url
-    *  防篡改的url，
+    *  防篡改的url
     *
     * @return string|null
     */
@@ -314,7 +314,7 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     /**
     * Sets url
     *
-    * @param string|null $url 防篡改的url，
+    * @param string|null $url 防篡改的url
     *
     * @return $this
     */
@@ -350,7 +350,7 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
 
     /**
     * Gets status
-    *  规则状态，0：关闭，1：开启
+    *  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return int|null
     */
@@ -362,7 +362,7 @@ class CreateAntiTamperRuleResponse implements ModelInterface, ArrayAccess
     /**
     * Sets status
     *
-    * @param int|null $status 规则状态，0：关闭，1：开启
+    * @param int|null $status **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return $this
     */

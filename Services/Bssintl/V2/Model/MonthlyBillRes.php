@@ -69,6 +69,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     * consumeTime  |参数名称：消费时间| |参数约束及描述：消费时间，UTC时间，格式：yyyy-MM-ddTHH:mm:ssZ。包周期、预留实例预付为交易时间，按需、预留实例按时计费为话单生失效时间。 说明：当statistic_type=3时有效。|
     * beId  |参数名称：华为云运营实体ID。| |参数约束及描述：华为云运营实体ID。|
     * extendParams  extendParams
+    * accountName  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    * periodNum  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
     *
     * @var string[]
     */
@@ -121,7 +123,9 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
             'expireTime' => 'string',
             'consumeTime' => 'string',
             'beId' => 'string',
-            'extendParams' => '\HuaweiCloud\SDK\Bssintl\V2\Model\ResRelation'
+            'extendParams' => '\HuaweiCloud\SDK\Bssintl\V2\Model\ResRelation',
+            'accountName' => 'string',
+            'periodNum' => 'float'
     ];
 
     /**
@@ -175,6 +179,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     * consumeTime  |参数名称：消费时间| |参数约束及描述：消费时间，UTC时间，格式：yyyy-MM-ddTHH:mm:ssZ。包周期、预留实例预付为交易时间，按需、预留实例按时计费为话单生失效时间。 说明：当statistic_type=3时有效。|
     * beId  |参数名称：华为云运营实体ID。| |参数约束及描述：华为云运营实体ID。|
     * extendParams  extendParams
+    * accountName  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    * periodNum  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
     *
     * @var string[]
     */
@@ -227,7 +233,9 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
         'expireTime' => null,
         'consumeTime' => null,
         'beId' => null,
-        'extendParams' => null
+        'extendParams' => null,
+        'accountName' => null,
+        'periodNum' => 'bigdecimal'
     ];
 
     /**
@@ -302,6 +310,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     * consumeTime  |参数名称：消费时间| |参数约束及描述：消费时间，UTC时间，格式：yyyy-MM-ddTHH:mm:ssZ。包周期、预留实例预付为交易时间，按需、预留实例按时计费为话单生失效时间。 说明：当statistic_type=3时有效。|
     * beId  |参数名称：华为云运营实体ID。| |参数约束及描述：华为云运营实体ID。|
     * extendParams  extendParams
+    * accountName  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    * periodNum  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
     *
     * @var string[]
     */
@@ -354,7 +364,9 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
             'expireTime' => 'expire_time',
             'consumeTime' => 'consume_time',
             'beId' => 'be_id',
-            'extendParams' => 'extend_params'
+            'extendParams' => 'extend_params',
+            'accountName' => 'account_name',
+            'periodNum' => 'period_num'
     ];
 
     /**
@@ -408,6 +420,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     * consumeTime  |参数名称：消费时间| |参数约束及描述：消费时间，UTC时间，格式：yyyy-MM-ddTHH:mm:ssZ。包周期、预留实例预付为交易时间，按需、预留实例按时计费为话单生失效时间。 说明：当statistic_type=3时有效。|
     * beId  |参数名称：华为云运营实体ID。| |参数约束及描述：华为云运营实体ID。|
     * extendParams  extendParams
+    * accountName  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    * periodNum  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
     *
     * @var string[]
     */
@@ -460,7 +474,9 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
             'expireTime' => 'setExpireTime',
             'consumeTime' => 'setConsumeTime',
             'beId' => 'setBeId',
-            'extendParams' => 'setExtendParams'
+            'extendParams' => 'setExtendParams',
+            'accountName' => 'setAccountName',
+            'periodNum' => 'setPeriodNum'
     ];
 
     /**
@@ -514,6 +530,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     * consumeTime  |参数名称：消费时间| |参数约束及描述：消费时间，UTC时间，格式：yyyy-MM-ddTHH:mm:ssZ。包周期、预留实例预付为交易时间，按需、预留实例按时计费为话单生失效时间。 说明：当statistic_type=3时有效。|
     * beId  |参数名称：华为云运营实体ID。| |参数约束及描述：华为云运营实体ID。|
     * extendParams  extendParams
+    * accountName  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    * periodNum  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
     *
     * @var string[]
     */
@@ -566,7 +584,9 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
             'expireTime' => 'getExpireTime',
             'consumeTime' => 'getConsumeTime',
             'beId' => 'getBeId',
-            'extendParams' => 'getExtendParams'
+            'extendParams' => 'getExtendParams',
+            'accountName' => 'getAccountName',
+            'periodNum' => 'getPeriodNum'
     ];
 
     /**
@@ -676,6 +696,8 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
         $this->container['consumeTime'] = isset($data['consumeTime']) ? $data['consumeTime'] : null;
         $this->container['beId'] = isset($data['beId']) ? $data['beId'] : null;
         $this->container['extendParams'] = isset($data['extendParams']) ? $data['extendParams'] : null;
+        $this->container['accountName'] = isset($data['accountName']) ? $data['accountName'] : null;
+        $this->container['periodNum'] = isset($data['periodNum']) ? $data['periodNum'] : null;
     }
 
     /**
@@ -1921,6 +1943,54 @@ class MonthlyBillRes implements ModelInterface, ArrayAccess
     public function setExtendParams($extendParams)
     {
         $this->container['extendParams'] = $extendParams;
+        return $this;
+    }
+
+    /**
+    * Gets accountName
+    *  |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    *
+    * @return string|null
+    */
+    public function getAccountName()
+    {
+        return $this->container['accountName'];
+    }
+
+    /**
+    * Sets accountName
+    *
+    * @param string|null $accountName |参数名称：消费的客户登录名称。| |参数约束及描述：范围限制：0-128，如果是普通客户或者企业子客户查询消费记录，只能查询到客户自己的消费记录，且此处显示的是客户自己的客户登录名称。 如果是企业主查询消费记录，可以查询到企业主以及企业子客户的消费记录，此处为消费的实际客户登录名称。如果是企业主自己的消费记录，则为企业主的客户登录名称；如果是某个企业子客户的消费记录，则此处为企业子的客户登录名称。|
+    *
+    * @return $this
+    */
+    public function setAccountName($accountName)
+    {
+        $this->container['accountName'] = $accountName;
+        return $this;
+    }
+
+    /**
+    * Gets periodNum
+    *  |参数名称：周期数量| |参数的约束及描述：该参数非必填|
+    *
+    * @return float|null
+    */
+    public function getPeriodNum()
+    {
+        return $this->container['periodNum'];
+    }
+
+    /**
+    * Sets periodNum
+    *
+    * @param float|null $periodNum |参数名称：周期数量| |参数的约束及描述：该参数非必填|
+    *
+    * @return $this
+    */
+    public function setPeriodNum($periodNum)
+    {
+        $this->container['periodNum'] = $periodNum;
         return $this;
     }
 

@@ -20,12 +20,14 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * contentType  内容类型
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。
-    * policyId  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
-    * offset  偏移量，表示查询该偏移量之后的记录。
-    * limit  查询返回记录的数量限制。
-    * type  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * offset  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
+    * limit  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
+    * page  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    * pagesize  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    * type  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @var string[]
     */
@@ -35,17 +37,21 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
             'policyId' => 'string',
             'offset' => 'int',
             'limit' => 'int',
+            'page' => 'int',
+            'pagesize' => 'int',
             'type' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * contentType  内容类型
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。
-    * policyId  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
-    * offset  偏移量，表示查询该偏移量之后的记录。
-    * limit  查询返回记录的数量限制。
-    * type  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * offset  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
+    * limit  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
+    * page  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    * pagesize  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    * type  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @var string[]
     */
@@ -55,6 +61,8 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
         'policyId' => null,
         'offset' => null,
         'limit' => null,
+        'page' => null,
+        'pagesize' => null,
         'type' => null
     ];
 
@@ -81,12 +89,14 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * contentType  内容类型
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。
-    * policyId  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
-    * offset  偏移量，表示查询该偏移量之后的记录。
-    * limit  查询返回记录的数量限制。
-    * type  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * offset  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
+    * limit  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
+    * page  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    * pagesize  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    * type  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @var string[]
     */
@@ -96,17 +106,21 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
             'policyId' => 'policy_id',
             'offset' => 'offset',
             'limit' => 'limit',
+            'page' => 'page',
+            'pagesize' => 'pagesize',
             'type' => 'type'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * contentType  内容类型
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。
-    * policyId  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
-    * offset  偏移量，表示查询该偏移量之后的记录。
-    * limit  查询返回记录的数量限制。
-    * type  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * offset  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
+    * limit  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
+    * page  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    * pagesize  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    * type  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @var string[]
     */
@@ -116,17 +130,21 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
             'policyId' => 'setPolicyId',
             'offset' => 'setOffset',
             'limit' => 'setLimit',
+            'page' => 'setPage',
+            'pagesize' => 'setPagesize',
             'type' => 'setType'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * contentType  内容类型
+    * contentType  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     * enterpriseProjectId  您可以通过调用企业项目管理服务（EPS）的查询企业项目列表接口（ListEnterpriseProject）查询企业项目id。若需要查询当前用户所有企业项目绑定的资源信息，请传参all_granted_eps。
-    * policyId  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
-    * offset  偏移量，表示查询该偏移量之后的记录。
-    * limit  查询返回记录的数量限制。
-    * type  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * policyId  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
+    * offset  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
+    * limit  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
+    * page  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    * pagesize  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    * type  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @var string[]
     */
@@ -136,6 +154,8 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
             'policyId' => 'getPolicyId',
             'offset' => 'getOffset',
             'limit' => 'getLimit',
+            'page' => 'getPage',
+            'pagesize' => 'getPagesize',
             'type' => 'getType'
     ];
 
@@ -179,7 +199,22 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     {
         return self::$openAPIModelName;
     }
+    const TYPE_ANTICRAWLER_EXCEPT_URL = 'anticrawler_except_url';
+    const TYPE_ANTICRAWLER_SPECIFIC_URL = 'anticrawler_specific_url';
     
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_ANTICRAWLER_EXCEPT_URL,
+            self::TYPE_ANTICRAWLER_SPECIFIC_URL,
+        ];
+    }
 
 
     /**
@@ -202,6 +237,8 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
         $this->container['policyId'] = isset($data['policyId']) ? $data['policyId'] : null;
         $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
         $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
+        $this->container['page'] = isset($data['page']) ? $data['page'] : null;
+        $this->container['pagesize'] = isset($data['pagesize']) ? $data['pagesize'] : null;
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
@@ -219,12 +256,20 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
         if ($this->container['policyId'] === null) {
             $invalidProperties[] = "'policyId' can't be null";
         }
-        if ($this->container['offset'] === null) {
-            $invalidProperties[] = "'offset' can't be null";
-        }
-        if ($this->container['limit'] === null) {
-            $invalidProperties[] = "'limit' can't be null";
-        }
+            if (!is_null($this->container['page']) && ($this->container['page'] < 1)) {
+                $invalidProperties[] = "invalid value for 'page', must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['pagesize']) && ($this->container['pagesize'] < 0)) {
+                $invalidProperties[] = "invalid value for 'pagesize', must be bigger than or equal to 0.";
+            }
+            $allowedValues = $this->getTypeAllowableValues();
+                if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'type', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
         return $invalidProperties;
     }
 
@@ -241,7 +286,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets contentType
-    *  内容类型
+    *  **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     *
     * @return string
     */
@@ -253,7 +298,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Sets contentType
     *
-    * @param string $contentType 内容类型
+    * @param string $contentType **参数解释：** 内容类型 **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** application/json;charset=utf8
     *
     * @return $this
     */
@@ -289,7 +334,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets policyId
-    *  防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
+    *  **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return string
     */
@@ -301,7 +346,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Sets policyId
     *
-    * @param string $policyId 防护策略id，通过指定防护策略id来指明查询该防护策略下的防护规则，您可以通过调用查询防护策略列表（ListPolicy）获取策略id
+    * @param string $policyId **参数解释：** 防护策略id，您可以通过调用查询防护策略列表（ListPolicy）获取策略id **约束限制：** 不涉及 **取值范围：** 不涉及 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -313,9 +358,9 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets offset
-    *  偏移量，表示查询该偏移量之后的记录。
+    *  **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
     *
-    * @return int
+    * @return int|null
     */
     public function getOffset()
     {
@@ -325,7 +370,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Sets offset
     *
-    * @param int $offset 偏移量，表示查询该偏移量之后的记录。
+    * @param int|null $offset **参数解释：** 偏移量，表示查询该偏移量之后的记录，与参数limit一起使用 **约束限制：** 不涉及 **取值范围：** [0, 65535] **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -337,9 +382,9 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets limit
-    *  查询返回记录的数量限制。
+    *  **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
     *
-    * @return int
+    * @return int|null
     */
     public function getLimit()
     {
@@ -349,7 +394,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Sets limit
     *
-    * @param int $limit 查询返回记录的数量限制。
+    * @param int|null $limit **参数解释：** 查询返回记录的数量限制，与参数offset一起使用，如果offset未设置值，则limit无效 **约束限制：** 不涉及 **取值范围：** [1, 65535] **默认取值：** 10
     *
     * @return $this
     */
@@ -360,8 +405,56 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets page
+    *  **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    *
+    * @return int|null
+    */
+    public function getPage()
+    {
+        return $this->container['page'];
+    }
+
+    /**
+    * Sets page
+    *
+    * @param int|null $page **参数解释：** 当前页码，与参数pagesize一起使用 **约束限制：** 不涉及 **取值范围：** [1, 记录数/pagesize] **默认取值：** 1
+    *
+    * @return $this
+    */
+    public function setPage($page)
+    {
+        $this->container['page'] = $page;
+        return $this;
+    }
+
+    /**
+    * Gets pagesize
+    *  **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    *
+    * @return int|null
+    */
+    public function getPagesize()
+    {
+        return $this->container['pagesize'];
+    }
+
+    /**
+    * Sets pagesize
+    *
+    * @param int|null $pagesize **参数解释：** 每页大小，与参数page一起使用 **约束限制：** 不涉及 **取值范围：** [0, 2147483647] **默认取值：** 1000
+    *
+    * @return $this
+    */
+    public function setPagesize($pagesize)
+    {
+        $this->container['pagesize'] = $pagesize;
+        return $this;
+    }
+
+    /**
     * Gets type
-    *  JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    *  **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @return string|null
     */
@@ -373,7 +466,7 @@ class ListAnticrawlerRulesRequest implements ModelInterface, ArrayAccess
     /**
     * Sets type
     *
-    * @param string|null $type JS脚本反爬虫规则防护模式   - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则   - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则   - 默认值：anticrawler_except_url
+    * @param string|null $type **参数解释：** JS脚本反爬虫规则防护模式 **约束限制：** 不涉及 **取值范围：**  - anticrawler_except_url: 防护所有路径模式，在该模式下，查询的JS脚本反爬虫规则为排除的防护路径规则  - anticrawler_specific_url: 防护指定路径模式，在该模式下，查询的JS脚本反爬虫规则为指定要防护的路径规则 **默认取值：** anticrawler_except_url
     *
     * @return $this
     */

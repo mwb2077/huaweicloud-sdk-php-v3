@@ -576,11 +576,11 @@ class DdsClient extends Client
         }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
+                [],
                 []
             );
         }
@@ -1441,7 +1441,7 @@ class DdsClient extends Client
     /**
      * 删除参数模板
      *
-     * 删除参数模板。
+     * 删除指定参数模板。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -1690,6 +1690,71 @@ class DdsClient extends Client
             $postParams=$formParams,
             $responseType='\HuaweiCloud\SDK\Dds\V3\Model\DeleteInstanceResponse',
             $requestType='\HuaweiCloud\SDK\Dds\V3\Model\DeleteInstanceRequest');
+    }
+
+    /**
+     * 删除集群的Shard/Config IP
+     *
+     * 删除集群的Shard/Config IP
+     * 
+     * Please refer to HUAWEI cloud API Explorer for details.
+     *
+     * @param $request 请求对象
+     * @return response
+     */
+    public function deleteIp($request)
+    {
+        return $this->deleteIpWithHttpInfo($request);
+    }
+
+    public function deleteIpWithHttpInfo($request)
+    {
+        $resourcePath = '/v3/{project_id}/instances/{instance_id}/ip';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $pathParams = [];
+        $httpBody = null;
+        $multipart = false;
+        $localVarParams = [];
+        $arr = $request::attributeMap();
+        foreach ($arr as $k => $v) {
+            $getter = $request::getters()[$k];
+            $value = $request->$getter();
+            $localVarParams[$k] = $value;
+        }
+        if ($localVarParams['instanceId'] !== null) {
+            $pathParams['instance_id'] = $localVarParams['instanceId'];
+        }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+        $headers = array_merge(
+            $headerParams,
+            $headers
+        );
+
+        return $this->callApi(
+            $method='DELETE',
+            $resourcePath,
+            $pathParams,
+            $queryParams,
+            $headerParams=$headers,
+            $body=$httpBody,
+            $multipart = $multipart,
+            $postParams=$formParams,
+            $responseType='\HuaweiCloud\SDK\Dds\V3\Model\DeleteIpResponse',
+            $requestType='\HuaweiCloud\SDK\Dds\V3\Model\DeleteIpRequest');
     }
 
     /**
@@ -2660,6 +2725,24 @@ class DdsClient extends Client
         if ($localVarParams['mode'] !== null) {
             $queryParams['mode'] = $localVarParams['mode'];
         }
+        if ($localVarParams['orderField'] !== null) {
+            $queryParams['order_field'] = $localVarParams['orderField'];
+        }
+        if ($localVarParams['orderRule'] !== null) {
+            $queryParams['order_rule'] = $localVarParams['orderRule'];
+        }
+        if ($localVarParams['backupStatus'] !== null) {
+            $queryParams['backup_status'] = $localVarParams['backupStatus'];
+        }
+        if ($localVarParams['backupName'] !== null) {
+            $queryParams['backup_name'] = $localVarParams['backupName'];
+        }
+        if ($localVarParams['backupDescription'] !== null) {
+            $queryParams['backup_description'] = $localVarParams['backupDescription'];
+        }
+        if ($localVarParams['instanceName'] !== null) {
+            $queryParams['instance_name'] = $localVarParams['instanceName'];
+        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -3590,7 +3673,7 @@ class DdsClient extends Client
     /**
      * 查询数据库慢日志
      *
-     * 查询数据库慢日志信息。
+     * 查询数据库慢日志信息，支持关键字、数据库表名等搜索功能。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -4404,6 +4487,9 @@ class DdsClient extends Client
         }
         if ($localVarParams['status'] !== null) {
             $queryParams['status'] = $localVarParams['status'];
+        }
+        if ($localVarParams['id'] !== null) {
+            $queryParams['id'] = $localVarParams['id'];
         }
         if ($localVarParams['name'] !== null) {
             $queryParams['name'] = $localVarParams['name'];
@@ -5634,9 +5720,6 @@ class DdsClient extends Client
         if ($localVarParams['backupId'] !== null) {
             $queryParams['backup_id'] = $localVarParams['backupId'];
         }
-        if ($localVarParams['xLanguage'] !== null) {
-            $headerParams[$arr['xLanguage']] = $localVarParams['xLanguage'];
-        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -5928,7 +6011,7 @@ class DdsClient extends Client
     /**
      * 获取参数模板的详情
      *
-     * 获取参数模板的详情。
+     * 获取指定参数模板的参数信息。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -6120,7 +6203,7 @@ class DdsClient extends Client
     /**
      * 获取指定实例的参数信息
      *
-     * 获取指定实例的参数，可以是实例，组，节点的参数模板。
+     * 获取指定实例的参数信息。
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -7291,9 +7374,9 @@ class DdsClient extends Client
     }
 
     /**
-     * 切换副本集实例的主备节点
+     * 切换实例的主备节点
      *
-     * 切换副本集实例下的主备节点
+     * 切换实例下的主备节点
      * 
      * Please refer to HUAWEI cloud API Explorer for details.
      *
@@ -7324,6 +7407,9 @@ class DdsClient extends Client
         if ($localVarParams['instanceId'] !== null) {
             $pathParams['instance_id'] = $localVarParams['instanceId'];
         }
+        if ($localVarParams['body'] !== null) {
+            $httpBody= $localVarParams['body'];
+        }
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
                 ['application/json']
@@ -7331,7 +7417,7 @@ class DdsClient extends Client
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                []
+                ['application/json']
             );
         }
         $headers = array_merge(

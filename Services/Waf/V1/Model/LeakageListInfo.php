@@ -22,48 +22,56 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     * Array of property to type mappings. Used for (de)serialization
     * id  规则id
     * policyid  策略id
+    * policyname  策略名称
     * url  规则应用的url
     * category  类别（响应码：code，敏感信息：sensitive）
     * contents  规则内容
     * timestamp  创建规则时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * description  规则描述
+    * action  action
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'id' => 'string',
             'policyid' => 'string',
+            'policyname' => 'string',
             'url' => 'string',
             'category' => 'string',
             'contents' => 'string[]',
             'timestamp' => 'int',
             'status' => 'int',
-            'description' => 'string'
+            'description' => 'string',
+            'action' => '\HuaweiCloud\SDK\Waf\V1\Model\LeakageListInfoAction'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * id  规则id
     * policyid  策略id
+    * policyname  策略名称
     * url  规则应用的url
     * category  类别（响应码：code，敏感信息：sensitive）
     * contents  规则内容
     * timestamp  创建规则时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * description  规则描述
+    * action  action
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
         'id' => null,
         'policyid' => null,
+        'policyname' => null,
         'url' => null,
         'category' => null,
         'contents' => null,
         'timestamp' => 'int64',
         'status' => null,
-        'description' => null
+        'description' => null,
+        'action' => null
     ];
 
     /**
@@ -91,72 +99,84 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     * and the value is the original name
     * id  规则id
     * policyid  策略id
+    * policyname  策略名称
     * url  规则应用的url
     * category  类别（响应码：code，敏感信息：sensitive）
     * contents  规则内容
     * timestamp  创建规则时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * description  规则描述
+    * action  action
     *
     * @var string[]
     */
     protected static $attributeMap = [
             'id' => 'id',
             'policyid' => 'policyid',
+            'policyname' => 'policyname',
             'url' => 'url',
             'category' => 'category',
             'contents' => 'contents',
             'timestamp' => 'timestamp',
             'status' => 'status',
-            'description' => 'description'
+            'description' => 'description',
+            'action' => 'action'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * id  规则id
     * policyid  策略id
+    * policyname  策略名称
     * url  规则应用的url
     * category  类别（响应码：code，敏感信息：sensitive）
     * contents  规则内容
     * timestamp  创建规则时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * description  规则描述
+    * action  action
     *
     * @var string[]
     */
     protected static $setters = [
             'id' => 'setId',
             'policyid' => 'setPolicyid',
+            'policyname' => 'setPolicyname',
             'url' => 'setUrl',
             'category' => 'setCategory',
             'contents' => 'setContents',
             'timestamp' => 'setTimestamp',
             'status' => 'setStatus',
-            'description' => 'setDescription'
+            'description' => 'setDescription',
+            'action' => 'setAction'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * id  规则id
     * policyid  策略id
+    * policyname  策略名称
     * url  规则应用的url
     * category  类别（响应码：code，敏感信息：sensitive）
     * contents  规则内容
     * timestamp  创建规则时间戳
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * description  规则描述
+    * action  action
     *
     * @var string[]
     */
     protected static $getters = [
             'id' => 'getId',
             'policyid' => 'getPolicyid',
+            'policyname' => 'getPolicyname',
             'url' => 'getUrl',
             'category' => 'getCategory',
             'contents' => 'getContents',
             'timestamp' => 'getTimestamp',
             'status' => 'getStatus',
-            'description' => 'getDescription'
+            'description' => 'getDescription',
+            'action' => 'getAction'
     ];
 
     /**
@@ -219,12 +239,14 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['policyid'] = isset($data['policyid']) ? $data['policyid'] : null;
+        $this->container['policyname'] = isset($data['policyname']) ? $data['policyname'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
         $this->container['category'] = isset($data['category']) ? $data['category'] : null;
         $this->container['contents'] = isset($data['contents']) ? $data['contents'] : null;
         $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['action'] = isset($data['action']) ? $data['action'] : null;
     }
 
     /**
@@ -294,6 +316,30 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     public function setPolicyid($policyid)
     {
         $this->container['policyid'] = $policyid;
+        return $this;
+    }
+
+    /**
+    * Gets policyname
+    *  策略名称
+    *
+    * @return string|null
+    */
+    public function getPolicyname()
+    {
+        return $this->container['policyname'];
+    }
+
+    /**
+    * Sets policyname
+    *
+    * @param string|null $policyname 策略名称
+    *
+    * @return $this
+    */
+    public function setPolicyname($policyname)
+    {
+        $this->container['policyname'] = $policyname;
         return $this;
     }
 
@@ -395,7 +441,7 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets status
-    *  规则状态，0：关闭，1：开启
+    *  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return int|null
     */
@@ -407,7 +453,7 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     /**
     * Sets status
     *
-    * @param int|null $status 规则状态，0：关闭，1：开启
+    * @param int|null $status **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -438,6 +484,30 @@ class LeakageListInfo implements ModelInterface, ArrayAccess
     public function setDescription($description)
     {
         $this->container['description'] = $description;
+        return $this;
+    }
+
+    /**
+    * Gets action
+    *  action
+    *
+    * @return \HuaweiCloud\SDK\Waf\V1\Model\LeakageListInfoAction|null
+    */
+    public function getAction()
+    {
+        return $this->container['action'];
+    }
+
+    /**
+    * Sets action
+    *
+    * @param \HuaweiCloud\SDK\Waf\V1\Model\LeakageListInfoAction|null $action action
+    *
+    * @return $this
+    */
+    public function setAction($action)
+    {
+        $this->container['action'] = $action;
         return $this;
     }
 

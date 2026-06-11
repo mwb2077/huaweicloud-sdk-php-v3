@@ -66,7 +66,7 @@ class BindPublicReqEip implements ModelInterface, ArrayAccess
     * @var string[]
     */
     protected static $attributeMap = [
-            'bandWidth' => 'bandWidth'
+            'bandWidth' => 'band_width'
     ];
 
     /**

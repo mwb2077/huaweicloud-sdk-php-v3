@@ -25,6 +25,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     * description  规则描述
     * period  触发周期值，可选值：One_Hour, Three_Hours, Six_Hours, Twelve_Hours, TwentyFour_Hours
     * policyFilter  policyFilter
+    * policyFilterV2  policyFilterV2
     * customPolicy  customPolicy
     * policyDefinitionId  策略定义ID
     * parameters  规则参数
@@ -38,6 +39,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
             'description' => 'string',
             'period' => 'string',
             'policyFilter' => '\HuaweiCloud\SDK\Config\V1\Model\PolicyFilterDefinition',
+            'policyFilterV2' => '\HuaweiCloud\SDK\Config\V1\Model\PolicyFilterDefinitionV2',
             'customPolicy' => '\HuaweiCloud\SDK\Config\V1\Model\CustomPolicy',
             'policyDefinitionId' => 'string',
             'parameters' => 'map[string,\HuaweiCloud\SDK\Config\V1\Model\PolicyParameterValue]',
@@ -51,6 +53,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     * description  规则描述
     * period  触发周期值，可选值：One_Hour, Three_Hours, Six_Hours, Twelve_Hours, TwentyFour_Hours
     * policyFilter  policyFilter
+    * policyFilterV2  policyFilterV2
     * customPolicy  customPolicy
     * policyDefinitionId  策略定义ID
     * parameters  规则参数
@@ -64,6 +67,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
         'description' => null,
         'period' => null,
         'policyFilter' => null,
+        'policyFilterV2' => null,
         'customPolicy' => null,
         'policyDefinitionId' => null,
         'parameters' => null,
@@ -98,6 +102,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     * description  规则描述
     * period  触发周期值，可选值：One_Hour, Three_Hours, Six_Hours, Twelve_Hours, TwentyFour_Hours
     * policyFilter  policyFilter
+    * policyFilterV2  policyFilterV2
     * customPolicy  customPolicy
     * policyDefinitionId  策略定义ID
     * parameters  规则参数
@@ -111,6 +116,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
             'description' => 'description',
             'period' => 'period',
             'policyFilter' => 'policy_filter',
+            'policyFilterV2' => 'policy_filter_v2',
             'customPolicy' => 'custom_policy',
             'policyDefinitionId' => 'policy_definition_id',
             'parameters' => 'parameters',
@@ -124,6 +130,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     * description  规则描述
     * period  触发周期值，可选值：One_Hour, Three_Hours, Six_Hours, Twelve_Hours, TwentyFour_Hours
     * policyFilter  policyFilter
+    * policyFilterV2  policyFilterV2
     * customPolicy  customPolicy
     * policyDefinitionId  策略定义ID
     * parameters  规则参数
@@ -137,6 +144,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
             'description' => 'setDescription',
             'period' => 'setPeriod',
             'policyFilter' => 'setPolicyFilter',
+            'policyFilterV2' => 'setPolicyFilterV2',
             'customPolicy' => 'setCustomPolicy',
             'policyDefinitionId' => 'setPolicyDefinitionId',
             'parameters' => 'setParameters',
@@ -150,6 +158,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     * description  规则描述
     * period  触发周期值，可选值：One_Hour, Three_Hours, Six_Hours, Twelve_Hours, TwentyFour_Hours
     * policyFilter  policyFilter
+    * policyFilterV2  policyFilterV2
     * customPolicy  customPolicy
     * policyDefinitionId  策略定义ID
     * parameters  规则参数
@@ -163,6 +172,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
             'description' => 'getDescription',
             'period' => 'getPeriod',
             'policyFilter' => 'getPolicyFilter',
+            'policyFilterV2' => 'getPolicyFilterV2',
             'customPolicy' => 'getCustomPolicy',
             'policyDefinitionId' => 'getPolicyDefinitionId',
             'parameters' => 'getParameters',
@@ -268,6 +278,7 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['period'] = isset($data['period']) ? $data['period'] : null;
         $this->container['policyFilter'] = isset($data['policyFilter']) ? $data['policyFilter'] : null;
+        $this->container['policyFilterV2'] = isset($data['policyFilterV2']) ? $data['policyFilterV2'] : null;
         $this->container['customPolicy'] = isset($data['customPolicy']) ? $data['customPolicy'] : null;
         $this->container['policyDefinitionId'] = isset($data['policyDefinitionId']) ? $data['policyDefinitionId'] : null;
         $this->container['parameters'] = isset($data['parameters']) ? $data['parameters'] : null;
@@ -293,11 +304,11 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-            if ((mb_strlen($this->container['name']) > 64)) {
-                $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 64.";
+            if ((mb_strlen($this->container['name']) > 256)) {
+                $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
             }
-            if (!preg_match("/[^']+/", $this->container['name'])) {
-                $invalidProperties[] = "invalid value for 'name', must be conform to the pattern /[^']+/.";
+            if (!preg_match("/^(?!\\s)[\\u4e00-\\u9fa5\\u00C0-\\u00FFa-zA-Z0-9_\\- ]+(?<!\\s)$/", $this->container['name'])) {
+                $invalidProperties[] = "invalid value for 'name', must be conform to the pattern /^(?!\\s)[\\u4e00-\\u9fa5\\u00C0-\\u00FFa-zA-Z0-9_\\- ]+(?<!\\s)$/.";
             }
             if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 512)) {
                 $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 512.";
@@ -447,6 +458,30 @@ class PolicyAssignmentRequestBody implements ModelInterface, ArrayAccess
     public function setPolicyFilter($policyFilter)
     {
         $this->container['policyFilter'] = $policyFilter;
+        return $this;
+    }
+
+    /**
+    * Gets policyFilterV2
+    *  policyFilterV2
+    *
+    * @return \HuaweiCloud\SDK\Config\V1\Model\PolicyFilterDefinitionV2|null
+    */
+    public function getPolicyFilterV2()
+    {
+        return $this->container['policyFilterV2'];
+    }
+
+    /**
+    * Sets policyFilterV2
+    *
+    * @param \HuaweiCloud\SDK\Config\V1\Model\PolicyFilterDefinitionV2|null $policyFilterV2 policyFilterV2
+    *
+    * @return $this
+    */
+    public function setPolicyFilterV2($policyFilterV2)
+    {
+        $this->container['policyFilterV2'] = $policyFilterV2;
         return $this;
     }
 

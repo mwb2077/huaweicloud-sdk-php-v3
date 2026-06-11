@@ -36,20 +36,20 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     * microService  **参数解释**： 微服务 **取值范围**： 字符长度1-64位
     * sysArch  **参数解释**： 系统CPU架构 **取值范围**： 字符长度1-64位
     * osBit  **参数解释**： 操作系统位数 **取值范围**： 字符长度1-64位
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * osName  操作系统名称
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * osName  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * podUid  **参数解释**： pod uid **取值范围**： 字符长度1-64位
     * podName  **参数解释**： pod name **取值范围**： 字符长度1-64位
     * namespace  **参数解释**： 名称空间 **取值范围**： 字符长度1-64位
     * clusterId  集群ID
-    * clusterName  集群名称
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * clusterName  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * containerStatus  容器状态
-    * osVersion  系统版本
+    * osVersion  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     * agentVersion  agent版本
     *
     * @var string[]
@@ -106,20 +106,20 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     * microService  **参数解释**： 微服务 **取值范围**： 字符长度1-64位
     * sysArch  **参数解释**： 系统CPU架构 **取值范围**： 字符长度1-64位
     * osBit  **参数解释**： 操作系统位数 **取值范围**： 字符长度1-64位
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * osName  操作系统名称
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * osName  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * podUid  **参数解释**： pod uid **取值范围**： 字符长度1-64位
     * podName  **参数解释**： pod name **取值范围**： 字符长度1-64位
     * namespace  **参数解释**： 名称空间 **取值范围**： 字符长度1-64位
     * clusterId  集群ID
-    * clusterName  集群名称
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * clusterName  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * containerStatus  容器状态
-    * osVersion  系统版本
+    * osVersion  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     * agentVersion  agent版本
     *
     * @var string[]
@@ -197,20 +197,20 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     * microService  **参数解释**： 微服务 **取值范围**： 字符长度1-64位
     * sysArch  **参数解释**： 系统CPU架构 **取值范围**： 字符长度1-64位
     * osBit  **参数解释**： 操作系统位数 **取值范围**： 字符长度1-64位
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * osName  操作系统名称
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * osName  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * podUid  **参数解释**： pod uid **取值范围**： 字符长度1-64位
     * podName  **参数解释**： pod name **取值范围**： 字符长度1-64位
     * namespace  **参数解释**： 名称空间 **取值范围**： 字符长度1-64位
     * clusterId  集群ID
-    * clusterName  集群名称
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * clusterName  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * containerStatus  容器状态
-    * osVersion  系统版本
+    * osVersion  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     * agentVersion  agent版本
     *
     * @var string[]
@@ -267,20 +267,20 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     * microService  **参数解释**： 微服务 **取值范围**： 字符长度1-64位
     * sysArch  **参数解释**： 系统CPU架构 **取值范围**： 字符长度1-64位
     * osBit  **参数解释**： 操作系统位数 **取值范围**： 字符长度1-64位
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * osName  操作系统名称
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * osName  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * podUid  **参数解释**： pod uid **取值范围**： 字符长度1-64位
     * podName  **参数解释**： pod name **取值范围**： 字符长度1-64位
     * namespace  **参数解释**： 名称空间 **取值范围**： 字符长度1-64位
     * clusterId  集群ID
-    * clusterName  集群名称
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * clusterName  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * containerStatus  容器状态
-    * osVersion  系统版本
+    * osVersion  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     * agentVersion  agent版本
     *
     * @var string[]
@@ -337,20 +337,20 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     * microService  **参数解释**： 微服务 **取值范围**： 字符长度1-64位
     * sysArch  **参数解释**： 系统CPU架构 **取值范围**： 字符长度1-64位
     * osBit  **参数解释**： 操作系统位数 **取值范围**： 字符长度1-64位
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * osName  操作系统名称
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * osName  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
-    * hostIp  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * hostIp  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * podUid  **参数解释**： pod uid **取值范围**： 字符长度1-64位
     * podName  **参数解释**： pod name **取值范围**： 字符长度1-64位
     * namespace  **参数解释**： 名称空间 **取值范围**： 字符长度1-64位
     * clusterId  集群ID
-    * clusterName  集群名称
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * clusterName  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * containerStatus  容器状态
-    * osVersion  系统版本
+    * osVersion  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     * agentVersion  agent版本
     *
     * @var string[]
@@ -634,6 +634,12 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['namespace']) && !preg_match("/^.*$/", $this->container['namespace'])) {
                 $invalidProperties[] = "invalid value for 'namespace', must be conform to the pattern /^.*$/.";
+            }
+            if (!is_null($this->container['clusterName']) && (mb_strlen($this->container['clusterName']) > 128)) {
+                $invalidProperties[] = "invalid value for 'clusterName', the character length must be smaller than or equal to 128.";
+            }
+            if (!is_null($this->container['clusterName']) && (mb_strlen($this->container['clusterName']) < 1)) {
+                $invalidProperties[] = "invalid value for 'clusterName', the character length must be bigger than or equal to 1.";
             }
             if (!is_null($this->container['assetValue']) && (mb_strlen($this->container['assetValue']) > 128)) {
                 $invalidProperties[] = "invalid value for 'assetValue', the character length must be smaller than or equal to 128.";
@@ -1053,7 +1059,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets osType
-    *  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
+    *  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
     *
     * @return string|null
     */
@@ -1065,7 +1071,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets osType
     *
-    * @param string|null $osType **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
+    * @param string|null $osType **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
     *
     * @return $this
     */
@@ -1077,7 +1083,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets osName
-    *  操作系统名称
+    *  **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     *
     * @return string|null
     */
@@ -1089,7 +1095,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets osName
     *
-    * @param string|null $osName 操作系统名称
+    * @param string|null $osName **参数解释**: 操作系统名称 **取值范围**: 字符长度0-128位
     *
     * @return $this
     */
@@ -1125,7 +1131,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostIp
-    *  **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    *  **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return string|null
     */
@@ -1137,7 +1143,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostIp
     *
-    * @param string|null $hostIp **参数解释**: 主机IP **取值范围**: 字符长度1-128位
+    * @param string|null $hostIp **参数解释**: 服务器IP **取值范围**: 字符长度1-128位
     *
     * @return $this
     */
@@ -1149,7 +1155,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets publicIp
-    *  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
+    *  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
     *
     * @return string|null
     */
@@ -1161,7 +1167,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets publicIp
     *
-    * @param string|null $publicIp **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
+    * @param string|null $publicIp **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
     *
     * @return $this
     */
@@ -1173,7 +1179,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostId
-    *  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    *  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return string|null
     */
@@ -1185,7 +1191,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostId
     *
-    * @param string|null $hostId **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * @param string|null $hostId **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return $this
     */
@@ -1293,7 +1299,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets clusterName
-    *  集群名称
+    *  **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -1305,7 +1311,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets clusterName
     *
-    * @param string|null $clusterName 集群名称
+    * @param string|null $clusterName **参数解释**: 集群名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -1317,7 +1323,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets assetValue
-    *  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    *  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     *
     * @return string|null
     */
@@ -1329,7 +1335,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets assetValue
     *
-    * @param string|null $assetValue 资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * @param string|null $assetValue **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     *
     * @return $this
     */
@@ -1365,7 +1371,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets osVersion
-    *  系统版本
+    *  **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     *
     * @return string|null
     */
@@ -1377,7 +1383,7 @@ class ProcessEventResourceResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets osVersion
     *
-    * @param string|null $osVersion 系统版本
+    * @param string|null $osVersion **参数解释**： 系统版本号 **取值范围**： 字符长度0-64位
     *
     * @return $this
     */

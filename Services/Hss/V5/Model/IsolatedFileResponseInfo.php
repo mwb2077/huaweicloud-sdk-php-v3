@@ -20,16 +20,16 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
     * fileHash  **参数解释**： 文件哈希 **取值范围**： 字符长度1-256位
     * filePath  **参数解释**： 文件路径 **取值范围**： 字符长度1-256位
-    * fileAttr  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * fileAttr  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     * isolationStatus  隔离状态，包含如下:   - isolated : 已隔离   - restored : 已恢复   - isolating : 已下发隔离任务   - restoring : 已下发恢复任务
     * privateIp  **参数解释**： 服务器私有IP **取值范围**： 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * updateTime  更新时间，毫秒
     * agentVersion  agent版本
     * isolateSource  隔离来源，包含如下:   - event : 安全告警事件   - antivirus : 病毒查杀
@@ -60,16 +60,16 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
     * fileHash  **参数解释**： 文件哈希 **取值范围**： 字符长度1-256位
     * filePath  **参数解释**： 文件路径 **取值范围**： 字符长度1-256位
-    * fileAttr  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * fileAttr  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     * isolationStatus  隔离状态，包含如下:   - isolated : 已隔离   - restored : 已恢复   - isolating : 已下发隔离任务   - restoring : 已下发恢复任务
     * privateIp  **参数解释**： 服务器私有IP **取值范围**： 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * updateTime  更新时间，毫秒
     * agentVersion  agent版本
     * isolateSource  隔离来源，包含如下:   - event : 安全告警事件   - antivirus : 病毒查杀
@@ -121,16 +121,16 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
     * fileHash  **参数解释**： 文件哈希 **取值范围**： 字符长度1-256位
     * filePath  **参数解释**： 文件路径 **取值范围**： 字符长度1-256位
-    * fileAttr  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * fileAttr  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     * isolationStatus  隔离状态，包含如下:   - isolated : 已隔离   - restored : 已恢复   - isolating : 已下发隔离任务   - restoring : 已下发恢复任务
     * privateIp  **参数解释**： 服务器私有IP **取值范围**： 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * updateTime  更新时间，毫秒
     * agentVersion  agent版本
     * isolateSource  隔离来源，包含如下:   - event : 安全告警事件   - antivirus : 病毒查杀
@@ -161,16 +161,16 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
     * fileHash  **参数解释**： 文件哈希 **取值范围**： 字符长度1-256位
     * filePath  **参数解释**： 文件路径 **取值范围**： 字符长度1-256位
-    * fileAttr  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * fileAttr  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     * isolationStatus  隔离状态，包含如下:   - isolated : 已隔离   - restored : 已恢复   - isolating : 已下发隔离任务   - restoring : 已下发恢复任务
     * privateIp  **参数解释**： 服务器私有IP **取值范围**： 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * updateTime  更新时间，毫秒
     * agentVersion  agent版本
     * isolateSource  隔离来源，包含如下:   - event : 安全告警事件   - antivirus : 病毒查杀
@@ -201,16 +201,16 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
-    * hostId  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * osType  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
+    * hostId  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     * hostName  **参数解释**: 服务器名称 **取值范围**: 字符长度1-256位
     * fileHash  **参数解释**： 文件哈希 **取值范围**： 字符长度1-256位
     * filePath  **参数解释**： 文件路径 **取值范围**： 字符长度1-256位
-    * fileAttr  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * fileAttr  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     * isolationStatus  隔离状态，包含如下:   - isolated : 已隔离   - restored : 已恢复   - isolating : 已下发隔离任务   - restoring : 已下发恢复任务
     * privateIp  **参数解释**： 服务器私有IP **取值范围**： 字符长度1-128位
-    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
-    * assetValue  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * publicIp  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
+    * assetValue  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     * updateTime  更新时间，毫秒
     * agentVersion  agent版本
     * isolateSource  隔离来源，包含如下:   - event : 安全告警事件   - antivirus : 病毒查杀
@@ -459,7 +459,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets osType
-    *  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
+    *  **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
     *
     * @return string
     */
@@ -471,7 +471,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets osType
     *
-    * @param string $osType **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux。 - Windows：Windows。
+    * @param string $osType **参数解释**： 操作系统类型 **取值范围**： - Linux：Linux - Windows：Windows
     *
     * @return $this
     */
@@ -483,7 +483,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets hostId
-    *  **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    *  **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return string
     */
@@ -495,7 +495,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets hostId
     *
-    * @param string $hostId **参数解释**： 主机ID **取值范围**： 字符长度1-64位
+    * @param string $hostId **参数解释**： 服务器（主机）的唯一标识ID **取值范围**： 字符长度1-64位
     *
     * @return $this
     */
@@ -579,7 +579,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets fileAttr
-    *  **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    *  **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     *
     * @return string
     */
@@ -591,7 +591,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets fileAttr
     *
-    * @param string $fileAttr **参数解释**： 文件属性 **取值范围**： 字符长度1-256位
+    * @param string $fileAttr **参数解释**： 文件的系统属性（如读写权限、隐藏属性、执行权限等） **取值范围**： 字符长度1-256位
     *
     * @return $this
     */
@@ -651,7 +651,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets publicIp
-    *  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
+    *  **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
     *
     * @return string
     */
@@ -663,7 +663,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets publicIp
     *
-    * @param string $publicIp **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位
+    * @param string $publicIp **参数解释**： 弹性公网IP地址 **取值范围**： 字符长度1-256位，支持IPv4或IPv6格式（IPv4长度7-15位，IPv6长度15-39位）
     *
     * @return $this
     */
@@ -675,7 +675,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets assetValue
-    *  资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    *  **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     *
     * @return string
     */
@@ -687,7 +687,7 @@ class IsolatedFileResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets assetValue
     *
-    * @param string $assetValue 资产重要性，包含如下3种   - important ：重要资产   - common ：一般资产   - test ：测试资产
+    * @param string $assetValue **参数解释**： 资产重要性。 **取值范围**： - important ：重要资产。 - common ：一般资产。 - test ：测试资产。
     *
     * @return $this
     */

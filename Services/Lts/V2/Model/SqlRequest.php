@@ -20,54 +20,54 @@ class SqlRequest implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * isTimeRangeRelative  是时间范围相对
     * logStreamId  日志流id
     * logStreamName  日志流名称
     * logGroupId  日志组id
     * logGroupName  日志组名称
     * sql  sql语句
-    * sqlRequestTitle  图表名称
     * searchTimeRange  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     * searchTimeRangeUnit  查询时间单位
+    * customDate  customDate
+    * isTimeRangeRelative  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
     *
     * @var string[]
     */
     protected static $openAPITypes = [
-            'isTimeRangeRelative' => 'bool',
             'logStreamId' => 'string',
             'logStreamName' => 'string',
             'logGroupId' => 'string',
             'logGroupName' => 'string',
             'sql' => 'string',
-            'sqlRequestTitle' => 'string',
             'searchTimeRange' => 'int',
-            'searchTimeRangeUnit' => 'string'
+            'searchTimeRangeUnit' => 'string',
+            'customDate' => '\HuaweiCloud\SDK\Lts\V2\Model\CustomDate',
+            'isTimeRangeRelative' => 'bool'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * isTimeRangeRelative  是时间范围相对
     * logStreamId  日志流id
     * logStreamName  日志流名称
     * logGroupId  日志组id
     * logGroupName  日志组名称
     * sql  sql语句
-    * sqlRequestTitle  图表名称
     * searchTimeRange  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     * searchTimeRangeUnit  查询时间单位
+    * customDate  customDate
+    * isTimeRangeRelative  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
-        'isTimeRangeRelative' => null,
         'logStreamId' => null,
         'logStreamName' => null,
         'logGroupId' => null,
         'logGroupName' => null,
         'sql' => null,
-        'sqlRequestTitle' => null,
         'searchTimeRange' => 'int32',
-        'searchTimeRangeUnit' => null
+        'searchTimeRangeUnit' => null,
+        'customDate' => null,
+        'isTimeRangeRelative' => null
     ];
 
     /**
@@ -93,80 +93,80 @@ class SqlRequest implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * isTimeRangeRelative  是时间范围相对
     * logStreamId  日志流id
     * logStreamName  日志流名称
     * logGroupId  日志组id
     * logGroupName  日志组名称
     * sql  sql语句
-    * sqlRequestTitle  图表名称
     * searchTimeRange  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     * searchTimeRangeUnit  查询时间单位
+    * customDate  customDate
+    * isTimeRangeRelative  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
     *
     * @var string[]
     */
     protected static $attributeMap = [
-            'isTimeRangeRelative' => 'is_time_range_relative',
             'logStreamId' => 'log_stream_id',
             'logStreamName' => 'log_stream_name',
             'logGroupId' => 'log_group_id',
             'logGroupName' => 'log_group_name',
             'sql' => 'sql',
-            'sqlRequestTitle' => 'sql_request_title',
             'searchTimeRange' => 'search_time_range',
-            'searchTimeRangeUnit' => 'search_time_range_unit'
+            'searchTimeRangeUnit' => 'search_time_range_unit',
+            'customDate' => 'custom_date',
+            'isTimeRangeRelative' => 'is_time_range_relative'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * isTimeRangeRelative  是时间范围相对
     * logStreamId  日志流id
     * logStreamName  日志流名称
     * logGroupId  日志组id
     * logGroupName  日志组名称
     * sql  sql语句
-    * sqlRequestTitle  图表名称
     * searchTimeRange  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     * searchTimeRangeUnit  查询时间单位
+    * customDate  customDate
+    * isTimeRangeRelative  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
     *
     * @var string[]
     */
     protected static $setters = [
-            'isTimeRangeRelative' => 'setIsTimeRangeRelative',
             'logStreamId' => 'setLogStreamId',
             'logStreamName' => 'setLogStreamName',
             'logGroupId' => 'setLogGroupId',
             'logGroupName' => 'setLogGroupName',
             'sql' => 'setSql',
-            'sqlRequestTitle' => 'setSqlRequestTitle',
             'searchTimeRange' => 'setSearchTimeRange',
-            'searchTimeRangeUnit' => 'setSearchTimeRangeUnit'
+            'searchTimeRangeUnit' => 'setSearchTimeRangeUnit',
+            'customDate' => 'setCustomDate',
+            'isTimeRangeRelative' => 'setIsTimeRangeRelative'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * isTimeRangeRelative  是时间范围相对
     * logStreamId  日志流id
     * logStreamName  日志流名称
     * logGroupId  日志组id
     * logGroupName  日志组名称
     * sql  sql语句
-    * sqlRequestTitle  图表名称
     * searchTimeRange  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     * searchTimeRangeUnit  查询时间单位
+    * customDate  customDate
+    * isTimeRangeRelative  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
     *
     * @var string[]
     */
     protected static $getters = [
-            'isTimeRangeRelative' => 'getIsTimeRangeRelative',
             'logStreamId' => 'getLogStreamId',
             'logStreamName' => 'getLogStreamName',
             'logGroupId' => 'getLogGroupId',
             'logGroupName' => 'getLogGroupName',
             'sql' => 'getSql',
-            'sqlRequestTitle' => 'getSqlRequestTitle',
             'searchTimeRange' => 'getSearchTimeRange',
-            'searchTimeRangeUnit' => 'getSearchTimeRangeUnit'
+            'searchTimeRangeUnit' => 'getSearchTimeRangeUnit',
+            'customDate' => 'getCustomDate',
+            'isTimeRangeRelative' => 'getIsTimeRangeRelative'
     ];
 
     /**
@@ -242,15 +242,15 @@ class SqlRequest implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
-        $this->container['isTimeRangeRelative'] = isset($data['isTimeRangeRelative']) ? $data['isTimeRangeRelative'] : null;
         $this->container['logStreamId'] = isset($data['logStreamId']) ? $data['logStreamId'] : null;
         $this->container['logStreamName'] = isset($data['logStreamName']) ? $data['logStreamName'] : null;
         $this->container['logGroupId'] = isset($data['logGroupId']) ? $data['logGroupId'] : null;
         $this->container['logGroupName'] = isset($data['logGroupName']) ? $data['logGroupName'] : null;
         $this->container['sql'] = isset($data['sql']) ? $data['sql'] : null;
-        $this->container['sqlRequestTitle'] = isset($data['sqlRequestTitle']) ? $data['sqlRequestTitle'] : null;
         $this->container['searchTimeRange'] = isset($data['searchTimeRange']) ? $data['searchTimeRange'] : null;
         $this->container['searchTimeRangeUnit'] = isset($data['searchTimeRangeUnit']) ? $data['searchTimeRangeUnit'] : null;
+        $this->container['customDate'] = isset($data['customDate']) ? $data['customDate'] : null;
+        $this->container['isTimeRangeRelative'] = isset($data['isTimeRangeRelative']) ? $data['isTimeRangeRelative'] : null;
     }
 
     /**
@@ -300,27 +300,12 @@ class SqlRequest implements ModelInterface, ArrayAccess
             if ((mb_strlen($this->container['sql']) < 1)) {
                 $invalidProperties[] = "invalid value for 'sql', the character length must be bigger than or equal to 1.";
             }
-        if ($this->container['sqlRequestTitle'] === null) {
-            $invalidProperties[] = "'sqlRequestTitle' can't be null";
-        }
-            if ((mb_strlen($this->container['sqlRequestTitle']) > 64)) {
-                $invalidProperties[] = "invalid value for 'sqlRequestTitle', the character length must be smaller than or equal to 64.";
-            }
-            if ((mb_strlen($this->container['sqlRequestTitle']) < 1)) {
-                $invalidProperties[] = "invalid value for 'sqlRequestTitle', the character length must be bigger than or equal to 1.";
-            }
-        if ($this->container['searchTimeRange'] === null) {
-            $invalidProperties[] = "'searchTimeRange' can't be null";
-        }
-            if (($this->container['searchTimeRange'] > 60)) {
+            if (!is_null($this->container['searchTimeRange']) && ($this->container['searchTimeRange'] > 60)) {
                 $invalidProperties[] = "invalid value for 'searchTimeRange', must be smaller than or equal to 60.";
             }
-            if (($this->container['searchTimeRange'] < 1)) {
+            if (!is_null($this->container['searchTimeRange']) && ($this->container['searchTimeRange'] < 1)) {
                 $invalidProperties[] = "invalid value for 'searchTimeRange', must be bigger than or equal to 1.";
             }
-        if ($this->container['searchTimeRangeUnit'] === null) {
-            $invalidProperties[] = "'searchTimeRangeUnit' can't be null";
-        }
             $allowedValues = $this->getSearchTimeRangeUnitAllowableValues();
                 if (!is_null($this->container['searchTimeRangeUnit']) && !in_array($this->container['searchTimeRangeUnit'], $allowedValues, true)) {
                 $invalidProperties[] = sprintf(
@@ -341,30 +326,6 @@ class SqlRequest implements ModelInterface, ArrayAccess
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
-    }
-
-    /**
-    * Gets isTimeRangeRelative
-    *  是时间范围相对
-    *
-    * @return bool|null
-    */
-    public function getIsTimeRangeRelative()
-    {
-        return $this->container['isTimeRangeRelative'];
-    }
-
-    /**
-    * Sets isTimeRangeRelative
-    *
-    * @param bool|null $isTimeRangeRelative 是时间范围相对
-    *
-    * @return $this
-    */
-    public function setIsTimeRangeRelative($isTimeRangeRelative)
-    {
-        $this->container['isTimeRangeRelative'] = $isTimeRangeRelative;
-        return $this;
     }
 
     /**
@@ -488,34 +449,10 @@ class SqlRequest implements ModelInterface, ArrayAccess
     }
 
     /**
-    * Gets sqlRequestTitle
-    *  图表名称
-    *
-    * @return string
-    */
-    public function getSqlRequestTitle()
-    {
-        return $this->container['sqlRequestTitle'];
-    }
-
-    /**
-    * Sets sqlRequestTitle
-    *
-    * @param string $sqlRequestTitle 图表名称
-    *
-    * @return $this
-    */
-    public function setSqlRequestTitle($sqlRequestTitle)
-    {
-        $this->container['sqlRequestTitle'] = $sqlRequestTitle;
-        return $this;
-    }
-
-    /**
     * Gets searchTimeRange
     *  查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     *
-    * @return int
+    * @return int|null
     */
     public function getSearchTimeRange()
     {
@@ -525,7 +462,7 @@ class SqlRequest implements ModelInterface, ArrayAccess
     /**
     * Sets searchTimeRange
     *
-    * @param int $searchTimeRange 查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
+    * @param int|null $searchTimeRange 查询执行任务时最近数据的时间范围(当search_time_range_unit为minute，则最大值为60;当search_time_range_unit为hour，则最大值为24)
     *
     * @return $this
     */
@@ -539,7 +476,7 @@ class SqlRequest implements ModelInterface, ArrayAccess
     * Gets searchTimeRangeUnit
     *  查询时间单位
     *
-    * @return string
+    * @return string|null
     */
     public function getSearchTimeRangeUnit()
     {
@@ -549,13 +486,61 @@ class SqlRequest implements ModelInterface, ArrayAccess
     /**
     * Sets searchTimeRangeUnit
     *
-    * @param string $searchTimeRangeUnit 查询时间单位
+    * @param string|null $searchTimeRangeUnit 查询时间单位
     *
     * @return $this
     */
     public function setSearchTimeRangeUnit($searchTimeRangeUnit)
     {
         $this->container['searchTimeRangeUnit'] = $searchTimeRangeUnit;
+        return $this;
+    }
+
+    /**
+    * Gets customDate
+    *  customDate
+    *
+    * @return \HuaweiCloud\SDK\Lts\V2\Model\CustomDate|null
+    */
+    public function getCustomDate()
+    {
+        return $this->container['customDate'];
+    }
+
+    /**
+    * Sets customDate
+    *
+    * @param \HuaweiCloud\SDK\Lts\V2\Model\CustomDate|null $customDate customDate
+    *
+    * @return $this
+    */
+    public function setCustomDate($customDate)
+    {
+        $this->container['customDate'] = $customDate;
+        return $this;
+    }
+
+    /**
+    * Gets isTimeRangeRelative
+    *  **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
+    *
+    * @return bool|null
+    */
+    public function getIsTimeRangeRelative()
+    {
+        return $this->container['isTimeRangeRelative'];
+    }
+
+    /**
+    * Sets isTimeRangeRelative
+    *
+    * @param bool|null $isTimeRangeRelative **参数解释：** 告警查询日志的时间区间为相对时间还是整点时间。（暂不开放，后续aom上线该功能后一起开放） **约束限制：** 不涉及。 **取值范围：** - true: 相对时间。 - false: 整点时间。 **默认取值：** true
+    *
+    * @return $this
+    */
+    public function setIsTimeRangeRelative($isTimeRangeRelative)
+    {
+        $this->container['isTimeRangeRelative'] = $isTimeRangeRelative;
         return $this;
     }
 

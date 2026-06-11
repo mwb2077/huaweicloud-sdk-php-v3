@@ -20,13 +20,14 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * status  状态
-    * startTime  开始时间
-    * endTime  结束时间
-    * offset  起始偏移
-    * limit  查询大小
-    * sortKey  排序字段名称
-    * sortDir  排序规则
+    * status  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
+    * startTime  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * endTime  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * updateTime  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * offset  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * limit  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * sortKey  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
+    * sortDir  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @var string[]
     */
@@ -34,6 +35,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
             'status' => 'string[]',
             'startTime' => 'string',
             'endTime' => 'string',
+            'updateTime' => 'string',
             'offset' => 'int',
             'limit' => 'int',
             'sortKey' => 'string',
@@ -42,13 +44,14 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * status  状态
-    * startTime  开始时间
-    * endTime  结束时间
-    * offset  起始偏移
-    * limit  查询大小
-    * sortKey  排序字段名称
-    * sortDir  排序规则
+    * status  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
+    * startTime  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * endTime  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * updateTime  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * offset  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * limit  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * sortKey  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
+    * sortDir  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @var string[]
     */
@@ -56,6 +59,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
         'status' => null,
         'startTime' => null,
         'endTime' => null,
+        'updateTime' => null,
         'offset' => 'int64',
         'limit' => 'int64',
         'sortKey' => null,
@@ -85,13 +89,14 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * status  状态
-    * startTime  开始时间
-    * endTime  结束时间
-    * offset  起始偏移
-    * limit  查询大小
-    * sortKey  排序字段名称
-    * sortDir  排序规则
+    * status  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
+    * startTime  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * endTime  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * updateTime  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * offset  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * limit  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * sortKey  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
+    * sortDir  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @var string[]
     */
@@ -99,6 +104,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
             'status' => 'status',
             'startTime' => 'start_time',
             'endTime' => 'end_time',
+            'updateTime' => 'update_time',
             'offset' => 'offset',
             'limit' => 'limit',
             'sortKey' => 'sort_key',
@@ -107,13 +113,14 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * status  状态
-    * startTime  开始时间
-    * endTime  结束时间
-    * offset  起始偏移
-    * limit  查询大小
-    * sortKey  排序字段名称
-    * sortDir  排序规则
+    * status  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
+    * startTime  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * endTime  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * updateTime  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * offset  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * limit  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * sortKey  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
+    * sortDir  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @var string[]
     */
@@ -121,6 +128,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
             'status' => 'setStatus',
             'startTime' => 'setStartTime',
             'endTime' => 'setEndTime',
+            'updateTime' => 'setUpdateTime',
             'offset' => 'setOffset',
             'limit' => 'setLimit',
             'sortKey' => 'setSortKey',
@@ -129,13 +137,14 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * status  状态
-    * startTime  开始时间
-    * endTime  结束时间
-    * offset  起始偏移
-    * limit  查询大小
-    * sortKey  排序字段名称
-    * sortDir  排序规则
+    * status  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
+    * startTime  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * endTime  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * updateTime  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    * offset  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * limit  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
+    * sortKey  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
+    * sortDir  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @var string[]
     */
@@ -143,6 +152,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
             'status' => 'getStatus',
             'startTime' => 'getStartTime',
             'endTime' => 'getEndTime',
+            'updateTime' => 'getUpdateTime',
             'offset' => 'getOffset',
             'limit' => 'getLimit',
             'sortKey' => 'getSortKey',
@@ -210,6 +220,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['startTime'] = isset($data['startTime']) ? $data['startTime'] : null;
         $this->container['endTime'] = isset($data['endTime']) ? $data['endTime'] : null;
+        $this->container['updateTime'] = isset($data['updateTime']) ? $data['updateTime'] : null;
         $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
         $this->container['limit'] = isset($data['limit']) ? $data['limit'] : null;
         $this->container['sortKey'] = isset($data['sortKey']) ? $data['sortKey'] : null;
@@ -240,7 +251,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets status
-    *  状态
+    *  **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
     *
     * @return string[]|null
     */
@@ -252,7 +263,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets status
     *
-    * @param string[]|null $status 状态
+    * @param string[]|null $status **参数解释**： 流水线状态列表。 **约束限制**： 不涉及。 **取值范围**： - COMPLETED：已完成。 - RUNNING：运行中。 - FAILED：失败。 - CANCELED：取消。 - PAUSED：暂停。 - SUSPEND：挂起。 - IGNORED：忽略。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -264,7 +275,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets startTime
-    *  开始时间
+    *  **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
     *
     * @return string|null
     */
@@ -276,7 +287,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets startTime
     *
-    * @param string|null $startTime 开始时间
+    * @param string|null $startTime **参数解释**： 流水线开始时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -288,7 +299,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets endTime
-    *  结束时间
+    *  **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
     *
     * @return string|null
     */
@@ -300,7 +311,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets endTime
     *
-    * @param string|null $endTime 结束时间
+    * @param string|null $endTime **参数解释**： 流水线结束时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -311,8 +322,32 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets updateTime
+    *  **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    *
+    * @return string|null
+    */
+    public function getUpdateTime()
+    {
+        return $this->container['updateTime'];
+    }
+
+    /**
+    * Sets updateTime
+    *
+    * @param string|null $updateTime **参数解释**： 流水线状态更新时间。 **约束限制**： 不涉及。 **取值范围**： 时间戳或者yyyy-MM-dd HH:mm:ss格式均可。 **默认取值**： 不涉及。
+    *
+    * @return $this
+    */
+    public function setUpdateTime($updateTime)
+    {
+        $this->container['updateTime'] = $updateTime;
+        return $this;
+    }
+
+    /**
     * Gets offset
-    *  起始偏移
+    *  **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
     *
     * @return int|null
     */
@@ -324,7 +359,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets offset
     *
-    * @param int|null $offset 起始偏移
+    * @param int|null $offset **参数解释**： 起始偏移。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -336,7 +371,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets limit
-    *  查询大小
+    *  **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
     *
     * @return int|null
     */
@@ -348,7 +383,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets limit
     *
-    * @param int|null $limit 查询大小
+    * @param int|null $limit **参数解释**： 查询数量。 **约束限制**： 不涉及。 **取值范围**： 大于等于零。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -360,7 +395,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets sortKey
-    *  排序字段名称
+    *  **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
     *
     * @return string|null
     */
@@ -372,7 +407,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets sortKey
     *
-    * @param string|null $sortKey 排序字段名称
+    * @param string|null $sortKey **参数解释**： 排序字段名称。 **约束限制**： 不涉及。 **取值范围**： \"start_time\" - 流水线开始时间。 \"update_time\" - 流水线更新时间。 **默认取值**： 不涉及。
     *
     * @return $this
     */
@@ -384,7 +419,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
 
     /**
     * Gets sortDir
-    *  排序规则
+    *  **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @return string|null
     */
@@ -396,7 +431,7 @@ class ListPipelineRunsQuery implements ModelInterface, ArrayAccess
     /**
     * Sets sortDir
     *
-    * @param string|null $sortDir 排序规则
+    * @param string|null $sortDir **参数解释**： 排序规则。 **约束限制**： 不涉及。 **取值范围**： - asc：按排序字段升序。 - desc：按排序字段降序。 **默认取值**： 不涉及。
     *
     * @return $this
     */

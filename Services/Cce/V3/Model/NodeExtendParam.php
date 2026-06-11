@@ -21,25 +21,35 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * ecsperformancetype  云服务器规格的分类。响应中会返回此字段。
-    * orderId  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
-    * productId  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * orderId  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * productId  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * maxPods  节点最大允许创建的实例数(Pod)，该数量包含系统默认实例，取值范围为16~256。  该设置的目的为防止节点因管理过多实例而负载过重，请根据您的业务需要进行设置。  节点可以创建多少个Pod，受多个参数影响，具体请参见[节点最多可以创建多少Pod](maxPods.xml)。
     * periodType  - month：月 - year：年 > 作为请求参数，billingMode为1（包周期）或2（已废弃：自动付费包周期）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * periodNum  订购周期数，取值范围： - periodType=month（周期类型为月）时，取值为[1-9]。 - periodType=year（周期类型为年）时，取值为1。 > 作为请求参数，billingMode为1或2（已废弃）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * isAutoRenew  是否自动续订 - “true”：自动续订 - “false”：不自动续订 > billingMode为1或2（已废弃）时生效，不填写此参数时默认不会自动续费。
     * isAutoPay  是否自动扣款  - “true”：自动扣款 - “false”：不自动扣款  > billingMode为1或2（已废弃）时生效，billingMode为1时不填写此参数时默认不会自动扣款。（已废弃：billingMode为2时不填写此参数时默认会自动扣款）
     * dockerLvmConfigOverride  Docker数据盘配置项（已废弃，请使用storage字段）。默认配置示例如下：  ``` \"DockerLVMConfigOverride\":\"dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear\" ```  默认配置在无VD类型磁盘时，会由于数据盘查找失败而出错，请根据真实盘符类型填写diskType。 包含如下字段：   - userLV（可选）：用户空间的大小，示例格式：vgpaas/20%VG   - userPath（可选）：用户空间挂载路径，示例格式：/home/wqt-test   - diskType：磁盘类型，目前只有evs、hdd和ssd三种格式   - lvType：逻辑卷的类型，目前支持linear和striped两种，示例格式：striped   - dockerThinpool：Docker盘的空间大小，示例格式：vgpaas/60%VG   - kubernetesLV：Kubelet空间大小，示例格式：vgpaas/20%VG
-    * dockerBaseSize  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
-    * publicKey  节点的公钥。
+    * dockerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * containerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * publicKey  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     * alphaCcePreInstall  安装前执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64
     * alphaCcePostInstall  安装后执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64。
-    * alphaCceNodeImageId  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * alphaCceNodeImageId  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     * chargingMode  节点的计费模式。已废弃，请使用NodeSpec中的billingMode字段。
+    * marketType  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * spotPrice  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
     * agencyName  委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。
     * kubeReservedMem  节点内存预留，Kubernetes相关组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
     * systemReservedMem  节点内存预留，系统组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
-    * initNodePassword  节点密码，作为响应参数时，固定展示星号。
-    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * kubeReservedCpu  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedCpu  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * kubeReservedPid  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * systemReservedPid  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * kubeReservedStorage  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedStorage  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * initNodePassword  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
+    * serverMetadataHttpTokens  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
     *
     * @var string[]
     */
@@ -54,40 +64,60 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
             'isAutoPay' => 'string',
             'dockerLvmConfigOverride' => 'string',
             'dockerBaseSize' => 'int',
+            'containerBaseSize' => 'int',
             'publicKey' => 'string',
             'alphaCcePreInstall' => 'string',
             'alphaCcePostInstall' => 'string',
             'alphaCceNodeImageId' => 'string',
             'chargingMode' => 'int',
+            'marketType' => 'string',
+            'spotPrice' => 'string',
             'agencyName' => 'string',
             'kubeReservedMem' => 'int',
             'systemReservedMem' => 'int',
+            'kubeReservedCpu' => 'int',
+            'systemReservedCpu' => 'int',
+            'kubeReservedPid' => 'int',
+            'systemReservedPid' => 'int',
+            'kubeReservedStorage' => 'int',
+            'systemReservedStorage' => 'int',
             'initNodePassword' => 'string',
-            'securityReinforcementType' => 'string'
+            'securityReinforcementType' => 'string',
+            'serverMetadataHttpTokens' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
     * ecsperformancetype  云服务器规格的分类。响应中会返回此字段。
-    * orderId  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
-    * productId  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * orderId  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * productId  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * maxPods  节点最大允许创建的实例数(Pod)，该数量包含系统默认实例，取值范围为16~256。  该设置的目的为防止节点因管理过多实例而负载过重，请根据您的业务需要进行设置。  节点可以创建多少个Pod，受多个参数影响，具体请参见[节点最多可以创建多少Pod](maxPods.xml)。
     * periodType  - month：月 - year：年 > 作为请求参数，billingMode为1（包周期）或2（已废弃：自动付费包周期）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * periodNum  订购周期数，取值范围： - periodType=month（周期类型为月）时，取值为[1-9]。 - periodType=year（周期类型为年）时，取值为1。 > 作为请求参数，billingMode为1或2（已废弃）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * isAutoRenew  是否自动续订 - “true”：自动续订 - “false”：不自动续订 > billingMode为1或2（已废弃）时生效，不填写此参数时默认不会自动续费。
     * isAutoPay  是否自动扣款  - “true”：自动扣款 - “false”：不自动扣款  > billingMode为1或2（已废弃）时生效，billingMode为1时不填写此参数时默认不会自动扣款。（已废弃：billingMode为2时不填写此参数时默认会自动扣款）
     * dockerLvmConfigOverride  Docker数据盘配置项（已废弃，请使用storage字段）。默认配置示例如下：  ``` \"DockerLVMConfigOverride\":\"dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear\" ```  默认配置在无VD类型磁盘时，会由于数据盘查找失败而出错，请根据真实盘符类型填写diskType。 包含如下字段：   - userLV（可选）：用户空间的大小，示例格式：vgpaas/20%VG   - userPath（可选）：用户空间挂载路径，示例格式：/home/wqt-test   - diskType：磁盘类型，目前只有evs、hdd和ssd三种格式   - lvType：逻辑卷的类型，目前支持linear和striped两种，示例格式：striped   - dockerThinpool：Docker盘的空间大小，示例格式：vgpaas/60%VG   - kubernetesLV：Kubelet空间大小，示例格式：vgpaas/20%VG
-    * dockerBaseSize  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
-    * publicKey  节点的公钥。
+    * dockerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * containerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * publicKey  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     * alphaCcePreInstall  安装前执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64
     * alphaCcePostInstall  安装后执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64。
-    * alphaCceNodeImageId  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * alphaCceNodeImageId  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     * chargingMode  节点的计费模式。已废弃，请使用NodeSpec中的billingMode字段。
+    * marketType  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * spotPrice  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
     * agencyName  委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。
     * kubeReservedMem  节点内存预留，Kubernetes相关组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
     * systemReservedMem  节点内存预留，系统组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
-    * initNodePassword  节点密码，作为响应参数时，固定展示星号。
-    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * kubeReservedCpu  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedCpu  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * kubeReservedPid  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * systemReservedPid  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * kubeReservedStorage  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedStorage  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * initNodePassword  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
+    * serverMetadataHttpTokens  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
     *
     * @var string[]
     */
@@ -102,16 +132,26 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
         'isAutoPay' => null,
         'dockerLvmConfigOverride' => null,
         'dockerBaseSize' => null,
+        'containerBaseSize' => null,
         'publicKey' => null,
         'alphaCcePreInstall' => null,
         'alphaCcePostInstall' => null,
         'alphaCceNodeImageId' => null,
         'chargingMode' => 'int32',
+        'marketType' => null,
+        'spotPrice' => null,
         'agencyName' => null,
         'kubeReservedMem' => 'int32',
         'systemReservedMem' => 'int32',
+        'kubeReservedCpu' => 'int32',
+        'systemReservedCpu' => 'int32',
+        'kubeReservedPid' => 'int32',
+        'systemReservedPid' => 'int32',
+        'kubeReservedStorage' => 'int32',
+        'systemReservedStorage' => 'int32',
         'initNodePassword' => null,
-        'securityReinforcementType' => null
+        'securityReinforcementType' => null,
+        'serverMetadataHttpTokens' => null
     ];
 
     /**
@@ -138,25 +178,35 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * ecsperformancetype  云服务器规格的分类。响应中会返回此字段。
-    * orderId  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
-    * productId  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * orderId  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * productId  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * maxPods  节点最大允许创建的实例数(Pod)，该数量包含系统默认实例，取值范围为16~256。  该设置的目的为防止节点因管理过多实例而负载过重，请根据您的业务需要进行设置。  节点可以创建多少个Pod，受多个参数影响，具体请参见[节点最多可以创建多少Pod](maxPods.xml)。
     * periodType  - month：月 - year：年 > 作为请求参数，billingMode为1（包周期）或2（已废弃：自动付费包周期）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * periodNum  订购周期数，取值范围： - periodType=month（周期类型为月）时，取值为[1-9]。 - periodType=year（周期类型为年）时，取值为1。 > 作为请求参数，billingMode为1或2（已废弃）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * isAutoRenew  是否自动续订 - “true”：自动续订 - “false”：不自动续订 > billingMode为1或2（已废弃）时生效，不填写此参数时默认不会自动续费。
     * isAutoPay  是否自动扣款  - “true”：自动扣款 - “false”：不自动扣款  > billingMode为1或2（已废弃）时生效，billingMode为1时不填写此参数时默认不会自动扣款。（已废弃：billingMode为2时不填写此参数时默认会自动扣款）
     * dockerLvmConfigOverride  Docker数据盘配置项（已废弃，请使用storage字段）。默认配置示例如下：  ``` \"DockerLVMConfigOverride\":\"dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear\" ```  默认配置在无VD类型磁盘时，会由于数据盘查找失败而出错，请根据真实盘符类型填写diskType。 包含如下字段：   - userLV（可选）：用户空间的大小，示例格式：vgpaas/20%VG   - userPath（可选）：用户空间挂载路径，示例格式：/home/wqt-test   - diskType：磁盘类型，目前只有evs、hdd和ssd三种格式   - lvType：逻辑卷的类型，目前支持linear和striped两种，示例格式：striped   - dockerThinpool：Docker盘的空间大小，示例格式：vgpaas/60%VG   - kubernetesLV：Kubelet空间大小，示例格式：vgpaas/20%VG
-    * dockerBaseSize  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
-    * publicKey  节点的公钥。
+    * dockerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * containerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * publicKey  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     * alphaCcePreInstall  安装前执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64
     * alphaCcePostInstall  安装后执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64。
-    * alphaCceNodeImageId  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * alphaCceNodeImageId  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     * chargingMode  节点的计费模式。已废弃，请使用NodeSpec中的billingMode字段。
+    * marketType  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * spotPrice  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
     * agencyName  委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。
     * kubeReservedMem  节点内存预留，Kubernetes相关组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
     * systemReservedMem  节点内存预留，系统组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
-    * initNodePassword  节点密码，作为响应参数时，固定展示星号。
-    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * kubeReservedCpu  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedCpu  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * kubeReservedPid  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * systemReservedPid  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * kubeReservedStorage  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedStorage  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * initNodePassword  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
+    * serverMetadataHttpTokens  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
     *
     * @var string[]
     */
@@ -171,40 +221,60 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
             'isAutoPay' => 'isAutoPay',
             'dockerLvmConfigOverride' => 'DockerLVMConfigOverride',
             'dockerBaseSize' => 'dockerBaseSize',
+            'containerBaseSize' => 'containerBaseSize',
             'publicKey' => 'publicKey',
             'alphaCcePreInstall' => 'alpha.cce/preInstall',
             'alphaCcePostInstall' => 'alpha.cce/postInstall',
             'alphaCceNodeImageId' => 'alpha.cce/NodeImageID',
             'chargingMode' => 'chargingMode',
+            'marketType' => 'marketType',
+            'spotPrice' => 'spotPrice',
             'agencyName' => 'agency_name',
             'kubeReservedMem' => 'kubeReservedMem',
             'systemReservedMem' => 'systemReservedMem',
+            'kubeReservedCpu' => 'kubeReservedCpu',
+            'systemReservedCpu' => 'systemReservedCpu',
+            'kubeReservedPid' => 'kubeReservedPid',
+            'systemReservedPid' => 'systemReservedPid',
+            'kubeReservedStorage' => 'kubeReservedStorage',
+            'systemReservedStorage' => 'systemReservedStorage',
             'initNodePassword' => 'init-node-password',
-            'securityReinforcementType' => 'securityReinforcementType'
+            'securityReinforcementType' => 'securityReinforcementType',
+            'serverMetadataHttpTokens' => 'serverMetadataHttpTokens'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * ecsperformancetype  云服务器规格的分类。响应中会返回此字段。
-    * orderId  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
-    * productId  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * orderId  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * productId  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * maxPods  节点最大允许创建的实例数(Pod)，该数量包含系统默认实例，取值范围为16~256。  该设置的目的为防止节点因管理过多实例而负载过重，请根据您的业务需要进行设置。  节点可以创建多少个Pod，受多个参数影响，具体请参见[节点最多可以创建多少Pod](maxPods.xml)。
     * periodType  - month：月 - year：年 > 作为请求参数，billingMode为1（包周期）或2（已废弃：自动付费包周期）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * periodNum  订购周期数，取值范围： - periodType=month（周期类型为月）时，取值为[1-9]。 - periodType=year（周期类型为年）时，取值为1。 > 作为请求参数，billingMode为1或2（已废弃）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * isAutoRenew  是否自动续订 - “true”：自动续订 - “false”：不自动续订 > billingMode为1或2（已废弃）时生效，不填写此参数时默认不会自动续费。
     * isAutoPay  是否自动扣款  - “true”：自动扣款 - “false”：不自动扣款  > billingMode为1或2（已废弃）时生效，billingMode为1时不填写此参数时默认不会自动扣款。（已废弃：billingMode为2时不填写此参数时默认会自动扣款）
     * dockerLvmConfigOverride  Docker数据盘配置项（已废弃，请使用storage字段）。默认配置示例如下：  ``` \"DockerLVMConfigOverride\":\"dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear\" ```  默认配置在无VD类型磁盘时，会由于数据盘查找失败而出错，请根据真实盘符类型填写diskType。 包含如下字段：   - userLV（可选）：用户空间的大小，示例格式：vgpaas/20%VG   - userPath（可选）：用户空间挂载路径，示例格式：/home/wqt-test   - diskType：磁盘类型，目前只有evs、hdd和ssd三种格式   - lvType：逻辑卷的类型，目前支持linear和striped两种，示例格式：striped   - dockerThinpool：Docker盘的空间大小，示例格式：vgpaas/60%VG   - kubernetesLV：Kubelet空间大小，示例格式：vgpaas/20%VG
-    * dockerBaseSize  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
-    * publicKey  节点的公钥。
+    * dockerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * containerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * publicKey  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     * alphaCcePreInstall  安装前执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64
     * alphaCcePostInstall  安装后执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64。
-    * alphaCceNodeImageId  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * alphaCceNodeImageId  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     * chargingMode  节点的计费模式。已废弃，请使用NodeSpec中的billingMode字段。
+    * marketType  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * spotPrice  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
     * agencyName  委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。
     * kubeReservedMem  节点内存预留，Kubernetes相关组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
     * systemReservedMem  节点内存预留，系统组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
-    * initNodePassword  节点密码，作为响应参数时，固定展示星号。
-    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * kubeReservedCpu  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedCpu  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * kubeReservedPid  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * systemReservedPid  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * kubeReservedStorage  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedStorage  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * initNodePassword  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
+    * serverMetadataHttpTokens  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
     *
     * @var string[]
     */
@@ -219,40 +289,60 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
             'isAutoPay' => 'setIsAutoPay',
             'dockerLvmConfigOverride' => 'setDockerLvmConfigOverride',
             'dockerBaseSize' => 'setDockerBaseSize',
+            'containerBaseSize' => 'setContainerBaseSize',
             'publicKey' => 'setPublicKey',
             'alphaCcePreInstall' => 'setAlphaCcePreInstall',
             'alphaCcePostInstall' => 'setAlphaCcePostInstall',
             'alphaCceNodeImageId' => 'setAlphaCceNodeImageId',
             'chargingMode' => 'setChargingMode',
+            'marketType' => 'setMarketType',
+            'spotPrice' => 'setSpotPrice',
             'agencyName' => 'setAgencyName',
             'kubeReservedMem' => 'setKubeReservedMem',
             'systemReservedMem' => 'setSystemReservedMem',
+            'kubeReservedCpu' => 'setKubeReservedCpu',
+            'systemReservedCpu' => 'setSystemReservedCpu',
+            'kubeReservedPid' => 'setKubeReservedPid',
+            'systemReservedPid' => 'setSystemReservedPid',
+            'kubeReservedStorage' => 'setKubeReservedStorage',
+            'systemReservedStorage' => 'setSystemReservedStorage',
             'initNodePassword' => 'setInitNodePassword',
-            'securityReinforcementType' => 'setSecurityReinforcementType'
+            'securityReinforcementType' => 'setSecurityReinforcementType',
+            'serverMetadataHttpTokens' => 'setServerMetadataHttpTokens'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * ecsperformancetype  云服务器规格的分类。响应中会返回此字段。
-    * orderId  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
-    * productId  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * orderId  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * productId  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     * maxPods  节点最大允许创建的实例数(Pod)，该数量包含系统默认实例，取值范围为16~256。  该设置的目的为防止节点因管理过多实例而负载过重，请根据您的业务需要进行设置。  节点可以创建多少个Pod，受多个参数影响，具体请参见[节点最多可以创建多少Pod](maxPods.xml)。
     * periodType  - month：月 - year：年 > 作为请求参数，billingMode为1（包周期）或2（已废弃：自动付费包周期）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * periodNum  订购周期数，取值范围： - periodType=month（周期类型为月）时，取值为[1-9]。 - periodType=year（周期类型为年）时，取值为1。 > 作为请求参数，billingMode为1或2（已废弃）时生效，且为必选。 > 作为响应参数，仅在创建包周期节点时返回。
     * isAutoRenew  是否自动续订 - “true”：自动续订 - “false”：不自动续订 > billingMode为1或2（已废弃）时生效，不填写此参数时默认不会自动续费。
     * isAutoPay  是否自动扣款  - “true”：自动扣款 - “false”：不自动扣款  > billingMode为1或2（已废弃）时生效，billingMode为1时不填写此参数时默认不会自动扣款。（已废弃：billingMode为2时不填写此参数时默认会自动扣款）
     * dockerLvmConfigOverride  Docker数据盘配置项（已废弃，请使用storage字段）。默认配置示例如下：  ``` \"DockerLVMConfigOverride\":\"dockerThinpool=vgpaas/90%VG;kubernetesLV=vgpaas/10%VG;diskType=evs;lvType=linear\" ```  默认配置在无VD类型磁盘时，会由于数据盘查找失败而出错，请根据真实盘符类型填写diskType。 包含如下字段：   - userLV（可选）：用户空间的大小，示例格式：vgpaas/20%VG   - userPath（可选）：用户空间挂载路径，示例格式：/home/wqt-test   - diskType：磁盘类型，目前只有evs、hdd和ssd三种格式   - lvType：逻辑卷的类型，目前支持linear和striped两种，示例格式：striped   - dockerThinpool：Docker盘的空间大小，示例格式：vgpaas/60%VG   - kubernetesLV：Kubelet空间大小，示例格式：vgpaas/20%VG
-    * dockerBaseSize  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
-    * publicKey  节点的公钥。
+    * dockerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * containerBaseSize  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    * publicKey  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     * alphaCcePreInstall  安装前执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64
     * alphaCcePostInstall  安装后执行脚本 > 输入的值需要经过Base64编码，方法为echo -n \"待编码内容\" | base64。
-    * alphaCceNodeImageId  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * alphaCceNodeImageId  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     * chargingMode  节点的计费模式。已废弃，请使用NodeSpec中的billingMode字段。
+    * marketType  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * spotPrice  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
     * agencyName  委托的名称。  委托是由租户管理员在统一身份认证服务（Identity and Access Management，IAM）上创建的，可以为CCE节点提供访问云服务器的临时凭证。 作为响应参数仅在创建节点传入时返回该字段。
     * kubeReservedMem  节点内存预留，Kubernetes相关组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
     * systemReservedMem  节点内存预留，系统组件预留值。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws)
-    * initNodePassword  节点密码，作为响应参数时，固定展示星号。
-    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * kubeReservedCpu  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedCpu  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * kubeReservedPid  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * systemReservedPid  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    * kubeReservedStorage  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * systemReservedStorage  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * initNodePassword  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
+    * securityReinforcementType  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
+    * serverMetadataHttpTokens  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
     *
     * @var string[]
     */
@@ -267,16 +357,26 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
             'isAutoPay' => 'getIsAutoPay',
             'dockerLvmConfigOverride' => 'getDockerLvmConfigOverride',
             'dockerBaseSize' => 'getDockerBaseSize',
+            'containerBaseSize' => 'getContainerBaseSize',
             'publicKey' => 'getPublicKey',
             'alphaCcePreInstall' => 'getAlphaCcePreInstall',
             'alphaCcePostInstall' => 'getAlphaCcePostInstall',
             'alphaCceNodeImageId' => 'getAlphaCceNodeImageId',
             'chargingMode' => 'getChargingMode',
+            'marketType' => 'getMarketType',
+            'spotPrice' => 'getSpotPrice',
             'agencyName' => 'getAgencyName',
             'kubeReservedMem' => 'getKubeReservedMem',
             'systemReservedMem' => 'getSystemReservedMem',
+            'kubeReservedCpu' => 'getKubeReservedCpu',
+            'systemReservedCpu' => 'getSystemReservedCpu',
+            'kubeReservedPid' => 'getKubeReservedPid',
+            'systemReservedPid' => 'getSystemReservedPid',
+            'kubeReservedStorage' => 'getKubeReservedStorage',
+            'systemReservedStorage' => 'getSystemReservedStorage',
             'initNodePassword' => 'getInitNodePassword',
-            'securityReinforcementType' => 'getSecurityReinforcementType'
+            'securityReinforcementType' => 'getSecurityReinforcementType',
+            'serverMetadataHttpTokens' => 'getServerMetadataHttpTokens'
     ];
 
     /**
@@ -319,9 +419,22 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     {
         return self::$openAPIModelName;
     }
+    const MARKET_TYPE_SPOT = 'spot';
     const SECURITY_REINFORCEMENT_TYPE_NULL = 'null';
     const SECURITY_REINFORCEMENT_TYPE_CYBERSECURITY = 'cybersecurity';
     
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getMarketTypeAllowableValues()
+    {
+        return [
+            self::MARKET_TYPE_SPOT,
+        ];
+    }
 
     /**
     * Gets allowable values of the enum
@@ -362,16 +475,26 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
         $this->container['isAutoPay'] = isset($data['isAutoPay']) ? $data['isAutoPay'] : null;
         $this->container['dockerLvmConfigOverride'] = isset($data['dockerLvmConfigOverride']) ? $data['dockerLvmConfigOverride'] : null;
         $this->container['dockerBaseSize'] = isset($data['dockerBaseSize']) ? $data['dockerBaseSize'] : null;
+        $this->container['containerBaseSize'] = isset($data['containerBaseSize']) ? $data['containerBaseSize'] : null;
         $this->container['publicKey'] = isset($data['publicKey']) ? $data['publicKey'] : null;
         $this->container['alphaCcePreInstall'] = isset($data['alphaCcePreInstall']) ? $data['alphaCcePreInstall'] : null;
         $this->container['alphaCcePostInstall'] = isset($data['alphaCcePostInstall']) ? $data['alphaCcePostInstall'] : null;
         $this->container['alphaCceNodeImageId'] = isset($data['alphaCceNodeImageId']) ? $data['alphaCceNodeImageId'] : null;
         $this->container['chargingMode'] = isset($data['chargingMode']) ? $data['chargingMode'] : null;
+        $this->container['marketType'] = isset($data['marketType']) ? $data['marketType'] : null;
+        $this->container['spotPrice'] = isset($data['spotPrice']) ? $data['spotPrice'] : null;
         $this->container['agencyName'] = isset($data['agencyName']) ? $data['agencyName'] : null;
         $this->container['kubeReservedMem'] = isset($data['kubeReservedMem']) ? $data['kubeReservedMem'] : null;
         $this->container['systemReservedMem'] = isset($data['systemReservedMem']) ? $data['systemReservedMem'] : null;
+        $this->container['kubeReservedCpu'] = isset($data['kubeReservedCpu']) ? $data['kubeReservedCpu'] : null;
+        $this->container['systemReservedCpu'] = isset($data['systemReservedCpu']) ? $data['systemReservedCpu'] : null;
+        $this->container['kubeReservedPid'] = isset($data['kubeReservedPid']) ? $data['kubeReservedPid'] : null;
+        $this->container['systemReservedPid'] = isset($data['systemReservedPid']) ? $data['systemReservedPid'] : null;
+        $this->container['kubeReservedStorage'] = isset($data['kubeReservedStorage']) ? $data['kubeReservedStorage'] : null;
+        $this->container['systemReservedStorage'] = isset($data['systemReservedStorage']) ? $data['systemReservedStorage'] : null;
         $this->container['initNodePassword'] = isset($data['initNodePassword']) ? $data['initNodePassword'] : null;
         $this->container['securityReinforcementType'] = isset($data['securityReinforcementType']) ? $data['securityReinforcementType'] : null;
+        $this->container['serverMetadataHttpTokens'] = isset($data['serverMetadataHttpTokens']) ? $data['serverMetadataHttpTokens'] : null;
     }
 
     /**
@@ -388,6 +511,20 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
             if (!is_null($this->container['dockerBaseSize']) && ($this->container['dockerBaseSize'] < 10)) {
                 $invalidProperties[] = "invalid value for 'dockerBaseSize', must be bigger than or equal to 10.";
             }
+            if (!is_null($this->container['containerBaseSize']) && ($this->container['containerBaseSize'] > 500)) {
+                $invalidProperties[] = "invalid value for 'containerBaseSize', must be smaller than or equal to 500.";
+            }
+            if (!is_null($this->container['containerBaseSize']) && ($this->container['containerBaseSize'] < 10)) {
+                $invalidProperties[] = "invalid value for 'containerBaseSize', must be bigger than or equal to 10.";
+            }
+            $allowedValues = $this->getMarketTypeAllowableValues();
+                if (!is_null($this->container['marketType']) && !in_array($this->container['marketType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'marketType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
             $allowedValues = $this->getSecurityReinforcementTypeAllowableValues();
                 if (!is_null($this->container['securityReinforcementType']) && !in_array($this->container['securityReinforcementType'], $allowedValues, true)) {
                 $invalidProperties[] = sprintf(
@@ -436,7 +573,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
 
     /**
     * Gets orderId
-    *  订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
+    *  **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -448,7 +585,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets orderId
     *
-    * @param string|null $orderId 订单ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)。
+    * @param string|null $orderId **参数解释**： 订单ID。 **约束限制**： 节点付费类型为自动付费包周期类型时，响应中会返回此字段(仅创建场景涉及)，节点池场景响应返回中无该参数。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -460,7 +597,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
 
     /**
     * Gets productId
-    *  产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    *  **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -472,7 +609,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets productId
     *
-    * @param string|null $productId 产品ID，节点付费类型为自动付费包周期类型时，响应中会返回此字段。
+    * @param string|null $productId **参数解释**： 产品ID。 **约束限制**： 节点付费类型为自动付费包周期类型或者节点池类型是包周期节点池时，响应中会返回此字段。 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -628,7 +765,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
 
     /**
     * Gets dockerBaseSize
-    *  节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
+    *  **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
     *
     * @return int|null
     */
@@ -640,7 +777,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets dockerBaseSize
     *
-    * @param int|null $dockerBaseSize 节点上单容器的可用磁盘空间大小，单位G。  不配置该值或值为0时将使用默认值，Devicemapper模式下默认值为10；OverlayFS模式默认不限制单容器可用空间大小，且dockerBaseSize设置仅在新版本集群的EulerOS节点上生效。  CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。  Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。
+    * @param int|null $dockerBaseSize **参数解释**： 节点上单容器的可用磁盘空间大小（已废弃，请优先使用containerBaseSize参数），单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议dockerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替。 - dockerBaseSize设置仅在v1.19.16-r0、v1.21.3-r0、v1.23.3-r0及以上的集群版本中的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
     *
     * @return $this
     */
@@ -651,8 +788,32 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets containerBaseSize
+    *  **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    *
+    * @return int|null
+    */
+    public function getContainerBaseSize()
+    {
+        return $this->container['containerBaseSize'];
+    }
+
+    /**
+    * Sets containerBaseSize
+    *
+    * @param int|null $containerBaseSize **参数解释**： 节点上单容器的可用磁盘空间大小，单位G。 CCE节点容器运行时空间配置请参考[数据盘空间分配说明](cce_01_0341.xml)。 **约束限制**： - Devicemapper模式下建议containerBaseSize配置不超过80G，设置过大时可能会导致容器运行时初始化时间过长而启动失败，若对容器磁盘大小有特殊要求，可考虑使用挂载外部或本地存储方式代替；Devicemapper模式在新版中仅有共池裸机使用，已逐步废弃。 - containerBaseSize设置仅在新版本集群（v1.23.14-r0/v1.25.9-r0/v1.27.6-r0/v1.28.4-r0及以上）的EulerOS[/HCEOS2.0](tag:hws,hws_hk,ctc,cmcc)节点上生效。 - 更新节点池时，不支持更新此参数。  **取值范围**： 10-500。 **默认取值**： 不配置该值或值为0时将使用默认值： - Devicemapper模式下默认值为10； - OverlayFS模式默认不限制单容器可用空间大小。
+    *
+    * @return $this
+    */
+    public function setContainerBaseSize($containerBaseSize)
+    {
+        $this->container['containerBaseSize'] = $containerBaseSize;
+        return $this;
+    }
+
+    /**
     * Gets publicKey
-    *  节点的公钥。
+    *  **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -664,7 +825,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets publicKey
     *
-    * @param string|null $publicKey 节点的公钥。
+    * @param string|null $publicKey **参数解释**： 节点的公钥，应用于ssh密钥登录。 **约束限制**： - 当选择使用密钥对方式登录节点时该配置无效 - 创建、更新节点池场景不支持该参数  **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -724,7 +885,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
 
     /**
     * Gets alphaCceNodeImageId
-    *  如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    *  **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -736,7 +897,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets alphaCceNodeImageId
     *
-    * @param string|null $alphaCceNodeImageId 如果创建裸金属节点，需要使用自定义镜像时用此参数。
+    * @param string|null $alphaCceNodeImageId **参数解释**： 节点自定义镜像ID，从IMS控制台获取，需要使用自定义镜像时使用此参数。 **约束限制**： 不涉及 [> - 若指定了extendParam中的securityReinforcementType参数为cybersecurity，节点将开启安全等保加固功能，则节点的操作系统类型必须使用HCE2.0。](tag:hws)  **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -767,6 +928,54 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     public function setChargingMode($chargingMode)
     {
         $this->container['chargingMode'] = $chargingMode;
+        return $this;
+    }
+
+    /**
+    * Gets marketType
+    *  **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return string|null
+    */
+    public function getMarketType()
+    {
+        return $this->container['marketType'];
+    }
+
+    /**
+    * Sets marketType
+    *
+    * @param string|null $marketType **参数解释**： 创建竞价实例时，需指定该参数的值为“spot”。 **约束限制**： 仅当billingMode=0时此参数生效 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setMarketType($marketType)
+    {
+        $this->container['marketType'] = $marketType;
+        return $this;
+    }
+
+    /**
+    * Gets spotPrice
+    *  **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return string|null
+    */
+    public function getSpotPrice()
+    {
+        return $this->container['spotPrice'];
+    }
+
+    /**
+    * Sets spotPrice
+    *
+    * @param string|null $spotPrice **参数解释**： 用户愿意为竞价实例每小时支付的最高价格。 **约束限制**： - 仅当billingMode=0且marketType=spot时，该参数设置后生效。 - 当billingMode=0且marketType=spot时，如果不传递spotPrice，默认使用按需购买的价格作为竞价。 - spotPrice需要小于等于按需价格并大于等于云服务器市场价格。  **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setSpotPrice($spotPrice)
+    {
+        $this->container['spotPrice'] = $spotPrice;
         return $this;
     }
 
@@ -843,8 +1052,152 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets kubeReservedCpu
+    *  **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getKubeReservedCpu()
+    {
+        return $this->container['kubeReservedCpu'];
+    }
+
+    /**
+    * Sets kubeReservedCpu
+    *
+    * @param int|null $kubeReservedCpu **参数解释**： 节点CPU预留，Kubernetes相关组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setKubeReservedCpu($kubeReservedCpu)
+    {
+        $this->container['kubeReservedCpu'] = $kubeReservedCpu;
+        return $this;
+    }
+
+    /**
+    * Gets systemReservedCpu
+    *  **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getSystemReservedCpu()
+    {
+        return $this->container['systemReservedCpu'];
+    }
+
+    /**
+    * Sets systemReservedCpu
+    *
+    * @param int|null $systemReservedCpu **参数解释**： 节点CPU预留，系统组件预留值。单位为mcore。[随节点规格变动，具体请参见[节点预留资源策略说明](https://support.huaweicloud.com/usermanual-cce/cce_10_0178.html)。](tag:hws) **约束限制**： kubeReservedCpu，systemReservedCpu之和小于节点池中节点最小CPU规格的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setSystemReservedCpu($systemReservedCpu)
+    {
+        $this->container['systemReservedCpu'] = $systemReservedCpu;
+        return $this;
+    }
+
+    /**
+    * Gets kubeReservedPid
+    *  **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getKubeReservedPid()
+    {
+        return $this->container['kubeReservedPid'];
+    }
+
+    /**
+    * Sets kubeReservedPid
+    *
+    * @param int|null $kubeReservedPid **参数解释**： 节点PID预留，Kubernetes相关组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setKubeReservedPid($kubeReservedPid)
+    {
+        $this->container['kubeReservedPid'] = $kubeReservedPid;
+        return $this;
+    }
+
+    /**
+    * Gets systemReservedPid
+    *  **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getSystemReservedPid()
+    {
+        return $this->container['systemReservedPid'];
+    }
+
+    /**
+    * Sets systemReservedPid
+    *
+    * @param int|null $systemReservedPid **参数解释**： 节点PID预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留指定数量的进程ID。 **约束限制**： kubeReservedPid，systemReservedPid之和小于linux PID数量上限的50%。[不同OS的kernel.pid_max可能并不相同，具体请参见[修改节点进程 ID数量上限kernel.pid_max](https://support.huaweicloud.com/usermanual-cce/cce_10_0401.html#section1)](tag:hws) **取值范围**： [0,2097152] 注：CCE仅校验kernel.pid_max为4194304的场景，2022年1月30日及之前创建的节点和部分OS的kernel.pid_max会有所不同，若您更新过kernel.pid_max也需要保证kubeReservedPid，systemReservedPid之和小于linux PID数量上限。 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setSystemReservedPid($systemReservedPid)
+    {
+        $this->container['systemReservedPid'] = $systemReservedPid;
+        return $this;
+    }
+
+    /**
+    * Gets kubeReservedStorage
+    *  **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getKubeReservedStorage()
+    {
+        return $this->container['kubeReservedStorage'];
+    }
+
+    /**
+    * Sets kubeReservedStorage
+    *
+    * @param int|null $kubeReservedStorage **参数解释**： 节点临时存储空间预留，Kubernetes组件预留值。目的是为Kubernetes系统守护进程（如kubelet、container runtime等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setKubeReservedStorage($kubeReservedStorage)
+    {
+        $this->container['kubeReservedStorage'] = $kubeReservedStorage;
+        return $this;
+    }
+
+    /**
+    * Gets systemReservedStorage
+    *  **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return int|null
+    */
+    public function getSystemReservedStorage()
+    {
+        return $this->container['systemReservedStorage'];
+    }
+
+    /**
+    * Sets systemReservedStorage
+    *
+    * @param int|null $systemReservedStorage **参数解释**： 节点临时存储空间预留，系统组件预留值。目的是为OS系统守护进程（如 sshd、udev 等）预留临时存储。单位为Gi。 **约束限制**： kubeReservedStorage，systemReservedStorage之和小于容器组件所使用硬盘空间的50%。 **取值范围**： 不涉及 **默认取值**： 不涉及
+    *
+    * @return $this
+    */
+    public function setSystemReservedStorage($systemReservedStorage)
+    {
+        $this->container['systemReservedStorage'] = $systemReservedStorage;
+        return $this;
+    }
+
+    /**
     * Gets initNodePassword
-    *  节点密码，作为响应参数时，固定展示星号。
+    *  **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -856,7 +1209,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets initNodePassword
     *
-    * @param string|null $initNodePassword 节点密码，作为响应参数时，固定展示星号。
+    * @param string|null $initNodePassword **参数解释**： 节点密码，仅作为响应参数时，固定展示星号，节点池场景响应返回中无该参数。 **约束限制**： 不涉及 **取值范围**： 不涉及 **默认取值**： 不涉及
     *
     * @return $this
     */
@@ -868,7 +1221,7 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
 
     /**
     * Gets securityReinforcementType
-    *  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    *  **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
     *
     * @return string|null
     */
@@ -880,13 +1233,37 @@ class NodeExtendParam implements ModelInterface, ArrayAccess
     /**
     * Sets securityReinforcementType
     *
-    * @param string|null $securityReinforcementType **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： 取值范围：['null', cybersecurity]; **默认取值**： 不涉及
+    * @param string|null $securityReinforcementType **参数解释**： 指定节点安全加固类型，当前仅支持HCE2.0镜像等保2.0三级安全加固。 等保加固会对身份鉴别、访问控制、安全审计、入侵防范、恶意代码防范进行检查并加固。[详情请参见[Huawei Cloud EulerOS 2.0等保2.0三级版镜像概述](https://support.huaweicloud.com/productdesc-hce/hce_sec_0001.html)。](tag:hws) 若未指定此参数，则尝试用原有的值补全。如：原先HCE2.0镜像已配置安全加固，更新节点池时未指定此参数，则仍旧保持安全加固配置，若要取消，需显式指定参数值为\"null\"。 **约束限制**： 不涉及 **取值范围**： - 空值：表示不开启等保加固 - cybersecurity：表示开启等保加固  **默认取值**： 不涉及
     *
     * @return $this
     */
     public function setSecurityReinforcementType($securityReinforcementType)
     {
         $this->container['securityReinforcementType'] = $securityReinforcementType;
+        return $this;
+    }
+
+    /**
+    * Gets serverMetadataHttpTokens
+    *  **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
+    *
+    * @return string|null
+    */
+    public function getServerMetadataHttpTokens()
+    {
+        return $this->container['serverMetadataHttpTokens'];
+    }
+
+    /**
+    * Sets serverMetadataHttpTokens
+    *
+    * @param string|null $serverMetadataHttpTokens **参数解释**： 是否要求携带token，默认optional。 **约束限制**： 不涉及 **取值范围**： - optional：不要求携带token。 - required：要求必须携带token，即IMDS服务禁用v1版本，启用v2版本。  **默认取值**： optional
+    *
+    * @return $this
+    */
+    public function setServerMetadataHttpTokens($serverMetadataHttpTokens)
+    {
+        $this->container['serverMetadataHttpTokens'] = $serverMetadataHttpTokens;
         return $this;
     }
 

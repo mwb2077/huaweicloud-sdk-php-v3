@@ -23,13 +23,13 @@ class CustomRule implements ModelInterface, ArrayAccess
     * id  规则ID
     * policyid  策略ID
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * conditions  匹配条件列表，匹配条件必须同时满足。
     * action  action
     * actionMode  预留参数，可忽略。
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     * timestamp  创建精准防护规则的时间戳
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才会返回该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才会返回该参数。
     * producer  规则创建对象，该参数为预留参数，用于后续功能扩展，当前请用户忽略该参数
@@ -59,13 +59,13 @@ class CustomRule implements ModelInterface, ArrayAccess
     * id  规则ID
     * policyid  策略ID
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * conditions  匹配条件列表，匹配条件必须同时满足。
     * action  action
     * actionMode  预留参数，可忽略。
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     * timestamp  创建精准防护规则的时间戳
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才会返回该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才会返回该参数。
     * producer  规则创建对象，该参数为预留参数，用于后续功能扩展，当前请用户忽略该参数
@@ -116,13 +116,13 @@ class CustomRule implements ModelInterface, ArrayAccess
     * id  规则ID
     * policyid  策略ID
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * conditions  匹配条件列表，匹配条件必须同时满足。
     * action  action
     * actionMode  预留参数，可忽略。
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     * timestamp  创建精准防护规则的时间戳
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才会返回该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才会返回该参数。
     * producer  规则创建对象，该参数为预留参数，用于后续功能扩展，当前请用户忽略该参数
@@ -152,13 +152,13 @@ class CustomRule implements ModelInterface, ArrayAccess
     * id  规则ID
     * policyid  策略ID
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * conditions  匹配条件列表，匹配条件必须同时满足。
     * action  action
     * actionMode  预留参数，可忽略。
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     * timestamp  创建精准防护规则的时间戳
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才会返回该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才会返回该参数。
     * producer  规则创建对象，该参数为预留参数，用于后续功能扩展，当前请用户忽略该参数
@@ -188,13 +188,13 @@ class CustomRule implements ModelInterface, ArrayAccess
     * id  规则ID
     * policyid  策略ID
     * description  规则描述
-    * status  规则状态，0：关闭，1：开启
+    * status  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     * conditions  匹配条件列表，匹配条件必须同时满足。
     * action  action
     * actionMode  预留参数，可忽略。
-    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * priority  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     * timestamp  创建精准防护规则的时间戳
-    * time  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * time  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     * start  精准防护规则生效的起始时间戳（秒）。当time=true，才会返回该参数。
     * terminal  精准防护规则生效的终止时间戳（秒）。当time=true，才会返回该参数。
     * producer  规则创建对象，该参数为预留参数，用于后续功能扩展，当前请用户忽略该参数
@@ -389,7 +389,7 @@ class CustomRule implements ModelInterface, ArrayAccess
 
     /**
     * Gets status
-    *  规则状态，0：关闭，1：开启
+    *  **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return int|null
     */
@@ -401,7 +401,7 @@ class CustomRule implements ModelInterface, ArrayAccess
     /**
     * Sets status
     *
-    * @param int|null $status 规则状态，0：关闭，1：开启
+    * @param int|null $status **参数解释：** 规则状态标识，用于指定规则的启用或关闭状态 **约束限制：** 不涉及 **取值范围：**  - 0：关闭  - 1：开启 **默认取值：** 不涉及
     *
     * @return $this
     */
@@ -485,7 +485,7 @@ class CustomRule implements ModelInterface, ArrayAccess
 
     /**
     * Gets priority
-    *  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    *  执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @return int|null
     */
@@ -497,7 +497,7 @@ class CustomRule implements ModelInterface, ArrayAccess
     /**
     * Sets priority
     *
-    * @param int|null $priority 执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到1000。
+    * @param int|null $priority 执行该规则的优先级，值越小，优先级越高，值相同时，规则创建时间早，优先级越高。取值范围：0到65535。
     *
     * @return $this
     */
@@ -533,7 +533,7 @@ class CustomRule implements ModelInterface, ArrayAccess
 
     /**
     * Gets time
-    *  精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    *  精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     *
     * @return bool|null
     */
@@ -545,7 +545,7 @@ class CustomRule implements ModelInterface, ArrayAccess
     /**
     * Sets time
     *
-    * @param bool|null $time 精准防护规则生效时间:  - “false”：表示该规则立即生效。   - “true”：表示自定义生效时间。
+    * @param bool|null $time 精准防护规则生效时间:  - false：表示该规则立即生效  - true：表示自定义生效时间
     *
     * @return $this
     */

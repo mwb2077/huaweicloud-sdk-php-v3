@@ -23,8 +23,8 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     * protectDir  **参数解释**: 防护目录 **取值范围**: 字符长度0-512位
     * excludeChildDir  **参数解释**: 排除子目录 **取值范围**: 字符长度0-512位
     * excludeFilePath  **参数解释**: 排除文件路径 **取值范围**: 字符长度0-512位
-    * exclueFilePath  排除文件路径
-    * localBackupDir  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * exclueFilePath  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
+    * localBackupDir  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     * protectStatus  **参数解释**: 防护状态 **取值范围**: - closed ：未开启。 - opened ：防护中。 - opening ：开启中。 - closing ：关闭中。 - open_failed ：防护失败。
     * error  **参数解释**: 失败原因，当防护状态为open_failed时存在失败原因 **取值范围**: 字符长度0-512位
     *
@@ -45,8 +45,8 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     * protectDir  **参数解释**: 防护目录 **取值范围**: 字符长度0-512位
     * excludeChildDir  **参数解释**: 排除子目录 **取值范围**: 字符长度0-512位
     * excludeFilePath  **参数解释**: 排除文件路径 **取值范围**: 字符长度0-512位
-    * exclueFilePath  排除文件路径
-    * localBackupDir  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * exclueFilePath  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
+    * localBackupDir  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     * protectStatus  **参数解释**: 防护状态 **取值范围**: - closed ：未开启。 - opened ：防护中。 - opening ：开启中。 - closing ：关闭中。 - open_failed ：防护失败。
     * error  **参数解释**: 失败原因，当防护状态为open_failed时存在失败原因 **取值范围**: 字符长度0-512位
     *
@@ -88,8 +88,8 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     * protectDir  **参数解释**: 防护目录 **取值范围**: 字符长度0-512位
     * excludeChildDir  **参数解释**: 排除子目录 **取值范围**: 字符长度0-512位
     * excludeFilePath  **参数解释**: 排除文件路径 **取值范围**: 字符长度0-512位
-    * exclueFilePath  排除文件路径
-    * localBackupDir  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * exclueFilePath  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
+    * localBackupDir  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     * protectStatus  **参数解释**: 防护状态 **取值范围**: - closed ：未开启。 - opened ：防护中。 - opening ：开启中。 - closing ：关闭中。 - open_failed ：防护失败。
     * error  **参数解释**: 失败原因，当防护状态为open_failed时存在失败原因 **取值范围**: 字符长度0-512位
     *
@@ -110,8 +110,8 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     * protectDir  **参数解释**: 防护目录 **取值范围**: 字符长度0-512位
     * excludeChildDir  **参数解释**: 排除子目录 **取值范围**: 字符长度0-512位
     * excludeFilePath  **参数解释**: 排除文件路径 **取值范围**: 字符长度0-512位
-    * exclueFilePath  排除文件路径
-    * localBackupDir  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * exclueFilePath  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
+    * localBackupDir  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     * protectStatus  **参数解释**: 防护状态 **取值范围**: - closed ：未开启。 - opened ：防护中。 - opening ：开启中。 - closing ：关闭中。 - open_failed ：防护失败。
     * error  **参数解释**: 失败原因，当防护状态为open_failed时存在失败原因 **取值范围**: 字符长度0-512位
     *
@@ -132,8 +132,8 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     * protectDir  **参数解释**: 防护目录 **取值范围**: 字符长度0-512位
     * excludeChildDir  **参数解释**: 排除子目录 **取值范围**: 字符长度0-512位
     * excludeFilePath  **参数解释**: 排除文件路径 **取值范围**: 字符长度0-512位
-    * exclueFilePath  排除文件路径
-    * localBackupDir  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * exclueFilePath  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
+    * localBackupDir  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     * protectStatus  **参数解释**: 防护状态 **取值范围**: - closed ：未开启。 - opened ：防护中。 - opening ：开启中。 - closing ：关闭中。 - open_failed ：防护失败。
     * error  **参数解释**: 失败原因，当防护状态为open_failed时存在失败原因 **取值范围**: 字符长度0-512位
     *
@@ -354,7 +354,7 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets exclueFilePath
-    *  排除文件路径
+    *  **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
     *
     * @return string|null
     */
@@ -366,7 +366,7 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets exclueFilePath
     *
-    * @param string|null $exclueFilePath 排除文件路径
+    * @param string|null $exclueFilePath **参数解释**: 排除文件路径--字段已废弃，请使用exclude_file_path。 **取值范围**: 字符长度0-512位
     *
     * @return $this
     */
@@ -378,7 +378,7 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
 
     /**
     * Gets localBackupDir
-    *  **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    *  **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     *
     * @return string|null
     */
@@ -390,7 +390,7 @@ class WtpProtectHostDirResponseInfo implements ModelInterface, ArrayAccess
     /**
     * Sets localBackupDir
     *
-    * @param string|null $localBackupDir **参数解释**: 本地备份路径 **取值范围**: 字符长度0-512位
+    * @param string|null $localBackupDir **参数解释**: 本地备份路径，仅Linux服务器支持设置本地备份路径。 **取值范围**: 字符长度0-512位
     *
     * @return $this
     */

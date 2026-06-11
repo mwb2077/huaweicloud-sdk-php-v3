@@ -20,20 +20,20 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * key  output名称
-    * value  output值
+    * key  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
+    * value  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
             'key' => 'string',
-            'value' => 'string'
+            'value' => 'object'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * key  output名称
-    * value  output值
+    * key  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
+    * value  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @var string[]
     */
@@ -65,8 +65,8 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * key  output名称
-    * value  output值
+    * key  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
+    * value  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @var string[]
     */
@@ -77,8 +77,8 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * key  output名称
-    * value  output值
+    * key  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
+    * value  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @var string[]
     */
@@ -89,8 +89,8 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * key  output名称
-    * value  output值
+    * key  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
+    * value  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @var string[]
     */
@@ -185,7 +185,7 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
 
     /**
     * Gets key
-    *  output名称
+    *  **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
     *
     * @return string|null
     */
@@ -197,7 +197,7 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
     /**
     * Sets key
     *
-    * @param string|null $key output名称
+    * @param string|null $key **参数解释**： 步骤输出key值。 **取值范围**： 不涉及。
     *
     * @return $this
     */
@@ -209,9 +209,9 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
 
     /**
     * Gets value
-    *  output值
+    *  **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
-    * @return string|null
+    * @return object|null
     */
     public function getValue()
     {
@@ -221,7 +221,7 @@ class OutputRespOutputResult implements ModelInterface, ArrayAccess
     /**
     * Sets value
     *
-    * @param string|null $value output值
+    * @param object|null $value **参数解释**： 步骤输出value值。 **取值范围**： 不涉及。
     *
     * @return $this
     */

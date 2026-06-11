@@ -22,7 +22,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * Array of property to type mappings. Used for (de)serialization
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  服务器名称
     * hostId  服务器ID
     * osType  操作系统类型，包含如下2种。   - Linux ：Linux。   - Windows ：Windows。
@@ -33,7 +33,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * protectPolicyName  勒索防护策略名称
     * policyName  防护策略名称
     * policyId  防护策略id
-    * agentStatus  Agent状态
+    * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * groupId  服务器组ID
     * groupName  服务器组名称
     * lastDays  查询时间范围天数，1~30天，若不填，则默认查询一天
@@ -64,7 +64,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * Array of property to format mappings. Used for (de)serialization
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  服务器名称
     * hostId  服务器ID
     * osType  操作系统类型，包含如下2种。   - Linux ：Linux。   - Windows ：Windows。
@@ -75,7 +75,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * protectPolicyName  勒索防护策略名称
     * policyName  防护策略名称
     * policyId  防护策略id
-    * agentStatus  Agent状态
+    * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * groupId  服务器组ID
     * groupName  服务器组名称
     * lastDays  查询时间范围天数，1~30天，若不填，则默认查询一天
@@ -127,7 +127,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * and the value is the original name
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  服务器名称
     * hostId  服务器ID
     * osType  操作系统类型，包含如下2种。   - Linux ：Linux。   - Windows ：Windows。
@@ -138,7 +138,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * protectPolicyName  勒索防护策略名称
     * policyName  防护策略名称
     * policyId  防护策略id
-    * agentStatus  Agent状态
+    * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * groupId  服务器组ID
     * groupName  服务器组名称
     * lastDays  查询时间范围天数，1~30天，若不填，则默认查询一天
@@ -169,7 +169,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * Array of attributes to setter functions (for deserialization of responses)
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  服务器名称
     * hostId  服务器ID
     * osType  操作系统类型，包含如下2种。   - Linux ：Linux。   - Windows ：Windows。
@@ -180,7 +180,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * protectPolicyName  勒索防护策略名称
     * policyName  防护策略名称
     * policyId  防护策略id
-    * agentStatus  Agent状态
+    * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * groupId  服务器组ID
     * groupName  服务器组名称
     * lastDays  查询时间范围天数，1~30天，若不填，则默认查询一天
@@ -211,7 +211,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * Array of attributes to getter functions (for serialization of requests)
     * enterpriseProjectId  **参数解释**: 企业项目ID，用于过滤不同企业项目下的资产。获取方式请参见[获取企业项目ID](hss_02_0027.xml)。 如需查询所有企业项目下的资产请传参“all_granted_eps”。 **约束限制**: 开通企业项目功能后才需要配置企业项目ID参数。 **取值范围**: 字符长度1-256位 **默认取值**: 0，表示默认企业项目（default）。
     * offset  **参数解释**: 偏移量：指定返回记录的开始位置 **约束限制**: 不涉及 **取值范围**: 最小值0，最大值2000000 **默认取值**: 不涉及
-    * limit  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * limit  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     * hostName  服务器名称
     * hostId  服务器ID
     * osType  操作系统类型，包含如下2种。   - Linux ：Linux。   - Windows ：Windows。
@@ -222,7 +222,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     * protectPolicyName  勒索防护策略名称
     * policyName  防护策略名称
     * policyId  防护策略id
-    * agentStatus  Agent状态
+    * agentStatus  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     * groupId  服务器组ID
     * groupName  服务器组名称
     * lastDays  查询时间范围天数，1~30天，若不填，则默认查询一天
@@ -542,7 +542,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
 
     /**
     * Gets limit
-    *  **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    *  **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     *
     * @return int
     */
@@ -554,7 +554,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     /**
     * Sets limit
     *
-    * @param int $limit **参数解释**: 每页显示个数 **约束限制**: 不涉及 **取值范围**: 取值10-200 **默认取值**: 10
+    * @param int $limit **参数解释**: 每页显示个数 **约束限制**: 必填 **取值范围**: 取值10-200 **默认取值**: 10
     *
     * @return $this
     */
@@ -806,7 +806,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
 
     /**
     * Gets agentStatus
-    *  Agent状态
+    *  **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -818,7 +818,7 @@ class ListRansomwareProtectionNodesRequest implements ModelInterface, ArrayAcces
     /**
     * Sets agentStatus
     *
-    * @param string|null $agentStatus Agent状态
+    * @param string|null $agentStatus **参数解释**: Agent的状态 **约束限制**: 不涉及 **取值范围**: Agent的状态分为六类： - installed：已安装 - online：在线。表示Agent已经成功安装并且与HSS云端防护中心保持连接。 - offline：离线。表示虽然Agent已经安装，但当前与HSS云端防护中心的连接中断。 - install_failed：安装失败。表示在尝试安装过程中遇到错误或问题，导致安装未能完成。 - installing：安装中。表示当前正在进行Agent安装。 - not_installed ：未安装。表示服务器中尚未安装Agent。 如果您要筛选除在线以外所有状态的Agent，可设置not_online（仅作为查询条件） **默认取值**: 不涉及
     *
     * @return $this
     */

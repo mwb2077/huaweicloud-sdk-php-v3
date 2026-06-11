@@ -21,8 +21,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to type mappings. Used for (de)serialization
     * policyName  策略名称
-    * startType  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * startType  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     * scanPeriod  启动类型，包含如下:   - day ：每天   - week : 每周   - month : 每月
+    * scanType  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     * scanPeriodDate  扫描周期日期（1-28；扫描周期为week时，1-7代表周日至周六；扫描周期为month时，1-28代表每月1日到28日）
     * scanTime  扫描时间戳，毫秒（仅启动类型为later时有值）
     * scanHour  扫描小时数（仅启动类型为period时有值）
@@ -31,9 +32,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * fileTypes  文件类型集合型，包含如下:   - 0 ：全部   - 1 : 可执行   - 2 : 压缩   - 3 : 脚本   - 4 : 文档   - 5 : 图片   - 6 : 音视频
     * scanDir  扫描目录，多个用;分隔
     * ignoreDir  排除目录，多个用;分隔
-    * action  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * action  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     * whetherPaidTask  此次扫描任务是否付费
-    * taskId  任务ID
+    * taskId  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     * hostIds  策略管理主机列表
     *
     * @var string[]
@@ -42,6 +43,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
             'policyName' => 'string',
             'startType' => 'string',
             'scanPeriod' => 'string',
+            'scanType' => 'string',
             'scanPeriodDate' => 'int',
             'scanTime' => 'int',
             'scanHour' => 'int',
@@ -59,8 +61,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of property to format mappings. Used for (de)serialization
     * policyName  策略名称
-    * startType  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * startType  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     * scanPeriod  启动类型，包含如下:   - day ：每天   - week : 每周   - month : 每月
+    * scanType  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     * scanPeriodDate  扫描周期日期（1-28；扫描周期为week时，1-7代表周日至周六；扫描周期为month时，1-28代表每月1日到28日）
     * scanTime  扫描时间戳，毫秒（仅启动类型为later时有值）
     * scanHour  扫描小时数（仅启动类型为period时有值）
@@ -69,9 +72,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * fileTypes  文件类型集合型，包含如下:   - 0 ：全部   - 1 : 可执行   - 2 : 压缩   - 3 : 脚本   - 4 : 文档   - 5 : 图片   - 6 : 音视频
     * scanDir  扫描目录，多个用;分隔
     * ignoreDir  排除目录，多个用;分隔
-    * action  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * action  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     * whetherPaidTask  此次扫描任务是否付费
-    * taskId  任务ID
+    * taskId  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     * hostIds  策略管理主机列表
     *
     * @var string[]
@@ -80,6 +83,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
         'policyName' => null,
         'startType' => null,
         'scanPeriod' => null,
+        'scanType' => null,
         'scanPeriodDate' => 'int32',
         'scanTime' => 'int64',
         'scanHour' => 'int32',
@@ -118,8 +122,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * Array of attributes where the key is the local name,
     * and the value is the original name
     * policyName  策略名称
-    * startType  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * startType  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     * scanPeriod  启动类型，包含如下:   - day ：每天   - week : 每周   - month : 每月
+    * scanType  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     * scanPeriodDate  扫描周期日期（1-28；扫描周期为week时，1-7代表周日至周六；扫描周期为month时，1-28代表每月1日到28日）
     * scanTime  扫描时间戳，毫秒（仅启动类型为later时有值）
     * scanHour  扫描小时数（仅启动类型为period时有值）
@@ -128,9 +133,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * fileTypes  文件类型集合型，包含如下:   - 0 ：全部   - 1 : 可执行   - 2 : 压缩   - 3 : 脚本   - 4 : 文档   - 5 : 图片   - 6 : 音视频
     * scanDir  扫描目录，多个用;分隔
     * ignoreDir  排除目录，多个用;分隔
-    * action  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * action  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     * whetherPaidTask  此次扫描任务是否付费
-    * taskId  任务ID
+    * taskId  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     * hostIds  策略管理主机列表
     *
     * @var string[]
@@ -139,6 +144,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
             'policyName' => 'policy_name',
             'startType' => 'start_type',
             'scanPeriod' => 'scan_period',
+            'scanType' => 'scan_type',
             'scanPeriodDate' => 'scan_period_date',
             'scanTime' => 'scan_time',
             'scanHour' => 'scan_hour',
@@ -156,8 +162,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to setter functions (for deserialization of responses)
     * policyName  策略名称
-    * startType  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * startType  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     * scanPeriod  启动类型，包含如下:   - day ：每天   - week : 每周   - month : 每月
+    * scanType  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     * scanPeriodDate  扫描周期日期（1-28；扫描周期为week时，1-7代表周日至周六；扫描周期为month时，1-28代表每月1日到28日）
     * scanTime  扫描时间戳，毫秒（仅启动类型为later时有值）
     * scanHour  扫描小时数（仅启动类型为period时有值）
@@ -166,9 +173,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * fileTypes  文件类型集合型，包含如下:   - 0 ：全部   - 1 : 可执行   - 2 : 压缩   - 3 : 脚本   - 4 : 文档   - 5 : 图片   - 6 : 音视频
     * scanDir  扫描目录，多个用;分隔
     * ignoreDir  排除目录，多个用;分隔
-    * action  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * action  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     * whetherPaidTask  此次扫描任务是否付费
-    * taskId  任务ID
+    * taskId  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     * hostIds  策略管理主机列表
     *
     * @var string[]
@@ -177,6 +184,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
             'policyName' => 'setPolicyName',
             'startType' => 'setStartType',
             'scanPeriod' => 'setScanPeriod',
+            'scanType' => 'setScanType',
             'scanPeriodDate' => 'setScanPeriodDate',
             'scanTime' => 'setScanTime',
             'scanHour' => 'setScanHour',
@@ -194,8 +202,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Array of attributes to getter functions (for serialization of requests)
     * policyName  策略名称
-    * startType  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * startType  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     * scanPeriod  启动类型，包含如下:   - day ：每天   - week : 每周   - month : 每月
+    * scanType  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     * scanPeriodDate  扫描周期日期（1-28；扫描周期为week时，1-7代表周日至周六；扫描周期为month时，1-28代表每月1日到28日）
     * scanTime  扫描时间戳，毫秒（仅启动类型为later时有值）
     * scanHour  扫描小时数（仅启动类型为period时有值）
@@ -204,9 +213,9 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     * fileTypes  文件类型集合型，包含如下:   - 0 ：全部   - 1 : 可执行   - 2 : 压缩   - 3 : 脚本   - 4 : 文档   - 5 : 图片   - 6 : 音视频
     * scanDir  扫描目录，多个用;分隔
     * ignoreDir  排除目录，多个用;分隔
-    * action  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * action  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     * whetherPaidTask  此次扫描任务是否付费
-    * taskId  任务ID
+    * taskId  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     * hostIds  策略管理主机列表
     *
     * @var string[]
@@ -215,6 +224,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
             'policyName' => 'getPolicyName',
             'startType' => 'getStartType',
             'scanPeriod' => 'getScanPeriod',
+            'scanType' => 'getScanType',
             'scanPeriodDate' => 'getScanPeriodDate',
             'scanTime' => 'getScanTime',
             'scanHour' => 'getScanHour',
@@ -290,6 +300,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
         $this->container['policyName'] = isset($data['policyName']) ? $data['policyName'] : null;
         $this->container['startType'] = isset($data['startType']) ? $data['startType'] : null;
         $this->container['scanPeriod'] = isset($data['scanPeriod']) ? $data['scanPeriod'] : null;
+        $this->container['scanType'] = isset($data['scanType']) ? $data['scanType'] : null;
         $this->container['scanPeriodDate'] = isset($data['scanPeriodDate']) ? $data['scanPeriodDate'] : null;
         $this->container['scanTime'] = isset($data['scanTime']) ? $data['scanTime'] : null;
         $this->container['scanHour'] = isset($data['scanHour']) ? $data['scanHour'] : null;
@@ -329,6 +340,12 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
         }
             if (!preg_match("/^now|later|period$/", $this->container['startType'])) {
                 $invalidProperties[] = "invalid value for 'startType', must be conform to the pattern /^now|later|period$/.";
+            }
+            if (!is_null($this->container['scanType']) && (mb_strlen($this->container['scanType']) > 10)) {
+                $invalidProperties[] = "invalid value for 'scanType', the character length must be smaller than or equal to 10.";
+            }
+            if (!is_null($this->container['scanType']) && (mb_strlen($this->container['scanType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'scanType', the character length must be bigger than or equal to 1.";
             }
             if (!is_null($this->container['scanPeriodDate']) && ($this->container['scanPeriodDate'] > 31)) {
                 $invalidProperties[] = "invalid value for 'scanPeriodDate', must be smaller than or equal to 31.";
@@ -427,7 +444,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets startType
-    *  启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    *  **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     *
     * @return string
     */
@@ -439,7 +456,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets startType
     *
-    * @param string $startType 启动类型，包含如下:   - now : 立即启动   - later : 稍后启动   - period : 周期启动
+    * @param string $startType **参数解释**： 启动类型 **取值范围**： 包含如下   - now：立即启动   - later：稍后启动   - period：周期启动
     *
     * @return $this
     */
@@ -470,6 +487,30 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     public function setScanPeriod($scanPeriod)
     {
         $this->container['scanPeriod'] = $scanPeriod;
+        return $this;
+    }
+
+    /**
+    * Gets scanType
+    *  **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    *
+    * @return string|null
+    */
+    public function getScanType()
+    {
+        return $this->container['scanType'];
+    }
+
+    /**
+    * Sets scanType
+    *
+    * @param string|null $scanType **参数解释**： 任务类型 **取值范围**： 包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    *
+    * @return $this
+    */
+    public function setScanType($scanType)
+    {
+        $this->container['scanType'] = $scanType;
         return $this;
     }
 
@@ -667,7 +708,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets action
-    *  处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    *  **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     *
     * @return string
     */
@@ -679,7 +720,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets action
     *
-    * @param string $action 处置动作，包含如下:   - auto：自动处置   - manual：人工处置
+    * @param string $action **参数解释**: 处置动作 **取值范围**: - auto：自动处置 - manual：人工处置
     *
     * @return $this
     */
@@ -715,7 +756,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
 
     /**
     * Gets taskId
-    *  任务ID
+    *  **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     *
     * @return string|null
     */
@@ -727,7 +768,7 @@ class CreateAntiVirusPolicyRequestBody implements ModelInterface, ArrayAccess
     /**
     * Sets taskId
     *
-    * @param string|null $taskId 任务ID
+    * @param string|null $taskId **参数解释**： 任务ID **取值范围**: 字符长度1-64位
     *
     * @return $this
     */

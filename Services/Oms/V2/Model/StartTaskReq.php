@@ -22,12 +22,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     * Array of property to type mappings. Used for (de)serialization
     * srcAk  源端节点AK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
     * srcSk  源端节点SK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
+    * connectionString  连接字符串，用于微软云Blob鉴权
+    * srcCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * srcKmsKeyId  KMS密钥ID，36个字符
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * srcSecurityToken  源端节点临时Token
     * dstAk  目的端节点AK（最大长度100个字符）。
     * dstSk  目的端节点SK（最大长度100个字符）。
+    * dstCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * dstKmsKeyId  KMS密钥ID，36个字符
     * dstSecurityToken  目标端节点临时Token
-    * sourceCdnAuthenticationKey  CDN鉴权秘钥。
+    * sourceCdnAuthenticationKey  CDN鉴权密钥。
+    * sourceCdnCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * sourceCdnKmsKeyId  KMS密钥ID，36个字符
     * migrateFailedObject  迁移类型，标识是否为全量迁移，默认false（全量迁移）。 值为true时表示只重传失败对象。 值为空或者为false时表示全量迁移。
     *
     * @var string[]
@@ -35,12 +42,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
             'srcAk' => 'string',
             'srcSk' => 'string',
+            'connectionString' => 'string',
+            'srcCryptoType' => 'string',
+            'srcKmsKeyId' => 'string',
             'jsonAuthFile' => 'string',
             'srcSecurityToken' => 'string',
             'dstAk' => 'string',
             'dstSk' => 'string',
+            'dstCryptoType' => 'string',
+            'dstKmsKeyId' => 'string',
             'dstSecurityToken' => 'string',
             'sourceCdnAuthenticationKey' => 'string',
+            'sourceCdnCryptoType' => 'string',
+            'sourceCdnKmsKeyId' => 'string',
             'migrateFailedObject' => 'bool'
     ];
 
@@ -48,12 +62,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     * Array of property to format mappings. Used for (de)serialization
     * srcAk  源端节点AK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
     * srcSk  源端节点SK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
+    * connectionString  连接字符串，用于微软云Blob鉴权
+    * srcCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * srcKmsKeyId  KMS密钥ID，36个字符
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * srcSecurityToken  源端节点临时Token
     * dstAk  目的端节点AK（最大长度100个字符）。
     * dstSk  目的端节点SK（最大长度100个字符）。
+    * dstCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * dstKmsKeyId  KMS密钥ID，36个字符
     * dstSecurityToken  目标端节点临时Token
-    * sourceCdnAuthenticationKey  CDN鉴权秘钥。
+    * sourceCdnAuthenticationKey  CDN鉴权密钥。
+    * sourceCdnCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * sourceCdnKmsKeyId  KMS密钥ID，36个字符
     * migrateFailedObject  迁移类型，标识是否为全量迁移，默认false（全量迁移）。 值为true时表示只重传失败对象。 值为空或者为false时表示全量迁移。
     *
     * @var string[]
@@ -61,12 +82,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'srcAk' => null,
         'srcSk' => null,
+        'connectionString' => null,
+        'srcCryptoType' => null,
+        'srcKmsKeyId' => null,
         'jsonAuthFile' => null,
         'srcSecurityToken' => null,
         'dstAk' => null,
         'dstSk' => null,
+        'dstCryptoType' => null,
+        'dstKmsKeyId' => null,
         'dstSecurityToken' => null,
         'sourceCdnAuthenticationKey' => null,
+        'sourceCdnCryptoType' => null,
+        'sourceCdnKmsKeyId' => null,
         'migrateFailedObject' => null
     ];
 
@@ -95,12 +123,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     * and the value is the original name
     * srcAk  源端节点AK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
     * srcSk  源端节点SK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
+    * connectionString  连接字符串，用于微软云Blob鉴权
+    * srcCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * srcKmsKeyId  KMS密钥ID，36个字符
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * srcSecurityToken  源端节点临时Token
     * dstAk  目的端节点AK（最大长度100个字符）。
     * dstSk  目的端节点SK（最大长度100个字符）。
+    * dstCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * dstKmsKeyId  KMS密钥ID，36个字符
     * dstSecurityToken  目标端节点临时Token
-    * sourceCdnAuthenticationKey  CDN鉴权秘钥。
+    * sourceCdnAuthenticationKey  CDN鉴权密钥。
+    * sourceCdnCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * sourceCdnKmsKeyId  KMS密钥ID，36个字符
     * migrateFailedObject  迁移类型，标识是否为全量迁移，默认false（全量迁移）。 值为true时表示只重传失败对象。 值为空或者为false时表示全量迁移。
     *
     * @var string[]
@@ -108,12 +143,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
             'srcAk' => 'src_ak',
             'srcSk' => 'src_sk',
+            'connectionString' => 'connection_string',
+            'srcCryptoType' => 'src_crypto_type',
+            'srcKmsKeyId' => 'src_kms_key_id',
             'jsonAuthFile' => 'json_auth_file',
             'srcSecurityToken' => 'src_security_token',
             'dstAk' => 'dst_ak',
             'dstSk' => 'dst_sk',
+            'dstCryptoType' => 'dst_crypto_type',
+            'dstKmsKeyId' => 'dst_kms_key_id',
             'dstSecurityToken' => 'dst_security_token',
             'sourceCdnAuthenticationKey' => 'source_cdn_authentication_key',
+            'sourceCdnCryptoType' => 'source_cdn_crypto_type',
+            'sourceCdnKmsKeyId' => 'source_cdn_kms_key_id',
             'migrateFailedObject' => 'migrate_failed_object'
     ];
 
@@ -121,12 +163,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     * Array of attributes to setter functions (for deserialization of responses)
     * srcAk  源端节点AK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
     * srcSk  源端节点SK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
+    * connectionString  连接字符串，用于微软云Blob鉴权
+    * srcCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * srcKmsKeyId  KMS密钥ID，36个字符
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * srcSecurityToken  源端节点临时Token
     * dstAk  目的端节点AK（最大长度100个字符）。
     * dstSk  目的端节点SK（最大长度100个字符）。
+    * dstCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * dstKmsKeyId  KMS密钥ID，36个字符
     * dstSecurityToken  目标端节点临时Token
-    * sourceCdnAuthenticationKey  CDN鉴权秘钥。
+    * sourceCdnAuthenticationKey  CDN鉴权密钥。
+    * sourceCdnCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * sourceCdnKmsKeyId  KMS密钥ID，36个字符
     * migrateFailedObject  迁移类型，标识是否为全量迁移，默认false（全量迁移）。 值为true时表示只重传失败对象。 值为空或者为false时表示全量迁移。
     *
     * @var string[]
@@ -134,12 +183,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     protected static $setters = [
             'srcAk' => 'setSrcAk',
             'srcSk' => 'setSrcSk',
+            'connectionString' => 'setConnectionString',
+            'srcCryptoType' => 'setSrcCryptoType',
+            'srcKmsKeyId' => 'setSrcKmsKeyId',
             'jsonAuthFile' => 'setJsonAuthFile',
             'srcSecurityToken' => 'setSrcSecurityToken',
             'dstAk' => 'setDstAk',
             'dstSk' => 'setDstSk',
+            'dstCryptoType' => 'setDstCryptoType',
+            'dstKmsKeyId' => 'setDstKmsKeyId',
             'dstSecurityToken' => 'setDstSecurityToken',
             'sourceCdnAuthenticationKey' => 'setSourceCdnAuthenticationKey',
+            'sourceCdnCryptoType' => 'setSourceCdnCryptoType',
+            'sourceCdnKmsKeyId' => 'setSourceCdnKmsKeyId',
             'migrateFailedObject' => 'setMigrateFailedObject'
     ];
 
@@ -147,12 +203,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     * Array of attributes to getter functions (for serialization of requests)
     * srcAk  源端节点AK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
     * srcSk  源端节点SK（最大长度100个字符）。URL列表迁移任务不需要填写此参数。
+    * connectionString  连接字符串，用于微软云Blob鉴权
+    * srcCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * srcKmsKeyId  KMS密钥ID，36个字符
     * jsonAuthFile  用于谷歌云Cloud Storage鉴权
     * srcSecurityToken  源端节点临时Token
     * dstAk  目的端节点AK（最大长度100个字符）。
     * dstSk  目的端节点SK（最大长度100个字符）。
+    * dstCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * dstKmsKeyId  KMS密钥ID，36个字符
     * dstSecurityToken  目标端节点临时Token
-    * sourceCdnAuthenticationKey  CDN鉴权秘钥。
+    * sourceCdnAuthenticationKey  CDN鉴权密钥。
+    * sourceCdnCryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * sourceCdnKmsKeyId  KMS密钥ID，36个字符
     * migrateFailedObject  迁移类型，标识是否为全量迁移，默认false（全量迁移）。 值为true时表示只重传失败对象。 值为空或者为false时表示全量迁移。
     *
     * @var string[]
@@ -160,12 +223,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     protected static $getters = [
             'srcAk' => 'getSrcAk',
             'srcSk' => 'getSrcSk',
+            'connectionString' => 'getConnectionString',
+            'srcCryptoType' => 'getSrcCryptoType',
+            'srcKmsKeyId' => 'getSrcKmsKeyId',
             'jsonAuthFile' => 'getJsonAuthFile',
             'srcSecurityToken' => 'getSrcSecurityToken',
             'dstAk' => 'getDstAk',
             'dstSk' => 'getDstSk',
+            'dstCryptoType' => 'getDstCryptoType',
+            'dstKmsKeyId' => 'getDstKmsKeyId',
             'dstSecurityToken' => 'getDstSecurityToken',
             'sourceCdnAuthenticationKey' => 'getSourceCdnAuthenticationKey',
+            'sourceCdnCryptoType' => 'getSourceCdnCryptoType',
+            'sourceCdnKmsKeyId' => 'getSourceCdnKmsKeyId',
             'migrateFailedObject' => 'getMigrateFailedObject'
     ];
 
@@ -209,7 +279,52 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     {
         return self::$openAPIModelName;
     }
+    const SRC_CRYPTO_TYPE__DEFAULT = 'DEFAULT';
+    const SRC_CRYPTO_TYPE_KMS = 'KMS';
+    const DST_CRYPTO_TYPE__DEFAULT = 'DEFAULT';
+    const DST_CRYPTO_TYPE_KMS = 'KMS';
+    const SOURCE_CDN_CRYPTO_TYPE__DEFAULT = 'DEFAULT';
+    const SOURCE_CDN_CRYPTO_TYPE_KMS = 'KMS';
     
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getSrcCryptoTypeAllowableValues()
+    {
+        return [
+            self::SRC_CRYPTO_TYPE__DEFAULT,
+            self::SRC_CRYPTO_TYPE_KMS,
+        ];
+    }
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getDstCryptoTypeAllowableValues()
+    {
+        return [
+            self::DST_CRYPTO_TYPE__DEFAULT,
+            self::DST_CRYPTO_TYPE_KMS,
+        ];
+    }
+
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getSourceCdnCryptoTypeAllowableValues()
+    {
+        return [
+            self::SOURCE_CDN_CRYPTO_TYPE__DEFAULT,
+            self::SOURCE_CDN_CRYPTO_TYPE_KMS,
+        ];
+    }
 
 
     /**
@@ -229,12 +344,19 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     {
         $this->container['srcAk'] = isset($data['srcAk']) ? $data['srcAk'] : null;
         $this->container['srcSk'] = isset($data['srcSk']) ? $data['srcSk'] : null;
+        $this->container['connectionString'] = isset($data['connectionString']) ? $data['connectionString'] : null;
+        $this->container['srcCryptoType'] = isset($data['srcCryptoType']) ? $data['srcCryptoType'] : null;
+        $this->container['srcKmsKeyId'] = isset($data['srcKmsKeyId']) ? $data['srcKmsKeyId'] : null;
         $this->container['jsonAuthFile'] = isset($data['jsonAuthFile']) ? $data['jsonAuthFile'] : null;
         $this->container['srcSecurityToken'] = isset($data['srcSecurityToken']) ? $data['srcSecurityToken'] : null;
         $this->container['dstAk'] = isset($data['dstAk']) ? $data['dstAk'] : null;
         $this->container['dstSk'] = isset($data['dstSk']) ? $data['dstSk'] : null;
+        $this->container['dstCryptoType'] = isset($data['dstCryptoType']) ? $data['dstCryptoType'] : null;
+        $this->container['dstKmsKeyId'] = isset($data['dstKmsKeyId']) ? $data['dstKmsKeyId'] : null;
         $this->container['dstSecurityToken'] = isset($data['dstSecurityToken']) ? $data['dstSecurityToken'] : null;
         $this->container['sourceCdnAuthenticationKey'] = isset($data['sourceCdnAuthenticationKey']) ? $data['sourceCdnAuthenticationKey'] : null;
+        $this->container['sourceCdnCryptoType'] = isset($data['sourceCdnCryptoType']) ? $data['sourceCdnCryptoType'] : null;
+        $this->container['sourceCdnKmsKeyId'] = isset($data['sourceCdnKmsKeyId']) ? $data['sourceCdnKmsKeyId'] : null;
         $this->container['migrateFailedObject'] = isset($data['migrateFailedObject']) ? $data['migrateFailedObject'] : null;
     }
 
@@ -263,6 +385,35 @@ class StartTaskReq implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['srcSk']) && !preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['srcSk'])) {
                 $invalidProperties[] = "invalid value for 'srcSk', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
+            }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) > 2048)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be smaller than or equal to 2048.";
+            }
+            if (!is_null($this->container['connectionString']) && (mb_strlen($this->container['connectionString']) < 0)) {
+                $invalidProperties[] = "invalid value for 'connectionString', the character length must be bigger than or equal to 0.";
+            }
+            $allowedValues = $this->getSrcCryptoTypeAllowableValues();
+                if (!is_null($this->container['srcCryptoType']) && !in_array($this->container['srcCryptoType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'srcCryptoType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
+            if (!is_null($this->container['srcCryptoType']) && (mb_strlen($this->container['srcCryptoType']) > 32)) {
+                $invalidProperties[] = "invalid value for 'srcCryptoType', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['srcCryptoType']) && (mb_strlen($this->container['srcCryptoType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'srcCryptoType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['srcKmsKeyId']) && (mb_strlen($this->container['srcKmsKeyId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'srcKmsKeyId', the character length must be smaller than or equal to 36.";
+            }
+            if (!is_null($this->container['srcKmsKeyId']) && (mb_strlen($this->container['srcKmsKeyId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'srcKmsKeyId', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['srcKmsKeyId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['srcKmsKeyId'])) {
+                $invalidProperties[] = "invalid value for 'srcKmsKeyId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
             }
             if (!is_null($this->container['jsonAuthFile']) && (mb_strlen($this->container['jsonAuthFile']) > 65535)) {
                 $invalidProperties[] = "invalid value for 'jsonAuthFile', the character length must be smaller than or equal to 65535.";
@@ -303,6 +454,29 @@ class StartTaskReq implements ModelInterface, ArrayAccess
             if (!preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['dstSk'])) {
                 $invalidProperties[] = "invalid value for 'dstSk', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
             }
+            $allowedValues = $this->getDstCryptoTypeAllowableValues();
+                if (!is_null($this->container['dstCryptoType']) && !in_array($this->container['dstCryptoType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'dstCryptoType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
+            if (!is_null($this->container['dstCryptoType']) && (mb_strlen($this->container['dstCryptoType']) > 32)) {
+                $invalidProperties[] = "invalid value for 'dstCryptoType', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['dstCryptoType']) && (mb_strlen($this->container['dstCryptoType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'dstCryptoType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['dstKmsKeyId']) && (mb_strlen($this->container['dstKmsKeyId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'dstKmsKeyId', the character length must be smaller than or equal to 36.";
+            }
+            if (!is_null($this->container['dstKmsKeyId']) && (mb_strlen($this->container['dstKmsKeyId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'dstKmsKeyId', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['dstKmsKeyId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['dstKmsKeyId'])) {
+                $invalidProperties[] = "invalid value for 'dstKmsKeyId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
+            }
             if (!is_null($this->container['dstSecurityToken']) && (mb_strlen($this->container['dstSecurityToken']) > 16384)) {
                 $invalidProperties[] = "invalid value for 'dstSecurityToken', the character length must be smaller than or equal to 16384.";
             }
@@ -320,6 +494,29 @@ class StartTaskReq implements ModelInterface, ArrayAccess
             }
             if (!is_null($this->container['sourceCdnAuthenticationKey']) && !preg_match("/^[^<>&\\\"'\\\\\\\\]*$/", $this->container['sourceCdnAuthenticationKey'])) {
                 $invalidProperties[] = "invalid value for 'sourceCdnAuthenticationKey', must be conform to the pattern /^[^<>&\\\"'\\\\\\\\]*$/.";
+            }
+            $allowedValues = $this->getSourceCdnCryptoTypeAllowableValues();
+                if (!is_null($this->container['sourceCdnCryptoType']) && !in_array($this->container['sourceCdnCryptoType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'sourceCdnCryptoType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
+            if (!is_null($this->container['sourceCdnCryptoType']) && (mb_strlen($this->container['sourceCdnCryptoType']) > 32)) {
+                $invalidProperties[] = "invalid value for 'sourceCdnCryptoType', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['sourceCdnCryptoType']) && (mb_strlen($this->container['sourceCdnCryptoType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'sourceCdnCryptoType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['sourceCdnKmsKeyId']) && (mb_strlen($this->container['sourceCdnKmsKeyId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'sourceCdnKmsKeyId', the character length must be smaller than or equal to 36.";
+            }
+            if (!is_null($this->container['sourceCdnKmsKeyId']) && (mb_strlen($this->container['sourceCdnKmsKeyId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'sourceCdnKmsKeyId', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['sourceCdnKmsKeyId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['sourceCdnKmsKeyId'])) {
+                $invalidProperties[] = "invalid value for 'sourceCdnKmsKeyId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
             }
         return $invalidProperties;
     }
@@ -380,6 +577,78 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     public function setSrcSk($srcSk)
     {
         $this->container['srcSk'] = $srcSk;
+        return $this;
+    }
+
+    /**
+    * Gets connectionString
+    *  连接字符串，用于微软云Blob鉴权
+    *
+    * @return string|null
+    */
+    public function getConnectionString()
+    {
+        return $this->container['connectionString'];
+    }
+
+    /**
+    * Sets connectionString
+    *
+    * @param string|null $connectionString 连接字符串，用于微软云Blob鉴权
+    *
+    * @return $this
+    */
+    public function setConnectionString($connectionString)
+    {
+        $this->container['connectionString'] = $connectionString;
+        return $this;
+    }
+
+    /**
+    * Gets srcCryptoType
+    *  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return string|null
+    */
+    public function getSrcCryptoType()
+    {
+        return $this->container['srcCryptoType'];
+    }
+
+    /**
+    * Sets srcCryptoType
+    *
+    * @param string|null $srcCryptoType 加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return $this
+    */
+    public function setSrcCryptoType($srcCryptoType)
+    {
+        $this->container['srcCryptoType'] = $srcCryptoType;
+        return $this;
+    }
+
+    /**
+    * Gets srcKmsKeyId
+    *  KMS密钥ID，36个字符
+    *
+    * @return string|null
+    */
+    public function getSrcKmsKeyId()
+    {
+        return $this->container['srcKmsKeyId'];
+    }
+
+    /**
+    * Sets srcKmsKeyId
+    *
+    * @param string|null $srcKmsKeyId KMS密钥ID，36个字符
+    *
+    * @return $this
+    */
+    public function setSrcKmsKeyId($srcKmsKeyId)
+    {
+        $this->container['srcKmsKeyId'] = $srcKmsKeyId;
         return $this;
     }
 
@@ -480,6 +749,54 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     }
 
     /**
+    * Gets dstCryptoType
+    *  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return string|null
+    */
+    public function getDstCryptoType()
+    {
+        return $this->container['dstCryptoType'];
+    }
+
+    /**
+    * Sets dstCryptoType
+    *
+    * @param string|null $dstCryptoType 加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return $this
+    */
+    public function setDstCryptoType($dstCryptoType)
+    {
+        $this->container['dstCryptoType'] = $dstCryptoType;
+        return $this;
+    }
+
+    /**
+    * Gets dstKmsKeyId
+    *  KMS密钥ID，36个字符
+    *
+    * @return string|null
+    */
+    public function getDstKmsKeyId()
+    {
+        return $this->container['dstKmsKeyId'];
+    }
+
+    /**
+    * Sets dstKmsKeyId
+    *
+    * @param string|null $dstKmsKeyId KMS密钥ID，36个字符
+    *
+    * @return $this
+    */
+    public function setDstKmsKeyId($dstKmsKeyId)
+    {
+        $this->container['dstKmsKeyId'] = $dstKmsKeyId;
+        return $this;
+    }
+
+    /**
     * Gets dstSecurityToken
     *  目标端节点临时Token
     *
@@ -505,7 +822,7 @@ class StartTaskReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets sourceCdnAuthenticationKey
-    *  CDN鉴权秘钥。
+    *  CDN鉴权密钥。
     *
     * @return string|null
     */
@@ -517,13 +834,61 @@ class StartTaskReq implements ModelInterface, ArrayAccess
     /**
     * Sets sourceCdnAuthenticationKey
     *
-    * @param string|null $sourceCdnAuthenticationKey CDN鉴权秘钥。
+    * @param string|null $sourceCdnAuthenticationKey CDN鉴权密钥。
     *
     * @return $this
     */
     public function setSourceCdnAuthenticationKey($sourceCdnAuthenticationKey)
     {
         $this->container['sourceCdnAuthenticationKey'] = $sourceCdnAuthenticationKey;
+        return $this;
+    }
+
+    /**
+    * Gets sourceCdnCryptoType
+    *  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return string|null
+    */
+    public function getSourceCdnCryptoType()
+    {
+        return $this->container['sourceCdnCryptoType'];
+    }
+
+    /**
+    * Sets sourceCdnCryptoType
+    *
+    * @param string|null $sourceCdnCryptoType 加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return $this
+    */
+    public function setSourceCdnCryptoType($sourceCdnCryptoType)
+    {
+        $this->container['sourceCdnCryptoType'] = $sourceCdnCryptoType;
+        return $this;
+    }
+
+    /**
+    * Gets sourceCdnKmsKeyId
+    *  KMS密钥ID，36个字符
+    *
+    * @return string|null
+    */
+    public function getSourceCdnKmsKeyId()
+    {
+        return $this->container['sourceCdnKmsKeyId'];
+    }
+
+    /**
+    * Sets sourceCdnKmsKeyId
+    *
+    * @param string|null $sourceCdnKmsKeyId KMS密钥ID，36个字符
+    *
+    * @return $this
+    */
+    public function setSourceCdnKmsKeyId($sourceCdnKmsKeyId)
+    {
+        $this->container['sourceCdnKmsKeyId'] = $sourceCdnKmsKeyId;
         return $this;
     }
 

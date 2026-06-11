@@ -8,7 +8,6 @@ English | [简体中文](./README_CN.md)
 
 [![GitHub Release](https://img.shields.io/github/v/release/huaweicloud/huaweicloud-sdk-php-v3)](https://github.com/huaweicloud/huaweicloud-sdk-php-v3/releases)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/huaweicloud/huaweicloud-sdk-php-v3)
 
 The Huawei Cloud Php SDK allows you to easily work with Huawei Cloud services such as Elastic Compute Service (ECS) and Virtual Private Cloud(VPC) without the need to handle API related tasks.
 
@@ -126,6 +125,7 @@ the [CHANGELOG.md](https://github.com/huaweicloud/huaweicloud-sdk-php-v3/blob/ma
     * [2.2 Use Temporary AK&SK](#22-use-temporary-aksk-top)
 * [3. Client Initialization](#3-client-initialization-top)
     * [3.1 Initialize the client with specified Endpoint](#31-initialize-the-serviceclient-with-specified-endpoint-top)
+    * [3.2 Initialize the client with specified User Agent](#32-initialize-the-serviceclient-with-specified-user-agent-top)
 * [4. Send Requests and Handle Responses](#4-send-requests-and-handle-responses-top)
     * [4.1 Exceptions](#41-exceptions-top)
 * [5. Use Asynchronous Client](#5-use-asynchronous-client-top)
@@ -237,6 +237,24 @@ $iamClient = IamClient::newBuilder()
 
 - `$endpoint`: varies by services and regions,
   see [Regions and Endpoints](https://developer.huaweicloud.com/intl/en-us/endpoint) to obtain correct endpoint.
+
+#### 3.2 Initialize the {Service}Client with specified User Agent [:top:](#user-manual-top)
+
+Additional information will be appended to the User-Agent in the request header by default since **v3.1.180**. It is used by service to identify what SDK language, php version, and platform info a client is using to call into their service, and a random identifier will be generated and appended to the User-Agent. The identifier will be stored in the user's home directory, as `~/.huaweicloud/application_id` on Linux and `C:\Users\USER_NAME\.huaweicloud\application_id` on Windows.
+
+The above information will be used to protect the security of your and your users' Huawei Cloud accounts.
+
+You can disable this automatic User-Agent augmentation by explicitly setting a custom User-Agent header value. The value is recommended to be less than 50 characters and should use US-ASCII visible characters:
+
+```php
+// Initialize specified service client instance, take IamClient for example
+$iamClient = IamClient::newBuilder()
+    ->withHttpConfig($config)
+    ->withEndpoint($endpoint)
+    ->withUserAgent("custom user agent...")
+    ->withCredentials($globalCredentials)
+    ->build();
+```
 
 ### 4. Send Requests and Handle Responses [:top:](#user-manual-top)
 

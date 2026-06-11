@@ -26,10 +26,10 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * groupId  服务器组ID
-    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
-    * startType  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * groupId  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    * startType  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -54,10 +54,10 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * groupId  服务器组ID
-    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
-    * startType  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * groupId  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    * startType  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -103,10 +103,10 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * groupId  服务器组ID
-    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
-    * startType  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * groupId  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    * startType  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -131,10 +131,10 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * groupId  服务器组ID
-    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
-    * startType  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * groupId  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    * startType  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -159,10 +159,10 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     * hostId  **参数解释**: 服务器ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     * hostName  **参数解释**: 服务器名称 **约束限制**: 不涉及 **取值范围**: 字符长度1-256位 **默认取值**: 不涉及
     * privateIp  **参数解释**: 服务器私有IP **约束限制**: 不涉及 **取值范围**: 字符长度1-128位 **默认取值**: 不涉及
-    * publicIp  服务器公网IP
-    * groupId  服务器组ID
-    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
-    * startType  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * publicIp  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
+    * groupId  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
+    * scanType  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
+    * startType  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @var string[]
     */
@@ -323,14 +323,14 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
             if (!is_null($this->container['groupId']) && !preg_match("/^.*$/", $this->container['groupId'])) {
                 $invalidProperties[] = "invalid value for 'groupId', must be conform to the pattern /^.*$/.";
             }
-        if ($this->container['scanType'] === null) {
-            $invalidProperties[] = "'scanType' can't be null";
-        }
-            if ((mb_strlen($this->container['scanType']) > 128)) {
+            if (!is_null($this->container['scanType']) && (mb_strlen($this->container['scanType']) > 128)) {
                 $invalidProperties[] = "invalid value for 'scanType', the character length must be smaller than or equal to 128.";
             }
-            if ((mb_strlen($this->container['scanType']) < 0)) {
+            if (!is_null($this->container['scanType']) && (mb_strlen($this->container['scanType']) < 0)) {
                 $invalidProperties[] = "invalid value for 'scanType', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['scanType']) && !preg_match("/^quick|full|custom$/", $this->container['scanType'])) {
+                $invalidProperties[] = "invalid value for 'scanType', must be conform to the pattern /^quick|full|custom$/.";
             }
         if ($this->container['startType'] === null) {
             $invalidProperties[] = "'startType' can't be null";
@@ -501,7 +501,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets publicIp
-    *  服务器公网IP
+    *  **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return string|null
     */
@@ -513,7 +513,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets publicIp
     *
-    * @param string|null $publicIp 服务器公网IP
+    * @param string|null $publicIp **参数解释**: 服务器弹性IP地址 **约束限制**: 不涉及 **取值范围**: IPv4格式（长度7-15位）、IPv6格式（长度15-39位） **默认取值**: 无
     *
     * @return $this
     */
@@ -525,7 +525,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets groupId
-    *  服务器组ID
+    *  **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     *
     * @return string|null
     */
@@ -537,7 +537,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets groupId
     *
-    * @param string|null $groupId 服务器组ID
+    * @param string|null $groupId **参数解释**: 服务器组的唯一标识ID **约束限制**: 不涉及 **取值范围**: 字符长度1-64位 **默认取值**: 不涉及
     *
     * @return $this
     */
@@ -549,9 +549,9 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets scanType
-    *  任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
+    *  任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     *
-    * @return string
+    * @return string|null
     */
     public function getScanType()
     {
@@ -561,7 +561,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets scanType
     *
-    * @param string $scanType 任务类型，包含如下:   - quick ：快速扫描   - full：全盘扫描   - custom : 自定义扫描
+    * @param string|null $scanType 任务类型，包含如下:   - quick ：快速扫描   - full : 全盘扫描   - custom : 自定义扫描
     *
     * @return $this
     */
@@ -573,7 +573,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
 
     /**
     * Gets startType
-    *  启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    *  **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @return string
     */
@@ -585,7 +585,7 @@ class ListAntiVirusPaidHostsRequest implements ModelInterface, ArrayAccess
     /**
     * Sets startType
     *
-    * @param string $startType 启动类型，包含如下:   - now ：立即启动   - period : 周期启动
+    * @param string $startType **参数解释**: 启动类型 **约束限制**: 不涉及 **取值范围**: - now ：立即启动 - period : 周期启动 **默认取值**: 不涉及
     *
     * @return $this
     */

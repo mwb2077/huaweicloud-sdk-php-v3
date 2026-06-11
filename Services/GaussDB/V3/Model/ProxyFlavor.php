@@ -20,16 +20,18 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
+    * id  **参数解释**：  规格ID。  **取值范围**：  不涉及。
     * specCode  **参数解释**：  规格码。  **取值范围**：  不涉及。
     * vcpus  **参数解释**：  cpu核数。  **取值范围**：  不涉及。
     * ram  **参数解释**：  内存。  **取值范围**：  不涉及。
     * dbType  **参数解释**：  数据库类型。  **取值范围**：  不涉及。
     * azStatus  **参数解释**：  az状态。
-    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @var string[]
     */
     protected static $openAPITypes = [
+            'id' => 'string',
             'specCode' => 'string',
             'vcpus' => 'string',
             'ram' => 'string',
@@ -40,16 +42,18 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to format mappings. Used for (de)serialization
+    * id  **参数解释**：  规格ID。  **取值范围**：  不涉及。
     * specCode  **参数解释**：  规格码。  **取值范围**：  不涉及。
     * vcpus  **参数解释**：  cpu核数。  **取值范围**：  不涉及。
     * ram  **参数解释**：  内存。  **取值范围**：  不涉及。
     * dbType  **参数解释**：  数据库类型。  **取值范围**：  不涉及。
     * azStatus  **参数解释**：  az状态。
-    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @var string[]
     */
     protected static $openAPIFormats = [
+        'id' => null,
         'specCode' => null,
         'vcpus' => null,
         'ram' => null,
@@ -81,16 +85,18 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
+    * id  **参数解释**：  规格ID。  **取值范围**：  不涉及。
     * specCode  **参数解释**：  规格码。  **取值范围**：  不涉及。
     * vcpus  **参数解释**：  cpu核数。  **取值范围**：  不涉及。
     * ram  **参数解释**：  内存。  **取值范围**：  不涉及。
     * dbType  **参数解释**：  数据库类型。  **取值范围**：  不涉及。
     * azStatus  **参数解释**：  az状态。
-    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @var string[]
     */
     protected static $attributeMap = [
+            'id' => 'id',
             'specCode' => 'spec_code',
             'vcpus' => 'vcpus',
             'ram' => 'ram',
@@ -101,16 +107,18 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
+    * id  **参数解释**：  规格ID。  **取值范围**：  不涉及。
     * specCode  **参数解释**：  规格码。  **取值范围**：  不涉及。
     * vcpus  **参数解释**：  cpu核数。  **取值范围**：  不涉及。
     * ram  **参数解释**：  内存。  **取值范围**：  不涉及。
     * dbType  **参数解释**：  数据库类型。  **取值范围**：  不涉及。
     * azStatus  **参数解释**：  az状态。
-    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @var string[]
     */
     protected static $setters = [
+            'id' => 'setId',
             'specCode' => 'setSpecCode',
             'vcpus' => 'setVcpus',
             'ram' => 'setRam',
@@ -121,16 +129,18 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
+    * id  **参数解释**：  规格ID。  **取值范围**：  不涉及。
     * specCode  **参数解释**：  规格码。  **取值范围**：  不涉及。
     * vcpus  **参数解释**：  cpu核数。  **取值范围**：  不涉及。
     * ram  **参数解释**：  内存。  **取值范围**：  不涉及。
     * dbType  **参数解释**：  数据库类型。  **取值范围**：  不涉及。
     * azStatus  **参数解释**：  az状态。
-    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * supportedIpv6  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @var string[]
     */
     protected static $getters = [
+            'id' => 'getId',
             'specCode' => 'getSpecCode',
             'vcpus' => 'getVcpus',
             'ram' => 'getRam',
@@ -197,6 +207,7 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
     */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['specCode'] = isset($data['specCode']) ? $data['specCode'] : null;
         $this->container['vcpus'] = isset($data['vcpus']) ? $data['vcpus'] : null;
         $this->container['ram'] = isset($data['ram']) ? $data['ram'] : null;
@@ -225,6 +236,30 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
+    }
+
+    /**
+    * Gets id
+    *  **参数解释**：  规格ID。  **取值范围**：  不涉及。
+    *
+    * @return string|null
+    */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+    * Sets id
+    *
+    * @param string|null $id **参数解释**：  规格ID。  **取值范围**：  不涉及。
+    *
+    * @return $this
+    */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+        return $this;
     }
 
     /**
@@ -349,7 +384,7 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
 
     /**
     * Gets supportedIpv6
-    *  **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    *  **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @return bool|null
     */
@@ -361,7 +396,7 @@ class ProxyFlavor implements ModelInterface, ArrayAccess
     /**
     * Sets supportedIpv6
     *
-    * @param bool|null $supportedIpv6 **参数解释**：  是否支持ipv6。  **取值范围**： - true: 支持ipv6。 - false: 不支持ipv6。
+    * @param bool|null $supportedIpv6 **参数解释**：  是否支持ipv6。  **取值范围**：  - true: 支持ipv6。 - false: 不支持ipv6。
     *
     * @return $this
     */

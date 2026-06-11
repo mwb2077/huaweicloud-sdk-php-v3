@@ -20,10 +20,12 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
 
     /**
     * Array of property to type mappings. Used for (de)serialization
-    * authenticationKey  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
-    * authenticationType  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * authenticationKey  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * authenticationType  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     * domain  从指定域名获取对象。
     * protocol  协议类型，支持http和https协议。
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -31,15 +33,19 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
             'authenticationKey' => 'string',
             'authenticationType' => 'string',
             'domain' => 'string',
-            'protocol' => 'string'
+            'protocol' => 'string',
+            'cryptoType' => 'string',
+            'kmsKeyId' => 'string'
     ];
 
     /**
     * Array of property to format mappings. Used for (de)serialization
-    * authenticationKey  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
-    * authenticationType  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * authenticationKey  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * authenticationType  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     * domain  从指定域名获取对象。
     * protocol  协议类型，支持http和https协议。
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -47,7 +53,9 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
         'authenticationKey' => null,
         'authenticationType' => null,
         'domain' => null,
-        'protocol' => null
+        'protocol' => null,
+        'cryptoType' => null,
+        'kmsKeyId' => null
     ];
 
     /**
@@ -73,10 +81,12 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
     /**
     * Array of attributes where the key is the local name,
     * and the value is the original name
-    * authenticationKey  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
-    * authenticationType  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * authenticationKey  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * authenticationType  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     * domain  从指定域名获取对象。
     * protocol  协议类型，支持http和https协议。
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -84,15 +94,19 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
             'authenticationKey' => 'authentication_key',
             'authenticationType' => 'authentication_type',
             'domain' => 'domain',
-            'protocol' => 'protocol'
+            'protocol' => 'protocol',
+            'cryptoType' => 'crypto_type',
+            'kmsKeyId' => 'kms_key_id'
     ];
 
     /**
     * Array of attributes to setter functions (for deserialization of responses)
-    * authenticationKey  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
-    * authenticationType  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * authenticationKey  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * authenticationType  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     * domain  从指定域名获取对象。
     * protocol  协议类型，支持http和https协议。
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -100,15 +114,19 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
             'authenticationKey' => 'setAuthenticationKey',
             'authenticationType' => 'setAuthenticationType',
             'domain' => 'setDomain',
-            'protocol' => 'setProtocol'
+            'protocol' => 'setProtocol',
+            'cryptoType' => 'setCryptoType',
+            'kmsKeyId' => 'setKmsKeyId'
     ];
 
     /**
     * Array of attributes to getter functions (for serialization of requests)
-    * authenticationKey  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
-    * authenticationType  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * authenticationKey  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * authenticationType  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     * domain  从指定域名获取对象。
     * protocol  协议类型，支持http和https协议。
+    * cryptoType  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    * kmsKeyId  KMS密钥ID，36个字符
     *
     * @var string[]
     */
@@ -116,7 +134,9 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
             'authenticationKey' => 'getAuthenticationKey',
             'authenticationType' => 'getAuthenticationType',
             'domain' => 'getDomain',
-            'protocol' => 'getProtocol'
+            'protocol' => 'getProtocol',
+            'cryptoType' => 'getCryptoType',
+            'kmsKeyId' => 'getKmsKeyId'
     ];
 
     /**
@@ -172,6 +192,8 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
     const AUTHENTICATION_TYPE_TENCENT_COS_D = 'TENCENT_COS_D';
     const PROTOCOL_HTTP = 'http';
     const PROTOCOL_HTTPS = 'https';
+    const CRYPTO_TYPE__DEFAULT = 'DEFAULT';
+    const CRYPTO_TYPE_KMS = 'KMS';
     
 
     /**
@@ -209,6 +231,19 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
         ];
     }
 
+    /**
+    * Gets allowable values of the enum
+    *
+    * @return string[]
+    */
+    public function getCryptoTypeAllowableValues()
+    {
+        return [
+            self::CRYPTO_TYPE__DEFAULT,
+            self::CRYPTO_TYPE_KMS,
+        ];
+    }
+
 
     /**
     * Associative array for storing property values
@@ -229,6 +264,8 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
         $this->container['authenticationType'] = isset($data['authenticationType']) ? $data['authenticationType'] : null;
         $this->container['domain'] = isset($data['domain']) ? $data['domain'] : null;
         $this->container['protocol'] = isset($data['protocol']) ? $data['protocol'] : null;
+        $this->container['cryptoType'] = isset($data['cryptoType']) ? $data['cryptoType'] : null;
+        $this->container['kmsKeyId'] = isset($data['kmsKeyId']) ? $data['kmsKeyId'] : null;
     }
 
     /**
@@ -282,6 +319,29 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
                 );
             }
 
+            $allowedValues = $this->getCryptoTypeAllowableValues();
+                if (!is_null($this->container['cryptoType']) && !in_array($this->container['cryptoType'], $allowedValues, true)) {
+                $invalidProperties[] = sprintf(
+                "invalid value for 'cryptoType', must be one of '%s'",
+                implode("', '", $allowedValues)
+                );
+            }
+
+            if (!is_null($this->container['cryptoType']) && (mb_strlen($this->container['cryptoType']) > 32)) {
+                $invalidProperties[] = "invalid value for 'cryptoType', the character length must be smaller than or equal to 32.";
+            }
+            if (!is_null($this->container['cryptoType']) && (mb_strlen($this->container['cryptoType']) < 1)) {
+                $invalidProperties[] = "invalid value for 'cryptoType', the character length must be bigger than or equal to 1.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && (mb_strlen($this->container['kmsKeyId']) > 36)) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', the character length must be smaller than or equal to 36.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && (mb_strlen($this->container['kmsKeyId']) < 0)) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', the character length must be bigger than or equal to 0.";
+            }
+            if (!is_null($this->container['kmsKeyId']) && !preg_match("/^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/", $this->container['kmsKeyId'])) {
+                $invalidProperties[] = "invalid value for 'kmsKeyId', must be conform to the pattern /^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$/.";
+            }
         return $invalidProperties;
     }
 
@@ -298,7 +358,7 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets authenticationKey
-    *  CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    *  CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
     *
     * @return string|null
     */
@@ -310,7 +370,7 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
     /**
     * Sets authenticationKey
     *
-    * @param string|null $authenticationKey CDN鉴权秘钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
+    * @param string|null $authenticationKey CDN鉴权密钥，如果CDN需要进行鉴权，则此选项为必选。  无需授权：无需配置此项。 Qiniu：无需配置此项。 Aliyun：根据authentication_type指定的鉴权方式配置此项。 KingsoftCloud：无需配置此项。
     *
     * @return $this
     */
@@ -322,7 +382,7 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
 
     /**
     * Gets authenticationType
-    *  鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    *  鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     *
     * @return string
     */
@@ -334,7 +394,7 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
     /**
     * Sets authenticationType
     *
-    * @param string $authenticationType 鉴权类型: NONE, QINIU_PRIVATE_AUTHENTICATION, ALIYUN_OSS_A, ALIYUN_OSS_B, ALIYUN_OSS_C, KSYUN_PRIVATE_AUTHENTICATION, AZURE_SAS_TOKEN, TENCENT_COS_A, TENCENT_COS_B, TENCENT_COS_C, TENCENT_COS_D
+    * @param string $authenticationType 鉴权类型: NONE：公开访问，无安全限制, QINIU_PRIVATE_AUTHENTICATION：七牛自定义URL签名, ALIYUN_OSS_A：阿里云  URL携带签名，简单通用, ALIYUN_OSS_B：阿里云  Header携带签名，用于API调用, ALIYUN_OSS_C：阿里云  STS临时安全令牌，最安全, KSYUN_PRIVATE_AUTHENTICATION：金山云  金山云自定义URL签名, AZURE_SAS_TOKEN：微软Azure  灵活安全的共享访问签名, TENCENT_COS_A:腾讯云  多次有效签名（不推荐）, TENCENT_COS_B:腾讯云  单次有效签名，安全性最高, TENCENT_COS_C:腾讯云  Header携带签名，用于API调用, TENCENT_COS_D:腾讯云  Header携带签名，用于API调用.
     *
     * @return $this
     */
@@ -389,6 +449,54 @@ class SourceCdnReq implements ModelInterface, ArrayAccess
     public function setProtocol($protocol)
     {
         $this->container['protocol'] = $protocol;
+        return $this;
+    }
+
+    /**
+    * Gets cryptoType
+    *  加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return string|null
+    */
+    public function getCryptoType()
+    {
+        return $this->container['cryptoType'];
+    }
+
+    /**
+    * Sets cryptoType
+    *
+    * @param string|null $cryptoType 加解密类型，默认为DEFAULT，可选类型为DEFAULT、KMS
+    *
+    * @return $this
+    */
+    public function setCryptoType($cryptoType)
+    {
+        $this->container['cryptoType'] = $cryptoType;
+        return $this;
+    }
+
+    /**
+    * Gets kmsKeyId
+    *  KMS密钥ID，36个字符
+    *
+    * @return string|null
+    */
+    public function getKmsKeyId()
+    {
+        return $this->container['kmsKeyId'];
+    }
+
+    /**
+    * Sets kmsKeyId
+    *
+    * @param string|null $kmsKeyId KMS密钥ID，36个字符
+    *
+    * @return $this
+    */
+    public function setKmsKeyId($kmsKeyId)
+    {
+        $this->container['kmsKeyId'] = $kmsKeyId;
         return $this;
     }
 
